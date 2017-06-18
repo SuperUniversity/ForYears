@@ -1,0 +1,18 @@
+﻿@model IEnumerable<FourYears.Areas.FoodMapArea.Controllers.Temp>
+
+@foreach (var shop in Model)
+{
+    <div class="col-md-4" style="margin-top:10px;">
+        <img src="@Url.Action("GetImage",new { id=shop.ShopID})" style="width:250px;height:250px;margin-top:10px" />
+        <p style="font-size:16px;font-family:'Microsoft JhengHei';font-weight:bold;color:red">@Html.DisplayTextFor(p => shop.ShopName)</p>
+        <p style="font-size:14px;font-family:'Microsoft JhengHei';font-weight:bold;color:green">@Html.DisplayTextFor(p => shop.FoodCategoryName)</p>
+        <p style="font-size:14px;font-family:'Microsoft JhengHei';font-weight:bold">@Html.DisplayTextFor(p => shop.Address)</p>
+        <p style="font-size:14px;font-family:'Microsoft JhengHei';font-weight:bold">@Html.DisplayTextFor(p => shop.Phone)</p>
+        @Html.ActionLink("點我看店家詳細", "Details", "Shop", new { id = shop.ShopID }, new { @class = "btn btn-primary", style = "font-size:18px;font-family:'Microsoft JhengHei';font-weight:bold" })
+        <br />
+        <br />
+    </div>
+}
+<br />
+
+

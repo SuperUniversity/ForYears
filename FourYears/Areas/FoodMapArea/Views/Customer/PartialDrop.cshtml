@@ -1,0 +1,89 @@
+﻿@model FourYears.Areas.FoodMapArea.Models.Shop
+<head>
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#CityID').change(function () { ChangeCity(); });
+        });
+
+        function ChangeCity() {
+            var selectedValue = $('#CityID option:selected').val();
+            if ($.trim(selectedValue).length > 0) {
+                GetSchool(selectedValue);
+            }
+        }
+
+        function GetSchool(CityID) {
+            $.ajax({
+                url: '@Url.Action("Schools", "Customer")',
+                data: { CityID: CityID },
+                type: 'post',
+                cache: false,
+                async: false,
+                dataType: 'json',
+                success: function (data) {
+                    if (data.length > 0) {
+                        $('#SchoolID').empty();
+                        $('#SchoolID').append($('<option></option>').val('').text('請選擇學校'));
+                        $.each(data, function (i, item) {
+                            $('#SchoolID').append($('<option></option>').val(item.Key).text(item.Value));
+                        });
+                    }
+                }
+            });
+        }
+
+    </script>
+    <style>
+        .toplabel {
+            text-align: right;
+            margin-top: 10px;
+            margin-left: 50px;
+            font-size: 20px;
+            font-family: 'Microsoft JhengHei';
+            font-weight: bold;
+        }
+    </style>
+
+</head>
+
+
+<div class="form-group">
+
+    <div class="form-inline">
+        @{
+            //var cities = new SelectList(ViewBag.cities, "CityID", "CityName");
+            //var schools = new SelectList(ViewBag.schools, "SchoolID", "SchoolName");
+            var categories = new SelectList(ViewBag.categories, "FoodCategoryID", "FoodCategoryName");
+
+        }
+
+        @*@Html.DropDownListFor(p=>p.CityID, cities, "請選擇縣市", new { @class = "form-control" })*@
+        <label class="toplabel">縣市名稱：</label>
+        @Html.DropDownList("CityID", (SelectList)ViewBag.cities, "請選擇縣市", new { id = "CityID", @class = "form-control", style = "width:500px;font-size:18px;font-family:'Microsoft JhengHei';font-weight:bold" })
+    </div>
+</div>
+<div class="form-group">
+
+    <div class="form-inline">
+        @*@Html.DropDownListFor(p => p.SchoolID, schools, "請選擇學校", new { @class = "form-control" })*@
+        <label class="toplabel">學校名稱：</label>
+        <select id="SchoolID" class="form-control" name="SchoolID" style="width:500px;font-size:18px;font-family:'Microsoft JhengHei';font-weight:bold"><option>---請先選擇縣市---</option></select>
+    </div>
+</div>
+<div class="form-group">
+
+    <div class="form-inline">
+        <label class="toplabel">分類名稱（選填）：</label>
+        @Html.DropDownListFor(p => p.FoodCategoryID, categories, "請選擇分類", new { @class = "form-control", style = "width:500px;font-size:18px;font-family:'Microsoft JhengHei';font-weight:bold" })
+        @*@Html.DropDownList("FoodCategoryID", null, new { id = "FoodCategoryID", @class = "form-control" })*@
+        <div>
+            <br />
+        </div>
+
+        <button id="subbtn" type="submit" class="btn btn-primary" style="float:right;width:200px;margin-right:80px;font-size:18px;font-family:'Microsoft JhengHei';font-weight:bold"><span class="glyphicon glyphicon-search"></span>  送出</button>
+    </div>
+</div>
+
+
+

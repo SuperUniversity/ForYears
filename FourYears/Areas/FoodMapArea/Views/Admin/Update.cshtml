@@ -1,0 +1,169 @@
+﻿@model FourYears.Areas.FoodMapArea.Models.Shop
+@{
+    ViewBag.Title = "餐廳資料修改";
+}
+@section styles{
+    <style>
+        #ad {
+            width: 70%;
+            height: 150px;
+        }
+
+        #adarea {
+            background-color: wheat;
+            text-align: center;
+        }
+
+        .barfont {
+            font-size: 18px;
+            font-family: 'Microsoft JhengHei';
+            font-weight: bold;
+        }
+    </style>
+
+}
+
+<div id="adarea">
+    <img id="ad" src="~/Areas/FoodMapArea/WebImages/delicacy_banner_1.jpg" />
+</div>
+<div class="container">
+    <ul class="breadcrumb barfont">
+        <li>@Html.ActionLink("首頁", "Index", "Customer", new { area = "FoodMapArea" }, null)</li>
+        <li>@Html.ActionLink("餐廳資料瀏覽(Admin)", "Index", "Admin", new { area = "FoodMapArea" }, null)</li>
+        <li>餐廳資料修改</li>
+        @*@if (Request.Cookies["UserName"] == null)
+        {
+            <li style="float:right">@Html.ActionLink("登入", "Login", "Account", new { area = "FoodMapArea" }, null)</li>
+        }
+        else
+        {
+            <li style="float:right">@Html.ActionLink(Request.Cookies["UserName"].Value + " 登出", "Logout", "Account", new { area = "FoodMapArea" }, null)</li>
+        }*@
+
+        @if (Request.Cookies["UserName"] == null)
+        {
+            <li style="float:right">@Html.ActionLink("管理介面", "Login", "Account", new { area = "FoodMapArea" }, null)</li>
+        }
+        else
+        {
+            if (Request.Cookies["UserName"].Value == "Admin")
+            {
+                <li style="float:right">@Html.ActionLink("管理介面", "Index", "Admin", new { area = "FoodMapArea" }, null)</li>
+            }
+            else
+            {
+                <li style="float:right">@Html.ActionLink("管理介面", "Index", "User", new { area = "FoodMapArea", id = Request.Cookies["CustomerID"].Value }, null)</li>
+            }
+        }
+        <li style="float:right">@Html.ActionLink("店家介紹", "Index", "Shop", new { area = "FoodMapArea" }, null)</li>
+        <li style="float:right">@Html.ActionLink("地圖美食", "Map", "Customer", new { area = "FoodMapArea" }, null)</li>
+    </ul>
+</div>
+<div class="container">
+    <h2 style="font-family:'Microsoft JhengHei';font-weight:bold;"><span style="color:orangered">餐廳</span>資料修改</h2>
+    <hr />
+
+    @using (Html.BeginForm("Update", "Admin", FormMethod.Post, new { @class = "form-horizontal", enctype = "multipart/form-data" }))
+    {
+        @Html.HiddenFor(p => p.ShopID)
+
+        <div class="form-group">
+            @Html.LabelFor(p => p.ShopName, new { @class = "col-sm-2 control-label" })
+            <div class="col-sm-10">
+                @Html.EditorFor(p => p.ShopName, new { htmlAttributes = new { @class = "form-control", placeholder = "餐廳名稱" } })
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">縣市名稱</label>
+            <div class="col-sm-10">
+                @{
+                    var cities = new SelectList(ViewBag.cities, "CityID", "CityName");
+                    var schools = new SelectList(ViewBag.schools, "SchoolID", "SchoolName");
+                }
+                @Html.DropDownListFor(p => p.CityID, cities, new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">學校名稱</label>
+            <div class="col-sm-10">
+                @Html.DropDownListFor(p => p.SchoolID, schools, new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">分類名稱</label>
+            <div class="col-sm-10">
+                @{
+                    var categories = new SelectList(ViewBag.datas, "FoodCategoryID", "FoodCategoryName");
+                }
+                @Html.DropDownListFor(p => p.FoodCategoryID, categories, "請選擇", new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(p => p.Address, new { @class = "col-sm-2 control-label" })
+            <div class="col-sm-10">
+                @Html.EditorFor(p => p.Address, new { htmlAttributes = new { @class = "form-control", placeholder = "地址" } })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(p => p.Phone, new { @class = "col-sm-2 control-label" })
+            <div class="col-sm-10">
+                @Html.EditorFor(p => p.Phone, new { htmlAttributes = new { @class = "form-control", placeholder = "電話" } })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(p => p.Cost, new { @class = "col-sm-2 control-label" })
+            <div class="col-sm-10">
+                @Html.EditorFor(p => p.Cost, new { htmlAttributes = new { @class = "form-control", placeholder = "平均消費" } })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(p => p.BusinessTime, new { @class = "col-sm-2 control-label" })
+            <div class="col-sm-10">
+                @Html.EditorFor(p => p.BusinessTime, new { htmlAttributes = new { @class = "form-control", placeholder = "營業時間" } })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(p => p.ShopLink, new { @class = "col-sm-2 control-label" })
+            <div class="col-sm-10">
+                @Html.EditorFor(p => p.ShopLink, new { htmlAttributes = new { @class = "form-control", placeholder = "粉絲專頁" } })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(p => p.Image1, new { @class = "col-sm-2 control-label" })
+            <div class="col-sm-10">
+                @Html.EditorFor(p => p.Image1, new { htmlAttributes = new { @class = "form-control", placeholder = "Product Image", type = "file" } })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(p => p.Image2, new { @class = "col-sm-2 control-label" })
+            <div class="col-sm-10">
+                @Html.EditorFor(p => p.Image2, new { htmlAttributes = new { @class = "form-control", placeholder = "Product Image", type = "file" } })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(p => p.Image3, new { @class = "col-sm-2 control-label" })
+            <div class="col-sm-10">
+                @Html.EditorFor(p => p.Image3, new { htmlAttributes = new { @class = "form-control", placeholder = "Product Image", type = "file" } })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(p => p.Description, new { @class = "col-sm-2 control-label" })
+            <div class="col-sm-10">
+                @Html.EditorFor(p => p.Description, new { htmlAttributes = new { @class = "form-control", placeholder = "介紹" } })
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <button type="submit" class="btn btn-primary">送出</button>
+                <div>@ViewBag.Message</div>
+            </div>
+        </div>
+                    }
+</div>
+
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />

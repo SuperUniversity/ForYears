@@ -1,0 +1,99 @@
+﻿@model FourYears.Areas.FoodMapArea.Models.ShopCustomer
+
+@{
+    ViewBag.Title = "會員登入";
+}
+
+
+@section styles{
+    <style>
+        #ad {
+            width: 70%;
+            height: 150px;
+        }
+
+        #adarea {
+            background-color: wheat;
+            text-align: center;
+        }
+
+        .barfont {
+            font-size: 18px;
+            font-family: 'Microsoft JhengHei';
+            font-weight: bold;
+        }
+    </style>
+
+}
+<div id="adarea">
+    <img id="ad" src="~/Areas/FoodMapArea/WebImages/delicacy_banner_3.jpg" />
+</div>
+<div class="container">
+    <ul class="breadcrumb barfont">
+        <li>@Html.ActionLink("首頁", "Index", "Customer", new { area = "FoodMapArea" }, null)</li>
+        <li>會員登入</li>
+
+        @if (Request.Cookies["UserName"] == null)
+        {
+            <li style="float:right">@Html.ActionLink("登入", "Login", "Account", new { area = "FoodMapArea" }, null)</li>
+        }
+        else
+        {
+            <li style="float:right">@Html.ActionLink(Request.Cookies["UserName"].Value + " 登出", "Logout", "Account", new { area = "FoodMapArea" }, null)</li>
+        }
+
+        @if (Request.Cookies["UserName"] == null)
+        {
+            <li style="float:right">@Html.ActionLink("管理介面", "Login", "Account", new { area = "FoodMapArea" }, null)</li>
+        }
+        else
+        {
+            if (Request.Cookies["UserName"].Value == "Admin")
+            {
+                <li style="float:right">@Html.ActionLink("管理介面", "Index", "Admin", new { area = "FoodMapArea" }, null)</li>
+            }
+            else
+            {
+                <li style="float:right">@Html.ActionLink("管理介面", "Index", "User", new { area = "FoodMapArea", id = Request.Cookies["CustomerID"].Value }, null)</li>
+            }
+        }
+        <li style="float:right">@Html.ActionLink("店家介紹", "Index", "Shop", new { area = "FoodMapArea" }, null)</li>
+        <li style="float:right">@Html.ActionLink("地圖美食", "Map", "Customer", new { area = "FoodMapArea" }, null)</li>
+    </ul>
+</div>
+<div class="container">
+    <h2 style="font-family:'Microsoft JhengHei';font-weight:bold;font-size:24px;"><span style="color:orangered">會員</span>登入</h2>
+    <hr />
+
+    @using (Html.BeginForm("Login", "Account", FormMethod.Post, new { @class = "form-horizontal", novalidate = "novalidate" }))
+    {
+        <div class="form-group">
+            @Html.LabelFor(p => p.FullName, new { @class = "col-sm-2 control-label" })
+            <div class="col-sm-10">
+                @Html.EditorFor(p => p.FullName, new { htmlAttributes = new { @class = "form-control", placeholder = "請輸入您的姓名" } })
+                @Html.ValidationMessageFor(p => p.FullName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(p => p.EmailAddress, new { @class = "col-sm-2 control-label" })
+            <div class="col-sm-10">
+                @Html.EditorFor(p => p.EmailAddress, new { htmlAttributes = new { @class = "form-control", placeholder = "請輸入您的電子信箱" } })
+                @Html.ValidationMessageFor(p => p.EmailAddress, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(p => p.Password, new { @class = "col-sm-2 control-label" })
+            <div class="col-sm-10">
+                @Html.EditorFor(p => p.Password, new { htmlAttributes = new { @class = "form-control", placeholder = "請輸入您的密碼" } })
+                @Html.ValidationMessageFor(p => p.Password, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <button type="submit" class="btn btn-primary">送出</button>
+                <span>　　　　　沒有帳號?　</span>@Html.ActionLink("立即註冊", "Register", "Account")
+            </div>
+        </div>
+    }
+
+</div>
