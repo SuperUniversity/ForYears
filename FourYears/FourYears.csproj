@@ -49,14 +49,6 @@
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.3\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="PagedList, Version=1.17.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
-      <HintPath>..\packages\PagedList.1.17.0.0\lib\net40\PagedList.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="PagedList.Mvc, Version=4.5.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
-      <HintPath>..\packages\PagedList.Mvc.4.5.0.0\lib\net40\PagedList.Mvc.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -78,15 +70,12 @@
       <HintPath>..\packages\System.Net.Http.2.0.20126.16343\lib\net40\System.Net.Http.WebRequest.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="System.Runtime.Serialization" />
-    <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Extensions" />
@@ -221,49 +210,6 @@
     <Compile Include="Areas\Courses\Models\NctuCourseModel.cs" />
     <Compile Include="Areas\Courses\Models\NtpuCourseModel.cs" />
     <Compile Include="Areas\Courses\Models\NtuCourseModel.cs" />
-    <Compile Include="Areas\FoodMapArea\Controllers\AdminController.cs" />
-    <Compile Include="Areas\FoodMapArea\Controllers\CustomerController.cs" />
-    <Compile Include="Areas\FoodMapArea\Controllers\ShopController.cs" />
-    <Compile Include="Areas\FoodMapArea\Controllers\UserController.cs" />
-    <Compile Include="Areas\FoodMapArea\FoodMapAreaAreaRegistration.cs" />
-    <Compile Include="Areas\FoodMapArea\Models\City.cs">
-      <DependentUpon>FoodMapModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Areas\FoodMapArea\Models\FoodCategory.cs">
-      <DependentUpon>FoodMapModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Areas\FoodMapArea\Models\FoodMapModel.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>FoodMapModel.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Areas\FoodMapArea\Models\FoodMapModel.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>FoodMapModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Areas\FoodMapArea\Models\FoodMapModel.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>FoodMapModel.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="Areas\FoodMapArea\Models\Order.cs">
-      <DependentUpon>FoodMapModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Areas\FoodMapArea\Models\Partial\Shop.cs" />
-    <Compile Include="Areas\FoodMapArea\Models\Partial\ShopCustomer.cs" />
-    <Compile Include="Areas\FoodMapArea\Models\School.cs">
-      <DependentUpon>FoodMapModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Areas\FoodMapArea\Models\Shop.cs">
-      <DependentUpon>FoodMapModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Areas\FoodMapArea\Models\ShopCustomer.cs">
-      <DependentUpon>FoodMapModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Areas\FoodMapArea\Models\Shop_ShopCustomer.cs">
-      <DependentUpon>FoodMapModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -291,59 +237,10 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Areas\FoodMapArea\Models\FoodMapModel.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>FoodMapModel.edmx</DependentUpon>
-      <LastGenOutput>FoodMapModel.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="Areas\FoodMapArea\Models\FoodMapModel.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>FoodMapModel.edmx</DependentUpon>
-      <LastGenOutput>FoodMapModel.cs</LastGenOutput>
-    </Content>
-    <Content Include="Areas\FoodMapArea\ShopImages\1.jpg" />
-    <Content Include="Areas\FoodMapArea\ShopImages\2.jpg" />
-    <Content Include="Areas\FoodMapArea\ShopImages\29 %281%29.jpg" />
-    <Content Include="Areas\FoodMapArea\ShopImages\29.jpg" />
-    <Content Include="Areas\FoodMapArea\ShopImages\3.jpg" />
-    <Content Include="Areas\FoodMapArea\ShopImages\41 %281%29.jpg" />
-    <Content Include="Areas\FoodMapArea\ShopImages\41 %282%29.jpg" />
-    <Content Include="Areas\FoodMapArea\ShopImages\41.jpg" />
-    <Content Include="Areas\FoodMapArea\ShopImages\4_10.gif.pagespeed.ce._SCzdCWQma.gif" />
-    <Content Include="Areas\FoodMapArea\ShopImages\5.jpg" />
-    <Content Include="Areas\FoodMapArea\ShopImages\54133_P_Ls9j5.jpg" />
-    <Content Include="Areas\FoodMapArea\ShopImages\54133_P_Rm37H.jpg" />
-    <Content Include="Areas\FoodMapArea\ShopImages\54133_P_t9Y4G.jpg" />
-    <Content Include="Areas\FoodMapArea\ShopImages\6.jpg" />
-    <Content Include="Areas\FoodMapArea\ShopImages\7.jpg" />
-    <Content Include="Areas\FoodMapArea\ShopImages\coffee.jpg" />
-    <Content Include="Areas\FoodMapArea\ShopImages\nopic.jpg" />
-    <Content Include="Areas\FoodMapArea\ShopImages\s10735014_45394378.7580685.jpg" />
-    <Content Include="Areas\FoodMapArea\ShopImages\地圖1.png" />
-    <Content Include="Areas\FoodMapArea\ShopImages\地圖2.png" />
-    <Content Include="Areas\FoodMapArea\ShopImages\店家詳細.png" />
-    <Content Include="Areas\FoodMapArea\ShopImages\管理者CRUD.png" />
-    <Content Include="Areas\FoodMapArea\WebImages\1.jpg" />
-    <Content Include="Areas\FoodMapArea\WebImages\2.jpg" />
-    <Content Include="Areas\FoodMapArea\WebImages\3.jpg" />
-    <Content Include="Areas\FoodMapArea\WebImages\4.jpg" />
-    <Content Include="Areas\FoodMapArea\WebImages\5.jpg" />
-    <Content Include="Areas\FoodMapArea\WebImages\6.jpg" />
-    <Content Include="Areas\FoodMapArea\WebImages\7.jpg" />
-    <Content Include="Areas\FoodMapArea\WebImages\ad1.jpg" />
-    <Content Include="Areas\FoodMapArea\WebImages\ad2.png" />
-    <Content Include="Areas\FoodMapArea\WebImages\ad3.jpg" />
-    <Content Include="Areas\FoodMapArea\WebImages\appIcon2.png" />
-    <Content Include="Areas\FoodMapArea\WebImages\delicacy_banner_0.jpg" />
-    <Content Include="Areas\FoodMapArea\WebImages\delicacy_banner_1.jpg" />
-    <Content Include="Areas\FoodMapArea\WebImages\delicacy_banner_3.jpg" />
-    <Content Include="Areas\FoodMapArea\WebImages\jpfood.jpg" />
-    <Content Include="Areas\FoodMapArea\WebImages\school.png" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\font-awesome.min.css" />
     <Content Include="Content\main.css" />
-    <Content Include="Content\PagedList.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -399,33 +296,6 @@
     <Content Include="fonts\fontawesome-webfont.woff2" />
     <Content Include="fonts\FontAwesome.otf" />
     <Content Include="Areas\Courses\Views\Shared\_MyLayout.cshtml" />
-    <Content Include="Areas\FoodMapArea\Views\web.config" />
-    <EntityDeploy Include="Areas\FoodMapArea\Models\FoodMapModel.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>FoodMapModel.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Areas\FoodMapArea\Models\FoodMapModel.edmx.diagram">
-      <DependentUpon>FoodMapModel.edmx</DependentUpon>
-    </Content>
-    <Content Include="Areas\FoodMapArea\Views\_ViewStart.cshtml" />
-    <Content Include="Areas\FoodMapArea\Views\Shared\_Layout.cshtml" />
-    <Content Include="Areas\FoodMapArea\Views\Admin\Index.cshtml" />
-    <Content Include="Areas\FoodMapArea\Views\Admin\Create.cshtml" />
-    <Content Include="Areas\FoodMapArea\Views\Admin\PartialDrop2.cshtml" />
-    <Content Include="Areas\FoodMapArea\Views\Admin\Detail.cshtml" />
-    <Content Include="Areas\FoodMapArea\Views\Admin\Update.cshtml" />
-    <Content Include="Areas\FoodMapArea\Views\Customer\Index.cshtml" />
-    <Content Include="Areas\FoodMapArea\Views\Customer\Map.cshtml" />
-    <Content Include="Areas\FoodMapArea\Views\Customer\PartialList.cshtml" />
-    <Content Include="Areas\FoodMapArea\Views\Customer\PartialDrop.cshtml" />
-    <Content Include="Areas\FoodMapArea\Views\Shop\Index.cshtml" />
-    <Content Include="Areas\FoodMapArea\Views\Shop\Details.cshtml" />
-    <Content Include="Areas\FoodMapArea\Views\Shop\GetFoodCategoryName.cshtml" />
-    <Content Include="Areas\FoodMapArea\Views\User\Index.cshtml" />
-    <Content Include="Areas\FoodMapArea\Views\User\Create.cshtml" />
-    <Content Include="Areas\FoodMapArea\Views\User\PartialDrop3.cshtml" />
-    <Content Include="Areas\FoodMapArea\Views\User\Detail.cshtml" />
-    <Content Include="Areas\FoodMapArea\Views\User\Update.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -504,9 +374,6 @@
     <EmbeddedResource Include="Migrations\201706180154449_ActualName.resx">
       <DependentUpon>201706180154449_ActualName.cs</DependentUpon>
     </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
