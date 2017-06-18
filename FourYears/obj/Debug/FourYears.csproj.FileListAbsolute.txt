@@ -510,3 +510,7 @@ D:\Google 雲端硬碟\MIST114\SpecialProject\ForYears\FourYears\obj\Debug\FourY
 D:\Google 雲端硬碟\MIST114\SpecialProject\ForYears\FourYears\obj\Debug\FourYears.csproj.GenerateResource.Cache
 D:\Google 雲端硬碟\MIST114\SpecialProject\ForYears\FourYears\obj\Debug\FourYears.dll
 D:\Google 雲端硬碟\MIST114\SpecialProject\ForYears\FourYears\obj\Debug\FourYears.pdb
+D:\Google 雲端硬碟\MIST114\SpecialProject\ForYears\FourYears\bin\PagedList.dll
+D:\Google 雲端硬碟\MIST114\SpecialProject\ForYears\FourYears\bin\PagedList.Mvc.dll
+D:\Google 雲端硬碟\MIST114\SpecialProject\ForYears\FourYears\bin\PagedList.xml
+D:\Google 雲端硬碟\MIST114\SpecialProject\ForYears\FourYears\bin\PagedList.Mvc.xml
