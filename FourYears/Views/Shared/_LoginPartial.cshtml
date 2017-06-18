@@ -8,8 +8,8 @@
 
     <ul class="nav navbar-nav navbar-right">
         <li>
-            
-            @Html.ActionLink("Hello " + ApplicationDbContext.GetNickName(User.Identity.GetUserId()) + "!", "Index", "Manage", new { area=""}, htmlAttributes: new { title = "Manage" })
+
+            @Html.ActionLink("Hello " + ApplicationDbContext.GetNickName(User.Identity.GetUserId()), "Index", "Manage", new { area=""}, htmlAttributes: new { title = "Manage" })
             @*Hello @User.Identity.GetUserName() !*@
 
         </li>

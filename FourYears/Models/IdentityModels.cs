@@ -28,11 +28,15 @@ public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
         {
         }
 
-        public async static Task<string> GetNickName(string id)
+        public static string GetNickName(string id)
         {
             ApplicationDbContext db = new ApplicationDbContext();
-            ApplicationUser currentUser = await db.Users.FirstOrDefaultAsync(x => x.Id == id);
-            return currentUser.NickName;
+            ApplicationUser currentUser = db.Users.Find(id);
+            if (currentUser.NickName == null)
+            {
+                return currentUser.Email;
+            }
+            return currentUser.NickName.ToString();
         }
 
         public static ApplicationDbContext Create()
