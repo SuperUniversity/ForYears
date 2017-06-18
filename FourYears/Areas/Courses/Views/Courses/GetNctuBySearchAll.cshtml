@@ -1,0 +1,110 @@
+﻿@model IEnumerable<MvcClient.Areas.Courses.Models.NctuCourseModel>
+
+
+<table class="table">
+    <tr>
+        <th hidden="hidden">
+            @Html.DisplayNameFor(model => model._id)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.課程名稱)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.開課教師)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.上課時間及教室)
+        </th>
+        @*<th>
+            @Html.DisplayNameFor(model => model.學期別)
+        </th>*@
+        @*<th>
+            @Html.DisplayNameFor(model => model.英文課程名稱)
+        </th>*@
+        @*<th>
+            @Html.DisplayNameFor(model => model.永久課號)
+        </th>*@
+        @*<th>
+            @Html.DisplayNameFor(model => model.選別)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.時數)
+        </th>*@
+        <th>
+            @Html.DisplayNameFor(model => model.學分)
+        </th>
+        @*<th>
+            @Html.DisplayNameFor(model => model.課號)
+        </th>*@
+        <th>
+            @Html.DisplayNameFor(model => model.人數上限)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.備註)
+        </th>
+        @*<th>
+            @Html.DisplayNameFor(model => model.摘要)
+        </th>*@
+        @*<th>
+            @Html.DisplayNameFor(model => model.修課人數)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.lastModified)
+        </th>*@
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td hidden="hidden">
+            @Html.DisplayFor(modelItem => item._id)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.課程名稱)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.開課教師)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.上課時間及教室)
+        </td>
+        @*<td>
+            @Html.DisplayFor(modelItem => item.學期別)
+        </td>*@
+        @*<td>
+            @Html.DisplayFor(modelItem => item.英文課程名稱)
+        </td>*@
+        @*<td>
+            @Html.DisplayFor(modelItem => item.永久課號)
+        </td>*@
+        @*<td>
+            @Html.DisplayFor(modelItem => item.選別)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.時數)
+        </td>*@
+        <td>
+            @Html.DisplayFor(modelItem => item.學分)
+        </td>
+        @*<td>
+            @Html.DisplayFor(modelItem => item.課號)
+        </td>*@
+        <td>
+            @Html.DisplayFor(modelItem => item.人數上限)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.備註)
+        </td>
+        @*<td>
+            @Html.DisplayFor(modelItem => item.摘要)
+        </td>*@
+
+        @*<td>
+            @Html.DisplayFor(modelItem => item.修課人數)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.lastModified)
+        </td>*@
+    </tr>
+}
+
+</table>

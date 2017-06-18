@@ -1,0 +1,97 @@
+﻿@model IEnumerable<MvcClient.Areas.Courses.Models.NtpuCourseModel>
+
+<table class="table">
+    <tr>
+        <th hidden="hidden">
+            @Html.DisplayNameFor(model => model._id)
+        </th>
+        <th style="width:15%">
+            @Html.DisplayNameFor(model => model.科目名稱)
+        </th>
+        <th style="width:7%">
+            @Html.DisplayNameFor(model => model.授課教師)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.上課時間教室)
+        </th>
+        <th style="width:7%">
+            @Html.DisplayNameFor(model => model.開課系所)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.學分)
+        </th>
+        @*<th>
+            @Html.DisplayNameFor(model => model.應修系級)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.必選修別)
+        </th>*@
+        <th>
+            @Html.DisplayNameFor(model => model.限修總計人數)
+        </th>
+        @*<th>
+            @Html.DisplayNameFor(model => model.是否開放加簽)
+        </th>*@
+        @*<th>
+            @Html.DisplayNameFor(model => model.加簽人數上限)
+        </th>*@
+        @*<th>
+            @Html.DisplayNameFor(model => model.繳費時數)
+        </th>*@
+        <th>
+            @Html.DisplayNameFor(model => model.授課語別)
+        </th>
+        <th style="width:25%">
+            @Html.DisplayNameFor(model => model.備註)
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td hidden="hidden">
+            @Html.DisplayFor(modelItem => item._id)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.科目名稱)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.授課教師)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.上課時間教室)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.開課系所)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.學分)
+        </td>
+        @*<td>
+            @Html.DisplayFor(modelItem => item.應修系級)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.必選修別)
+        </td>*@
+        <td>
+            @Html.DisplayFor(modelItem => item.限修總計人數)
+        </td>
+        @*<td>
+            @Html.DisplayFor(modelItem => item.是否開放加簽)
+        </td>*@
+        @*<td>
+            @Html.DisplayFor(modelItem => item.加簽人數上限)
+        </td>*@
+        @*<td>
+            @Html.DisplayFor(modelItem => item.繳費時數)
+        </td>*@
+        <td>
+            @Html.DisplayFor(modelItem => item.授課語別)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.備註)
+        </td>
+        
+    </tr>
+}
+
+</table>

@@ -1,0 +1,470 @@
+﻿@using Microsoft.AspNet.Identity
+@model MvcClient.Areas.Courses.Models.AllCollegeCourseModel
+
+@{
+    ViewBag.Title = "GetCourseDetail";
+}
+@section styles{
+    <style>
+        .rankingRange {
+            display: inline;
+            margin-top: 6px;
+        }
+        .courseDetail h5 {
+            margin-top: 0px;
+            margin-bottom: 7px;
+            font-size:15px;
+        }
+        .slefBlock{
+            margin-bottom:40px;
+        }
+        h2 {
+            margin-bottom: 20px;
+        }
+
+        #commentstring {
+            height: 167px;
+        }
+
+        #submit {
+            margin-left: 45px;
+        }
+        #postRanking .form-group {
+            margin-bottom:28px;
+        }
+        #commentSubmitDiv {
+            margin-left: 10px;
+        }
+
+    </style>
+    }
+
+
+<div class="container">
+    <h2>@Html.DisplayFor(model => model.CourseName)</h2>
+
+    <h4>詳細資料</h4>
+    <hr />
+
+    <div class="row slefBlock">
+        <div class="col-md-5 courseDetail">
+            <div class="row">
+                <div class="col-md-offset-1 col-md-3" hidden="hidden">
+                    <h5>
+                        @Html.DisplayNameFor(model => model._id)
+                    </h5>
+                </div>
+
+                <div class="col-md-8" hidden="hidden">
+                    <h5 id="ObjId">
+                        @Html.DisplayFor(model => model._id)
+                    </h5>
+                </div>
+            </div>
+
+            <div class="row">
+
+                <div class="col-md-offset-1 col-md-3">
+                    <h5>
+                        @Html.DisplayNameFor(model => model.College)：
+                    </h5>
+                </div>
+
+                <div class="col-md-8">
+                    <h5>
+                        @Html.DisplayFor(model => model.College)
+                    </h5>
+                </div>
+            </div>
+
+            <div class="row">
+
+                <div class="col-md-offset-1 col-md-3">
+                    <h5>
+                        @Html.DisplayNameFor(model => model.Identity)：
+                    </h5>
+                </div>
+
+                <div class="col-md-8">
+                    <h5>
+                        @Html.DisplayFor(model => model.Identity)
+                    </h5>
+                </div>
+            </div>
+
+            @*<div class="row">
+                <div class="col-md-offset-1 col-md-3">
+                    <h5>
+                        @Html.DisplayNameFor(model => model.Semester)：
+                    </h5>
+                </div>
+
+                <div class="col-md-8">
+                    <h5>
+                        @Html.DisplayFor(model => model.Semester)
+                    </h5>
+                </div>
+            </div>*@
+
+            @*<div class="row">
+
+                <div class="col-md-offset-1 col-md-3">
+                    <h5>
+                        @Html.DisplayNameFor(model => model.CourseName)：
+                    </h5>
+                </div>
+
+                <div class="col-md-8">
+                    <h5>
+                        @Html.DisplayFor(model => model.CourseName)
+                    </h5>
+                </div>
+            </div>*@
+
+            <div class="row">
+
+                <div class="col-md-offset-1 col-md-3">
+                    <h5>
+                        @Html.DisplayNameFor(model => model.Teacher)：
+                    </h5>
+                </div>
+
+                <div class="col-md-8">
+                    <h5>
+                        @Html.DisplayFor(model => model.Teacher)
+                    </h5>
+                </div>
+            </div>
+
+            <div class="row">
+
+                <div class="col-md-offset-1 col-md-3">
+                    <h5>
+                        @Html.DisplayNameFor(model => model.TimeAndClassroom)：
+                    </h5>
+                </div>
+
+                <div class="col-md-8">
+                    <h5>
+                        @Html.DisplayFor(model => model.TimeAndClassroom)
+                    </h5>
+                </div>
+            </div>
+
+            <div class="row">
+
+                <div class="col-md-offset-1 col-md-3">
+                    <h5>
+                        @Html.DisplayNameFor(model => model.Major)：
+                    </h5>
+                </div>
+
+                <div class="col-md-8">
+                    <h5>
+                        @Html.DisplayFor(model => model.Major)
+                    </h5>
+                </div>
+            </div>
+
+            <div class="row">
+
+                <div class="col-md-offset-1 col-md-3">
+                    <h5>
+                        @Html.DisplayNameFor(model => model.Required)：
+                    </h5>
+                </div>
+
+                <div class="col-md-8">
+                    <h5>
+                        @Html.DisplayFor(model => model.Required)
+                    </h5>
+                </div>
+            </div>
+
+            <div class="row">
+
+                <div class="col-md-offset-1 col-md-3">
+                    <h5>
+                        @Html.DisplayNameFor(model => model.MaxNum)：
+                    </h5>
+                </div>
+
+                <div class="col-md-8">
+                    <h5>
+                        @Html.DisplayFor(model => model.MaxNum)
+                    </h5>
+                </div>
+            </div>
+
+            <div class="row">
+
+                <div class="col-md-offset-1 col-md-3">
+                    <h5>
+                        @Html.DisplayNameFor(model => model.Credit)：
+                    </h5>
+                </div>
+
+                <div class="col-md-8">
+                    <h5>
+                        @Html.DisplayFor(model => model.Credit)
+                    </h5>
+                </div>
+            </div>
+
+            <div class="row">
+
+                <div class="col-md-offset-1 col-md-3">
+                    <h5>
+                        @Html.DisplayNameFor(model => model.Limitation)：
+                    </h5>
+                </div>
+
+                <div class="col-md-8">
+                    <h5>
+                        @Html.DisplayFor(model => model.Limitation)
+                    </h5>
+                </div>
+            </div>
+
+            <div class="row">
+
+                <div class="col-md-offset-1 col-md-3">
+                    <h5>
+                        @Html.DisplayNameFor(model => model.Note)：
+                    </h5>
+                </div>
+
+                <div class="col-md-8">
+                    <h5>
+                        @Html.DisplayFor(model => model.Note)
+                    </h5>
+                </div>
+            </div>
+
+            <div class="row" hidden="hidden">
+
+                <div class="col-md-offset-1 col-md-3">
+                    <h5>
+                        @Html.DisplayNameFor(model => model.lastModified)：
+                    </h5>
+                </div>
+
+                <div class="col-md-8" hidden="hidden">
+                    <h5>
+                        @Html.DisplayFor(model => model.lastModified)
+                    </h5>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="col-md-6  slefBlock">
+
+            <h4>
+                平均深度:
+            </h4>
+            <div class="progress">
+                <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40"
+                     aria-valuemin="0" aria-valuemax="100" style="width: 100%; height:">
+                     @ViewBag.avgDeepness
+                </div>
+            </div>
+
+            <h4>
+                平均涼度:
+            </h4>
+            <div class="progress">
+                <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="50"
+                     aria-valuemin="0" aria-valuemax="100" style="width :100%">
+                     @ViewBag.avgRelaxing
+                </div>
+            </div>
+
+            <h4>
+                平均甜度:
+            </h4>
+            <div class="progress">
+                <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="60"
+                     aria-valuemin="0" aria-valuemax="100" style="width:100%">
+                     @ViewBag.avgSweetness
+                </div>
+            </div>
+
+
+
+                @*<div class="col-md-12">
+                    <h4>
+                        平均深度: @ViewBag.avgDeepness
+                    </h4>
+                </div>
+
+                <div class="col-md-12">
+                    <h4>
+                        平均涼度: @ViewBag.avgRelaxing
+                    </h4>
+                </div>
+
+                <div class="col-md-5">
+                    <h4>
+                        平均甜度: @ViewBag.avgSweetness
+                    </h4>
+                </div>*@
+                <div class="col-md-7">
+                    <h5>
+                        (總共 @ViewBag.rankingLen 筆評價)
+                    </h5>
+                </div>
+
+
+        </div>
+    </div>
+
+    <h4>評點</h4>
+    <hr />
+    <div class="row">
+        <div id="postRanking" class="slefBlock col-md-5">
+
+        </div>
+        <div id="postComment" class="slefBlock col-md-5">
+
+        </div>
+    </div>
+
+    <div id="comments" class="slefBlock">
+
+    </div>
+</div>
+
+
+
+
+
+<p>
+    @*@Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |*@
+    @Html.ActionLink("Back to List", "Index")
+</p>
+
+
+@section scripts{
+    <script>
+        $(document).ready(function () {
+
+            var ObjId = $('#ObjId').text().replace(new RegExp(" ", 'g'), '')
+            @*var rankingsUrl = '@Url.Action("GetRankings", "Courses", new { area = "Courses"})' + "?strid=" + ObjId.replace(new RegExp(" ",'g'),'')*@
+            var commentsUrl = '@Url.Action("GetComments", "Courses", new { area = "Courses" })' + "?strid=" + ObjId
+            var postRankingRul = '@Url.Action("PostRanking", "Courses", new { area = "Courses" })'
+            var postCommentUrl= '@Url.Action("PostComment", "Courses", new { area = "Courses"})'
+            $("#comments").load(commentsUrl)
+            $("#postRanking").load(postRankingRul, function () {
+
+                $(this).find("input").parent("div").next("div").find("label").text(5)
+
+                $(this).find("input").change(function () {
+                    $(this).parent("div").next("div").find("label").text($(this).val())
+                })
+
+                $(this).find("#submit").click(function (event) {
+                    event.preventDefault();
+                    //TODO
+                    @*var validated = @User.Identity.IsAuthenticated.ToString().ToLower();*@
+
+                    var strid = ObjId;
+                    var userID = parseInt("9999")
+                    var deepness = parseInt($("#deepness").val())
+                    var relaxing = parseInt($("#relaxing").val())
+                    var sweetness = parseInt($("#sweetness").val())
+                    //var url = "http://localhost:57268/api/AllCollege?strid=" + strid + "&isranking=true"
+                    var url = "http://taiwanuniversitiescourses.azurewebsites.net/api/AllCollege?strid=" + strid + "&isranking=true"
+                    var rankingData = { "userID": userID, "deepness": deepness, "relaxing": relaxing, "sweetness": sweetness }
+                    @*@Url.Action("PostComments", "Courses", new { area = "Courses" }) + "?strid=" + strid*@
+
+                    $.ajax({
+                        url: url,
+                        type: 'PUT',
+                        data: rankingData,
+                        crossDomain: true,
+                        //crossOrigin: true,
+                        //contentType: "application/json",
+                        //dataType: "jsonp",
+                        //jsonp: 'jsonp_callback',
+                        //success: function (data) {
+                        //    alert('新增成功');
+                        //    location.reload();
+                        //},
+                        error: function (httpReq, status, exception) {
+                            if (httpReq.status == 500) {
+                                alert('評價成功');
+                                location.reload();
+                            }
+                            else {
+                                alert("評價失敗，請重新評價");
+                            }
+                        }
+                    });
+                })
+            })
+            $("#postComment").load(postCommentUrl, function () {
+                $(this).find("#submit").click(function (event) {
+                    event.preventDefault();
+                    var strid = ObjId;
+                    var url = "http://taiwanuniversitiescourses.azurewebsites.net/api/AllCollege?strid=" + strid + "&iscomment=true"
+                    var userID = 999;
+                    var name = "詹姆士";
+                    var email = "james1111@gmail.com"
+                    var commentstring = $("#postComment").find("#commentstring").val();
+                    var anonym = $("#postComment").find("#anonym").val();
+                    var allowEmailContact = true;
+
+                    commentData = { "userID": userID, "name": name, "email": email, "commentstring": commentstring, "anonym": anonym, "allowEmailContact": allowEmailContact}
+
+                    $.ajax({
+                        url: url,
+                        type: 'PUT',
+                        data: commentData,
+                        crossDomain: true,
+                        //crossOrigin: true,
+                        //contentType: "application/json",
+                        //dataType: "jsonp",
+                        //jsonp: 'jsonp_callback',
+                        //success: function (data) {
+                        //    alert('新增成功');
+                        //    location.reload();
+                        //},
+                        error: function (httpReq, status, exception) {
+                            if (httpReq.status == 500) {
+                                alert('評論成功');
+                                location.reload();
+                            }
+                            else {
+                                alert("評論失敗，請重新評論");
+                            }
+                        }
+                    });
+                })
+            })
+
+            $("#postComment").find("#anonym").change(function () {
+                alert($("this").val())
+            })
+
+
+        })
+        //var scores = $(".progress").find("div").text()
+
+        //$(".progress").find(".progress-bar").width(parseFloat($(this).text()) / 10)
+
+
+        if ("@ViewBag.avgDeepness" != "尚無評價資料") {
+            var avgDeepness = parseFloat(@ViewBag.avgDeepness)*10
+            var avgRelaxing = parseFloat(@ViewBag.avgRelaxing)*10
+            var avgSweetness = parseFloat(@ViewBag.avgSweetness) * 10
+            $(".progress-bar-success").width(avgDeepness.toString() + "%")
+            $(".progress-bar-info").width(avgRelaxing.toString() + "%")
+            $(".progress-bar-warning").width(avgSweetness.toString() + "%")
+        }
+
+
+    </script>
+
+
+}

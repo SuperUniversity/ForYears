@@ -1,0 +1,275 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+@section styles{
+    <style>
+        .btn-stretch {
+            width: 100%;
+            margin: 5px;
+            text-align: left;
+        }
+
+        .row {
+            margin: 5px;
+        }
+
+        #coursTables .btn-stretch span {
+            float: right
+        }
+
+        body.waiting * {
+            cursor: progress;
+        }
+
+        .MouseIn{
+            /*color:cadetblue;*/
+            background-color:antiquewhite;
+            cursor:pointer;
+           
+        }
+    </style>
+}
+
+
+<div class="container">
+
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">課程檢索</a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li class="dropdown" id="rtrievalMode">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">一般檢索 <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">一般檢索</a></li>
+                            <li><a href="#">進階檢索</a></li>
+                        </ul>
+                    </li>
+                </ul>
+
+                <form class="navbar-form navbar-left" id="generalSearch"  >
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="SearchAll" placeholder="Ex.計量 經濟 陳 -所" title="計量 and 經濟 and 陳 not 所">
+                    </div>
+                    <button type="submit" class="btn btn-default">搜尋</button>
+                </form>
+
+                <form class="navbar-form navbar-left" id="advacedSearch"  hidden="hidden">
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="SearchAll" placeholder="課程名稱 Ex.計量">
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="SearchAll" placeholder="授課教師 Ex.陳">
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="SearchAll" placeholder="開課系所 Ex.經濟">
+                    </div>
+                    <button type="submit" class="btn btn-default">搜尋</button>
+                </form>
+            </div><!-- /.navbar-collapse -->
+        </div><!-- /.container-fluid -->
+    </nav>
+
+        <div class="row" id="coursTables">
+            <div class="btn btn-info btn-stretch" id="NtuTitle">
+                臺　灣　大　學
+                <span class="glyphicon glyphicon-eye-open"></span>
+            </div>
+            <div id="NtuTable" class="coursesTable" hidden="hidden">
+
+            </div>
+
+            <div class="btn btn-info btn-stretch" id="NtpuTitle">
+                臺　北　大　學
+                <span class="glyphicon glyphicon-eye-open"></span>
+            </div>
+            <div id="NtpuTable" class="coursesTable" hidden="hidden">
+
+            </div>
+
+            <div class="btn btn-info btn-stretch"  id="NctuTitle">
+                交　通　大　學
+                <span class="glyphicon glyphicon-eye-open"></span>
+            </div>
+            <div id="NctuTable" class="coursesTable" hidden="hidden">
+
+            </div>
+
+            <div class="btn btn-info btn-stretch"  id="NckuTitle">
+                成　功　大　學
+                <span class="glyphicon glyphicon-eye-open"></span>
+            </div>
+            <div id="NckuTable" class="coursesTable" hidden="hidden">
+
+            </div>
+
+        </div>
+
+    </div>
+
+@section scripts{
+    <script>
+        $(document).ready(function () {
+            $('#generalSearch input').focus();
+        })
+        @*function urlGenerator(actionName) {
+            var url = null;
+
+            if ($("#generalSearch input").val() == "") {
+
+                url = '@Url.Action("GetNtpuBySearchAll", "Courses", new { area = "Courses"})'
+            }
+            else {
+                url = '@Url.Action("GetNtpuBySearchAll", "Courses", new { area = "Courses",query="_query"})'
+                var query = $("#generalSearch input").val().replace(new RegExp(" ","g"), "%20")
+            }
+
+            url = url.replace("_query", query).replace("GetNtpuBySearchAll", actionName)
+
+            return url
+        }*@
+
+        function urlGeneratorForAll(actionName, college) {
+            var url = null;
+
+            if ($("#generalSearch input").val() == "") {
+
+                url = '@Url.Action("GetNtpuBySearchAll", "Courses", new { area = "Courses"})'
+                url += "?college=" + college;
+            }
+            else {
+                url = '@Url.Action("GetNtpuBySearchAll", "Courses", new { area = "Courses" })'
+                var query = $("#generalSearch input").val().replace(new RegExp(" ", "g"), "%20")
+                url += "?college=" + college + "&query=" + query;
+
+}
+
+            url = url.replace("GetNtpuBySearchAll", actionName)
+
+            return url
+        }
+
+
+        $("#generalSearch button").click(function (event) {
+            event.preventDefault();
+            $('#NtuTitle').html("臺　灣　大　學　(檢　索　中　...)" + '<span class="glyphicon glyphicon-eye-open"></span>')
+                .attr("disabled", "disabled")
+
+            $('#NtpuTitle').html("臺　北　大　學　(檢　索　中　...)" + '<span class="glyphicon glyphicon-eye-open"></span>')
+                .attr("disabled", "disabled")
+
+            $('#NctuTitle').html("交　通　大　學　(檢　索　中　...)" + '<span class="glyphicon glyphicon-eye-open"></span>')
+                .attr("disabled", "disabled")
+
+            $('#NckuTitle').html("成　功　大　學　(檢　索　中　...)" + '<span class="glyphicon glyphicon-eye-open"></span>')
+                .attr("disabled", "disabled")
+
+            //ntuUrl = urlGenerator("GetNtuBySearchAll")
+            ntuUrl = urlGeneratorForAll("GetBySearchAll", "NTU")
+            //ntpuUrl = urlGenerator("GetNtpuBySearchAll")
+            ntpuUrl = urlGeneratorForAll("GetBySearchAll", "NTPU")
+            //nctuUrl = urlGenerator("GetNctuBySearchAll")
+            nctuUrl = urlGeneratorForAll("GetBySearchAll", "NCTU")
+            //nckuUrl = urlGenerator("GetNckuBySearchAll")
+            nckuUrl = urlGeneratorForAll("GetBySearchAll", "NCKU")
+
+
+            $("#NtuTable").load(ntuUrl, function () {
+                        var dataLen = $("#NtuTable tr").length - 1;
+                        var recentText = $('#NtuTitle').text()
+                $('#NtuTitle').html(recentText.replace("　(檢　索　中　...)", "　(檢　索　完　成　，　共　" + dataLen+"　筆　資　料)") + '<span class="glyphicon glyphicon-eye-open"></span>')
+                    .removeAttr("disabled")
+            })
+
+            $("#NtpuTable").load(ntpuUrl, function () {
+                        var dataLen = $("#NtpuTable tr").length - 1;
+                        var recentText = $('#NtpuTitle').text()
+                $('#NtpuTitle').html(recentText.replace("　(檢　索　中　...)", "　(檢　索　完　成　，　共　" + dataLen + "　筆　資　料)") +'<span class="glyphicon glyphicon-eye-open"></span>')
+                    .removeAttr("disabled")
+            })
+
+            $("#NctuTable").load(nctuUrl, function () {
+                        var dataLen = $("#NctuTable tr").length - 1;
+                        var recentText = $('#NctuTitle').text()
+                $('#NctuTitle').html(recentText.replace("　(檢　索　中　...)", "　(檢　索　完　成　，　共　" + dataLen + "　筆　資　料)") + '<span class="glyphicon glyphicon-eye-open"></span>')
+                    .removeAttr("disabled")
+            })
+
+            $("#NckuTable").load(nckuUrl, function () {
+                        var dataLen = $("#NckuTable tr").length - 1;
+                        var recentText = $('#NckuTitle').text()
+                $('#NckuTitle').html(recentText.replace("　(檢　索　中　...)", "　(檢　索　完　成　，　共　" + dataLen + "　筆　資　料)") +'<span class="glyphicon glyphicon-eye-open"></span>')
+                    .removeAttr("disabled")
+            })
+
+        })
+
+        $('.coursesTable').mousemove(function () {
+            var exist = $(this).find("table").length
+            if (exist) {
+                var id = null;
+                $(this).find("table>tbody>tr>td").mouseenter(function () {
+                    $(this).parent("tr").addClass("MouseIn")
+                    id = $(this).parent("tr").find("td:eq(0)").text()
+                    //console.log(id)
+
+                })
+
+                $(this).find("table>tbody>tr>td").mouseleave(function () {
+                    $(this).parent("tr").removeClass("MouseIn")
+                })
+
+                $(this).find("table>tbody>tr>td").parent('tr').click(function () {
+                    var url = '@Url.Action("GetCourseDetail", "Courses", new { area = "Courses" })';
+                    id = id.replace(new RegExp(" ", "g"), "")
+                    //window.location.replace(url + "?strid=" + id);
+                    window.open(url + "?strid=" + id)
+
+                })
+            }
+        })
+
+
+        $("#NtpuTitle").click(function () {
+            $("#NtpuTable").slideToggle(1500)
+        })
+
+        $("#NtuTitle").click(function () {
+            $("#NtuTable").slideToggle(1500)
+        })
+
+        $("#NctuTitle").click(function () {
+            $("#NctuTable").slideToggle(1500)
+        })
+
+        $("#NckuTitle").click(function () {
+            $("#NckuTable").slideToggle(1500)
+        })
+
+
+        $("#rtrievalMode>ul li:eq(0)").click(function () {
+            $("#rtrievalMode>a").html('一般檢索 <span class="caret"></span>')
+            $("#generalSearch").removeAttr("hidden")
+            $("#advacedSearch").attr("hidden","hedden")
+        })
+
+        $("#rtrievalMode>ul li:eq(1)").click(function () {
+            $("#rtrievalMode>a").html('進階檢索 <span class="caret"></span>')
+            $("#advacedSearch").removeAttr("hidden")
+            $("#generalSearch").attr("hidden", "hedden")
+        })
+    </script>
+}
+

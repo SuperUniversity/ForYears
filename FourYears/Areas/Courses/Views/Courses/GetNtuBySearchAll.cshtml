@@ -1,0 +1,129 @@
+﻿@model IEnumerable<MvcClient.Areas.Courses.Models.NtuCourseModel>
+
+
+<table class="table">
+    <tr>
+        <th hidden="hidden">
+            @Html.DisplayNameFor(model => model._id)
+        </th>
+        <th style="width:15%">
+            @Html.DisplayNameFor(model => model.課程名稱)
+        </th>
+        <th style="width:7%">
+            @Html.DisplayNameFor(model => model.授課教師)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.時間教室)
+        </th>
+        <th style="width:7%">
+            @Html.DisplayNameFor(model => model.授課對象)
+        </th>
+        @*<th>
+            @Html.DisplayNameFor(model => model.班次)
+        </th>*@
+        <th>
+            @Html.DisplayNameFor(model => model.全半年)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.學分)
+        </th>
+        @*<th>
+            @Html.DisplayNameFor(model => model.必選修)
+        </th>*@
+        <th>
+            @Html.DisplayNameFor(model => model.總人數)
+        </th>
+        <th  style="width:20%">
+            @Html.DisplayNameFor(model => model.選課限制條件)
+        </th>
+        @*<th>
+            @Html.DisplayNameFor(model => model.課程網頁)
+        </th>*@
+        <th style="width:25%">
+            @Html.DisplayNameFor(model => model.備註)
+        </th>
+        @*<th>
+            @Html.DisplayNameFor(model => model.本學期我預計要選的課程)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.課號)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.流水號)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.加選方式)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.課程識別碼)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.lastModified)
+        </th>*@
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td hidden="hidden">
+            @Html.DisplayFor(modelItem => item._id)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.課程名稱)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.授課教師)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.時間教室)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.授課對象)
+        </td>
+
+        @*<td>
+            @Html.DisplayFor(modelItem => item.班次)
+        </td>*@
+        <td>
+            @Html.DisplayFor(modelItem => item.全半年)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.學分)
+        </td>
+        @*<td>
+            @Html.DisplayFor(modelItem => item.必選修)
+        </td>*@
+        <td>
+            @Html.DisplayFor(modelItem => item.總人數)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.選課限制條件)
+        </td>
+        @*<td>
+            @Html.DisplayFor(modelItem => item.課程網頁)
+        </td>*@
+        <td>
+            @Html.DisplayFor(modelItem => item.備註)
+        </td>
+
+        @*<td>
+            @Html.DisplayFor(modelItem => item.本學期我預計要選的課程)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.課號)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.流水號)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.加選方式)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.課程識別碼)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.lastModified)
+        </td>*@
+    </tr>
+}
+
+</table>

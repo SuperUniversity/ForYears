@@ -1,0 +1,106 @@
+﻿@model IEnumerable<MvcClient.Areas.Courses.Models.AllCollegeCourseModel>
+
+<p>
+    @Html.ActionLink("新增課程", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th hidden="hidden">
+            @Html.DisplayNameFor(model => model._id)
+        </th>
+        @*<th>
+            @Html.DisplayNameFor(model => model.College)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Identity)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Semester)
+        </th>*@
+        @*<th style="width:10%">*@      
+        <th >
+            @Html.DisplayNameFor(model => model.CourseName)
+        </th>
+        <th style="width:7%">
+            @Html.DisplayNameFor(model => model.Teacher)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TimeAndClassroom)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Major)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Required)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MaxNum)
+        </th>
+        <th style="width:4%">
+            @Html.DisplayNameFor(model => model.Credit)
+        </th>
+        @*<th style="width:25%">
+            @Html.DisplayNameFor(model => model.Limitation)
+        </th>*@
+        @*<th style="width:25%">
+            @Html.DisplayNameFor(model => model.Note)
+        </th>*@
+        @*<th>
+            @Html.DisplayNameFor(model => model.lastModified)
+        </th>
+        <th></th>*@
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td hidden="hidden">
+            @Html.DisplayFor(modelItem => item._id)
+        </td>
+        @*<td>
+            @Html.DisplayFor(modelItem => item.College)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Identity)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Semester)
+        </td>*@
+        <td>
+            @Html.DisplayFor(modelItem => item.CourseName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Teacher)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TimeAndClassroom)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Major)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Required)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MaxNum)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Credit)
+        </td>
+        @*<td>
+            @Html.DisplayFor(modelItem => item.Limitation)
+        </td>*@
+        @*<td>
+            @Html.DisplayFor(modelItem => item.Note)
+        </td>*@
+        @*<td>
+            @Html.DisplayFor(modelItem => item.lastModified)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+        </td>*@
+    </tr>
+}
+
+</table>

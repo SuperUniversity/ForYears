@@ -1,0 +1,172 @@
+﻿@model IEnumerable<MvcClient.Areas.Courses.Models.NckuCourseModel>
+
+<table class="table">
+    <tr>
+        <th hidden="hidden">
+            @Html.DisplayNameFor(model => model._id)
+        </th>
+        <th style="width:15%">
+            @Html.DisplayNameFor(model => model.課程名稱)
+        </th>
+        <th style="width:7%">
+            @Html.DisplayNameFor(model => model.教師姓名)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.時間)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.教室)
+        </th>
+        <th style="width:7%">
+            @Html.DisplayNameFor(model => model.系所名稱)
+        </th>
+
+        @*<th>
+            @Html.DisplayNameFor(model => model.班別)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.組別)
+        </th>*@
+        <th>
+            @Html.DisplayNameFor(model => model.年級)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.已選課人數)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.餘額)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.學分)
+        </th>
+        @*<th>
+            @Html.DisplayNameFor(model => model.選必修)
+        </th>*@
+        <th style="width:15 %">
+            @Html.DisplayNameFor(model => model.限選條件)
+        </th>
+        @*<th>
+            @Html.DisplayNameFor(model => model.英語授課)
+        </th>*@
+        @*<th>
+            @Html.DisplayNameFor(model => model.跨領域學分學程)
+        </th>*@
+        @*<th>
+            @Html.DisplayNameFor(model => model.Moocs)
+        </th>*@
+        @*<th>
+            @Html.DisplayNameFor(model => model.業界專家參與)
+        </th>*@
+        <th style="width:25%">
+            @Html.DisplayNameFor(model => model.備註)
+        </th>
+
+        @*<th>
+            @Html.DisplayNameFor(model => model.類別)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.序號)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.系號)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.課程碼)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.分班碼)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.屬性碼)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.lastModified)
+        </th>*@
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td hidden="hidden">
+            @Html.DisplayFor(modelItem => item._id)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.課程名稱)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.教師姓名)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.時間)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.教室)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.系所名稱)
+        </td>
+        @*<td>
+            @Html.DisplayFor(modelItem => item.班別)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.組別)
+        </td>*@
+        <td>
+            @Html.DisplayFor(modelItem => item.年級)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.已選課人數)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.餘額)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.學分)
+        </td>
+        @*<td>
+            @Html.DisplayFor(modelItem => item.選必修)
+        </td>*@
+        <td>
+            @Html.DisplayFor(modelItem => item.限選條件)
+        </td>
+        @*<td>
+            @Html.DisplayFor(modelItem => item.英語授課)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.跨領域學分學程)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Moocs)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.業界專家參與)
+        </td>*@
+        <td>
+            @Html.DisplayFor(modelItem => item.備註)
+        </td>
+
+        @*<td>
+            @Html.DisplayFor(modelItem => item.類別)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.序號)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.系號)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.課程碼)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.分班碼)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.屬性碼)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.lastModified)
+        </td>*@
+        
+    </tr>
+}
+
+</table>
