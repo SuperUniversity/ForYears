@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
-namespace FourYears.Areas.JobArea.Models.Partails
+namespace FourYears.Areas.JobArea.Models
 {
     [MetadataType(typeof(JobMetadata))]
     public partial class Job
