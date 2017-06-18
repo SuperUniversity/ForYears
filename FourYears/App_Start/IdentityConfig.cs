@@ -21,6 +21,16 @@ namespace FourYears
 {
     public class EmailService : IIdentityMessageService
     {
+        public class ApplicationRoleManager : RoleManager<IdentityRole>
+        {
+            public ApplicationRoleManager(IRoleStore<IdentityRole, string> roleStore) : base(roleStore)
+            {
+            }
+            public static ApplicationRoleManager Create(IdentityFactoryOptions<ApplicationRoleManager> options, IOwinContext context)
+            {
+                return new ApplicationRoleManager(new RoleStore<IdentityRole>(context.Get<ApplicationDbContext>()));
+            }
+        }
         public Task SendAsync(IdentityMessage message)
         {
             // 將您的電子郵件服務外掛到這裡以傳送電子郵件。
