@@ -15,6 +15,9 @@ namespace FourYears.Models
         [Required]
         [Display(Name = "暱稱")]
         public string NickName { get; set; }
+
+        [Display(Name = "允許系統以電子郵件聯絡(通知您關注的課程資訊)")]
+        public bool AllowEmailContact { get; set; }
     }
 
     public class ExternalLoginListViewModel

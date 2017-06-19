@@ -18,7 +18,8 @@
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
-    <IISExpressSSLPort />
+    <IISExpressSSLPort>
+    </IISExpressSSLPort>
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
@@ -446,6 +447,7 @@
     <Content Include="Areas\FoodMapArea\Views\User\PartialDrop3.cshtml" />
     <Content Include="Areas\FoodMapArea\Views\User\Detail.cshtml" />
     <Content Include="Areas\FoodMapArea\Views\User\Update.cshtml" />
+    <None Include="Properties\PublishProfiles\FourYears20170619065352 - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
