@@ -377,7 +377,6 @@ C:\Users\III\Desktop\ForYears\FourYears\bin\zh-Hant\Microsoft.Owin.Security.Face
 C:\Users\III\Desktop\ForYears\FourYears\bin\zh-Hant\Microsoft.Owin.Security.Google.resources.dll
 C:\Users\III\Desktop\ForYears\FourYears\bin\zh-Hant\Microsoft.Owin.Security.Twitter.resources.dll
 C:\Users\III\Desktop\ForYears\FourYears\bin\zh-Hant\Microsoft.Owin.Security.MicrosoftAccount.resources.dll
-C:\Users\III\Desktop\ForYears\FourYears\obj\Debug\FourYears.csprojResolveAssemblyReference.cache
 C:\Users\III\Desktop\ForYears\FourYears\obj\Debug\FourYears.Migrations.InitialCreate.resources
 C:\Users\III\Desktop\ForYears\FourYears\obj\Debug\FourYears.Migrations.NickName.resources
 C:\Users\III\Desktop\ForYears\FourYears\obj\Debug\FourYears.Migrations.ActualName.resources
@@ -514,3 +513,4 @@ D:\Google 雲端硬碟\MIST114\SpecialProject\ForYears\FourYears\bin\PagedList.d
 D:\Google 雲端硬碟\MIST114\SpecialProject\ForYears\FourYears\bin\PagedList.Mvc.dll
 D:\Google 雲端硬碟\MIST114\SpecialProject\ForYears\FourYears\bin\PagedList.xml
 D:\Google 雲端硬碟\MIST114\SpecialProject\ForYears\FourYears\bin\PagedList.Mvc.xml
+C:\Users\III\Desktop\ForYears\FourYears\obj\Debug\FourYears.csprojResolveAssemblyReference.cache

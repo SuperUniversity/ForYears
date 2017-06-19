@@ -15,6 +15,6 @@ namespace FourYears.Areas.FoodMapArea.Models
     public partial class Shop_ShopCustomer
     {
         public int ShopID { get; set; }
-        public int CustomerID { get; set; }
+        public string CustomerID { get; set; }
     }
 }

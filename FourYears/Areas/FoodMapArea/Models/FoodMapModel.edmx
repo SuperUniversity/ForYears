@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="superuniversityModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="superuniversityModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="City">
           <Key>
             <PropertyRef Name="CityID" />
@@ -64,7 +64,7 @@
             <PropertyRef Name="ShopID" />
           </Key>
           <Property Name="ShopID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="CustomerID" Type="int" Nullable="false" />
+          <Property Name="CustomerID" Type="nvarchar" MaxLength="256" Nullable="false" />
         </EntityType>
         <EntityType Name="ShopCustomer">
           <Key>
@@ -100,8 +100,7 @@
             <End Role="School" EntitySet="School" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="superuniversityModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -161,13 +160,6 @@
           <Property Name="CityID" Type="Int32" />
           <Property Name="SchoolID" Type="Int32" />
         </EntityType>
-        <EntityType Name="Shop_ShopCustomer">
-          <Key>
-            <PropertyRef Name="ShopID" />
-          </Key>
-          <Property Name="ShopID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="CustomerID" Type="Int32" Nullable="false" />
-        </EntityType>
         <EntityType Name="ShopCustomer">
           <Key>
             <PropertyRef Name="CustomerID" />
@@ -195,13 +187,20 @@
           <EntitySet Name="Order" EntityType="Self.Order" />
           <EntitySet Name="School" EntityType="Self.School" />
           <EntitySet Name="Shop" EntityType="Self.Shop" />
-          <EntitySet Name="Shop_ShopCustomer" EntityType="Self.Shop_ShopCustomer" />
           <EntitySet Name="ShopCustomer" EntityType="Self.ShopCustomer" />
           <AssociationSet Name="FK_School_City" Association="Self.FK_School_City">
             <End Role="City" EntitySet="City" />
             <End Role="School" EntitySet="School" />
           </AssociationSet>
+          <EntitySet Name="Shop_ShopCustomer" EntityType="superuniversityModel.Shop_ShopCustomer" />
         </EntityContainer>
+        <EntityType Name="Shop_ShopCustomer">
+          <Key>
+            <PropertyRef Name="ShopID" />
+          </Key>
+          <Property Name="ShopID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CustomerID" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -267,14 +266,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Shop_ShopCustomer">
-            <EntityTypeMapping TypeName="superuniversityModel.Shop_ShopCustomer">
-              <MappingFragment StoreEntitySet="Shop_ShopCustomer">
-                <ScalarProperty Name="ShopID" ColumnName="ShopID" />
-                <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="ShopCustomer">
             <EntityTypeMapping TypeName="superuniversityModel.ShopCustomer">
               <MappingFragment StoreEntitySet="ShopCustomer">
@@ -282,6 +273,14 @@
                 <ScalarProperty Name="FullName" ColumnName="FullName" />
                 <ScalarProperty Name="EmailAddress" ColumnName="EmailAddress" />
                 <ScalarProperty Name="Password" ColumnName="Password" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Shop_ShopCustomer">
+            <EntityTypeMapping TypeName="superuniversityModel.Shop_ShopCustomer">
+              <MappingFragment StoreEntitySet="Shop_ShopCustomer">
+                <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
+                <ScalarProperty Name="ShopID" ColumnName="ShopID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

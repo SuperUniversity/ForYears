@@ -7,6 +7,7 @@ using System.Web.Mvc;
 using PagedList;
 using PagedList.Mvc;
 using System.Windows.Forms;
+using Microsoft.AspNet.Identity;
 
 namespace FourYears.Areas.FoodMapArea.Controllers
 {
@@ -148,7 +149,8 @@ namespace FourYears.Areas.FoodMapArea.Controllers
                     shop.BytesImage3 = imgByte3;
                 }
 
-                shop_customer.CustomerID = Convert.ToInt32(Request.Cookies["CustomerID"].Value);
+                //shop_customer.CustomerID = Convert.ToInt32(Request.Cookies["CustomerID"].Value);
+                shop_customer.CustomerID = Request.Cookies["CustomerID"].Value;
 
                 db.Shop_ShopCustomer.Add(shop_customer);
                 db.Shop.Add(shop);

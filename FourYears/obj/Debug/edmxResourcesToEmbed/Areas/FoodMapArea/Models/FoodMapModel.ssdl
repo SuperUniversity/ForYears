@@ -59,7 +59,7 @@
       <PropertyRef Name="ShopID" />
     </Key>
     <Property Name="ShopID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="CustomerID" Type="int" Nullable="false" />
+    <Property Name="CustomerID" Type="nvarchar" MaxLength="256" Nullable="false" />
   </EntityType>
   <EntityType Name="ShopCustomer">
     <Key>

@@ -10,9 +10,9 @@
         <EntityTypeShape EntityType="superuniversityModel.Order" Width="1.5" PointX="2.75" PointY="3.75" IsExpanded="true" />
         <EntityTypeShape EntityType="superuniversityModel.School" Width="1.5" PointX="3" PointY="0.875" IsExpanded="true" />
         <EntityTypeShape EntityType="superuniversityModel.Shop" Width="1.5" PointX="4.75" PointY="3.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="superuniversityModel.Shop_ShopCustomer" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="superuniversityModel.ShopCustomer" Width="1.5" PointX="0.75" PointY="6.75" IsExpanded="true" />
         <AssociationConnector Association="superuniversityModel.FK_School_City" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="superuniversityModel.Shop_ShopCustomer" Width="1.5" PointX="5.375" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -62,8 +62,8 @@ namespace FourYears
 
             var facebookOptions = new FacebookAuthenticationOptions()
             {
-                AppId = "451835548515630",
-                AppSecret = "75cab961ac06d4a628a6e14cd1326a0b",
+                AppId = "1715497931812046",
+                AppSecret = "0aa492464d566596b0420d852a033bee",
                 //SignInAsAuthenticationType = DefaultAuthenticationTypes.ExternalCookie,
                 BackchannelHttpHandler = new FacebookBackChannelHandler(),
                 //Scope = { "email" },
