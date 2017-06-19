@@ -9,6 +9,7 @@ namespace FourYears.Models
     // You can add profile data for the user by adding more properties to your ApplicationUser class, please visit https://go.microsoft.com/fwlink/?LinkID=317594 to learn more.
     public class ApplicationUser : IdentityUser
     {
+        public bool AllowEmailContact { get; set; }
         public string ActualName { get; set; }
         public string NickName { get; set; }
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
@@ -32,11 +33,34 @@ public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
         {
             ApplicationDbContext db = new ApplicationDbContext();
             ApplicationUser currentUser = db.Users.Find(id);
-            if (currentUser.NickName == null)
+
+            if (currentUser != null)
             {
-                return currentUser.Email;
+                if (currentUser.NickName == null)
+                {
+                    return currentUser.Email;
+                }
+
+                return currentUser.NickName;
             }
-            return currentUser.NickName.ToString();
+            return null;
+        }
+
+        public static bool GetAllowEmailContact(string id)
+        {
+            ApplicationDbContext db = new ApplicationDbContext();
+            ApplicationUser currentUser = db.Users.Find(id);
+
+            if (currentUser != null)
+            {
+                if (currentUser.NickName == null)
+                {
+                    return currentUser.AllowEmailContact;
+                }
+
+                return currentUser.AllowEmailContact;
+            }
+            return true;
         }
 
         public static ApplicationDbContext Create()

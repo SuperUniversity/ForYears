@@ -1,4 +1,5 @@
-﻿using MvcClient.Areas.Courses.Models;
+﻿using MongoDB.Driver;
+using MvcClient.Areas.Courses.Models;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -194,18 +195,34 @@ namespace MvcClient.Areas.Courses.Controllers
             }
         }
 
-        public static async Task<IEnumerable<T>> BySearchAllWholeWorkForAll<T>(string domain, string ApiUniversity, string college, string query)
+        public static async Task<IEnumerable<T>> BySearchAllWholeWorkForAll<T>(string domain, string college, string query)
         {
             IEnumerable<T> Courses = null;
             string queryString = null;
             if (query == null)
             {
-                queryString = CoursesControllerUtl.QueryStringGeneratorForAll(ApiUniversity, query, college, 100);
+                queryString = CoursesControllerUtl.QueryStringGeneratorForAll("AllCollege", query, college, 100);
                 Courses = await CoursesControllerUtl.GetFromApiForAll<T>(domain, queryString);
             }
             else
             {
-                queryString = CoursesControllerUtl.QueryStringGeneratorForAll(ApiUniversity, query, college);
+                queryString = CoursesControllerUtl.QueryStringGeneratorForAll("AllCollege", query, college);
+                Courses = await CoursesControllerUtl.GetFromApiForAll<T>(domain, queryString);
+            }
+
+            return Courses;
+        }
+
+        public static async Task<IEnumerable<T>> BySearchAllWholeWorkForAllAdv<T>(string domain, string college, string query)
+        {
+            IEnumerable<T> Courses = null;
+            string queryString = "api/AllCollege?college=" + college+ "&" + query;
+            if (query == null)
+            {
+                Courses = await CoursesControllerUtl.GetFromApiForAll<T>(domain, queryString);
+            }
+            else
+            {
                 Courses = await CoursesControllerUtl.GetFromApiForAll<T>(domain, queryString);
             }
 
@@ -268,9 +285,6 @@ namespace MvcClient.Areas.Courses.Controllers
 
             return AvgRankings;
         }
-
-
-
 
 
     }

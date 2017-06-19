@@ -10,6 +10,7 @@ using System.Net;
 using MvcClient.Areas.Courses.Models;
 using System.Threading.Tasks;
 using System.Net.Http;
+using Microsoft.AspNet.Identity;
 
 namespace MvcClient.Areas.Courses.Controllers
 {
@@ -54,11 +55,27 @@ namespace MvcClient.Areas.Courses.Controllers
         }
 
         //[ChildActionOnly]
-        public async Task<ActionResult> GetBySearchAll(string college = "NTU", string query = null)
+        public async Task<ActionResult> GetBySearchAll(bool isGeneralSearch=true, string college = "NTU", string query = null)
         {
-            IEnumerable<AllCollegeCourseModel> AllCollegeCourses = await CoursesControllerUtl.BySearchAllWholeWorkForAll<AllCollegeCourseModel>(domain, "AllCollege", college, query);
-            return PartialView(AllCollegeCourses);
+            if (isGeneralSearch)
+            {
+                IEnumerable<AllCollegeCourseModel> AllCollegeCourses = await CoursesControllerUtl.BySearchAllWholeWorkForAll<AllCollegeCourseModel>(domain, college, query);
+                return PartialView(AllCollegeCourses);
+            }
+            else
+            {
+                string[] queries = query.Split(',');
+                if (queries.Length > 1)
+                {
+                    query = String.Join("&", queries);
+                }
+
+                IEnumerable<AllCollegeCourseModel> AllCollegeCourses = await CoursesControllerUtl.BySearchAllWholeWorkForAllAdv<AllCollegeCourseModel>(domain, college, query);
+                return PartialView(AllCollegeCourses);
+            }
         }
+
+
 
         public async Task<ActionResult> GetCourseDetail(string strid)
         {
@@ -73,6 +90,9 @@ namespace MvcClient.Areas.Courses.Controllers
                 ViewBag.avgDeepness = string.Format("{0:0.00}" ,AvgRankings[1]);
                 ViewBag.avgRelaxing = string.Format("{0:0.00}" ,AvgRankings[2]);
                 ViewBag.avgSweetness = string.Format("{0:0.00}" , AvgRankings[3]);
+
+                var rankedIds = rankings.Select(r => r.userID).ToList();
+                ViewBag.HaveNotRanked = (!rankedIds.Contains(User.Identity.GetUserId())).ToString().ToLower() ;
             }
             catch
             {
@@ -80,6 +100,7 @@ namespace MvcClient.Areas.Courses.Controllers
                 ViewBag.avgDeepness = "尚無評價資料";
                 ViewBag.avgRelaxing = "尚無評價資料";
                 ViewBag.avgSweetness = "尚無評價資料";
+                ViewBag.HaveNotRanked = "true";
             }
             return View(SingleCourse);
 
@@ -99,18 +120,24 @@ namespace MvcClient.Areas.Courses.Controllers
                         comment.name = "匿名評論";
                     }
                 }
+
+                comments = (from c in comments
+                             orderby c.lastModified descending
+                             select c).ToList();
+                //comments.Sort()
+
                 ViewBag.commentLen = comments.Count();
             }
             catch
             {
                 Comment comment = new Comment() {name="管理員", commentstring="快點成為第一個留言的人吧" };
                 comment.name = "管理員";
-
+                comment.lastModified = DateTime.Now;
                 comments = new List<Comment>();
                 comments.Add(comment);
                 ViewBag.commentLen = 0;
-
             }
+
             return PartialView(comments);
         }
 
@@ -129,47 +156,46 @@ namespace MvcClient.Areas.Courses.Controllers
         }
 
 
-        [HttpPost]
-        public async Task<ActionResult> PostComment(string strid, Comment comment)
-        {
-            AllCollegeCourseModel SingleCourse = await CoursesControllerUtl.ByIdWholeWorkForAll<AllCollegeCourseModel>(domain, "AllCollege", strid);
-            return PartialView(SingleCourse);
-        }
+        //[HttpPost]
+        //public async Task<ActionResult> PostComment(string strid, Comment comment)
+        //{
+        //    AllCollegeCourseModel SingleCourse = await CoursesControllerUtl.ByIdWholeWorkForAll<AllCollegeCourseModel>(domain, "AllCollege", strid);
+        //    return PartialView(SingleCourse);
+        //}
 
 
 
-        [HttpPost]
-        public async Task<ActionResult> PostRanking(string strid, Ranking ranking)
-        {
-            //TODO
-            //Microsoft.AspNet.Identity.UserManager.IsEmailConfirmed
-            //string address = "http://taiwanuniversitiescourses.azurewebsites.net/api/AllCollege?strid=" + strid + "&isranking=true";
-            queryString = "api/AllCollege?strid=" + strid + "&isranking=true";
-            using (var client = new HttpClient())
-            {
-                client.BaseAddress = new Uri(domain);
-                client.DefaultRequestHeaders.Accept.Clear();
-                client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
+        //[HttpPost]
+        //public async Task<ActionResult> PostRanking(string strid, Ranking ranking)
+        //{
+        //    //TODO
+        //    //string address = "http://taiwanuniversitiescourses.azurewebsites.net/api/AllCollege?strid=" + strid + "&isranking=true";
+        //    queryString = "api/AllCollege?strid=" + strid + "&isranking=true";
+        //    using (var client = new HttpClient())
+        //    {
+        //        client.BaseAddress = new Uri(domain);
+        //        client.DefaultRequestHeaders.Accept.Clear();
+        //        client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
 
-                //GET Method  
-                HttpResponseMessage response = await client.PutAsJsonAsync(queryString, ranking);
+        //        //GET Method  
+        //        HttpResponseMessage response = await client.PutAsJsonAsync(queryString, ranking);
 
-                if (response.IsSuccessStatusCode)
-                {
-                    //return View();
-                    ViewBag.Message = "新增成功";
-                    RedirectToAction("GetCourseDetail");
-                }   
-                else
-                {
-                    ViewBag.Message = "新增失敗";
-                }
-            }
+        //        if (response.IsSuccessStatusCode)
+        //        {
+        //            //return View();
+        //            ViewBag.Message = "新增成功";
+        //            RedirectToAction("GetCourseDetail");
+        //        }   
+        //        else
+        //        {
+        //            ViewBag.Message = "新增失敗";
+        //        }
+        //    }
 
-            return View();
-            //AllCollegeCourseModel SingleCourse = await CoursesControllerUtl.ByIdWholeWorkForAll<AllCollegeCourseModel>(domain, "AllCollege", strid);
-            //return PartialView(SingleCourse);
-        }
+        //    return View();
+        //    //AllCollegeCourseModel SingleCourse = await CoursesControllerUtl.ByIdWholeWorkForAll<AllCollegeCourseModel>(domain, "AllCollege", strid);
+        //    //return PartialView(SingleCourse);
+        //}
 
 
 

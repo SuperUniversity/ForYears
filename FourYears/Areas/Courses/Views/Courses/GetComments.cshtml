@@ -14,14 +14,17 @@
                 <blockquote class="card-blockquote">
                     <p>@Html.DisplayFor(modelItem => item.commentstring)</p>
                     
-                    <footer class="col-md-6" hidden="hidden">
+                    <footer class="col-md-6" >
+                        @Html.DisplayFor(modelItem => item.lastModified)
+                    </footer>
+                    <div hidden="hidden">
                         @*@Html.ActionLink("讚", "Like", new { /* id=item.PrimaryKey */ })*@
                         <span class="glyphicon glyphicon-thumbs-up"></span>
-                        @Html.DisplayFor(modelItem => item.likes) | 
+                        @Html.DisplayFor(modelItem => item.likes) |
                         @*@Html.ActionLink("爛", "Dislike", new { /* id=item.PrimaryKey */ })*@
                         <span class="glyphicon glyphicon-thumbs-down"></span>
                         @Html.DisplayFor(modelItem => item.dislikes)
-                    </footer>
+                    </div>
                     <div class="col-md-6" hidden="hidden">
                         @Html.ActionLink("修改", "Edit", new { }, new { @class = "btn btn-info" }) @Html.ActionLink("刪除", "Delete", new { /* id=item.PrimaryKey */ }, new { @class = "btn btn-danger" })
                     </div>                    

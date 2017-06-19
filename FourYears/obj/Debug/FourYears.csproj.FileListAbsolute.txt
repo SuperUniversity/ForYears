@@ -514,3 +514,12 @@ D:\Google 雲端硬碟\MIST114\SpecialProject\ForYears\FourYears\bin\PagedList.d
 D:\Google 雲端硬碟\MIST114\SpecialProject\ForYears\FourYears\bin\PagedList.Mvc.dll
 D:\Google 雲端硬碟\MIST114\SpecialProject\ForYears\FourYears\bin\PagedList.xml
 D:\Google 雲端硬碟\MIST114\SpecialProject\ForYears\FourYears\bin\PagedList.Mvc.xml
+D:\Google 雲端硬碟\MIST114\SpecialProject\ForYears\FourYears\bin\MongoDB.Bson.dll
+D:\Google 雲端硬碟\MIST114\SpecialProject\ForYears\FourYears\bin\MongoDB.Driver.Core.dll
+D:\Google 雲端硬碟\MIST114\SpecialProject\ForYears\FourYears\bin\MongoDB.Driver.dll
+D:\Google 雲端硬碟\MIST114\SpecialProject\ForYears\FourYears\bin\System.Runtime.InteropServices.RuntimeInformation.dll
+D:\Google 雲端硬碟\MIST114\SpecialProject\ForYears\FourYears\bin\MongoDB.Bson.xml
+D:\Google 雲端硬碟\MIST114\SpecialProject\ForYears\FourYears\bin\MongoDB.Driver.xml
+D:\Google 雲端硬碟\MIST114\SpecialProject\ForYears\FourYears\bin\MongoDB.Driver.Core.xml
+D:\Google 雲端硬碟\MIST114\SpecialProject\ForYears\FourYears\obj\Debug\FourYears.Migrations.allowEmailContact.resources
+D:\Google 雲端硬碟\MIST114\SpecialProject\ForYears\FourYears\obj\Debug\FourYears.Migrations.AllowEmailContact1.resources

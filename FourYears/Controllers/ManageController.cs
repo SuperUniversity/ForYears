@@ -333,7 +333,31 @@ namespace FourYears.Controllers
             base.Dispose(disposing);
         }
 
-#region Helper
+        //ModifyMemberBasicData
+        public ActionResult ModifyMember()
+        {
+            ModifyMemberViewModel mv = new ModifyMemberViewModel();
+            string id = User.Identity.GetUserId();
+            mv.NickName = ApplicationDbContext.GetNickName(id);
+            mv.AllowEmailContact = ApplicationDbContext.GetAllowEmailContact(id);
+            mv.Email = User.Identity.GetUserName();
+            return PartialView(mv);
+        }
+
+        [HttpPost]
+        public ActionResult ModifyMember(ModifyMemberViewModel mv)
+        {
+            string id = User.Identity.GetUserId();
+            ApplicationDbContext db = new ApplicationDbContext();
+            ApplicationUser currentUser = db.Users.Find(id);
+            currentUser.AllowEmailContact = mv.AllowEmailContact;
+            currentUser.NickName = mv.NickName;
+
+            db.SaveChanges();
+            return RedirectToAction("Index", "Manage");
+        }
+
+        #region Helper
         // 新增外部登入時用來當做 XSRF 保護
         private const string XsrfKey = "XsrfId";
 

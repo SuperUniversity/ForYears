@@ -46,7 +46,7 @@ namespace MvcClient.Areas.Courses.Models
     public class Comment
     {
         public string commentID { get; set; }
-        public int userID { get; set; }
+        public string userID { get; set; }
 
         //[DisplayName("姓名")]
         //[Required(ErrorMessage = "請輸入姓名")]
@@ -83,7 +83,7 @@ namespace MvcClient.Areas.Courses.Models
     {
         public string rankingID { get; set; }
 
-        public int userID { get; set; }
+        public string userID { get; set; }
 
         [DisplayName("深度")]
         [Range(1, 10, ErrorMessage = "必須介在1到10之間")]
@@ -97,6 +97,27 @@ namespace MvcClient.Areas.Courses.Models
         [Range(1, 10, ErrorMessage = "必須介在1到10之間")]
         public int sweetness { get; set; }
 
+        public DateTime lastModified { get; set; }
+    }
+
+    public class User_Ranking
+    {
+        public string UserID { get; set; }
+        public string CourseID { get; set; }
+        public string RankingID { get; set; }
+        public DateTime lastModified { get; set; }
+    }
+    public class User_Comment
+    {
+        public string UserID { get; set; }
+        public string CourseID { get; set; }
+        public string CommentID { get; set; }
+        public DateTime lastModified { get; set; }
+    }
+    public class User_Favorite
+    {
+        public string UserID { get; set; }
+        public string CourseID { get; set; }
         public DateTime lastModified { get; set; }
     }
 }

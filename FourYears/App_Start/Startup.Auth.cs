@@ -8,6 +8,7 @@ using Owin;
 using FourYears.Models;
 using Microsoft.Owin.Security.Facebook;
 using FourYears.facebook;
+using System.Configuration;
 
 namespace FourYears
 {
@@ -56,14 +57,11 @@ namespace FourYears
             //   consumerKey: "",
             //   consumerSecret: "");
 
-            //app.UseFacebookAuthentication(
-            //   appId: "451835548515630",
-            //   appSecret: "119b0865f036713a9050fa661508a9ef");
 
             var facebookOptions = new FacebookAuthenticationOptions()
             {
-                AppId = "451835548515630",
-                AppSecret = "75cab961ac06d4a628a6e14cd1326a0b",
+                AppId = ConfigurationManager.AppSettings["FacebookId"].ToString(),
+                AppSecret = ConfigurationManager.AppSettings["FacebookSecret"].ToString(),
                 //SignInAsAuthenticationType = DefaultAuthenticationTypes.ExternalCookie,
                 BackchannelHttpHandler = new FacebookBackChannelHandler(),
                 //Scope = { "email" },
