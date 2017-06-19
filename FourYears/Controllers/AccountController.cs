@@ -158,6 +158,7 @@ namespace FourYears.Controllers
         {
             if (ModelState.IsValid)
             {
+                var a = 1;
                 var user = new ApplicationUser { UserName = model.Email, NickName=model.NickName, Email = model.Email };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
