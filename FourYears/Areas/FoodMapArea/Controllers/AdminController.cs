@@ -13,7 +13,7 @@ namespace FourYears.Areas.FoodMapArea.Controllers
 {
     public class AdminController : Controller
     {
-        private superuniversityEntities db = new superuniversityEntities();
+        private superuniversityEntities2 db = new superuniversityEntities2();
         // GET: FoodMapArea/Admin
         public ActionResult Index(int? page)
         {
@@ -74,7 +74,7 @@ namespace FourYears.Areas.FoodMapArea.Controllers
 
         private IEnumerable<City> GetCity()
         {
-            using (superuniversityEntities db = new superuniversityEntities())
+            using (superuniversityEntities2 db = new superuniversityEntities2())
             {
                 var query = db.City.OrderBy(x => x.CityID);
                 return query.ToList();
@@ -104,7 +104,7 @@ namespace FourYears.Areas.FoodMapArea.Controllers
 
         private IEnumerable<School> GetSchool(int CityID)
         {
-            using (superuniversityEntities db = new superuniversityEntities())
+            using (superuniversityEntities2 db = new superuniversityEntities2())
             {
                 var query = db.School.Where(x => x.CityID == CityID);
                 return query.ToList();

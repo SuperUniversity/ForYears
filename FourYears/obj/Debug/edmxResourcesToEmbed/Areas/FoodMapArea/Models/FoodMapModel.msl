@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-  <EntityContainerMapping StorageEntityContainer="superuniversityModelStoreContainer" CdmEntityContainer="superuniversityEntities">
+  <EntityContainerMapping StorageEntityContainer="superuniversityModelStoreContainer" CdmEntityContainer="superuniversityEntities2">
     <EntitySetMapping Name="City">
       <EntityTypeMapping TypeName="superuniversityModel.City">
         <MappingFragment StoreEntitySet="City">
@@ -60,6 +60,14 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="Shop_ShopCustomer">
+      <EntityTypeMapping TypeName="superuniversityModel.Shop_ShopCustomer">
+        <MappingFragment StoreEntitySet="Shop_ShopCustomer">
+          <ScalarProperty Name="ShopID" ColumnName="ShopID" />
+          <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="ShopCustomer">
       <EntityTypeMapping TypeName="superuniversityModel.ShopCustomer">
         <MappingFragment StoreEntitySet="ShopCustomer">
@@ -67,14 +75,6 @@
           <ScalarProperty Name="FullName" ColumnName="FullName" />
           <ScalarProperty Name="EmailAddress" ColumnName="EmailAddress" />
           <ScalarProperty Name="Password" ColumnName="Password" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="Shop_ShopCustomer">
-      <EntityTypeMapping TypeName="superuniversityModel.Shop_ShopCustomer">
-        <MappingFragment StoreEntitySet="Shop_ShopCustomer">
-          <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
-          <ScalarProperty Name="ShopID" ColumnName="ShopID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

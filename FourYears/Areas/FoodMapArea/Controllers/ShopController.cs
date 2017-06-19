@@ -9,7 +9,7 @@ namespace FourYears.Areas.FoodMapArea.Controllers
 {
     public class ShopController : Controller
     {
-        private superuniversityEntities db = new superuniversityEntities();
+        private superuniversityEntities2 db = new superuniversityEntities2();
         // GET: FoodMapArea/Shop
 
         public ActionResult Index(int id = 1)

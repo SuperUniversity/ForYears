@@ -56,6 +56,13 @@
     <Property Name="CityID" Type="Int32" />
     <Property Name="SchoolID" Type="Int32" />
   </EntityType>
+  <EntityType Name="Shop_ShopCustomer">
+    <Key>
+      <PropertyRef Name="ShopID" />
+    </Key>
+    <Property Name="ShopID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CustomerID" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+  </EntityType>
   <EntityType Name="ShopCustomer">
     <Key>
       <PropertyRef Name="CustomerID" />
@@ -77,24 +84,17 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <EntityContainer Name="superuniversityEntities" annotation:LazyLoadingEnabled="true">
+  <EntityContainer Name="superuniversityEntities2" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="City" EntityType="Self.City" />
     <EntitySet Name="FoodCategory" EntityType="Self.FoodCategory" />
     <EntitySet Name="Order" EntityType="Self.Order" />
     <EntitySet Name="School" EntityType="Self.School" />
     <EntitySet Name="Shop" EntityType="Self.Shop" />
+    <EntitySet Name="Shop_ShopCustomer" EntityType="Self.Shop_ShopCustomer" />
     <EntitySet Name="ShopCustomer" EntityType="Self.ShopCustomer" />
     <AssociationSet Name="FK_School_City" Association="Self.FK_School_City">
       <End Role="City" EntitySet="City" />
       <End Role="School" EntitySet="School" />
     </AssociationSet>
-    <EntitySet Name="Shop_ShopCustomer" EntityType="superuniversityModel.Shop_ShopCustomer" />
   </EntityContainer>
-  <EntityType Name="Shop_ShopCustomer">
-    <Key>
-      <PropertyRef Name="ShopID" />
-    </Key>
-    <Property Name="ShopID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="CustomerID" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
-  </EntityType>
 </Schema>
