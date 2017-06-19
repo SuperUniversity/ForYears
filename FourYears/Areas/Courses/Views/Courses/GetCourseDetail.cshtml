@@ -1,5 +1,6 @@
 ﻿@using Microsoft.AspNet.Identity
 @using FourYears.Models
+@using MvcClient.Areas.Courses.Models
 @model MvcClient.Areas.Courses.Models.AllCollegeCourseModel
 
 @{
@@ -324,175 +325,162 @@
     <hr />
     <div class="row">
         <div id="postRanking" class="slefBlock col-md-5">
-
+            @Html.Partial("PostRanking", new Ranking())
         </div>
         <div id="postComment" class="slefBlock col-md-5">
-
+            @Html.Partial("PostComment", new Comment())
         </div>
     </div>
 
     <div id="comments" class="slefBlock">
-
+        @Html.Partial("GetComments", Model.commentdata)
+        @*@Model.commentdata*@
+        @*@Html.Action("GetComments", "Courses", new { area = "Courses", strid = Model }))*@
     </div>
 </div>
 
 
-
-
-
 <p>
     @*@Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |*@
-    @Html.ActionLink("回到檢索頁面", "Index")
+    @*@Html.ActionLink("回到檢索頁面", "Index")*@
 </p>
+
 
 
 @section scripts{
     <script>
-        $(document).ready(function () {
+        //網頁進來時，設定評價值都為5
+        $("#postRanking").find("input").parent("div").next("div").find("label").text(5)
 
-            //把comment以及ranking的資料Load進來
-            var ObjId = $('#ObjId').text().replace(new RegExp(" ", 'g'), '')
-            @*var rankingsUrl = '@Url.Action("GetRankings", "Courses", new { area = "Courses"})' + "?strid=" + ObjId.replace(new RegExp(" ",'g'),'')*@
-            var commentsUrl = '@Url.Action("GetComments", "Courses", new { area = "Courses" })' + "?strid=" + ObjId
-            var postRankingRul = '@Url.Action("PostRanking", "Courses", new { area = "Courses" })'
-            var postCommentUrl= '@Url.Action("PostComment", "Courses", new { area = "Courses"})'
-            $("#comments").load(commentsUrl)
-            $("#postRanking").load(postRankingRul, function () {
-
-                //網頁進來時，設定評價值都為5
-                $(this).find("input").parent("div").next("div").find("label").text(5)
-
-                $(this).find("input").change(function () {
-                    $(this).parent("div").next("div").find("label").text($(this).val())
-                })
-
-
-                //送出評價
-                $(this).find("#submit").click(function (event) {
-                    event.preventDefault();
-
-                    var strid = ObjId;
-                    var userID = "@User.Identity.GetUserId()"
-                    var deepness = parseInt($("#deepness").val())
-                    var relaxing = parseInt($("#relaxing").val())
-                    var sweetness = parseInt($("#sweetness").val())
-                    var url = "http://taiwanuniversitiescourses.azurewebsites.net/api/AllCollege?strid=" + strid + "&isranking=true"
-                    var rankingData = { "userID": userID, "deepness": deepness, "relaxing": relaxing, "sweetness": sweetness }
-
-
-                    //確認經登錄
-                    if (!@User.Identity.IsAuthenticated.ToString().ToLower()){
-                        alert("請先登入後評論");
-                        window.location = "@Url.Action("Login", "Account", new { area = "", returnUrl = Request.RawUrl })"
-                    }
-                    else {
-                        //確認不重複評價
-                        if (@ViewBag.HaveNotRanked){
-
-                            @*@Url.Action("PostComments", "Courses", new { area = "Courses" }) + "?strid=" + strid *@
-                            putToDb(url, rankingData, '評價成功', "評價失敗，請重新評價")
-                        } else {
-                            alert("請勿重複評價評價");
-                        }
-                    }
-
-
-                })
-            })
-
-
-
-            //送出評論
-            $("#postComment").load(postCommentUrl, function () {
-
-                $("#anonym").click(function () {
-                    if ($(this).prop("checked")) {
-                        $(this).removeProp("checked")
-                    }
-                    else {
-                        $(this).prop("checked", "checked");
-                    }
-                })
-
-                $(this).find("#submit").click(function (event) {
-                    event.preventDefault();
-
-                    var strid = ObjId;
-                    //var url = "http://localhost:57268/api/AllCollege?strid=" + strid + "&iscomment=true"
-                    var url = "http://taiwanuniversitiescourses.azurewebsites.net/api/AllCollege?strid=" + strid + "&iscomment=true"
-                    var userID = "@User.Identity.GetUserId()";
-                    var name = "@ApplicationDbContext.GetNickName(User.Identity.GetUserId())";
-                    var email = "@User.Identity.GetUserName()"
-                    //var commentstring = encodeURIComponent($("#postComment").find("#commentstring").val());
-                    var commentstring = $("#postComment").find("#commentstring").val();
-                    var anonym = $("#postComment").find("#anonym").prop("checked");
-                    var allowEmailContact = true;
-                    commentData = { "userID": userID, "name": name, "email": email, "commentstring": commentstring, "anonym": anonym, "allowEmailContact": allowEmailContact}
-
-
-                    //確認經登錄
-                    if (!@User.Identity.IsAuthenticated.ToString().ToLower()){
-
-                        alert("請先登入後評論");
-                        window.location = "@Url.Action("Login", "Account", new { area = "", returnUrl = Request.RawUrl })"
-                    }
-                    else {
-                        //確認留言不是空值
-                        if (commentstring != "") {
-                            putToDb(url, commentData, '評論成功', "評論失敗，請重新評論")
-                        } else {
-                            alert("請輸入評論內容")
-                        }
-                    }
-
-                })
-            })
-
-            function putToDb(url, data, successNote, errorNote) {
-                $.ajax({
-                    url: url,
-                    type: 'PUT',
-                    data: data,
-                    crossDomain: true,
-                    //crossOrigin: true,
-                    //contentType: "application/json",
-                    //dataType: "jsonp",
-                    //jsonp: 'jsonp_callback',
-                    //success: function (data) {
-                    //    alert('新增成功');
-                    //    location.reload();
-                    //},
-
-                    error: function (httpReq, status, exception) {
-                        if (httpReq.status == 500) {
-                            alert(successNote);
-                            location.reload();
-                        }
-                        else {
-                            alert(errorNote);
-                        }
-                    }
-
-                });
-            }
-
+        $("#postRanking").find("input").change(function () {
+            $(this).parent("div").next("div").find("label").text($(this).val())
         })
-        //var scores = $(".progress").find("div").text()
 
-        //$(".progress").find(".progress-bar").width(parseFloat($(this).text()) / 10)
-
-
-        if ("@ViewBag.avgDeepness" != "尚無評價資料") {
-            var avgDeepness = parseFloat(@ViewBag.avgDeepness)*10
-            var avgRelaxing = parseFloat(@ViewBag.avgRelaxing)*10
-            var avgSweetness = parseFloat(@ViewBag.avgSweetness) * 10
+            if ("@ViewBag.avgDeepness" != "尚無評價資料") {
+                var avgDeepness = parseFloat(@ViewBag.avgDeepness)*10
+                var avgRelaxing = parseFloat(@ViewBag.avgRelaxing)*10
+                var avgSweetness = parseFloat(@ViewBag.avgSweetness) * 10
             $(".progress-bar-success").width(avgDeepness.toString() + "%")
             $(".progress-bar-info").width(avgRelaxing.toString() + "%")
             $(".progress-bar-warning").width(avgSweetness.toString() + "%")
         }
 
 
+        function putToDb(url, data, successNote, errorNote) {
+            $.ajax({
+                url: url,
+                type: 'PUT',
+                data: data,
+                crossDomain: true,
+                //crossOrigin: true,
+                //contentType: "application/json",
+                //dataType: "jsonp",
+                //jsonp: 'jsonp_callback',
+                //success: function (data) {
+                //    alert('新增成功');
+                //    location.reload();
+                //},
+
+                error: function (httpReq, status, exception) {
+                    if (httpReq.status == 500) {
+                        alert(successNote);
+                        location.reload();
+                    }
+                    else {
+                        alert(errorNote);
+                    }
+                }
+
+            });
+        }
+
+        //取出課程ID
+        var ObjId = $('#ObjId').text().replace(new RegExp(" ", 'g'), '')
+
+        //送出評論
+        $("#anonym").click(function () {
+            if ($(this).prop("checked")) {
+                $(this).removeProp("checked")
+            }
+            else {
+                $(this).prop("checked", "checked");
+            }
+        })
+
+
+
+        $("#postComment").find("#submit").click(function (event) {
+            event.preventDefault();
+
+            var strid = ObjId;
+            //var url = "http://localhost:57268/api/AllCollege?strid=" + strid + "&iscomment=true"
+            var url = "http://taiwanuniversitiescourses.azurewebsites.net/api/AllCollege?strid=" + strid + "&iscomment=true"
+            var userID = "@User.Identity.GetUserId()";
+            var name = "@ApplicationDbContext.GetNickName(User.Identity.GetUserId())";
+            var email = "@User.Identity.GetUserName()"
+            //var commentstring = encodeURIComponent($("#postComment").find("#commentstring").val());
+            var commentstring = $("#postComment").find("#commentstring").val();
+            var anonym = $("#postComment").find("#anonym").prop("checked");
+            var allowEmailContact = true;
+            commentData = { "userID": userID, "name": name, "email": email, "commentstring": commentstring, "anonym": anonym, "allowEmailContact": allowEmailContact }
+
+
+            //確認經登錄
+            if (!@User.Identity.IsAuthenticated.ToString().ToLower()){
+
+                alert("請先登入後評論");
+                window.location = "@Url.Action("Login", "Account", new { area = "", returnUrl = Request.RawUrl })"
+            }
+            else {
+                //確認留言不是空值
+                if (commentstring != "") {
+                    //送出Ajax
+                    putToDb(url, commentData, '評論成功', "評論失敗，請重新評論")
+                } else {
+                    alert("請輸入評論內容")
+                }
+            }
+        })
+
+
+
+            //送出評價
+        $("#postRanking").find("#submit").click(function (event) {
+                event.preventDefault();
+
+                var strid = ObjId;
+                var userID = "@User.Identity.GetUserId()"
+                var deepness = parseInt($("#deepness").val())
+                var relaxing = parseInt($("#relaxing").val())
+                var sweetness = parseInt($("#sweetness").val())
+                var url = "http://taiwanuniversitiescourses.azurewebsites.net/api/AllCollege?strid=" + strid + "&isranking=true"
+                var rankingData = { "userID": userID, "deepness": deepness, "relaxing": relaxing, "sweetness": sweetness }
+
+
+                //確認經登錄
+                if (!@User.Identity.IsAuthenticated.ToString().ToLower()){
+                    alert("請先登入後評論");
+                    window.location = "@Url.Action("Login", "Account", new { area = "", returnUrl = Request.RawUrl })"
+                }
+                else {
+                    //確認不重複評價
+                    if (@ViewBag.HaveNotRanked){
+
+                        @*@Url.Action("PostComments", "Courses", new { area = "Courses" }) + "?strid=" + strid *@
+                        //送出Ajax
+                        putToDb(url, rankingData, '評價成功', "評價失敗，請重新評價")
+                    } else {
+                        alert("請勿重複評價評價");
+                    }
+                }
+            })
+
+
+
     </script>
+    }
 
 
-}
+
+
+

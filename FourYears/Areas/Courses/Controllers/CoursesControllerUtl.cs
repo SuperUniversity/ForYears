@@ -286,6 +286,16 @@ namespace MvcClient.Areas.Courses.Controllers
             return AvgRankings;
         }
 
+        public static List<Comment> generateFirstManagerComment()
+        {
+            Comment comment = new Comment() { name = "管理員", commentstring = "快點成為第一個留言的人吧" };
+            comment.name = "管理員";
+            comment.lastModified = DateTime.Now;
+            List<Comment> comments = new List<Comment>();
+            comments.Add(comment);
+
+            return comments;
+        }
 
     }
 }

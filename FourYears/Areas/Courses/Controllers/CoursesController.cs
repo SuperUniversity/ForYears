@@ -81,64 +81,77 @@ namespace MvcClient.Areas.Courses.Controllers
         {
             AllCollegeCourseModel SingleCourse = await CoursesControllerUtl.ByIdWholeWorkForAll<AllCollegeCourseModel>(domain, "AllCollege", strid);
 
-            try
+            if (SingleCourse != null)
             {
                 List<Ranking> rankings = SingleCourse.rankingdata;
                 List<double> AvgRankings = CoursesControllerUtl.AvgRankings(rankings);
 
                 ViewBag.rankingLen = AvgRankings[0];
-                ViewBag.avgDeepness = string.Format("{0:0.00}" ,AvgRankings[1]);
-                ViewBag.avgRelaxing = string.Format("{0:0.00}" ,AvgRankings[2]);
-                ViewBag.avgSweetness = string.Format("{0:0.00}" , AvgRankings[3]);
+                ViewBag.avgDeepness = string.Format("{0:0.00}", AvgRankings[1]);
+                ViewBag.avgRelaxing = string.Format("{0:0.00}", AvgRankings[2]);
+                ViewBag.avgSweetness = string.Format("{0:0.00}", AvgRankings[3]);
+
+                if (SingleCourse.commentdata == null)
+                {
+                    SingleCourse.commentdata = CoursesControllerUtl.generateFirstManagerComment(); ;
+                }
+
+                SingleCourse.commentdata = (from c in SingleCourse.commentdata orderby c.lastModified descending select c).ToList();
 
                 var rankedIds = rankings.Select(r => r.userID).ToList();
-                ViewBag.HaveNotRanked = (!rankedIds.Contains(User.Identity.GetUserId())).ToString().ToLower() ;
+                ViewBag.HaveNotRanked = (!rankedIds.Contains(User.Identity.GetUserId())).ToString().ToLower();
             }
-            catch
+            else
             {
                 ViewBag.rankingLen = 0;
                 ViewBag.avgDeepness = "尚無評價資料";
                 ViewBag.avgRelaxing = "尚無評價資料";
                 ViewBag.avgSweetness = "尚無評價資料";
                 ViewBag.HaveNotRanked = "true";
+                SingleCourse = new AllCollegeCourseModel() { commentdata = CoursesControllerUtl.generateFirstManagerComment() };
             }
             return View(SingleCourse);
 
         }
 
-        public async Task<ActionResult> GetComments(string strid)
+        //public async Task<ActionResult> GetComments(string strid)
+        //{
+        //    List<Comment> comments = null;
+        //    try
+        //    {
+        //        AllCollegeCourseModel SingleCourse = await CoursesControllerUtl.ByIdWholeWorkForAll<AllCollegeCourseModel>(domain, "AllCollege", strid);
+        //        comments = SingleCourse.commentdata;
+        //        foreach(Comment comment in comments)
+        //        {
+        //            if (comment.anonym)
+        //            {
+        //                comment.name = "匿名評論";
+        //            }
+        //        }
+
+        //        comments = (from c in comments
+        //                     orderby c.lastModified descending
+        //                     select c).ToList();
+        //        //comments.Sort()
+
+        //        ViewBag.commentLen = comments.Count();
+        //    }
+        //    catch
+        //    {
+        //        Comment comment = new Comment() {name="管理員", commentstring="快點成為第一個留言的人吧" };
+        //        comment.name = "管理員";
+        //        comment.lastModified = DateTime.Now;
+        //        comments = new List<Comment>();
+        //        comments.Add(comment);
+        //        ViewBag.commentLen = 0;
+        //    }
+
+        //    return PartialView(comments);
+        //}
+
+        public ActionResult GetComments(List<Comment> commentData)
         {
-            List<Comment> comments = null;
-            try
-            {
-                AllCollegeCourseModel SingleCourse = await CoursesControllerUtl.ByIdWholeWorkForAll<AllCollegeCourseModel>(domain, "AllCollege", strid);
-                comments = SingleCourse.commentdata;
-                foreach(Comment comment in comments)
-                {
-                    if (comment.anonym)
-                    {
-                        comment.name = "匿名評論";
-                    }
-                }
-
-                comments = (from c in comments
-                             orderby c.lastModified descending
-                             select c).ToList();
-                //comments.Sort()
-
-                ViewBag.commentLen = comments.Count();
-            }
-            catch
-            {
-                Comment comment = new Comment() {name="管理員", commentstring="快點成為第一個留言的人吧" };
-                comment.name = "管理員";
-                comment.lastModified = DateTime.Now;
-                comments = new List<Comment>();
-                comments.Add(comment);
-                ViewBag.commentLen = 0;
-            }
-
-            return PartialView(comments);
+            return PartialView(commentData);
         }
 
 
