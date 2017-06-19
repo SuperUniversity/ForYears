@@ -9,6 +9,8 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Windows.Forms;
+using Microsoft.AspNet.Identity;
+using FourYears.Models;
 
 namespace FourYears.Areas.FoodMapArea.Controllers
 {
@@ -16,13 +18,20 @@ namespace FourYears.Areas.FoodMapArea.Controllers
     {
 
         private superuniversityEntities db = new superuniversityEntities();
+        private ApplicationDbContext db1 = new ApplicationDbContext();
         // GET: FoodMapArea/Admin
-        public ActionResult Index(int? page, int id = 0)
+        public ActionResult Index(int? page, string UserID)
         {
-            var result = from p in db.ShopCustomer
-                         join s in db.Shop_ShopCustomer on p.CustomerID equals s.CustomerID
+            var idList = (from u in db1.Users
+                         select u.Id).ToList();
+
+            
+            
+
+            var result = from p in idList
+                         join s in db.Shop_ShopCustomer on p equals s.CustomerID.ToString()
                          join c in db.Shop on s.ShopID equals c.ShopID
-                         where p.CustomerID == id
+                         where p == UserID
                          select new UserTemp
                          {
                              ShopID = c.ShopID,
@@ -42,7 +51,7 @@ namespace FourYears.Areas.FoodMapArea.Controllers
                              ShopLink = c.ShopLink,
                              CityID = c.CityID,
                              SchoolID = c.SchoolID,
-                             CustomerID = p.CustomerID
+                             //CustomerID = p.CustomerID
                          };
 
             return View(result.ToList().ToPagedList(page ?? 1, 10));
@@ -74,7 +83,7 @@ namespace FourYears.Areas.FoodMapArea.Controllers
 
 
         [HttpGet]
-        public ActionResult Create()
+        public ActionResult Create(string UserID)
         {
             ViewBag.datas = db.FoodCategory.ToList();
             ViewBag.cities = db.City.ToList();
@@ -176,13 +185,13 @@ namespace FourYears.Areas.FoodMapArea.Controllers
                     shop.Image3 = Image3.FileName;
                     shop.BytesImage3 = imgByte3;
                 }
-
-                shop_shopcustomer.CustomerID = Convert.ToInt32(Request.Cookies["CustomerID"].Value);
+                //shop_shopcustomer.CustomerID = Convert.ToInt32(Request.Cookies["CustomerID"].Value);
+                shop_shopcustomer.CustomerID = User.Identity.GetUserId();
                 db.Shop_ShopCustomer.Add(shop_shopcustomer);
                 db.Shop.Add(shop);
                 db.SaveChanges();
 
-                return RedirectToAction("Index", "User", new { id = Request.Cookies["CustomerID"].Value, Area = "FoodMapArea" });
+                return RedirectToAction("Index", "User", new { UserID = User.Identity.GetUserId(), Area = "FoodMapArea" });
             }
             ViewBag.Message = "請至少選擇一張圖片";
             ViewBag.datas = db.FoodCategory.ToList();
@@ -192,7 +201,7 @@ namespace FourYears.Areas.FoodMapArea.Controllers
 
         }
 
-        public ActionResult Detail(int id = 0)
+        public ActionResult Detail(string UserID,int id = 0)
         {
             ViewBag.datas = db.FoodCategory.ToList();
             ViewBag.cities = db.City.ToList();
@@ -204,7 +213,7 @@ namespace FourYears.Areas.FoodMapArea.Controllers
         }
 
         [HttpGet]
-        public ActionResult Update(int id = 0)
+        public ActionResult Update(string UserID,int id = 0)
         {
             ViewBag.datas = db.FoodCategory.ToList();
             ViewBag.cities = db.City.ToList();
@@ -257,7 +266,7 @@ namespace FourYears.Areas.FoodMapArea.Controllers
                 db.Entry(shop).State = System.Data.Entity.EntityState.Modified;
                 db.SaveChanges();
 
-                return RedirectToAction("Index", "User", new { id = Request.Cookies["CustomerID"].Value, Area = "FoodMapArea" });
+                return RedirectToAction("Index", "User", new { UserID=User.Identity.GetUserId(), Area = "FoodMapArea" });
             }
             ViewBag.Message = "請至少選擇一張圖片";
             ViewBag.datas = db.FoodCategory.ToList();
@@ -273,9 +282,9 @@ namespace FourYears.Areas.FoodMapArea.Controllers
             {
                 db.Shop.Remove(db.Shop.Find(id));
                 db.SaveChanges();
-                return RedirectToAction("Index", "User", new { id = Request.Cookies["CustomerID"].Value, Area = "FoodMapArea" });
+                return RedirectToAction("Index", "User", new { UserID=User.Identity.GetUserId(), Area = "FoodMapArea" });
             }
-            return RedirectToAction("Index", "User", new { id = Request.Cookies["CustomerID"].Value, Area = "FoodMapArea" });
+            return RedirectToAction("Index", "User", new { UserID = User.Identity.GetUserId(), Area = "FoodMapArea" });
         }
     }
 
@@ -314,7 +323,7 @@ namespace FourYears.Areas.FoodMapArea.Controllers
         [DisplayName("學校編號")]
         public Nullable<int> SchoolID { get; set; }
 
-        [DisplayName("會員編號")]
-        public int CustomerID { get; set; }
+        //[DisplayName("會員編號")]
+        //public int CustomerID { get; set; }
     }
 }

@@ -1,4 +1,5 @@
-﻿@model IEnumerable<FourYears.Areas.FoodMapArea.Controllers.Temp>
+﻿@using Microsoft.AspNet.Identity;
+@model IEnumerable<FourYears.Areas.FoodMapArea.Controllers.Temp>
 
 
 @{
@@ -46,7 +47,7 @@
             <li style="float:right">@Html.ActionLink(Request.Cookies["UserName"].Value + " 登出", "Logout", "Account", new { area = "FoodMapArea" }, null)</li>
         }*@
 
-        @if (Request.Cookies["UserName"] == null)
+        @*@if (Request.Cookies["UserName"] == null)
         {
             <li style="float:right">@Html.ActionLink("管理介面", "Login", "Account", new { area = "FoodMapArea" }, null)</li>
         }
@@ -60,6 +61,14 @@
             {
                 <li style="float:right">@Html.ActionLink("管理介面", "Index", "User", new { area = "FoodMapArea", id = Request.Cookies["CustomerID"].Value }, null)</li>
             }
+        }*@
+        @if (!User.Identity.IsAuthenticated)
+        {
+            <li style="float:right">@Html.ActionLink("管理頁面", "Login", "Account", new { area = "", returnUrl = Request.RawUrl }, htmlAttributes: new { id = "loginLink" })</li>
+        }
+        else
+        {
+            <li style="float:right">@Html.ActionLink("管理頁面", "Index", "User", new { area = "FoodMapArea", UserID = User.Identity.GetUserId() }, null)</li>
         }
         <li style="float:right">@Html.ActionLink("店家介紹", "Index", "Shop", new { area = "FoodMapArea" }, null)</li>
         <li style="float:right">@Html.ActionLink("地圖美食", "Map", "Customer", new { area = "FoodMapArea" }, null)</li>

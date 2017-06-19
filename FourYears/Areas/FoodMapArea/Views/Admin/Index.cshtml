@@ -1,5 +1,6 @@
 ﻿@using PagedList;
 @using PagedList.Mvc;
+@using Microsoft.AspNet.Identity;
 @model IPagedList<FourYears.Areas.FoodMapArea.Models.Shop>
 
 @{
@@ -42,7 +43,7 @@
             <li style="float:right">@Html.ActionLink(Request.Cookies["UserName"].Value + " 登出", "Logout", "Account", new { area = "FoodMapArea" }, null)</li>
         }*@
 
-        @if (Request.Cookies["UserName"] == null)
+        @*@if (Request.Cookies["UserName"] == null)
         {
             <li style="float:right">@Html.ActionLink("管理介面", "Login", "Account", new { area = "FoodMapArea" }, null)</li>
         }
@@ -56,6 +57,14 @@
             {
                 <li style="float:right">@Html.ActionLink("管理介面", "Index", "User", new { area = "FoodMapArea", id = Request.Cookies["CustomerID"].Value }, null)</li>
             }
+        }*@
+        @if (!User.Identity.IsAuthenticated)
+        {
+            <li style="float:right">@Html.ActionLink("管理頁面", "Login", "Account", new { area = "", returnUrl = Request.RawUrl }, htmlAttributes: new { id = "loginLink" })</li>
+        }
+        else
+        {
+            <li style="float:right">@Html.ActionLink("管理頁面", "Index", "User", new { area = "FoodMapArea", UserID=User.Identity.GetUserId() }, null)</li>
         }
         <li style="float:right">@Html.ActionLink("店家介紹", "Index", "Shop", new { area = "FoodMapArea" }, null)</li>
         <li style="float:right">@Html.ActionLink("地圖美食", "Map", "Customer", new { area = "FoodMapArea" }, null)</li>
@@ -90,7 +99,7 @@
                     <td>@Html.DisplayFor(p => shop.Phone)</td>
                     <td><img src="@Url.Action("GetImage",new { id=shop.ShopID})" class="img-thumbnail" style="width:90px;height:90px" /></td>
                     <td>@Html.ActionLink("查看", "Detail", "Admin", new { id = shop.ShopID, area = "FoodMapArea" }, new { @class = "btn btn-primary barfont" })</td>
-                    <td>@Html.ActionLink("修改", "Update", "Admin", new { id = shop.ShopID }, new { @class = "btn btn-primary barfont" })@Html.ActionLink("刪除", "Delete", "Admin", new { id = shop.ShopID }, new { @class = "btn btn-primary barfont" })</td>
+                    <td>@Html.ActionLink("修改", "Update", "Admin", new { id = shop.ShopID, area = "FoodMapArea" }, new { @class = "btn btn-primary barfont" })@Html.ActionLink("刪除", "Delete", "Admin", new { id = shop.ShopID }, new { @class = "btn btn-primary barfont" })</td>
                 </tr>
             }
 
