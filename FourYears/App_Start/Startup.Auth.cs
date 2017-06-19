@@ -8,6 +8,7 @@ using Owin;
 using FourYears.Models;
 using Microsoft.Owin.Security.Facebook;
 using FourYears.facebook;
+using static FourYears.EmailService;
 
 namespace FourYears
 {
@@ -20,7 +21,7 @@ namespace FourYears
             app.CreatePerOwinContext(ApplicationDbContext.Create);
             app.CreatePerOwinContext<ApplicationUserManager>(ApplicationUserManager.Create);
             app.CreatePerOwinContext<ApplicationSignInManager>(ApplicationSignInManager.Create);
-
+            app.CreatePerOwinContext<ApplicationRoleManager>(ApplicationRoleManager.Create);
             // 讓應用程式使用 Cookie 儲存已登入使用者的資訊
             // 並使用 Cookie 暫時儲存使用者利用協力廠商登入提供者登入的相關資訊；
             // 在 Cookie 中設定簽章

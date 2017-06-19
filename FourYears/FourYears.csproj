@@ -264,6 +264,47 @@
     <Compile Include="Areas\FoodMapArea\Models\Shop_ShopCustomer.cs">
       <DependentUpon>FoodMapModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Areas\JobArea\Controllers\EmployerController.cs" />
+    <Compile Include="Areas\JobArea\Controllers\HomeController.cs" />
+    <Compile Include="Areas\JobArea\Controllers\HomePageController.cs" />
+    <Compile Include="Areas\JobArea\Controllers\JobController.cs" />
+    <Compile Include="Areas\JobArea\Controllers\ManagerController.cs" />
+    <Compile Include="Areas\JobArea\JobAreaAreaRegistration.cs" />
+    <Compile Include="Areas\JobArea\Models\EmployerCompany.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\JobArea\Models\IRepository.cs" />
+    <Compile Include="Areas\JobArea\Models\Job.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\JobArea\Models\JobCommet.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\JobArea\Models\Jobtime.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\JobArea\Models\Model1.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model1.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\JobArea\Models\Model1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\JobArea\Models\Model1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model1.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\JobArea\Models\Partails\EmployerCompany.cs" />
+    <Compile Include="Areas\JobArea\Models\Partails\Job.cs" />
+    <Compile Include="Areas\JobArea\Models\Repository.cs" />
+    <Compile Include="Areas\JobArea\Models\User.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\JobArea\ViewModel\EmployerLogin.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -339,6 +380,34 @@
     <Content Include="Areas\FoodMapArea\WebImages\delicacy_banner_3.jpg" />
     <Content Include="Areas\FoodMapArea\WebImages\jpfood.jpg" />
     <Content Include="Areas\FoodMapArea\WebImages\school.png" />
+    <Content Include="Areas\JobArea\css\smoothDivScroll.css" />
+    <Content Include="Areas\JobArea\Image\A-Bio.jpg" />
+    <Content Include="Areas\JobArea\Image\BugerKing.png" />
+    <Content Include="Areas\JobArea\Image\DBS.jpg" />
+    <Content Include="Areas\JobArea\Image\Decathlon.jpg" />
+    <Content Include="Areas\JobArea\Image\KPMG.jpg" />
+    <Content Include="Areas\JobArea\Image\PartTimeJob.jpg" />
+    <Content Include="Areas\JobArea\Image\樂天.jpg" />
+    <Content Include="Areas\JobArea\Image\誠品.png" />
+    <Content Include="Areas\JobArea\js\jquery-ui-1.10.3.custom.min.js" />
+    <Content Include="Areas\JobArea\js\jquery-ui-1.8.23.custom.min.js" />
+    <Content Include="Areas\JobArea\js\jquery.kinetic.min.js" />
+    <Content Include="Areas\JobArea\js\jquery.mousewheel.min.js" />
+    <Content Include="Areas\JobArea\js\jquery.smoothdivscroll-1.3-min.js" />
+    <Content Include="Areas\JobArea\js\source\jquery-ui-1.10.3.custom.js" />
+    <Content Include="Areas\JobArea\js\source\jquery.kinetic.js" />
+    <Content Include="Areas\JobArea\js\source\jquery.mousewheel.js" />
+    <Content Include="Areas\JobArea\js\source\jquery.smoothDivScroll-1.3.js" />
+    <Content Include="Areas\JobArea\Models\Model1.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Model1.edmx</DependentUpon>
+      <LastGenOutput>Model1.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Areas\JobArea\Models\Model1.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Model1.edmx</DependentUpon>
+      <LastGenOutput>Model1.cs</LastGenOutput>
+    </Content>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\font-awesome.min.css" />
@@ -375,6 +444,13 @@
     <Content Include="images\thumbs\美食.jpg" />
     <Content Include="images\thumbs\課程.jpg" />
     <Content Include="images\thumbs\買賣.jpg" />
+    <Content Include="jquery-cookie-master\.gitignore" />
+    <Content Include="jquery-cookie-master\Gruntfile.js" />
+    <Content Include="jquery-cookie-master\MIT-LICENSE.txt" />
+    <Content Include="jquery-cookie-master\src\jquery.cookie.js" />
+    <Content Include="jquery-cookie-master\test\index.html" />
+    <Content Include="jquery-cookie-master\test\malformed_cookie.html" />
+    <Content Include="jquery-cookie-master\test\tests.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="ApplicationInsights.config">
@@ -426,6 +502,46 @@
     <Content Include="Areas\FoodMapArea\Views\User\PartialDrop3.cshtml" />
     <Content Include="Areas\FoodMapArea\Views\User\Detail.cshtml" />
     <Content Include="Areas\FoodMapArea\Views\User\Update.cshtml" />
+    <Content Include="Areas\JobArea\Views\web.config" />
+    <EntityDeploy Include="Areas\JobArea\Models\Model1.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Model1.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Areas\JobArea\Models\Model1.edmx.diagram">
+      <DependentUpon>Model1.edmx</DependentUpon>
+    </Content>
+    <Content Include="Areas\JobArea\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\JobArea\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\JobArea\Views\Employer\Index.cshtml" />
+    <Content Include="Areas\JobArea\Views\Employer\Insert.cshtml" />
+    <Content Include="Areas\JobArea\Views\Employer\Edit.cshtml" />
+    <Content Include="Areas\JobArea\Views\Employer\Login.cshtml" />
+    <Content Include="Areas\JobArea\Views\Home\Index.cshtml" />
+    <Content Include="Areas\JobArea\Views\Home\Detail.cshtml" />
+    <Content Include="Areas\JobArea\Views\Home\CompanyDetail.cshtml" />
+    <Content Include="Areas\JobArea\Views\Home\Hire.cshtml" />
+    <Content Include="Areas\JobArea\Views\HomePage\Index.cshtml" />
+    <Content Include="Areas\JobArea\Views\Job\Index.cshtml" />
+    <Content Include="Areas\JobArea\Views\Job\Insert.cshtml" />
+    <Content Include="Areas\JobArea\Views\Job\Edit.cshtml" />
+    <Content Include="Areas\JobArea\Views\Manager\Index.cshtml" />
+    <Content Include="Areas\JobArea\Views\Manager\ChangePassword.cshtml" />
+    <Content Include="Areas\JobArea\Views\Manager\JobManage.cshtml" />
+    <Content Include="Areas\JobArea\Views\Manager\JobEdit.cshtml" />
+    <Content Include="Areas\JobArea\Views\Manager\Edit.cshtml" />
+    <Content Include="jquery-cookie-master\.jshintignore" />
+    <Content Include="jquery-cookie-master\.jshintrc" />
+    <Content Include="jquery-cookie-master\.tm_properties" />
+    <Content Include="jquery-cookie-master\.travis.yml" />
+    <Content Include="jquery-cookie-master\bower.json" />
+    <Content Include="jquery-cookie-master\CHANGELOG.md" />
+    <Content Include="jquery-cookie-master\component.json" />
+    <Content Include="jquery-cookie-master\CONTRIBUTING.md" />
+    <Content Include="jquery-cookie-master\cookie.jquery.json" />
+    <Content Include="jquery-cookie-master\package.json" />
+    <Content Include="jquery-cookie-master\README.md" />
+    <Content Include="jquery-cookie-master\src\.jshintrc" />
+    <Content Include="jquery-cookie-master\test\.jshintrc" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -447,7 +563,9 @@
     <Content Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
-    <Content Include="Views\Web.config" />
+    <Content Include="Views\Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />

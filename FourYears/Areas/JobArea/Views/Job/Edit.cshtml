@@ -1,0 +1,124 @@
+﻿@model FourYears.Areas.JobArea.Models.Job
+@{
+    ViewBag.Title = "工作修改";
+}
+@section scripts{
+    <script src="~/Scripts/jquery.validate.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+    <style>
+        body {
+            background-color: antiquewhite;
+            padding-top: 15px;
+            font-size: 12px;
+        }
+
+        .main {
+            max-width: 320px;
+            margin: 0 auto;
+        }
+
+        .login-or {
+            position: relative;
+            font-size: 18px;
+            color: #aaa;
+            margin-top: 10px;
+            margin-bottom: 10px;
+            padding-top: 10px;
+            padding-bottom: 10px;
+        }
+
+        .span-or {
+            display: block;
+            position: absolute;
+            left: 50%;
+            top: -2px;
+            margin-left: -25px;
+            background-color: #fff;
+            width: 50px;
+            text-align: center;
+        }
+
+        .hr-or {
+            background-color: #cdcdcd;
+            height: 1px;
+            margin-top: 0px !important;
+            margin-bottom: 0px !important;
+        }
+
+        h3 {
+            text-align: center;
+            line-height: 300%;
+        }
+    </style>
+}
+@using (Html.BeginForm("Edit", "Job", FormMethod.Post, new { @class = "form-horizontal", enctype = "multipart/form-data" }))
+{
+    <div class="row">
+        <div class="col-lg-3"></div>
+        <div class="col-lg-7">
+            <div class="form-group">
+                @Html.LabelFor(e => e.JobName, new { @class = "col-sm-2 control-label" })
+                <div class="col-sm-10">
+                    @Html.EditorFor(e => e.JobName, new { htmlAttributes = new { placehoder = "JobName", @class = "form-control" } })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(e => e.JobStartTime, new { @class = "col-sm-2 control-label" })
+                <div class="col-sm-10">
+                    @Html.EditorFor(e => e.JobStartTime, new { htmlAttributes = new { placehoder = "JobStartTime", @class = "form-control" } })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(e => e.TimeID, new { @class = "col-sm-2 control-label" })
+                <div class="col-sm-10">
+                    @{
+                        var times = new SelectList(ViewBag.datas, "TimeID", "jobtimes");
+                    }
+                    @Html.DropDownListFor(e => e.TimeID, times, "請選擇時段", new { @class = "form-control" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(e => e.PayPerHour, new { @class = "col-sm-2 control-label" })
+                <div class="col-sm-10">
+                    @Html.EditorFor(e => e.PayPerHour, new { htmlAttributes = new { placehoder = "PayPerHour", @class = "form-control" } })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(e => e.Workplace, new { @class = "col-sm-2 control-label" })
+                <div class="col-sm-10">
+                    @Html.EditorFor(e => e.Workplace, new { htmlAttributes = new { placehoder = "Workplace", @class = "form-control" } })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(e => e.Description, new { @class = "col-sm-2 control-label" })
+                <div class="col-sm-10">
+                    @Html.TextAreaFor(e => e.Description, new { style = "resize:none", @class = "form-control", rows = "10" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(e => e.ImageWebSite, new { @class = "col-lg-2 control-label" })
+                <div class="col-lg-10">
+                    @Html.EditorFor(e => e.ImageWebSite, new { htmlAttributes = new { placehoder = "ImageWebSite", @class = "form-control" } })
+                    @Html.ValidationMessageFor(e => e.ImageWebSite, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(e => e.Image, new { @class = "col-lg-2 control-label" })
+                <div class="col-lg-10">
+                    <input type="file" class="form-control" name="byteimg" />
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.EditorFor(m => m.CompanyID, "", new { htmlAttributes = new { hidden = "hidden" } })
+            </div>
+
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                    <button type="submit" class="btn btn-success">修改</button>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-2"></div>
+    </div>
+                        }
+
