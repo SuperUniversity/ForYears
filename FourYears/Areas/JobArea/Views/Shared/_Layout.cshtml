@@ -31,7 +31,7 @@
     @*<link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">*@
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
-    <script src="~/Scripts/modernizr-2.6.2.js"></script>
+    
     <style>
         #bs-example-navbar-collapse-1>ul>ul>li>a{
             color:white;
@@ -73,7 +73,11 @@
                             </li>
                         </ul>
                     </li>
-                    <li>
+                    <li class="btn btn-primary" id="change">廠商</li>                    
+                    @{                        
+                       
+                       
+                     @*<li class="page-scroll">
                         @{
                             if (Request.Cookies["name"] == null)
                             {
@@ -84,13 +88,10 @@
                                 <span style="color:white" class="glyphicon glyphicon-user">
                                     @Html.ActionLink(HttpUtility.UrlDecode(Request.Cookies["name"].Value), "Index", "Manager", new { Area = "JobArea", id = Request.Cookies["nameID"].Value }, new { style = "color:white" })
                                 </span>
-
                             }
-
                         }
-
                     </li>
-                    <li class="page-scroll">
+                      <li class="page-scroll">
                         @{
                             if (Request.Cookies["name"] == null)
                             {
@@ -101,8 +102,11 @@
                                 @Html.ActionLink(" 登出", "Logout", "Employer", null, new { style = "color:white" });
                             }
                         }
-                    </li>
-                    @Html.Partial("_LoginPartial")
+                    </li>*@
+                        
+                          @Html.Partial("_LoginPartial")
+                        
+                    }                      
                 </ul>
             </div>
             <!-- /.navbar-collapse -->
@@ -139,26 +143,52 @@
         </div>
     </footer>
 
-
     <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/modernizr-2.6.2.js"></script>
     <script src="~/Scripts/bootstrap.min.js"></script>
     @*<script src="https://cdnjs.cloudflare.com/ajax/libs/startbootstrap-freelancer/3.3.7/js/freelancer.min.js"></script>*@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script src="~/jquery-cookie-master/src/jquery.cookie.js"></script>
     <script>
         $("#a1").on("click", function () {
-            window.location.href="@Url.Action("Index","HomePage",new { area="JobArea"})"
+            window.location.href = "@Url.Action("Index","HomePage",new { area="JobArea"})"
         })
         $("#a2").on("click", function () {
-            window.location.href="@Url.Action("Index", "Home", new { area="JobArea"})"
+            window.location.href = "@Url.Action("Index", "Home", new { area="JobArea"})"
         })
         $("#a3").on("click", function () {
-            window.location.href="@Url.Action("Index", "Job", new { area="JobArea"})"
+            window.location.href = "@Url.Action("Index", "Job", new { area="JobArea"})"
         })
         $("#a4").on("click", function () {
-            window.location.href="@Url.Action("Index", "Employer", new { area="JobArea"})"
+            window.location.href = "@Url.Action("Index", "Employer", new { area="JobArea"})"
         })
 
         $("li[class*=dropdown]").mouseenter(function () { $(this).addClass("open") })
+        var flag = 0;
+        $("#change").on("click", function () {
+            if (flag == 0)
+            {
+
+                                 $('#registerLink').attr('href', ' @Html.ActionLink("註冊", "Insert", "Employer", null, new { @class = "glyphicon glyphicon-user", style = "color:white" })')
+                 $("#loginLink").attr("href",'@Html.ActionLink("廠商登入", "Login", "Employer", null, new { @class = "glyphicon glyphicon-user", style = "color:white" }) ')
+                $(this).text('會員');
+                flag = 1;
+            }
+            else if (flag == 1)
+            {
+                //if($.cookie("name")== null){
+                $('#registerLink').attr("href", '@Html.ActionLink("註冊", "Register", "Account", new { area = "", returnUrl = Request.RawUrl },  new { id = "registerLink" })');
+                $("#loginLink").attr("href", '@Html.ActionLink("登入", "Login", "Account", new { area = "", returnUrl = Request.RawUrl },  new { id = "loginLink" })');
+                @*}
+                else{
+                    $('#registerLink').attr('href','@Html.ActionLink(HttpUtility.UrlDecode(Request.Cookies["name"].Value), "Index", "Manager", new { Area = "JobArea", id = Request.Cookies["nameID"].Value }, new { style = "color:white" })')
+                    $('#loginLink').attr('href','@Html.ActionLink(" 登出", "Logout", "Employer", null, new { style = "color:white" })')
+                }*@
+                $(this).text('廠商');
+                flag = 0;
+            }
+        })
     </script>
     @RenderSection("scripts", false)
 </body>

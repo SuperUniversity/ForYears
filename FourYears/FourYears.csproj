@@ -444,6 +444,13 @@
     <Content Include="images\thumbs\美食.jpg" />
     <Content Include="images\thumbs\課程.jpg" />
     <Content Include="images\thumbs\買賣.jpg" />
+    <Content Include="jquery-cookie-master\.gitignore" />
+    <Content Include="jquery-cookie-master\Gruntfile.js" />
+    <Content Include="jquery-cookie-master\MIT-LICENSE.txt" />
+    <Content Include="jquery-cookie-master\src\jquery.cookie.js" />
+    <Content Include="jquery-cookie-master\test\index.html" />
+    <Content Include="jquery-cookie-master\test\malformed_cookie.html" />
+    <Content Include="jquery-cookie-master\test\tests.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="ApplicationInsights.config">
@@ -522,6 +529,19 @@
     <Content Include="Areas\JobArea\Views\Manager\JobManage.cshtml" />
     <Content Include="Areas\JobArea\Views\Manager\JobEdit.cshtml" />
     <Content Include="Areas\JobArea\Views\Manager\Edit.cshtml" />
+    <Content Include="jquery-cookie-master\.jshintignore" />
+    <Content Include="jquery-cookie-master\.jshintrc" />
+    <Content Include="jquery-cookie-master\.tm_properties" />
+    <Content Include="jquery-cookie-master\.travis.yml" />
+    <Content Include="jquery-cookie-master\bower.json" />
+    <Content Include="jquery-cookie-master\CHANGELOG.md" />
+    <Content Include="jquery-cookie-master\component.json" />
+    <Content Include="jquery-cookie-master\CONTRIBUTING.md" />
+    <Content Include="jquery-cookie-master\cookie.jquery.json" />
+    <Content Include="jquery-cookie-master\package.json" />
+    <Content Include="jquery-cookie-master\README.md" />
+    <Content Include="jquery-cookie-master\src\.jshintrc" />
+    <Content Include="jquery-cookie-master\test\.jshintrc" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -543,7 +563,9 @@
     <Content Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
-    <Content Include="Views\Web.config" />
+    <Content Include="Views\Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
