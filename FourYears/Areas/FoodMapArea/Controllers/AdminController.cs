@@ -150,7 +150,7 @@ namespace FourYears.Areas.FoodMapArea.Controllers
                 }
 
                 //shop_customer.CustomerID = Convert.ToInt32(Request.Cookies["CustomerID"].Value);
-                shop_customer.CustomerID = Request.Cookies["CustomerID"].Value;
+                shop_customer.CustomerID = User.Identity.GetUserId();
 
                 db.Shop_ShopCustomer.Add(shop_customer);
                 db.Shop.Add(shop);
