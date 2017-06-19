@@ -39,6 +39,9 @@
         #mainNav>div>div>a{
             color:white;
         }
+        #logoutForm>ul>li>a{
+            color:white;
+        }
     </style>
     @RenderSection("styles", false)
 
@@ -77,7 +80,7 @@
                     @{                        
                        
                        
-                     @*<li class="page-scroll">
+                     <li class="page-scroll">
                         @{
                             if (Request.Cookies["name"] == null)
                             {
@@ -95,16 +98,16 @@
                         @{
                             if (Request.Cookies["name"] == null)
                             {
-                                @Html.ActionLink("廠商登入", "Login", "Employer", null, new { @class = "glyphicon glyphicon-user", style = "color:white" });
+                                @Html.ActionLink("登入", "Login", "Employer", null, new { @class = "glyphicon glyphicon-user", style = "color:white" });
                             }
                             else
                             {
                                 @Html.ActionLink(" 登出", "Logout", "Employer", null, new { style = "color:white" });
                             }
                         }
-                    </li>*@
+                    </li>
                         
-                          @Html.Partial("_LoginPartial")
+                          @*@Html.Partial("_LoginPartial")*@
                         
                     }                      
                 </ul>
