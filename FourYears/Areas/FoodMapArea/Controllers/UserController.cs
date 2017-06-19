@@ -19,7 +19,7 @@ namespace FourYears.Areas.FoodMapArea.Controllers
 
         private superuniversityEntities2 db = new superuniversityEntities2();
         private ApplicationDbContext db1 = new ApplicationDbContext();
-        // GET: FoodMapArea/Admin
+        // GET: FoodMapArea/Admin        
         public ActionResult Index(int? page, string UserID)
         {
             var idList = (from u in db1.Users

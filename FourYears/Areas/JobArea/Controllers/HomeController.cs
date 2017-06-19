@@ -12,7 +12,7 @@ namespace FourYears.Areas.JobArea.Controllers
     public class HomeController : Controller
     {
         // GET: JobArea/Home
-        superuniversityEntities1 db = new superuniversityEntities1();
+        superuniversityEntities3 db = new superuniversityEntities3();
         IRepository<Job> job = new Repository<Job>();
         IRepository<EmployerCompany> _Emp = new Repository<EmployerCompany>();
         // GET: JobArea/Home
@@ -116,7 +116,7 @@ namespace FourYears.Areas.JobArea.Controllers
                 UserID = userid,
                 CreateDate = now
             };
-            using (Models.superuniversityEntities1 db = new Models.superuniversityEntities1())
+            using (Models.superuniversityEntities3 db = new Models.superuniversityEntities3())
             {
                 db.JobCommets.Add(comment);
                 db.SaveChanges();

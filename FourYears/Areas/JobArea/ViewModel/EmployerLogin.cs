@@ -45,7 +45,7 @@ namespace FourYears.Areas.JobArea.ViewModel
     {
         public JobNameID(int id)
         {
-            superuniversityEntities1 db = new superuniversityEntities1();
+            superuniversityEntities3 db = new superuniversityEntities3();
             IRepository<Job> job = new Repository<Job>();
             int i = job.GetById(id).CompanyID;
             this.JBs = (from s in db.Job
@@ -59,7 +59,7 @@ namespace FourYears.Areas.JobArea.ViewModel
     {
         public CompanyName(int id)
         {
-            superuniversityEntities1 db = new superuniversityEntities1();
+            superuniversityEntities3 db = new superuniversityEntities3();
             IRepository<EmployerCompany> emp = new Repository<EmployerCompany>();
             IRepository<Job> job = new Repository<Job>();
             int i = job.GetById(id).CompanyID;

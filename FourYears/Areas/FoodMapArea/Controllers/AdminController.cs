@@ -11,10 +11,12 @@ using Microsoft.AspNet.Identity;
 
 namespace FourYears.Areas.FoodMapArea.Controllers
 {
+    [Authorize(Roles ="Admin")]
     public class AdminController : Controller
     {
         private superuniversityEntities2 db = new superuniversityEntities2();
         // GET: FoodMapArea/Admin
+       
         public ActionResult Index(int? page)
         {
             return View(db.Shop.ToList().ToPagedList(page ?? 1, 10));

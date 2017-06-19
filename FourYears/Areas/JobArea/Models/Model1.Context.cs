@@ -13,10 +13,10 @@ namespace FourYears.Areas.JobArea.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class superuniversityEntities1 : DbContext
+    public partial class superuniversityEntities3 : DbContext
     {
-        public superuniversityEntities1()
-            : base("name=superuniversityEntities1")
+        public superuniversityEntities3()
+            : base("name=superuniversityEntities3")
         {
         }
     

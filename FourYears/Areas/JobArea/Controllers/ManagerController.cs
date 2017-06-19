@@ -11,7 +11,7 @@ namespace FourYears.Areas.JobArea.Controllers
     {
         private IRepository<EmployerCompany> db = new Repository<EmployerCompany>();
         private IRepository<Job> jb = new Repository<Job>();
-        private superuniversityEntities1 su = new superuniversityEntities1();
+        private superuniversityEntities3 su = new superuniversityEntities3();
         // GET: JobArea/Manager
         public ActionResult Index(int id)
         {

@@ -8,7 +8,7 @@ namespace FourYears.Areas.JobArea.Models
 {
     public class Repository<T> : IRepository<T> where T : class
     {
-        private superuniversityEntities1 db = new superuniversityEntities1();
+        private superuniversityEntities3 db = new superuniversityEntities3();
         private DbSet<T> DbSet = null;
 
         public Repository()

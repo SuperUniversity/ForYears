@@ -168,7 +168,7 @@ namespace FourYears.Controllers
 
                     await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
 
-                    var roleName = "User";
+                    var roleName = "Admin";
 
                     if (HttpContext.GetOwinContext().Get<ApplicationRoleManager>().RoleExists(roleName) == false)
                     {

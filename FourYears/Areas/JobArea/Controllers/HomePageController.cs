@@ -10,7 +10,7 @@ namespace FourYears.Areas.JobArea.Controllers
     public class HomePageController : Controller
     {
         // GET: JobArea/HomePage
-        superuniversityEntities1 db = new superuniversityEntities1();
+        superuniversityEntities3 db = new superuniversityEntities3();
         // GET: JobArea/HomePage
         public ActionResult Index(string Jobnamesreach = "", string Workplacesreach = "", string Allsreach = "")
         {

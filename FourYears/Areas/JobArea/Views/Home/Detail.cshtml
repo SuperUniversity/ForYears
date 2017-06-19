@@ -3,7 +3,7 @@
     ViewBag.Title = "詳細資料";
 
     var commentList = new List<FourYears.Areas.JobArea.Models.JobCommet>();
-    using (FourYears.Areas.JobArea.Models.superuniversityEntities1 db = new FourYears.Areas.JobArea.Models.superuniversityEntities1())
+    using (FourYears.Areas.JobArea.Models.superuniversityEntities3 db = new FourYears.Areas.JobArea.Models.superuniversityEntities3())
     {
         commentList = (from s in db.JobCommets
                        where s.JobID == this.Model.JobID

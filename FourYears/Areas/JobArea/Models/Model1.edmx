@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="superuniversityModel1.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="superuniversityModel1.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="EmployerCompany">
           <Key>
             <PropertyRef Name="CompanyID" />
@@ -86,7 +86,8 @@
     FROM [JobMarket].[User] AS [User]</DefiningQuery>
           </EntitySet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="superuniversityModel1" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -138,13 +139,6 @@
           <Property Name="TimeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="jobtimes" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
-        <EntityContainer Name="superuniversityEntities1" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="EmployerCompany" EntityType="Self.EmployerCompany" />
-          <EntitySet Name="Job" EntityType="Self.Job" />
-          <EntitySet Name="JobCommet" EntityType="Self.JobCommet" />
-          <EntitySet Name="Jobtime" EntityType="Self.Jobtime" />
-          <EntitySet Name="User" EntityType="superuniversityModel1.User" />
-        </EntityContainer>
         <EntityType Name="User">
           <Key>
             <PropertyRef Name="UserID" />
@@ -154,18 +148,25 @@
             <PropertyRef Name="ConfirmPassword" />
           </Key>
           <Property Name="UserID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="UserName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="UserEmail" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Password" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="ConfirmPassword" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="UserEmail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ConfirmPassword" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="ControlType" Type="Int32" />
         </EntityType>
+        <EntityContainer Name="superuniversityEntities3" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="EmployerCompany" EntityType="Self.EmployerCompany" />
+          <EntitySet Name="Job" EntityType="Self.Job" />
+          <EntitySet Name="JobCommet" EntityType="Self.JobCommet" />
+          <EntitySet Name="Jobtime" EntityType="Self.Jobtime" />
+          <EntitySet Name="User" EntityType="Self.User" />
+        </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="superuniversityModel1StoreContainer" CdmEntityContainer="superuniversityEntities1">
+        <EntityContainerMapping StorageEntityContainer="superuniversityModel1StoreContainer" CdmEntityContainer="superuniversityEntities3">
           <EntitySetMapping Name="EmployerCompany">
             <EntityTypeMapping TypeName="superuniversityModel1.EmployerCompany">
               <MappingFragment StoreEntitySet="EmployerCompany">
@@ -221,12 +222,12 @@
           <EntitySetMapping Name="User">
             <EntityTypeMapping TypeName="superuniversityModel1.User">
               <MappingFragment StoreEntitySet="User">
-                <ScalarProperty Name="ControlType" ColumnName="ControlType" />
-                <ScalarProperty Name="ConfirmPassword" ColumnName="ConfirmPassword" />
-                <ScalarProperty Name="Password" ColumnName="Password" />
-                <ScalarProperty Name="UserEmail" ColumnName="UserEmail" />
-                <ScalarProperty Name="UserName" ColumnName="UserName" />
                 <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="UserEmail" ColumnName="UserEmail" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="ConfirmPassword" ColumnName="ConfirmPassword" />
+                <ScalarProperty Name="ControlType" ColumnName="ControlType" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -496,13 +496,6 @@
     <Content Include="Areas\FoodMapArea\Views\User\Detail.cshtml" />
     <Content Include="Areas\FoodMapArea\Views\User\Update.cshtml" />
     <Content Include="Areas\JobArea\Views\web.config" />
-    <EntityDeploy Include="Areas\JobArea\Models\Model1.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>Model1.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Areas\JobArea\Models\Model1.edmx.diagram">
-      <DependentUpon>Model1.edmx</DependentUpon>
-    </Content>
     <Content Include="Areas\JobArea\Views\_ViewStart.cshtml" />
     <Content Include="Areas\JobArea\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\JobArea\Views\Employer\Index.cshtml" />
@@ -541,6 +534,13 @@
     </EntityDeploy>
     <Content Include="Areas\FoodMapArea\Models\FoodMapModel.edmx.diagram">
       <DependentUpon>FoodMapModel.edmx</DependentUpon>
+    </Content>
+    <EntityDeploy Include="Areas\JobArea\Models\Model1.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Model1.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Areas\JobArea\Models\Model1.edmx.diagram">
+      <DependentUpon>Model1.edmx</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />

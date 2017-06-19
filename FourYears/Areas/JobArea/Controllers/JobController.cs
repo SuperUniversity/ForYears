@@ -10,7 +10,7 @@ namespace FourYears.Areas.JobArea.Controllers
     public class JobController : Controller
     {
         private IRepository<Job> db = new Repository<Job>();
-        private superuniversityEntities1 su = new superuniversityEntities1();
+        private superuniversityEntities3 su = new superuniversityEntities3();
         // GET: JobArea/Job
         public ActionResult Index()
         {

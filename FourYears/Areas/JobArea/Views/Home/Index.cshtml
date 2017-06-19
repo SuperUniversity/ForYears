@@ -92,7 +92,7 @@
                         <td>@Html.DisplayFor(m => p.Workplace)</td>
                         <td>
                             @{
-                                superuniversityEntities1 db = new superuniversityEntities1();
+                                superuniversityEntities3 db = new superuniversityEntities3();
                                 var result = (from s in db.EmployerCompany
                                               where (s.CompanyID == p.CompanyID)
                                               select s.CompanyName).First();

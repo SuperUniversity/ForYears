@@ -12,7 +12,7 @@ namespace FourYears.Areas.JobArea.Controllers
     {
         // GET: JobArea/Employer
         private IRepository<EmployerCompany> db = new Repository<EmployerCompany>();
-        private superuniversityEntities1 su = new superuniversityEntities1();
+        private superuniversityEntities3 su = new superuniversityEntities3();
         // GET: JobArea/Employer
         public ActionResult Index()
         {
