@@ -13,10 +13,10 @@ namespace FourYears.Areas.FoodMapArea.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class superuniversityEntities : DbContext
+    public partial class superuniversityEntities2 : DbContext
     {
-        public superuniversityEntities()
-            : base("name=superuniversityEntities")
+        public superuniversityEntities2()
+            : base("name=superuniversityEntities2")
         {
         }
     
@@ -30,7 +30,7 @@ namespace FourYears.Areas.FoodMapArea.Models
         public virtual DbSet<Order> Order { get; set; }
         public virtual DbSet<School> School { get; set; }
         public virtual DbSet<Shop> Shop { get; set; }
-        public virtual DbSet<ShopCustomer> ShopCustomer { get; set; }
         public virtual DbSet<Shop_ShopCustomer> Shop_ShopCustomer { get; set; }
+        public virtual DbSet<ShopCustomer> ShopCustomer { get; set; }
     }
 }

@@ -476,13 +476,6 @@
     <Content Include="fonts\FontAwesome.otf" />
     <Content Include="Areas\Courses\Views\Shared\_MyLayout.cshtml" />
     <Content Include="Areas\FoodMapArea\Views\web.config" />
-    <EntityDeploy Include="Areas\FoodMapArea\Models\FoodMapModel.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>FoodMapModel.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Areas\FoodMapArea\Models\FoodMapModel.edmx.diagram">
-      <DependentUpon>FoodMapModel.edmx</DependentUpon>
-    </Content>
     <Content Include="Areas\FoodMapArea\Views\_ViewStart.cshtml" />
     <Content Include="Areas\FoodMapArea\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\FoodMapArea\Views\Admin\Index.cshtml" />
@@ -542,6 +535,13 @@
     <Content Include="jquery-cookie-master\README.md" />
     <Content Include="jquery-cookie-master\src\.jshintrc" />
     <Content Include="jquery-cookie-master\test\.jshintrc" />
+    <EntityDeploy Include="Areas\FoodMapArea\Models\FoodMapModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>FoodMapModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Areas\FoodMapArea\Models\FoodMapModel.edmx.diagram">
+      <DependentUpon>FoodMapModel.edmx</DependentUpon>
+    </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -556,7 +556,9 @@
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\skel.min.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
