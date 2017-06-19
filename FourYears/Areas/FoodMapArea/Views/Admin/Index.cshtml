@@ -64,7 +64,14 @@
         }
         else
         {
-            //if(r)
+            if (Roles.IsUserInRole(User.Identity.Name, "Admin"))
+            {
+
+            }
+            else if(Roles.IsUserInRole(User.Identity.Name, "User"))
+            {
+
+            }
             <li style="float:right">@Html.ActionLink("管理頁面", "Index", "User", new { area = "FoodMapArea", UserID=User.Identity.GetUserId() }, null)</li>
         }
         <li style="float:right">@Html.ActionLink("店家介紹", "Index", "Shop", new { area = "FoodMapArea" }, null)</li>
