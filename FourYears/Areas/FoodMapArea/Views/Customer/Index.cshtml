@@ -154,7 +154,7 @@
                 <li style="float:right">@Html.ActionLink("管理介面", "Index", "User", new { area = "FoodMapArea", id = Request.Cookies["CustomerID"].Value }, null)</li>
             }
         }*@
-        @if (!User.Identity.IsAuthenticated)
+        @if (Roles.GetUsersInRole("Admin")!=null)
         {
             <li style="float:right">@Html.ActionLink("管理頁面", "Login", "Account", new { area = "", returnUrl = Request.RawUrl }, htmlAttributes: new { id = "loginLink" })</li>
         }
