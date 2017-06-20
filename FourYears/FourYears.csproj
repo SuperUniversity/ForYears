@@ -26,6 +26,8 @@
     <UseGlobalApplicationHostFile />
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <ApplicationInsightsResourceId>/subscriptions/cd7f8efa-8d32-44cb-accd-23d6027785e2/resourcegroups/Default-ApplicationInsights-EastUS/providers/microsoft.insights/components/FourYears</ApplicationInsightsResourceId>
+    <ApplicationInsightsAnnotationResourceId>/subscriptions/cd7f8efa-8d32-44cb-accd-23d6027785e2/resourcegroups/Default-ApplicationInsights-EastUS/providers/microsoft.insights/components/FourYears</ApplicationInsightsAnnotationResourceId>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -280,6 +282,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="ErrorHandler\AiHandleErrorAttribute.cs" />
     <Compile Include="facebook\FacebookBackChannelHandler.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -431,6 +434,8 @@
     <Content Include="Areas\FoodMapArea\Views\User\PartialDrop3.cshtml" />
     <Content Include="Areas\FoodMapArea\Views\User\Detail.cshtml" />
     <Content Include="Areas\FoodMapArea\Views\User\Update.cshtml" />
+    <Content Include="Connected Services\Application Insights\ConnectedService.json" />
+    <None Include="Properties\PublishProfiles\FourYears - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\FourYears20170619065352 - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
@@ -508,6 +513,9 @@
     <EmbeddedResource Include="Migrations\201706192259313_ChangeDb.resx">
       <DependentUpon>201706192259313_ChangeDb.cs</DependentUpon>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

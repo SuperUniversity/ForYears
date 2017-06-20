@@ -62,6 +62,8 @@ namespace FourYears
             {
                 AppId = ConfigurationManager.AppSettings["FacebookId"].ToString(),
                 AppSecret = ConfigurationManager.AppSettings["FacebookSecret"].ToString(),
+                CallbackPath = new PathString("/signin-facebook"),
+                //AuthorizationEndpoint
                 //SignInAsAuthenticationType = DefaultAuthenticationTypes.ExternalCookie,
                 BackchannelHttpHandler = new FacebookBackChannelHandler(),
                 //Scope = { "email" },

@@ -50,9 +50,10 @@ namespace FourYears
             msg.AlternateViews.Add(AlternateView.CreateAlternateViewFromString(html, null, MediaTypeNames.Text.Html));
 
             SmtpClient smtpClient = new SmtpClient("smtp.gmail.com");
+            smtpClient.Port = 25;
             //smtpClient.Port = 465;
-            smtpClient.Port = 587;
-            //smtpClient.EnableSsl = true;
+            //smtpClient.Port = 587;
+            smtpClient.EnableSsl = true;
             System.Net.NetworkCredential credentials = new System.Net.NetworkCredential(ConfigurationManager.AppSettings["Email"].ToString(), ConfigurationManager.AppSettings["Password"].ToString());
             smtpClient.Credentials = credentials;
             smtpClient.EnableSsl = true;
