@@ -160,7 +160,9 @@
         }
         else
         {
+            
             <li style="float:right">@Html.ActionLink("管理頁面", "Index", "User", new { area = "FoodMapArea", UserID = User.Identity.GetUserId() }, null)</li>
+
         }
         <li style="float:right">@Html.ActionLink("店家介紹", "Index", "Shop", new { area = "FoodMapArea" }, null)</li>
         <li style="float:right">@Html.ActionLink("地圖美食", "Map", "Customer", new { area = "FoodMapArea" }, null)</li>
