@@ -6,12 +6,10 @@
     {
     @Html.AntiForgeryToken()
 
-    <ul class="nav navbar-nav navbar-right">
+    <ul class="nav navbar-nav navbar-right" id="selfUl">
         <li>@Html.ActionLink("課程檢索", "Index", "Courses", new { area = "Courses" }, null)</li>
         <li>
             @Html.ActionLink("Hello " + ApplicationDbContext.GetNickName(User.Identity.GetUserId()), "Index", "Manage", new { area=""}, htmlAttributes: new { title = "Manage" })
-            @*Hello @User.Identity.GetUserName() !*@
-
         </li>
         <li><a href="javascript:document.getElementById('logoutForm').submit()">登出</a></li>
     </ul>
