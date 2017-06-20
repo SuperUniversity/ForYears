@@ -68,7 +68,7 @@
         }
         else
         {
-            if (User.Identity.GetUserId() == "1ff58b8c-5c32-4827-bf58-1785c40fea1f")
+            if (User.Identity.GetUserId() == "883269b0-ae8c-4ac2-9e3a-b5896af4a574")
             {
                 <li style="float:right">@Html.ActionLink("管理頁面", "Index", "Admin", new { area = "FoodMapArea" }, null)</li>
             }
@@ -225,6 +225,22 @@
             var address3 = '@ViewBag.add3';
         }
 
+        if ('@ViewBag.add4' != "") {
+            var address4 = '@ViewBag.add4';
+        }
+
+        if ('@ViewBag.add5' != "") {
+            var address5 = '@ViewBag.add5';
+        }
+
+        if ('@ViewBag.add6' != "") {
+            var address6 = '@ViewBag.add6';
+        }
+
+        if ('@ViewBag.add7' != "") {
+            var address7 = '@ViewBag.add7';
+        }
+
 	  map = new GMap2(document.getElementById("map"));         // 建立地圖物件
 	  map.addControl(new GLargeMapControl());                  // 加入地圖縮放工具
 	  map.addControl(new GMapTypeControl());                   // 加入地圖切換的工具
@@ -232,6 +248,10 @@
 	  geocoder.getLocations(address1, addToMap);
 	  geocoder.getLocations(address2, addToMap);
 	  geocoder.getLocations(address3, addToMap);
+	  geocoder.getLocations(address4, addToMap);
+	  geocoder.getLocations(address5, addToMap);
+	  geocoder.getLocations(address6, addToMap);
+	  geocoder.getLocations(address7, addToMap);
 	  geocoder.getLocations(address, addToMap);                //  檢索位置資訊，將它傳遞給 addToMap()
 
 

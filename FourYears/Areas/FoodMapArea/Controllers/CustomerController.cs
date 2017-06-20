@@ -69,6 +69,10 @@ namespace FourYears.Areas.FoodMapArea.Controllers
                     ViewBag.add1 = "桃園市龜山區大湖村文興路39號";
                     ViewBag.add2 = "桃園市龜山區文化一路226號";
                     ViewBag.add3 = "桃園市龜山區復興三路667號";
+                    ViewBag.add4 = "桃園市龜山區大華村13鄰文化三路566號1樓";
+                    ViewBag.add5 = "桃園市龜山區文化三路318號";
+                    ViewBag.add6 = "桃園市龜山區復興一路212巷3號";
+                    ViewBag.add7 = "桃園市龜山區復興一路292號";
                 }
 
 
@@ -113,6 +117,10 @@ namespace FourYears.Areas.FoodMapArea.Controllers
                     ViewBag.add1 = "桃園市龜山區大湖村文興路39號";
                     ViewBag.add2 = "桃園市龜山區文化一路226號";
                     ViewBag.add3 = "桃園市龜山區復興三路667號";
+                    ViewBag.add4 = "桃園市龜山區大華村13鄰文化三路566號1樓";
+                    ViewBag.add5 = "桃園市龜山區文化三路318號";
+                    ViewBag.add6 = "桃園市龜山區復興一路212巷3號";
+                    ViewBag.add7 = "桃園市龜山區復興一路292號";
                 }
 
 
@@ -167,6 +175,10 @@ namespace FourYears.Areas.FoodMapArea.Controllers
                     ViewBag.add1 = "台北市大安區忠孝東路四段235號2樓";
                     ViewBag.add2 = "台北市大安區安和路二段217巷2弄3號2樓";
                     ViewBag.add3 = "台北市大安區光復南路260巷30號";
+                    ViewBag.add4 = "台北市大安區羅斯福路4段24巷11號";
+                    ViewBag.add5 = "台北市中正區羅斯福路三段100之1號";
+                    ViewBag.add6 = "台北市大安區青田街7巷6號";
+                    ViewBag.add7 = "台北市大安區四維路208巷18號之1";
                 }
                 else if (SchoolID == 6)
                 {
@@ -209,6 +221,7 @@ namespace FourYears.Areas.FoodMapArea.Controllers
                     ViewBag.name = "國立台灣大學";
                     ViewBag.add1 = "台北市大安區忠孝東路四段235號2樓";
                     ViewBag.add2 = "台北市大安區安和路二段217巷2弄3號2樓";
+                    ViewBag.add3 = "台北市中正區羅斯福路三段100之1號";
                 }
                 else if (SchoolID == 6)
                 {
