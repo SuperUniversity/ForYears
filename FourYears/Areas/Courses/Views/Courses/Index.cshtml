@@ -26,17 +26,7 @@
             /*color:cadetblue;*/
             background-color:antiquewhite;
             cursor:pointer;
-           
         }
-        #advacedSearch input{
-            width:180px;
-        }
-        #selfUl{
-            width:202px;
-        }
-        /*#selfUl li{
-            width:
-        }*/
     </style>
 }
 
@@ -70,23 +60,23 @@
 
                 <form class="navbar-form navbar-left" id="generalSearch"  >
                     <div class="form-group">
-                        <input type="text" class="form-control" id="SearchAll" placeholder="Ex.計量 經濟 陳 -所" title="計量 and 經濟 and 陳 not 所">
+                        <input type="text" class="form-control" id="SearchAll" placeholder="Ex.計量 經濟 陳 -所" title="計量 and 經濟 and 陳 not 所, 暫不支援英文">
                     </div>
                     <button type="submit" class="btn btn-default">搜尋</button>
                 </form>
 
                 <form class="navbar-form navbar-left" id="advacedSearch"  hidden="hidden">
                     <div class="form-group">
-                        <input type="text" class="form-control" id="courseName" placeholder="課程名稱 Ex.計量">
+                        <input type="text" class="form-control" id="courseName" placeholder="課程名稱 Ex.計量, 暫不支援英文">
                     </div>
                     <div class="form-group">
-                        <input type="text" class="form-control" id="teacherName" placeholder="授課教師 Ex.陳">
+                        <input type="text" class="form-control" id="teacherName" placeholder="授課教師 Ex.陳, 暫不支援英文">
                     </div>
                     <div class="form-group">
-                        <input type="text" class="form-control" id="department" placeholder="開課系所 Ex.經濟">
+                        <input type="text" class="form-control" id="department" placeholder="開課系所 Ex.經濟, 暫不支援英文">
                     </div>
                     <div class="form-group">
-                        <input type="text" class="form-control" id="weekDay" placeholder="星期 Ex.五">
+                        <input type="text" class="form-control" id="weekDay" placeholder="星期 Ex.五, 暫不支援英文">
                     </div>
                     <button type="submit" class="btn btn-default">搜尋</button>
                 </form>
@@ -233,7 +223,7 @@
             if ($("#courseName").val() != "") {
                 queryStringLi.push("coursename=" + $("#courseName").val().replace(new RegExp(" ", "g"), ""));
             }
-            if ($("#courseName").val() != "") {
+            if ($("#teacherName").val() != "") {
                 queryStringLi.push("teachername=" + $("#teacherName").val().replace(new RegExp(" ", "g"), ""));
             }
             if ($("#department").val() != "") {

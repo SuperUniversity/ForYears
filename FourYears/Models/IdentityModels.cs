@@ -3,6 +3,8 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace FourYears.Models
 {
@@ -33,7 +35,6 @@ public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
         {
             ApplicationDbContext db = new ApplicationDbContext();
             ApplicationUser currentUser = db.Users.Find(id);
-
             if (currentUser != null)
             {
                 if (currentUser.NickName == null)
@@ -44,6 +45,13 @@ public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
                 return currentUser.NickName;
             }
             return null;
+        }
+
+        public static List<ApplicationUser> GetAll()
+        {
+            ApplicationDbContext db = new ApplicationDbContext();
+
+            return db.Users.ToList();
         }
 
         public static bool GetAllowEmailContact(string id)

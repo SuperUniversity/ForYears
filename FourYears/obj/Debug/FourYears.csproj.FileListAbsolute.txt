@@ -516,6 +516,6 @@ D:\Google 雲端硬碟\MIST114\SpecialProject\ForYears\FourYears\bin\System.Runt
 D:\Google 雲端硬碟\MIST114\SpecialProject\ForYears\FourYears\bin\MongoDB.Bson.xml
 D:\Google 雲端硬碟\MIST114\SpecialProject\ForYears\FourYears\bin\MongoDB.Driver.xml
 D:\Google 雲端硬碟\MIST114\SpecialProject\ForYears\FourYears\bin\MongoDB.Driver.Core.xml
-D:\Google 雲端硬碟\MIST114\SpecialProject\ForYears\FourYears\obj\Debug\FourYears.csprojResolveAssemblyReference.cache
 D:\Google 雲端硬碟\MIST114\SpecialProject\ForYears\FourYears\obj\Debug\FourYears.Migrations.ChangeDb.resources
 D:\Google 雲端硬碟\MIST114\SpecialProject\ForYears\FourYears\obj\Debug\FourYears.csproj.GenerateResource.Cache
+D:\Google 雲端硬碟\MIST114\SpecialProject\ForYears\FourYears\obj\Debug\FourYears.csprojResolveAssemblyReference.cache

@@ -9,6 +9,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using FourYears.Models;
+using System.Collections.Generic;
 
 namespace FourYears.Controllers
 {
@@ -158,6 +159,15 @@ namespace FourYears.Controllers
         {
             if (ModelState.IsValid)
             {
+                var emails = from u in ApplicationDbContext.GetAll()
+                             select u.UserName;
+                if (emails.Contains(model.Email))
+                {
+                    ViewBag.ErrorMessage = "請勿重新註冊";
+                    return View("Error");
+                }
+
+
                 var user = new ApplicationUser { UserName = model.Email, NickName = model.NickName, Email = model.Email, AllowEmailContact = model.AllowEmailContact };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
@@ -168,7 +178,7 @@ namespace FourYears.Controllers
                     //傳送包含此連結的電子郵件
                     string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
                     var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
-                    await UserManager.SendEmailAsync(user.Id, "確認您的帳戶", "若無法點選上面連結，請複製以下連結並貼上至瀏覽器: " + callbackUrl);
+                    await UserManager.SendEmailAsync(user.Id, "確認您的帳戶", callbackUrl);
 
                     return RedirectToAction("Login", "Account",new { returnUrl  = returnUrl });
                 }

@@ -32,12 +32,14 @@
             margin-left: 45px;
         }
         #postRanking .form-group {
-            margin-bottom:28px;
+            margin-bottom:26px;
         }
         #commentSubmitDiv {
             margin-left: 10px;
         }
-
+        table td{
+            font-size:15px
+        }
     </style>
     }
 
@@ -49,215 +51,118 @@
     <hr />
 
     <div class="row slefBlock">
-        <div class="col-md-5 courseDetail">
-            <div class="row">
-                <div class="col-md-offset-1 col-md-3" hidden="hidden">
-                    <h5>
-                        @Html.DisplayNameFor(model => model._id)
-                    </h5>
-                </div>
+        <div class="col-md-4 slefBlock">
+            <table>
+                <tbody>
+                    <tr hidden="hidden">
+                        <td>
+                            @Html.DisplayNameFor(model => model._id):
+                        </td>
+                        <td id="ObjId">
+                            @Html.DisplayFor(model => model._id)
+                        </td>
+                    </tr>
+                    <tr hidden="hidden">
+                        <td>
+                            @Html.DisplayNameFor(model => model.Semester)：
+                        </td>
+                        <td>
+                            @Html.DisplayFor(model => model.Semester)
+                        </td>
+                    </tr>
 
-                <div class="col-md-8" hidden="hidden">
-                    <h5 id="ObjId">
-                        @Html.DisplayFor(model => model._id)
-                    </h5>
-                </div>
-            </div>
 
-            <div class="row">
 
-                <div class="col-md-offset-1 col-md-3">
-                    <h5>
-                        @Html.DisplayNameFor(model => model.College)：
-                    </h5>
-                </div>
 
-                <div class="col-md-8">
-                    <h5>
-                        @Html.DisplayFor(model => model.College)
-                    </h5>
-                </div>
-            </div>
-
-            <div class="row">
-
-                <div class="col-md-offset-1 col-md-3">
-                    <h5>
-                        @Html.DisplayNameFor(model => model.Identity)：
-                    </h5>
-                </div>
-
-                <div class="col-md-8">
-                    <h5>
-                        @Html.DisplayFor(model => model.Identity)
-                    </h5>
-                </div>
-            </div>
-
-            @*<div class="row">
-                <div class="col-md-offset-1 col-md-3">
-                    <h5>
-                        @Html.DisplayNameFor(model => model.Semester)：
-                    </h5>
-                </div>
-
-                <div class="col-md-8">
-                    <h5>
-                        @Html.DisplayFor(model => model.Semester)
-                    </h5>
-                </div>
-            </div>*@
-
-            @*<div class="row">
-
-                <div class="col-md-offset-1 col-md-3">
-                    <h5>
-                        @Html.DisplayNameFor(model => model.CourseName)：
-                    </h5>
-                </div>
-
-                <div class="col-md-8">
-                    <h5>
-                        @Html.DisplayFor(model => model.CourseName)
-                    </h5>
-                </div>
-            </div>*@
-
-            <div class="row">
-
-                <div class="col-md-offset-1 col-md-3">
-                    <h5>
-                        @Html.DisplayNameFor(model => model.Teacher)：
-                    </h5>
-                </div>
-
-                <div class="col-md-8">
-                    <h5>
-                        @Html.DisplayFor(model => model.Teacher)
-                    </h5>
-                </div>
-            </div>
-
-            <div class="row">
-
-                <div class="col-md-offset-1 col-md-3">
-                    <h5>
-                        @Html.DisplayNameFor(model => model.TimeAndClassroom)：
-                    </h5>
-                </div>
-
-                <div class="col-md-8">
-                    <h5>
-                        @Html.DisplayFor(model => model.TimeAndClassroom)
-                    </h5>
-                </div>
-            </div>
-
-            <div class="row">
-
-                <div class="col-md-offset-1 col-md-3">
-                    <h5>
-                        @Html.DisplayNameFor(model => model.Major)：
-                    </h5>
-                </div>
-
-                <div class="col-md-8">
-                    <h5>
-                        @Html.DisplayFor(model => model.Major)
-                    </h5>
-                </div>
-            </div>
-
-            <div class="row">
-
-                <div class="col-md-offset-1 col-md-3">
-                    <h5>
-                        @Html.DisplayNameFor(model => model.Required)：
-                    </h5>
-                </div>
-
-                <div class="col-md-8">
-                    <h5>
-                        @Html.DisplayFor(model => model.Required)
-                    </h5>
-                </div>
-            </div>
-
-            <div class="row">
-
-                <div class="col-md-offset-1 col-md-3">
-                    <h5>
-                        @Html.DisplayNameFor(model => model.MaxNum)：
-                    </h5>
-                </div>
-
-                <div class="col-md-8">
-                    <h5>
-                        @Html.DisplayFor(model => model.MaxNum)
-                    </h5>
-                </div>
-            </div>
-
-            <div class="row">
-
-                <div class="col-md-offset-1 col-md-3">
-                    <h5>
-                        @Html.DisplayNameFor(model => model.Credit)：
-                    </h5>
-                </div>
-
-                <div class="col-md-8">
-                    <h5>
-                        @Html.DisplayFor(model => model.Credit)
-                    </h5>
-                </div>
-            </div>
-
-            <div class="row">
-
-                <div class="col-md-offset-1 col-md-3">
-                    <h5>
-                        @Html.DisplayNameFor(model => model.Limitation)：
-                    </h5>
-                </div>
-
-                <div class="col-md-8">
-                    <h5>
-                        @Html.DisplayFor(model => model.Limitation)
-                    </h5>
-                </div>
-            </div>
-
-            <div class="row">
-
-                <div class="col-md-offset-1 col-md-3">
-                    <h5>
-                        @Html.DisplayNameFor(model => model.Note)：
-                    </h5>
-                </div>
-
-                <div class="col-md-8">
-                    <h5>
-                        @Html.DisplayFor(model => model.Note)
-                    </h5>
-                </div>
-            </div>
-
-            <div class="row" hidden="hidden">
-
-                <div class="col-md-offset-1 col-md-3">
-                    <h5>
-                        @Html.DisplayNameFor(model => model.lastModified)：
-                    </h5>
-                </div>
-
-                <div class="col-md-8" hidden="hidden">
-                    <h5>
-                        @Html.DisplayFor(model => model.lastModified)
-                    </h5>
-                </div>
-            </div>
-
+                    <tr>
+                        <td>
+                            @Html.DisplayNameFor(model => model.College)：
+                        </td>
+                        <td>
+                            @Html.DisplayFor(model => model.College)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            @Html.DisplayNameFor(model => model.Identity)：
+                        </td>
+                        <td>
+                            @Html.DisplayFor(model => model.Identity)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            @Html.DisplayNameFor(model => model.Teacher)：
+                        </td>
+                        <td>
+                            @Html.DisplayFor(model => model.Teacher)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            @Html.DisplayNameFor(model => model.TimeAndClassroom)：
+                        </td>
+                        <td>
+                            @Html.DisplayFor(model => model.TimeAndClassroom)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            @Html.DisplayNameFor(model => model.Major)：
+                        </td>
+                        <td>
+                            @Html.DisplayFor(model => model.Major)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            @Html.DisplayNameFor(model => model.Required)：
+                        </td>
+                        <td>
+                            @Html.DisplayFor(model => model.Required)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            @Html.DisplayNameFor(model => model.MaxNum)：
+                        </td>
+                        <td>
+                            @Html.DisplayFor(model => model.MaxNum)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            @Html.DisplayNameFor(model => model.Credit)：
+                        </td>
+                        <td>
+                            @Html.DisplayFor(model => model.Credit)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            @Html.DisplayNameFor(model => model.Limitation)：
+                        </td>
+                        <td>
+                            @Html.DisplayFor(model => model.Limitation)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            @Html.DisplayNameFor(model => model.Note)：
+                        </td>
+                        <td>
+                            @Html.DisplayNameFor(model => model.Note)：
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            @Html.DisplayNameFor(model => model.lastModified)：
+                        </td>
+                        <td>
+                            @Html.DisplayFor(model => model.lastModified)
+                        </td>
+                    </tr>
+            </table>
         </div>
 
         <div class="col-md-6  slefBlock">
@@ -268,7 +173,7 @@
             <div class="progress">
                 <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40"
                      aria-valuemin="0" aria-valuemax="100" style="width: 100%;">
-                     @ViewBag.avgDeepness
+                    @ViewBag.avgDeepness
                 </div>
             </div>
 
@@ -278,7 +183,7 @@
             <div class="progress">
                 <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="50"
                      aria-valuemin="0" aria-valuemax="100" style="width :100%">
-                     @ViewBag.avgRelaxing
+                    @ViewBag.avgRelaxing
                 </div>
             </div>
 
@@ -288,13 +193,13 @@
             <div class="progress">
                 <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="60"
                      aria-valuemin="0" aria-valuemax="100" style="width:100%">
-                     @ViewBag.avgSweetness
+                    @ViewBag.avgSweetness
                 </div>
             </div>
 
 
 
-                @*<div class="col-md-12">
+            @*<div class="col-md-12">
                     <h4>
                         平均深度: @ViewBag.avgDeepness
                     </h4>
@@ -311,11 +216,11 @@
                         平均甜度: @ViewBag.avgSweetness
                     </h4>
                 </div>*@
-                <div class="col-md-7">
-                    <h5>
-                        (總共 @ViewBag.rankingLen 筆評價)
-                    </h5>
-                </div>
+            <div class="col-md-7">
+                <h5>
+                    (總共 @ViewBag.rankingLen 筆評價)
+                </h5>
+            </div>
 
 
         </div>
@@ -352,10 +257,10 @@
 @section scripts{
     <script>
         //網頁進來時，設定評價值都為5
-        $("#postRanking").find("input").parent("div").next("div").find("label").text(5)
+        $("#postRanking").find("div>label>span").text(5)
 
         $("#postRanking").find("input").change(function () {
-            $(this).parent("div").next("div").find("label").text($(this).val())
+            $(this).parent("div").parent("div").find("div>label>span").text($(this).val())
         })
 
             if ("@ViewBag.avgDeepness" != "尚無評價資料") {

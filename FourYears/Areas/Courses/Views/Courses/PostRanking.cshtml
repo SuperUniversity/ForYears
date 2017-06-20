@@ -19,38 +19,40 @@
             </div>
 
             <div class="form-group">
-                @Html.LabelFor(model => model.deepness, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-7">
+                <div class="col-md-3">
+                    <label class="form-control-static">
+                        @Html.DisplayNameFor(model => model.deepness): <span></span>
+                    </label>
+                </div>
+                <div class="col-md-8">
                     <input class="rankingRange" id="deepness" name="deepness" type="range" max="10" min="0" />
                 </div>
-                <div class="col-md-1">
-                    <label class="form-control-static" disabled="disabled"></label>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-3">
+                    <label class="form-control-static">
+                        @Html.DisplayNameFor(model => model.relaxing): <span></span>
+                    </label>
+                </div>
+                <div class="col-md-8">
+                    <input class="rankingRange" id="relaxing" name="deepness" type="range" max="10" min="0" />
                 </div>
             </div>
 
             <div class="form-group">
-                @Html.LabelFor(model => model.relaxing, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-7">
-                    <input class="rankingRange" id="relaxing" name="relaxing" type="range" max="10" min="0" />
+                <div class="col-md-3">
+                    <label class="form-control-static">
+                        @Html.LabelFor(model => model.sweetness): <span></span>
+                    </label>
                 </div>
-                <div class="col-md-1">
-                    <label class="form-control-static" disabled="disabled"></label>
+                <div class="col-md-8">
+                    <input class="rankingRange" id="sweetness" name="deepness" type="range" max="10" min="0" />
                 </div>
-
             </div>
 
-            <div class="form-group">
-                @Html.LabelFor(model => model.sweetness, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-7">
-                    <input class="rankingRange" id="sweetness" name="sweetness" type="range" max="10" min="0" />
-                </div>
-                <div class="col-md-1">
-                    <label class="form-control-static" disabled="disabled"></label>
-                </div>
 
-            </div>
-
-            <div class="col-md-offset-6 col-md-6" id="rankingSubmitDiv">
+            <div id="rankingSubmitDiv" align="right">
                 <input id="submit" type="submit" value="送出評價" class="btn btn-default" />
             </div>
         </form>
