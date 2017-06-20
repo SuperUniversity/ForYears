@@ -347,6 +347,8 @@
 
 
 
+
+
 @section scripts{
     <script>
         //網頁進來時，設定評價值都為5
@@ -394,10 +396,11 @@
             });
         }
 
+
         //取出課程ID
         var ObjId = $('#ObjId').text().replace(new RegExp(" ", 'g'), '')
 
-        //送出評論
+        //幫助取出是否匿名欄位的值
         $("#anonym").click(function () {
             if ($(this).prop("checked")) {
                 $(this).removeProp("checked")
@@ -407,18 +410,15 @@
             }
         })
 
-
-
+        //送出評論
         $("#postComment").find("#submit").click(function (event) {
             event.preventDefault();
 
             var strid = ObjId;
-            //var url = "http://localhost:57268/api/AllCollege?strid=" + strid + "&iscomment=true"
             var url = "http://taiwanuniversitiescourses.azurewebsites.net/api/AllCollege?strid=" + strid + "&iscomment=true"
             var userID = "@User.Identity.GetUserId()";
             var name = "@ApplicationDbContext.GetNickName(User.Identity.GetUserId())";
             var email = "@User.Identity.GetUserName()"
-            //var commentstring = encodeURIComponent($("#postComment").find("#commentstring").val());
             var commentstring = $("#postComment").find("#commentstring").val();
             var anonym = $("#postComment").find("#anonym").prop("checked");
             var allowEmailContact = true;
@@ -434,17 +434,19 @@
             else {
                 //確認留言不是空值
                 if (commentstring != "") {
-                    //送出Ajax
                     putToDb(url, commentData, '評論成功', "評論失敗，請重新評論")
                 } else {
                     alert("請輸入評論內容")
                 }
             }
+
         })
 
 
 
-            //送出評價
+
+
+        //送出評價
         $("#postRanking").find("#submit").click(function (event) {
                 event.preventDefault();
 
@@ -477,8 +479,12 @@
 
 
 
+
+
+
+
     </script>
-    }
+}
 
 
 

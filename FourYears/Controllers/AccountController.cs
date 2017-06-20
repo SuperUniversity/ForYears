@@ -220,7 +220,7 @@ namespace FourYears.Controllers
                 // 傳送包含此連結的電子郵件
                 string code = await UserManager.GeneratePasswordResetTokenAsync(user.Id);
                 var callbackUrl = Url.Action("ResetPassword", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
-                await UserManager.SendEmailAsync(user.Id, "重設密碼", "若無法點選上面連結，請複製以下連結並貼上至瀏覽器: " + callbackUrl);
+                await UserManager.SendEmailAsync(user.Id, "重設密碼", callbackUrl);
                 return RedirectToAction("ForgotPasswordConfirmation", "Account");
             }
 

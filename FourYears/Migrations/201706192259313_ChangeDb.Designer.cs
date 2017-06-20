@@ -7,13 +7,13 @@ namespace FourYears.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class InitialCreate : IMigrationMetadata
+    public sealed partial class ChangeDb : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(InitialCreate));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(ChangeDb));
         
         string IMigrationMetadata.Id
         {
-            get { return "201706160448122_InitialCreate"; }
+            get { return "201706192259313_ChangeDb"; }
         }
         
         string IMigrationMetadata.Source

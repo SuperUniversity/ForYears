@@ -25,7 +25,7 @@ namespace FourYears.Models
 public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public ApplicationDbContext()
-            : base("DefaultConnection", throwIfV1Schema: false)
+            : base("AzureSuperUniversity", throwIfV1Schema: false)
         {
         }
 

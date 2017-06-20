@@ -284,25 +284,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201706160448122_InitialCreate.cs" />
-    <Compile Include="Migrations\201706160448122_InitialCreate.Designer.cs">
-      <DependentUpon>201706160448122_InitialCreate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201706171308500_NickName.cs" />
-    <Compile Include="Migrations\201706171308500_NickName.Designer.cs">
-      <DependentUpon>201706171308500_NickName.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201706180154449_ActualName.cs" />
-    <Compile Include="Migrations\201706180154449_ActualName.Designer.cs">
-      <DependentUpon>201706180154449_ActualName.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201706190700554_allowEmailContact.cs" />
-    <Compile Include="Migrations\201706190700554_allowEmailContact.Designer.cs">
-      <DependentUpon>201706190700554_allowEmailContact.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201706190724272_AllowEmailContact1.cs" />
-    <Compile Include="Migrations\201706190724272_AllowEmailContact1.Designer.cs">
-      <DependentUpon>201706190724272_AllowEmailContact1.cs</DependentUpon>
+    <Compile Include="Migrations\201706192259313_ChangeDb.cs" />
+    <Compile Include="Migrations\201706192259313_ChangeDb.Designer.cs">
+      <DependentUpon>201706192259313_ChangeDb.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -518,24 +502,12 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201706160448122_InitialCreate.resx">
-      <DependentUpon>201706160448122_InitialCreate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201706171308500_NickName.resx">
-      <DependentUpon>201706171308500_NickName.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201706180154449_ActualName.resx">
-      <DependentUpon>201706180154449_ActualName.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201706190700554_allowEmailContact.resx">
-      <DependentUpon>201706190700554_allowEmailContact.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201706190724272_AllowEmailContact1.resx">
-      <DependentUpon>201706190724272_AllowEmailContact1.cs</DependentUpon>
-    </EmbeddedResource>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+    <EmbeddedResource Include="Migrations\201706192259313_ChangeDb.resx">
+      <DependentUpon>201706192259313_ChangeDb.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
