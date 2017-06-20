@@ -8,7 +8,7 @@
 @section styles{
     <style>
         body {
-            background-color: antiquewhite;
+            /*background-color: antiquewhite;*/
             padding-top: 15px;
             font-size: 12px;
         }
@@ -126,7 +126,10 @@
         @Html.PagedListPager(Model, p => Url.Action("Index", new { page = p, sortBy = Request.QueryString["sortBy"], Allsreach = ViewBag.SreachbyAll, Workplacesreach = ViewBag.SreachbyPlace, Jobnamesreach = ViewBag.SreachbyName }), PagedListRenderOptions.ClassicPlusFirstAndLast)
     </div>
 </div>
-
+<div class="container">
+    <ul class="breadcrumb barfont">
+    </ul>
+</div>
 <script src="~/Scripts/jquery-1.10.2.min.js"></script>
 @section scripts{
     <script>

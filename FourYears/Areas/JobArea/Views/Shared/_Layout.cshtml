@@ -42,6 +42,11 @@
         #logoutForm>ul>li>a{
             color:white;
         }
+        .container>ul>li>a{                   
+            font-size: 20px;
+            font-family: 'Microsoft JhengHei';
+            font-weight: bold;        
+        }
     </style>
     @RenderSection("styles", false)
 
@@ -58,25 +63,7 @@
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav navbar-right">
-                    <li class="dropdown">
-                        <button style="color:white" class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">打工<span class="caret"></span></button>
-                        <ul class="dropdown-menu" style="background-color:#2f5065">
-                            <li>
-                                <a id="a1" href="@Url.Action("Index","HomePage",new { area="JobArea"})" style="color:white">首頁</a>
-                            </li>
-                            <li>
-                                <a id="a2" href="@Url.Action("Index","Home",new { area="JobArea"})" style="color:white">介面瀏覽</a>
-                            </li>
-                            <li>
-                                <a id="a3" href="@Url.Action("Index","Job",new { area="JobArea"})" style="color:white">工作管理</a>
-                            </li>
-                            <li>
-                                <a id="a4" href="@Url.Action("Index","Employer",new { area="JobArea"})" style="color:white">廠商管理</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="btn btn-primary" id="change">廠商</li>                    
+                <ul class="nav navbar-nav navbar-right">                
                     @{                        
                        
                        
@@ -105,9 +92,8 @@
                                 @Html.ActionLink(" 登出", "Logout", "Employer", null, new { style = "color:white" });
                             }
                         }
-                    </li>
-                        
-                          @*@Html.Partial("_LoginPartial")*@
+                    </li>                       
+                         
                         
                     }                      
                 </ul>
@@ -121,9 +107,28 @@
 
     <section id="">
         <div id="adarea">
-            <img id="ad" src="~/Areas/JobArea/Image/標題.jpg" style="width:960px;height:190px" />
+            <img id="ad" src="~/Areas/JobArea/Image/標題2.jpg" style="width:960px;height:190px" />
         </div>
-        <div class="container">
+        <div class="container" style="width:960px">
+            <ul class="breadcrumb barfont" >
+                <li >
+                    <a id="a1" href="@Url.Action("Index","HomePage",new { area="JobArea"})" >首頁</a>
+                </li>
+                <li style="float:right">
+                    <a id="a2" href="@Url.Action("Index","Home",new { area="JobArea"})" >介面瀏覽</a>
+                </li>
+                <li style="float:right">
+                    <a id="a3" href="@Url.Action("Index","Job",new { area="JobArea"})" >工作管理</a>
+                </li>
+                <li style="float:right">
+                    <a id="a4" href="@Url.Action("Index","Employer",new { area="JobArea"})" >廠商管理</a>
+                </li>
+            </ul>
+        </div>
+        <div class="container" style="width:960px">
+            <ul class="breadcrumb barfont"></ul>
+        </div>
+        <div class="container" style="width:960px">
             <div class="row">
                 @*<div class="panel panel-primary">
                     <div class="panel-body">*@

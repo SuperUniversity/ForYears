@@ -393,6 +393,7 @@
     <Content Include="Areas\JobArea\css\justified-nav.css" />
     <Content Include="Areas\JobArea\css\lightbox.css" />
     <Content Include="Areas\JobArea\css\smoothDivScroll.css" />
+    <Content Include="Areas\JobArea\Image\a-abo2.jpg" />
     <Content Include="Areas\JobArea\Image\A-Bio.jpg" />
     <Content Include="Areas\JobArea\Image\BugerKing.png" />
     <Content Include="Areas\JobArea\Image\DBS.jpg" />
@@ -401,6 +402,7 @@
     <Content Include="Areas\JobArea\Image\PartTimeJob.jpg" />
     <Content Include="Areas\JobArea\Image\樂天.jpg" />
     <Content Include="Areas\JobArea\Image\標題.jpg" />
+    <Content Include="Areas\JobArea\Image\標題2.jpg" />
     <Content Include="Areas\JobArea\Image\背景.jpg" />
     <Content Include="Areas\JobArea\Image\誠品.png" />
     <Content Include="Areas\JobArea\js\bootstrap.js" />
