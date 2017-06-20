@@ -108,7 +108,15 @@
         }
         else
         {
-            <li style="float:right">@Html.ActionLink("管理頁面", "Index", "User", new { area = "FoodMapArea", UserID = User.Identity.GetUserId() }, null)</li>
+            if (User.Identity.GetUserId()=="1ff58b8c-5c32-4827-bf58-1785c40fea1f")
+            {
+                <li style="float:right">@Html.ActionLink("管理頁面", "Index", "Admin", new { area = "FoodMapArea" }, null)</li>
+            }
+            else
+            {
+                <li style="float:right">@Html.ActionLink("管理頁面", "Index", "User", new { area = "FoodMapArea", UserID = User.Identity.GetUserId() }, null)</li>
+
+            }
         }
         <li style="float:right">@Html.ActionLink("店家介紹", "Index", "Shop", new { area = "FoodMapArea" }, null)</li>
         <li style="float:right">@Html.ActionLink("地圖美食", "Map", "Customer", new { area = "FoodMapArea" }, null)</li>
@@ -149,7 +157,7 @@
         </tbody>
 
     </table>
-    <div style="text-align:center">@Html.PagedListPager(Model, page => Url.Action("Index", "User", new { page = page, area = "FoodMapArea" }), PagedListRenderOptions.Classic)</div>
+    <div style="text-align:center;z-index:1">@Html.PagedListPager(Model, page => Url.Action("Index", "User", new { page = page, area = "FoodMapArea",UserID=User.Identity.GetUserId() }), PagedListRenderOptions.Classic)</div>
 
 
 
