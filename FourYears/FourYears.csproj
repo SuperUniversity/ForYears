@@ -380,6 +380,18 @@
     <Content Include="Areas\FoodMapArea\WebImages\delicacy_banner_3.jpg" />
     <Content Include="Areas\FoodMapArea\WebImages\jpfood.jpg" />
     <Content Include="Areas\FoodMapArea\WebImages\school.png" />
+    <Content Include="Areas\JobArea\css\bootstrap-theme.css" />
+    <Content Include="Areas\JobArea\css\bootstrap-theme.min.css" />
+    <Content Include="Areas\JobArea\css\bootstrap.css" />
+    <Content Include="Areas\JobArea\css\bootstrap.min.css" />
+    <Content Include="Areas\JobArea\css\jquery-ui.css" />
+    <Content Include="Areas\JobArea\css\jquery-ui.min.css" />
+    <Content Include="Areas\JobArea\css\jquery-ui.structure.css" />
+    <Content Include="Areas\JobArea\css\jquery-ui.structure.min.css" />
+    <Content Include="Areas\JobArea\css\jquery-ui.theme.css" />
+    <Content Include="Areas\JobArea\css\jquery-ui.theme.min.css" />
+    <Content Include="Areas\JobArea\css\justified-nav.css" />
+    <Content Include="Areas\JobArea\css\lightbox.css" />
     <Content Include="Areas\JobArea\css\smoothDivScroll.css" />
     <Content Include="Areas\JobArea\Image\A-Bio.jpg" />
     <Content Include="Areas\JobArea\Image\BugerKing.png" />
@@ -388,12 +400,27 @@
     <Content Include="Areas\JobArea\Image\KPMG.jpg" />
     <Content Include="Areas\JobArea\Image\PartTimeJob.jpg" />
     <Content Include="Areas\JobArea\Image\樂天.jpg" />
+    <Content Include="Areas\JobArea\Image\標題.jpg" />
+    <Content Include="Areas\JobArea\Image\背景.jpg" />
     <Content Include="Areas\JobArea\Image\誠品.png" />
+    <Content Include="Areas\JobArea\js\bootstrap.js" />
+    <Content Include="Areas\JobArea\js\bootstrap.min.js" />
+    <Content Include="Areas\JobArea\js\jquery-1.12.3.min.js" />
+    <Content Include="Areas\JobArea\js\jquery-1.9.1.js" />
+    <Content Include="Areas\JobArea\js\jquery-3.2.1.js" />
+    <Content Include="Areas\JobArea\js\jquery-3.2.1.min.js" />
     <Content Include="Areas\JobArea\js\jquery-ui-1.10.3.custom.min.js" />
     <Content Include="Areas\JobArea\js\jquery-ui-1.8.23.custom.min.js" />
+    <Content Include="Areas\JobArea\js\jquery-ui-effects.min.js" />
+    <Content Include="Areas\JobArea\js\jquery-ui.js" />
+    <Content Include="Areas\JobArea\js\jquery-ui.min.js" />
     <Content Include="Areas\JobArea\js\jquery.kinetic.min.js" />
     <Content Include="Areas\JobArea\js\jquery.mousewheel.min.js" />
     <Content Include="Areas\JobArea\js\jquery.smoothdivscroll-1.3-min.js" />
+    <Content Include="Areas\JobArea\js\lightbox.js" />
+    <Content Include="Areas\JobArea\js\myXMLHttp.js" />
+    <Content Include="Areas\JobArea\js\npm.js" />
+    <Content Include="Areas\JobArea\js\prototype.js" />
     <Content Include="Areas\JobArea\js\source\jquery-ui-1.10.3.custom.js" />
     <Content Include="Areas\JobArea\js\source\jquery.kinetic.js" />
     <Content Include="Areas\JobArea\js\source\jquery.mousewheel.js" />
@@ -542,6 +569,8 @@
     <Content Include="Areas\JobArea\Models\Model1.edmx.diagram">
       <DependentUpon>Model1.edmx</DependentUpon>
     </Content>
+    <Content Include="Areas\JobArea\css\bootstrap-theme.css.map" />
+    <Content Include="Areas\JobArea\css\bootstrap.css.map" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
