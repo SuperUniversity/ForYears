@@ -415,7 +415,7 @@
             event.preventDefault();
 
             var strid = ObjId;
-            var url = "http://taiwanuniversitiescourses.azurewebsites.net/api/AllCollege?strid=" + strid + "&iscomment=true"
+            var url = "https://taiwanuniversitiescourses.azurewebsites.net/api/AllCollege?strid=" + strid + "&iscomment=true"
             var userID = "@User.Identity.GetUserId()";
             var name = "@ApplicationDbContext.GetNickName(User.Identity.GetUserId())";
             var email = "@User.Identity.GetUserName()"
@@ -455,7 +455,7 @@
                 var deepness = parseInt($("#deepness").val())
                 var relaxing = parseInt($("#relaxing").val())
                 var sweetness = parseInt($("#sweetness").val())
-                var url = "http://taiwanuniversitiescourses.azurewebsites.net/api/AllCollege?strid=" + strid + "&isranking=true"
+                var url = "https://taiwanuniversitiescourses.azurewebsites.net/api/AllCollege?strid=" + strid + "&isranking=true"
                 var rankingData = { "userID": userID, "deepness": deepness, "relaxing": relaxing, "sweetness": sweetness }
 
 
