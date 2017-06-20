@@ -83,13 +83,25 @@ namespace MvcClient.Areas.Courses.Controllers
 
             if (SingleCourse != null)
             {
-                List<Ranking> rankings = SingleCourse.rankingdata;
-                List<double> AvgRankings = CoursesControllerUtl.AvgRankings(rankings);
+                if(SingleCourse.rankingdata !=null){
+                    List<Ranking> rankings = SingleCourse.rankingdata;
+                    List<double> AvgRankings = CoursesControllerUtl.AvgRankings(rankings);
 
-                ViewBag.rankingLen = AvgRankings[0];
-                ViewBag.avgDeepness = string.Format("{0:0.00}", AvgRankings[1]);
-                ViewBag.avgRelaxing = string.Format("{0:0.00}", AvgRankings[2]);
-                ViewBag.avgSweetness = string.Format("{0:0.00}", AvgRankings[3]);
+                    ViewBag.rankingLen = AvgRankings[0];
+                    ViewBag.avgDeepness = string.Format("{0:0.00}", AvgRankings[1]);
+                    ViewBag.avgRelaxing = string.Format("{0:0.00}", AvgRankings[2]);
+                    ViewBag.avgSweetness = string.Format("{0:0.00}", AvgRankings[3]);
+                    var rankedIds = rankings.Select(r => r.userID).ToList();
+                    ViewBag.HaveNotRanked = (!rankedIds.Contains(User.Identity.GetUserId())).ToString().ToLower();
+                }
+                else
+                {
+                    ViewBag.avgDeepness = "尚無評價資料";
+                    ViewBag.avgRelaxing = "尚無評價資料";
+                    ViewBag.avgSweetness = "尚無評價資料";
+                    ViewBag.HaveNotRanked = "true";
+                }
+
 
                 if (SingleCourse.commentdata == null)
                 {
@@ -97,9 +109,6 @@ namespace MvcClient.Areas.Courses.Controllers
                 }
 
                 SingleCourse.commentdata = (from c in SingleCourse.commentdata orderby c.lastModified descending select c).ToList();
-
-                var rankedIds = rankings.Select(r => r.userID).ToList();
-                ViewBag.HaveNotRanked = (!rankedIds.Contains(User.Identity.GetUserId())).ToString().ToLower();
             }
             else
             {
