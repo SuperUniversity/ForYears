@@ -244,14 +244,11 @@ namespace FourYears.Areas.FoodMapArea.Controllers
 
         public ActionResult Delete(int id = 0)
         {
-            DialogResult result = MessageBox.Show("是否確定刪除此筆資料?", "刪除", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-            if (result == DialogResult.Yes)
-            {
+            
                 db.Shop.Remove(db.Shop.Find(id));
                 db.SaveChanges();
                 return RedirectToAction("Index", "Admin", new { Area = "FoodMapArea" });
-            }
-            return RedirectToAction("Index", "Admin", new { Area = "FoodMapArea" });
+            
         }
     }
 }
