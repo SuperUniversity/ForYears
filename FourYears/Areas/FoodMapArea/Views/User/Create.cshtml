@@ -178,6 +178,14 @@
         </div>
     }
 
+
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+            <button id="demo" class="btn btn-primary">DEMO</button>
+        </div>
+    </div>
+
+
 </div>
 <br />
 <br />
@@ -185,3 +193,23 @@
 <br />
 <br />
 <br />
+
+
+@section scripts{
+    <script>
+        $("#demo").click(function () {
+            $("#ShopName").val("呷食益Justeat(南京店)");
+            $("#Address").val("台北市中山區南京東路二段49號2樓");
+            $("#Phone").val("02-25714805");
+            $("#Cost").val("NT$400~699元");
+            $("#BusinessTime").val("12:00~01:00");
+            $("#ShopLink").val("http://www.just-eat489.com/");
+            $("#Description").val("「燒烤」、「火鍋」無限量供應吃到飽.牛、羊、豬、雞、海鮮、青蔬、各式各樣燒烤及火鍋食材超過70種，採「現點現做」的方式出菜，沒有限制點菜的次數。");
+        })
+
+
+    </script>
+
+
+
+}

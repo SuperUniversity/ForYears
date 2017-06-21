@@ -176,7 +176,14 @@
                 <button type="submit" class="btn btn-primary">送出</button>
             </div>
         </div>
+        
     }
+
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+            <button id="demo" class="btn btn-primary">DEMO</button>
+        </div>
+    </div>
 
 </div>
 <br />
@@ -187,3 +194,22 @@
 <br />
 <br />
 <br />
+
+@section scripts{
+    <script>
+        $("#demo").click(function () {
+            $("#ShopName").val("GREEN LIGHT 韓式炸雞吃到飽");
+            $("#Address").val("台北市大安區敦化南路一段160巷18號");
+            $("#Phone").val("02-87710860");
+            $("#Cost").val("NT$100~399元");
+            $("#BusinessTime").val("17:00~02:00");
+            $("#ShopLink").val("https://www.facebook.com/");
+            $("#Description").val("這家店其中一位股東同時也是韓國練習生帥哥開的店< JJIM DAK 燉雞> 的老闆之一，是道地的韓國帥哥，他跟另一位韓國同鄉再投資了這家GREEN LIGHT韓式炸雞。至於店名的由來，是來自於韓國一個兩性話題的綜藝節目，好像有一個綠燈的道具，只要男女看對眼了(還是專家評斷兩人適合之類的)就可按下綠燈。");
+        })
+
+
+    </script>
+    
+    
+    
+    }

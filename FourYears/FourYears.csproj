@@ -672,6 +672,7 @@
     <Content Include="Areas\Area\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\Area\Views\web.config" />
     <Content Include="Areas\Area\Views\_ViewStart.cshtml" />
+    <None Include="Properties\PublishProfiles\FourYears20170621052116 - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
