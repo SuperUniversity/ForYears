@@ -1,0 +1,54 @@
+﻿@model FourYears.Areas.BookStoreAreas.ViewModels.ViewModel_PublisherLogin
+
+@{
+    ViewBag.Title = "PublisherLogin";
+}
+
+@section styles{
+    <style>
+        .barfont {
+            font-size: 18px;
+            font-family: 'Microsoft JhengHei';
+            font-weight: bold;
+        }
+    </style>
+}
+
+<div class="container">
+    <ul class="breadcrumb barfont">
+        <li>@Html.ActionLink("商城首頁", "Browse", "Customer", new { area = "BookStoreAreas" }, null)</li>
+        <li style="float:right">@Html.ActionLink("廠商註冊", "PublisherRegister", "Account", new { area = "BookStoreAreas" }, null)</li>
+        <li style="float:right">@Html.ActionLink("廠商登入", "PublisherLogin", "Account", new { area = "BookStoreAreas" }, null)</li>
+        <li style="float:right">@Html.ActionLink("會員註冊", "CustomerRegister", "Account", new { area = "BookStoreAreas" }, null)</li>
+        <li style="float:right">@Html.ActionLink("會員登入", "CustomerLogin", "Account", new { area = "BookStoreAreas" }, null)</li>
+    </ul>
+</div>
+
+<div class="container">
+    <h2 style="font-family:'Microsoft JhengHei';font-weight:bold;font-size:24px;"><span style="color:orangered">廠商</span>登入</h2>
+    <hr />
+    @using (Html.BeginForm("PublisherLogin", "Account", FormMethod.Post, new { @class = "form-horizontal", novalidate = "novalidate" }))
+    {
+        <div class="form-group">
+            @Html.LabelFor(publisher => publisher.PublisherUserName, new { @class = "col-sm-2 control-label" })
+            <div class="col-sm-10">
+                @Html.EditorFor(publisher => publisher.PublisherUserName, new { htmlAttributes = new { @class = "form-control", placeholder = "帳號" } })
+                @Html.ValidationMessageFor(publisher => publisher.PublisherUserName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(publisher => publisher.PublisherPassword, new { @class = "col-sm-2 control-label" })
+            <div class="col-sm-10">
+                @Html.EditorFor(publisher => publisher.PublisherPassword, new { htmlAttributes = new { @class = "form-control", placeholder = "密碼" } })
+                @Html.ValidationMessageFor(publisher => publisher.PublisherPassword, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <button type="submit" class="btn btn-primary">登入</button>
+                <span>　　沒有廠商帳號?　</span><a href="@Url.Action("PublisherRegister", "Account")" class="btn btn-info">立即註冊</a>
+                <a></a>
+            </div>
+        </div>
+    }
+</div>

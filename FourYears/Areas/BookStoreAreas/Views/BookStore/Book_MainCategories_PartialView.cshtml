@@ -1,0 +1,57 @@
+﻿@model FourYears.Areas.BookStoreAreas.ViewModels.ViewModel_BookInformation
+<head>
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#MainCategoryID').change(function () { ChangeMainCategory(); });
+        });
+
+        function ChangeMainCategory() {
+            var selectedValue = $('#MainCategoryID option:selected').val();
+            if ($.trim(selectedValue).length > 0) {
+                GetSubCategory(selectedValue);
+            }
+        }
+
+        function GetSubCategory(MainCategoryID) {
+            $.ajax({
+                url: '@Url.Action("Book_SubCategories_JsonResult", "BookStore")',
+                data: { MainCategoryID: MainCategoryID },
+                type: 'post',
+                cache: false,
+                async: false,
+                dataType: 'json',
+                success: function (data) {
+                    if (data.length > 0) {
+                        $('#SubCategoryID').empty();
+                        $('#SubCategoryID').append($('<option></option>').val('').text('請選擇次分類'));
+                        $.each(data, function (i, item) {
+                            $('#SubCategoryID').append($('<option></option>').val(item.Key).text(item.Value));
+                        });
+                    }
+                }
+            });
+        }
+
+    </script>
+
+</head>
+
+<body>
+    <div class="form-group">
+        @Html.LabelFor(book => book.MainCategoryName, new { @class = "col-sm-2 control-label" })
+        <div class="col-sm-10">
+            @Html.DropDownList("MainCategoryID", (SelectList)ViewBag.MainCategoryDatas, "請選擇主分類", new { id = "MainCategoryID", @class = "form-control" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(book => book.SubCategoryName, new { @class = "col-sm-2 control-label" })
+        <div class="col-sm-10">
+            <select id="SubCategoryID" class="form-control" name="SubCategoryID">
+                <option>請先選擇主分類</option>
+            </select>
+        </div>
+    </div>
+</body>
+

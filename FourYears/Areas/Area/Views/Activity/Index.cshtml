@@ -1,0 +1,77 @@
+﻿@model IEnumerable<FourYears.Areas.Area.Models.Activity>
+@{
+    ViewBag.Title = "活動分類資料";
+}
+<h2>活動分類資料</h2>
+<a href="@Url.Action("Insert", "Activity", new { area="Area"})" class="btn btn-primary">新增分類</a><hr />
+<table class="table table-bordered table-hover">
+
+
+    <thead>
+        <tr>
+            <th>活動編號</th>
+            <th>活動名稱</th>
+            <th>描述</th>
+            <th>地點</th>
+            <th>主辦人</th>
+            <th>編輯</th>
+            <th>刪除</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var _Activity in Model)
+            {
+            <tr>
+                <td>@_Activity.ActivityID</td>
+                <td>@_Activity.ActivityName</td>
+                <td>@_Activity.Description</td>
+                <td>@_Activity.Location</td>
+                <td>@_Activity.Host</td>
+
+                <td><a href="@Url.Action("Edit", "Activity", new { area="Area",id= @_Activity.ActivityID })" class="btn btn-primary">編輯</a></td>
+                <td><a href="@Url.Action("Delete", "Activity", new { area="Area",id= @_Activity.ActivityID  })" class="btn btn-danger">刪除</a></td>
+            </tr>
+
+        }
+    </tbody>
+</table>
+<aside>
+    <h2 class="title">最新消息</h2>
+    @foreach (var _Activity in Model)
+            {
+
+        <dl>
+            <dt>@_Activity.ActivityName</dt>
+        </dl>
+        <dl>
+            <dt></dt>
+        </dl>
+        <dl>
+            <dt></dt>
+        </dl>
+        <dl>
+            <dt></dt>
+        </dl>
+        <dl>
+            <dt></dt>
+        </dl>
+        <dl>
+            <dt></dt>
+        </dl>
+        <dl>
+            <dt></dt>
+        </dl>
+        <dl>
+            <dt></dt>
+        </dl>
+    }
+
+</aside>
+
+<a href="http://www.tp.blood.org.tw/Internet/taipei/index.aspx"><img src="~/Areas/Area/images/捐血.jpg" title="捐血一袋救人一命" width="200" /></a>
+<a href="https://payment-legend.auer.game.tw/"><img src="~/Areas/Area/images/儲值.jpg" title="儲值加倍" width="200" /></a>
+
+
+
+<a href="javascript:void(0);" onclick="window.open('http://www.facebook.com/sharer/sharer.php?u=');return false;">FB分享</a>

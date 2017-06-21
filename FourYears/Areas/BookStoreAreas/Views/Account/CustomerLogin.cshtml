@@ -1,0 +1,53 @@
+﻿@model FourYears.Areas.BookStoreAreas.ViewModels.ViewModel_CustomerLogin
+@{
+    ViewBag.Title = "CustomerLogin";
+}
+
+@section styles{
+    <style>
+        .barfont {
+            font-size: 18px;
+            font-family: 'Microsoft JhengHei';
+            font-weight: bold;
+        }
+    </style>
+}
+
+<div class="container">
+    <ul class="breadcrumb barfont">
+        <li>@Html.ActionLink("商城首頁", "Browse", "Customer", new { area = "BookStoreAreas" }, null)</li>
+        <li style="float:right">@Html.ActionLink("廠商註冊", "PublisherRegister", "Account", new { area = "BookStoreAreas" }, null)</li>
+        <li style="float:right">@Html.ActionLink("廠商登入", "PublisherLogin", "Account", new { area = "BookStoreAreas" }, null)</li>
+        <li style="float:right">@Html.ActionLink("會員註冊", "CustomerRegister", "Account", new { area = "BookStoreAreas" }, null)</li>
+        <li style="float:right">@Html.ActionLink("會員登入", "CustomerLogin", "Account", new { area = "BookStoreAreas" }, null)</li>
+    </ul>
+</div>
+
+<div class="container">
+    <h2 style="font-family:'Microsoft JhengHei';font-weight:bold;font-size:24px;"><span style="color:orangered">會員</span>登入</h2>
+    <hr />
+    @using (Html.BeginForm("CustomerLogin", "Account", FormMethod.Post, new { @class = "form-horizontal", novalidate = "novalidate" }))
+    {
+        <div class="form-group">
+            @Html.LabelFor(customer => customer.Account, new { @class = "col-sm-2 control-label" })
+            <div class="col-sm-10">
+                @Html.EditorFor(customer => customer.Account, new { htmlAttributes = new { @class = "form-control", placeholder = "帳號" } })
+                @Html.ValidationMessageFor(customer => customer.Account, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(customer => customer.Password, new { @class = "col-sm-2 control-label" })
+            <div class="col-sm-10">
+                @Html.EditorFor(customer => customer.Password, new { htmlAttributes = new { @class = "form-control", placeholder = "密碼" } })
+                @Html.ValidationMessageFor(customer => customer.Password, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <button type="submit" class="btn btn-primary">登入</button>
+                <span>　　沒有會員帳號?　</span><a href="@Url.Action("CustomerRegister", "Account")" class="btn btn-info">立即註冊</a>
+                <a></a>
+            </div>
+        </div>
+    }
+</div>

@@ -1,0 +1,56 @@
+﻿@model IEnumerable<FourYears.Areas.BookStoreAreas.ViewModels.ViewModel_BookInformation>
+    @using FourYears.Areas.BookStoreAreas.ViewModels
+
+@{
+    ViewBag.Title = "Browse";
+}
+
+<div class="panel panel-warning" style="background-color:#FFF3EE">
+    <div class="row">
+        <div class="col-lg-2">
+        </div>
+        <div class="col-lg-8">
+            <h2>@ViewBag.Message</h2>
+            <div class="row">
+                @foreach (var book in Model)
+                {
+                    <div class="col-lg-3">
+                        <div class="thumbnail">
+                            <img style="width:250px;height:250px" src="@Url.Action("GetBookImage1","Customer",new { id= book.BookID })" />
+                            <div class="caption">
+                                <strong class="strong" style="font-size:18px;font-family:'Microsoft JhengHei';font-weight:bold;color:red">@book.BookName</strong>
+                                <hr />
+                                <p style="font-size:larger;font-family:'Microsoft JhengHei';font-weight:bold">@Html.DisplayNameFor(b => b.AuthorName) : @Html.DisplayFor(b => book.AuthorName)</p>
+                                <p style="font-size:larger;font-family:'Microsoft JhengHei';font-weight:bold">@Html.DisplayNameFor(b => b.SubCategoryName) : @Html.DisplayFor(b => book.SubCategoryName)</p>
+                                <p style="font-size:larger;font-family:'Microsoft JhengHei';font-weight:bold">@Html.DisplayNameFor(b => b.PublisherName) : @Html.DisplayFor(b => book.PublisherName)</p>
+                                <p style="font-size:larger;font-family:'Microsoft JhengHei';font-weight:bold">@Html.DisplayNameFor(b => b.ListPrice) : @Html.DisplayFor(b => book.ListPrice)</p>
+                                <p style="color:#FF5151;font-size:larger;font-family:'Microsoft JhengHei';font-weight:bold">@Html.DisplayNameFor(b => b.SalePrice) : @Html.DisplayFor(b => book.SalePrice)</p>
+                                <a href="@Url.Action("BookDetail", "BookStore",new {id=book.BookID})" class="btn btn-primary"><span class="glyphicon glyphicon-search"></span> 商品資訊</a>
+                                <a href="@Url.Action("AddToCart", "Products",new {id=book.BookID})" class="btn btn-success"><span class="glyphicon glyphicon-shopping-cart"></span> 放入購物車</a>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+        <div class="col-lg-2">
+
+        </div>
+    </div>
+</div>
+@section scripts{
+    <script>
+        $(function () {
+            var len = 10; // 超過10個字以"..."取代
+            $(".strong").each(function (i) {
+                if ($(this).text().length > len) {
+                    $(this).attr("title", $(this).text());
+                    var text = $(this).text().substring(0, len - 1) + "...";
+                    $(this).text(text);
+                }
+            });
+        });
+    </script>
+}
+
+
