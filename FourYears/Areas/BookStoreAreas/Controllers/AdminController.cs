@@ -18,7 +18,22 @@ namespace FourYears.Areas.BookStoreAreas.Controllers
         private IRepository_BookStoreSystemModel<MainCategory> db_MainCategory = new Repository_BookStoreSystemModel<MainCategory>();
         private IRepository_BookStoreSystemModel<Publisher> db_Publisher = new Repository_BookStoreSystemModel<Publisher>();
         private IRepository_BookStoreSystemModel<Author> db_Author = new Repository_BookStoreSystemModel<Author>();
+        private IRepository_BookStoreSystemModel<BookStoreAdmin> db_BookStoreAdmin = new Repository_BookStoreSystemModel<BookStoreAdmin>();
+
         //private SuperUniversityEntities _entity = new SuperUniversityEntities();   //已寫Repository 不直接更動DB
+
+        public ActionResult AdminPage()
+        {
+            if (Request.Cookies["CustomerID"] == null)
+            {
+                return RedirectToAction("CustomerLogin", "Account", new { Area = "BookStoreAreas" });
+            }
+
+            int id = int.Parse(Request.Cookies["AdminID"].Value);
+            var result = db_BookStoreAdmin.GetByID(id);
+            return View(result);
+        }
+
 
         public ActionResult AdminPublisherIndex()   //後台管理者 觀看廠商名單
         {

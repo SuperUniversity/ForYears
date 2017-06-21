@@ -228,6 +228,9 @@
     <Compile Include="Areas\BookStoreAreas\Models\Book.cs">
       <DependentUpon>BookStoreSystemModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Areas\BookStoreAreas\Models\BookStoreAdmin.cs">
+      <DependentUpon>BookStoreSystemModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Areas\BookStoreAreas\Models\BookStoreSystemModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -266,6 +269,7 @@
     <Compile Include="Areas\BookStoreAreas\Models\SubCategory.cs">
       <DependentUpon>BookStoreSystemModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Areas\BookStoreAreas\ViewModels\ViewModel_AdminLogin.cs" />
     <Compile Include="Areas\BookStoreAreas\ViewModels\ViewModel_BookInformation.cs" />
     <Compile Include="Areas\BookStoreAreas\ViewModels\ViewModel_CustomerLogin.cs" />
     <Compile Include="Areas\BookStoreAreas\ViewModels\ViewModel_PublisherLogin.cs" />
@@ -672,7 +676,11 @@
     <Content Include="Areas\Area\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\Area\Views\web.config" />
     <Content Include="Areas\Area\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\BookStoreAreas\Views\Account\AdminLogin.cshtml" />
+    <Content Include="Areas\BookStoreAreas\Views\Admin\AdminPage.cshtml" />
     <None Include="Properties\PublishProfiles\FourYears20170621052116 - Web Deploy.pubxml" />
+    <None Include="Properties\PublishProfiles\FourYears20170621072402 - Web Deploy.pubxml" />
+    <None Include="Properties\PublishProfiles\FourYears20170621072705 - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />

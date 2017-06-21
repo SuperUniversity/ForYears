@@ -1,0 +1,19 @@
+﻿
+@{
+    ViewBag.Title = "AdminPage";
+}
+
+<div class="container">
+    <h2 style="font-family:'Microsoft JhengHei';font-weight:bold;font-size:24px;"><span style="color:orangered">@HttpUtility.UrlDecode(Request.Cookies["FullName"].Value)</span>/會員管理</h2>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>管理廠商:</dt>
+        <dd>
+            [ @Html.ActionLink("廠商名單", "AdminPublisherIndex", "Admin", new { id = Request.Cookies["AdminID"].Value }, "") ]
+        </dd>
+        <dt>觀看商品:</dt>
+        <dd>
+            [ @Html.ActionLink("廠商名單", "AdminPublisherIndex", "Admin", new { id = Request.Cookies["AdminID"].Value }, "") ]
+        </dd>
+    </dl>
+</div>
