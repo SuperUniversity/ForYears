@@ -1,0 +1,118 @@
+﻿@model FourYears.Areas.BookStoreAreas.ViewModels.ViewModel_BookInformation
+@using FourYears.Areas.BookStoreAreas.ViewModels
+
+
+@{
+    ViewBag.Title = "BookInsert";
+}
+
+<div class="container">
+    <h2 style="font-family:'Microsoft JhengHei';font-weight:bold"><span style="color:orangered">商品上架</span>資料新增</h2>
+    <hr />
+
+    @using (Html.BeginForm("BookInsert", "BookStore", FormMethod.Post, new { @class = "form-horizontal", enctype = "multipart/form-data" }))
+    {
+        <div class="form-group">
+            @Html.LabelFor(book => book.BookName, new { @class = "col-sm-2 control-label" })
+            <div class="col-sm-10">
+                @Html.EditorFor(book => book.BookName, new { htmlAttributes = new { @class = "form-control", placeholder = "商品名稱" } })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(book => book.AuthorName, new { @class = "col-sm-2 control-label" })
+            <div class="col-sm-10 row">
+                <div class="col-sm-4">
+                    @{
+                        var author = new SelectList(ViewBag.Author, "AuthorID", "AuthorName");
+                    }
+                    @Html.DropDownList("AuthorID", author, "請選擇作者", new { id = "AuthorID", @class = "form-control" })
+                </div>
+                <div class="col-sm-2">
+                    <h4>找不到作者?</h4>
+                </div>
+                <div class="col-sm-4">
+                    <a href="~/Category/Insert" class="btn btn-primary">新增作者</a>
+                </div>
+            </div>
+        </div>
+
+        @Html.Action("Book_MainCategories_PartialView")     //嵌入PartialView
+
+                        <div class="form-group">
+                            @Html.LabelFor(book => book.PublishDate, new { @class = "col-sm-2 control-label" })
+                            <div class="col-sm-10">
+                                @Html.EditorFor(book => book.PublishDate, new { htmlAttributes = new { @class = "form-control" } })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(book => book.OnShelfDate, new { @class = "col-sm-2 control-label" })
+                            <div class="col-sm-10">
+                                @Html.EditorFor(book => book.OnShelfDate, new { htmlAttributes = new { @class = "form-control" } })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(book => book.Language, new { @class = "col-sm-2 control-label" })
+                            <div class="col-sm-10">
+                                @Html.EditorFor(book => book.Language, new { htmlAttributes = new { @class = "form-control", placeholder = "語言" } })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(book => book.ListPrice, new { @class = "col-sm-2 control-label" })
+                            <div class="col-sm-10">
+                                @Html.EditorFor(book => book.ListPrice, new { htmlAttributes = new { @class = "form-control", placeholder = "原價" } })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(book => book.SalePrice, new { @class = "col-sm-2 control-label" })
+                            <div class="col-sm-10">
+                                @Html.EditorFor(book => book.SalePrice, new { htmlAttributes = new { @class = "form-control", placeholder = "售價" } })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(book => book.BookDescription, new { @class = "col-sm-2 control-label" })
+                            <div class="col-sm-10">
+                                @Html.EditorFor(book => book.BookDescription, new { htmlAttributes = new { @class = "form-control", placeholder = "內容簡介" } })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(book => book.OtherImformation, new { @class = "col-sm-2 control-label" })
+                            <div class="col-sm-10">
+                                @Html.EditorFor(book => book.OtherImformation, new { htmlAttributes = new { @class = "form-control", placeholder = "其他資訊" } })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(book => book.Image1, new { @class = "col-sm-2 control-label" })
+                            <div class="col-sm-10">
+                                @Html.EditorFor(book => book.Image1, new { htmlAttributes = new { @class = "form-control", placeholder = "Product Image", type = "file" } })
+                                <label id="nopic">@ViewBag.Message</label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(book => book.Image2, new { @class = "col-sm-2 control-label" })
+                            <div class="col-sm-10">
+                                @Html.EditorFor(book => book.Image2, new { htmlAttributes = new { @class = "form-control", placeholder = "Product Image", type = "file" } })
+                                <label></label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(book => book.Image3, new { @class = "col-sm-2 control-label" })
+                            <div class="col-sm-10">
+                                @Html.EditorFor(book => book.Image3, new { htmlAttributes = new { @class = "form-control", placeholder = "Product Image", type = "file" } })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-offset-2 col-sm-10">
+                                <button type="submit" class="btn btn-primary">確定上架</button>
+                            </div>
+                        </div>
+                        <br />
+                        <br />
+                        <br />
+                        <br />
+                        <br />
+                        <br />
+                        <br />
+                        <br />
+                        }
+
+</div>

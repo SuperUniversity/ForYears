@@ -213,6 +213,58 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="Areas\BookStoreAreas\BookStoreAreasAreaRegistration.cs" />
+    <Compile Include="Areas\BookStoreAreas\Controllers\AccountController.cs" />
+    <Compile Include="Areas\BookStoreAreas\Controllers\AdminController.cs" />
+    <Compile Include="Areas\BookStoreAreas\Controllers\BookStoreController.cs" />
+    <Compile Include="Areas\BookStoreAreas\Controllers\CustomerController.cs" />
+    <Compile Include="Areas\BookStoreAreas\Models\Author.cs">
+      <DependentUpon>BookStoreSystemModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\BookStoreAreas\Models\Book.cs">
+      <DependentUpon>BookStoreSystemModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\BookStoreAreas\Models\BookStoreSystemModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BookStoreSystemModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\BookStoreAreas\Models\BookStoreSystemModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BookStoreSystemModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\BookStoreAreas\Models\BookStoreSystemModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BookStoreSystemModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\BookStoreAreas\Models\Customer.cs">
+      <DependentUpon>BookStoreSystemModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\BookStoreAreas\Models\IRepository_BookStoreSystemModel.cs" />
+    <Compile Include="Areas\BookStoreAreas\Models\MainCategory.cs">
+      <DependentUpon>BookStoreSystemModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\BookStoreAreas\Models\Order.cs">
+      <DependentUpon>BookStoreSystemModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\BookStoreAreas\Models\OrderDetail.cs">
+      <DependentUpon>BookStoreSystemModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\BookStoreAreas\Models\PartialClass\Book.cs" />
+    <Compile Include="Areas\BookStoreAreas\Models\PartialClass\Customer.cs" />
+    <Compile Include="Areas\BookStoreAreas\Models\PartialClass\Publisher.cs" />
+    <Compile Include="Areas\BookStoreAreas\Models\Publisher.cs">
+      <DependentUpon>BookStoreSystemModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\BookStoreAreas\Models\Repository_BookStoreSystemModel.cs" />
+    <Compile Include="Areas\BookStoreAreas\Models\SubCategory.cs">
+      <DependentUpon>BookStoreSystemModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\BookStoreAreas\ViewModels\ViewModel_BookInformation.cs" />
+    <Compile Include="Areas\BookStoreAreas\ViewModels\ViewModel_CustomerLogin.cs" />
+    <Compile Include="Areas\BookStoreAreas\ViewModels\ViewModel_PublisherLogin.cs" />
     <Compile Include="Areas\Courses\Controllers\CoursesController.cs" />
     <Compile Include="Areas\Courses\Controllers\CoursesControllerUtl.cs" />
     <Compile Include="Areas\Courses\CoursesAreaRegistration.cs" />
@@ -324,6 +376,16 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Areas\BookStoreAreas\Models\BookStoreSystemModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>BookStoreSystemModel.edmx</DependentUpon>
+      <LastGenOutput>BookStoreSystemModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Areas\BookStoreAreas\Models\BookStoreSystemModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>BookStoreSystemModel.edmx</DependentUpon>
+      <LastGenOutput>BookStoreSystemModel.cs</LastGenOutput>
+    </Content>
     <Content Include="Areas\FoodMapArea\Models\FoodMapModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>FoodMapModel.edmx</DependentUpon>
@@ -565,6 +627,35 @@
     </Content>
     <Content Include="Areas\JobArea\css\bootstrap-theme.css.map" />
     <Content Include="Areas\JobArea\css\bootstrap.css.map" />
+    <Content Include="Areas\BookStoreAreas\Views\web.config" />
+    <EntityDeploy Include="Areas\BookStoreAreas\Models\BookStoreSystemModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>BookStoreSystemModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Areas\BookStoreAreas\Models\BookStoreSystemModel.edmx.diagram">
+      <DependentUpon>BookStoreSystemModel.edmx</DependentUpon>
+    </Content>
+    <Content Include="Areas\BookStoreAreas\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\BookStoreAreas\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\BookStoreAreas\Views\Account\CustomerRegister.cshtml" />
+    <Content Include="Areas\BookStoreAreas\Views\Account\CustomerLogin.cshtml" />
+    <Content Include="Areas\BookStoreAreas\Views\Account\PublisherRegister.cshtml" />
+    <Content Include="Areas\BookStoreAreas\Views\Account\PublisherLogin.cshtml" />
+    <Content Include="Areas\BookStoreAreas\Views\Admin\AdminPublisherIndex.cshtml" />
+    <Content Include="Areas\BookStoreAreas\Views\Admin\AdminPublisherEdit.cshtml" />
+    <Content Include="Areas\BookStoreAreas\Views\Admin\Index.cshtml" />
+    <Content Include="Areas\BookStoreAreas\Views\Admin\Insert.cshtml" />
+    <Content Include="Areas\BookStoreAreas\Views\Admin\MainCategories_Partial.cshtml" />
+    <Content Include="Areas\BookStoreAreas\Views\BookStore\BookIndex.cshtml" />
+    <Content Include="Areas\BookStoreAreas\Views\BookStore\BookInsert.cshtml" />
+    <Content Include="Areas\BookStoreAreas\Views\BookStore\Book_MainCategories_PartialView.cshtml" />
+    <Content Include="Areas\BookStoreAreas\Views\BookStore\BookEdit.cshtml" />
+    <Content Include="Areas\BookStoreAreas\Views\BookStore\PublisherProfile.cshtml" />
+    <Content Include="Areas\BookStoreAreas\Views\Customer\Browse.cshtml" />
+    <Content Include="Areas\BookStoreAreas\Views\Customer\CustomerProfile.cshtml" />
+    <Content Include="Areas\BookStoreAreas\Views\Customer\CustomerChangePassword.cshtml" />
+    <Content Include="Areas\BookStoreAreas\Views\Customer\CustomerEditProfile.cshtml" />
+    <Content Include="Areas\BookStoreAreas\Views\BookStore\BookDetail.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />

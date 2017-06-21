@@ -1,0 +1,108 @@
+﻿@model FourYears.Areas.BookStoreAreas.Models.Customer
+
+@{
+    ViewBag.Title = "CustomerRegister";
+}
+
+@section styles{
+    <style>
+        .barfont {
+            font-size: 18px;
+            font-family: 'Microsoft JhengHei';
+            font-weight: bold;
+        }
+    </style>
+}
+
+<div class="container">
+    <ul class="breadcrumb barfont">
+        <li>@Html.ActionLink("商城首頁", "Browse", "Customer", new { area = "BookStoreAreas" }, null)</li>
+        <li style="float:right">@Html.ActionLink("廠商註冊", "PublisherRegister", "Account", new { area = "BookStoreAreas" }, null)</li>
+        <li style="float:right">@Html.ActionLink("廠商登入", "PublisherLogin", "Account", new { area = "BookStoreAreas" }, null)</li>
+        <li style="float:right">@Html.ActionLink("會員註冊", "CustomerRegister", "Account", new { area = "BookStoreAreas" }, null)</li>
+        <li style="float:right">@Html.ActionLink("會員登入", "CustomerLogin", "Account", new { area = "BookStoreAreas" }, null)</li>
+    </ul>
+</div>
+
+<div class="container">
+    <h2 style="font-family:'Microsoft JhengHei';font-weight:bold;font-size:24px;"><span style="color:orangered">會員</span>註冊</h2>
+    <hr />
+
+    @using (Html.BeginForm("CustomerRegister", "Account", FormMethod.Post, new { @class = "form-horizontal", novalidate = "novalidate" }))
+    {
+        <div class="form-group">
+            @Html.LabelFor(cutomer => cutomer.FullName, new { @class = "col-sm-2 control-label" })
+            <div class="col-sm-10">
+                @Html.EditorFor(cutomer => cutomer.FullName, new { htmlAttributes = new { @class = "form-control", placeholder = "請輸入您的姓名(必填)" } })
+                @Html.ValidationMessageFor(p => p.FullName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(cutomer => cutomer.NickName, new { @class = "col-sm-2 control-label" })
+            <div class="col-sm-10">
+                @Html.EditorFor(cutomer => cutomer.NickName, new { htmlAttributes = new { @class = "form-control", placeholder = "請輸入您的暱稱(必填)" } })
+                @Html.ValidationMessageFor(p => p.NickName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(cutomer => cutomer.Gender, new { @class = "col-sm-2 control-label" })
+            <div class="col-sm-10">
+                <input type="radio" name="gender" value="男性" />男性 <input type="radio" name="gender" value="女性" />女性
+                @*@Html.EditorFor(cutomer => cutomer.FullName, new { htmlAttributes = new { @class = "form-control", placeholder = "請輸入您的姓名" } })
+                    @Html.ValidationMessageFor(p => p.FullName, "", new { @class = "text-danger" })*@
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(cutomer => cutomer.BirthDay, new { @class = "col-sm-2 control-label" })
+            <div class="col-sm-10">
+                @Html.EditorFor(cutomer => cutomer.BirthDay, new { htmlAttributes = new { @class = "form-control", placeholder = "請輸入您的出生年月日" } })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(cutomer => cutomer.IdentityCard, new { @class = "col-sm-2 control-label" })
+            <div class="col-sm-10">
+                @Html.EditorFor(cutomer => cutomer.IdentityCard, new { htmlAttributes = new { @class = "form-control", placeholder = "請輸入您的身分證字號" } })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(cutomer => cutomer.Phone, new { @class = "col-sm-2 control-label" })
+            <div class="col-sm-10">
+                @Html.EditorFor(cutomer => cutomer.Phone, new { htmlAttributes = new { @class = "form-control", placeholder = "請輸入您的電話" } })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(cutomer => cutomer.Account, new { @class = "col-sm-2 control-label" })
+            <div class="col-sm-10">
+                @Html.EditorFor(cutomer => cutomer.Account, new { htmlAttributes = new { @class = "form-control", placeholder = "請輸入您的帳號(必填)" } })
+                @Html.ValidationMessageFor(p => p.Account, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(cutomer => cutomer.Password, new { @class = "col-sm-2 control-label" })
+            <div class="col-sm-10">
+                @Html.EditorFor(cutomer => cutomer.Password, new { htmlAttributes = new { @class = "form-control", placeholder = "請輸入您的密碼(必填)" } })
+                @Html.ValidationMessageFor(p => p.Password, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(cutomer => cutomer.EmailAddress, new { @class = "col-sm-2 control-label" })
+            <div class="col-sm-10">
+                @Html.EditorFor(cutomer => cutomer.EmailAddress, new { htmlAttributes = new { @class = "form-control", placeholder = "請輸入您的信箱" } })
+                @Html.ValidationMessageFor(p => p.EmailAddress, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(cutomer => cutomer.Address, new { @class = "col-sm-2 control-label" })
+            <div class="col-sm-10">
+                @Html.EditorFor(cutomer => cutomer.Address, new { htmlAttributes = new { @class = "form-control", placeholder = "地址" } })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <button type="submit" class="btn btn-success">註冊</button>
+            </div>
+        </div>
+    }
+</div>
+

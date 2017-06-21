@@ -1,0 +1,79 @@
+﻿@model FourYears.Areas.BookStoreAreas.Models.Publisher
+
+@{
+    ViewBag.Title = "PublisherRegister";
+}
+
+@section styles{
+    <style>
+        .barfont {
+            font-size: 18px;
+            font-family: 'Microsoft JhengHei';
+            font-weight: bold;
+        }
+    </style>
+}
+
+<div class="container">
+    <ul class="breadcrumb barfont">
+        <li>@Html.ActionLink("商城首頁", "Browse", "Customer", new { area = "BookStoreAreas" }, null)</li>
+        <li style="float:right">@Html.ActionLink("廠商註冊", "PublisherRegister", "Account", new { area = "BookStoreAreas" }, null)</li>
+        <li style="float:right">@Html.ActionLink("廠商登入", "PublisherLogin", "Account", new { area = "BookStoreAreas" }, null)</li>
+        <li style="float:right">@Html.ActionLink("會員註冊", "CustomerRegister", "Account", new { area = "BookStoreAreas" }, null)</li>
+        <li style="float:right">@Html.ActionLink("會員登入", "CustomerLogin", "Account", new { area = "BookStoreAreas" }, null)</li>
+    </ul>
+</div>
+
+<div class="container">
+    <h2 style="font-family:'Microsoft JhengHei';font-weight:bold;font-size:24px;"><span style="color:orangered">廠商</span>註冊</h2>
+    <hr />
+
+    @using (Html.BeginForm("PublisherRegister", "Account", FormMethod.Post, new { @class = "form-horizontal", novalidate = "novalidate" }))
+    {
+        <div class="form-group">
+            @Html.LabelFor(publisher => publisher.PublisherName, new { @class = "col-sm-2 control-label" })
+            <div class="col-sm-10">
+                @Html.EditorFor(publisher => publisher.PublisherName, new { htmlAttributes = new { @class = "form-control", placeholder = "請輸入貴公司名稱(必填)" } })
+                @Html.ValidationMessageFor(publisher => publisher.PublisherName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(publisher => publisher.PublisherUserName, new { @class = "col-sm-2 control-label" })
+            <div class="col-sm-10">
+                @Html.EditorFor(publisher => publisher.PublisherUserName, new { htmlAttributes = new { @class = "form-control", placeholder = "請輸入您的帳號(必填)" } })
+                @Html.ValidationMessageFor(publisher => publisher.PublisherUserName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(publisher => publisher.PublisherPassword, new { @class = "col-sm-2 control-label" })
+            <div class="col-sm-10">
+                @Html.EditorFor(publisher => publisher.PublisherPassword, new { htmlAttributes = new { @class = "form-control", placeholder = "請輸入您的密碼(必填)" } })
+                @Html.ValidationMessageFor(publisher => publisher.PublisherPassword, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(publisher => publisher.PublisherEmail, new { @class = "col-sm-2 control-label" })
+            <div class="col-sm-10">
+                @Html.EditorFor(publisher => publisher.PublisherEmail, new { htmlAttributes = new { @class = "form-control", placeholder = "請輸入貴公司的電子郵件" } })
+                @Html.ValidationMessageFor(publisher => publisher.PublisherEmail, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(publisher => publisher.PublisherPhone, new { @class = "col-sm-2 control-label" })
+            <div class="col-sm-10">
+                @Html.EditorFor(publisher => publisher.PublisherPhone, new { htmlAttributes = new { @class = "form-control", placeholder = "請輸入貴公司的連絡電話" } })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(publisher => publisher.PublisherAdress, new { @class = "col-sm-2 control-label" })
+            <div class="col-sm-10">
+                @Html.EditorFor(publisher => publisher.PublisherAdress, new { htmlAttributes = new { @class = "form-control", placeholder = "請輸入貴公司的地址" } })
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <button type="submit" class="btn btn-success">註冊</button>
+            </div>
+        </div>
+    }
+</div>

@@ -1,0 +1,88 @@
+﻿@model IEnumerable<FourYears.Areas.BookStoreAreas.Models.Publisher>
+
+@{
+    ViewBag.Title = "AdminPublisherIndex";
+}
+
+@section scripts{
+    <script src="http://maps.google.com/maps?file=api&v=2&key=AIzaSyAMIumYCietwMmmYvFQeJ5hZNUhS7ge4yo" type="text/javascript"></script>
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script>
+
+        var geocoder;
+        var map;
+        $(document).ready(function () {
+            //var geocoder;
+            //var target;
+            //var target = $('#map');
+            $('#PublisherTable>tbody>tr').mouseenter(function () {
+                var tr = $(this);
+                //console.log(tr.children('.addr').text());
+                var address = tr.children('.addr').text();
+                target = new GMap2(document.getElementById('map'));         // 建立地圖物件
+                target.addControl(new GLargeMapControl());                  // 加入地圖縮放工具
+                target.addControl(new GMapTypeControl());                   // 加入地圖切換的工具
+                geocoder = new GClientGeocoder();                        // 建立新的地理編碼物件
+                geocoder.getLocations(address, addToMap);                //  檢索位置資訊，將它傳遞給 addToMap()
+
+            })
+        })
+
+        // 此函數會將點加入到地圖
+        function addToMap(response) {
+            place = response.Placemark[0];                         // 檢索物件
+            point = new GLatLng(place.Point.coordinates[1], place.Point.coordinates[0]);       // 檢索緯度和經度
+            target.setCenter(point, 14);                              // 以這一點為地圖中心
+            marker = new GMarker(point);                           // 建立標記
+            target.addOverlay(marker);                                // 將標記加入到地圖
+            marker.openInfoWindowHtml(place.address);              // 將位址資訊加入到標記
+        }
+    </script>
+}
+
+<div class="container">
+    <h2>AdminPublisherIndex</h2>
+    <div class="row">
+
+        <div class="col-lg-9">
+            <table class="table table-hover table-striped table-hover" id="PublisherTable">
+                <thead>
+                    <tr>
+                        <th>@Html.DisplayNameFor(p => p.PublisherID)</th>
+                        <th>@Html.DisplayNameFor(p => p.PublisherName)</th>
+                        <th>@Html.DisplayNameFor(p => p.PublisherUserName)</th>
+                        <th>@Html.DisplayNameFor(p => p.PublisherAdress)</th>
+                        <th>@Html.DisplayNameFor(p => p.PublisherPhone)</th>
+                        <th>@Html.DisplayNameFor(p => p.PublisherEmail)</th>
+                        <th>編輯</th>
+                        <th>刪除</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    @foreach (var Publisher in Model)
+            {
+                        <tr>
+                            <td>@Publisher.PublisherID</td>
+                            <td>@Publisher.PublisherName</td>
+                            <td>@Publisher.PublisherUserName</td>
+                            <td class="addr">@Publisher.PublisherAdress</td>
+                            <td>@Publisher.PublisherPhone</td>
+                            <td>@Publisher.PublisherEmail</td>
+                            <td>@Html.ActionLink("編輯", "AdminPublisherEdit", "Admin", new { id = Publisher.PublisherID }, new { @class = "btn btn-primary" })</td>
+                            <td>@Html.ActionLink("刪除", "AdminPublisherDelete", "Admin", new { id = Publisher.PublisherID }, new { @class = "btn btn-danger" })</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+
+        <div class="col-lg-3">
+            <div style="width:600px;height:600px" id="map">
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
