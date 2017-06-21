@@ -1,0 +1,48 @@
+﻿@model IEnumerable<FourYears.Areas.BookStoreAreas.Models.SubCategory>
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<style type="text/css">
+    .font {
+        font-size: larger;
+        font-family: 'Microsoft JhengHei';
+        font-weight: bold;
+        font-size: 20px;
+        margin-left: 10px;
+    }
+
+    .frame {
+        border: 3px solid darkgray;
+        border-radius: 30px;
+        background-color: #f7f8fa;
+    }
+</style>
+
+
+
+<body>
+    <div>
+        <div>
+            @Html.ActionLink("全部商品", "Browse", "Customer", new { id = 0, area = "BookStoreAreas" }, new { @class = "font btn btn-warning", @style = "width:155px; margin:5px" })
+        </div>
+        @foreach (var subcategory in Model)
+        {
+            <div>
+                @Html.ActionLink(subcategory.SubCategoryName, "Browse", "Customer", new { id = subcategory.SubCategoryID, area = "BookStoreAreas" }, new { @class = "font btn btn-info", @style = "width:155px; margin:5px" })
+            </div>
+        }
+
+    </div>
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+</body>
+
+@section scripts{
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+
+}

@@ -42,13 +42,8 @@ namespace FourYears.Areas.BookStoreAreas.Controllers
 
         public ActionResult AdminPublisherDelete(int id = 0)
         {
-            DialogResult result = MessageBox.Show("是否確定刪除此筆資料?", "刪除", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-            if (result == DialogResult.Yes)
-            {
                 db_Publisher.Delete(db_Publisher.GetByID(id));
                 return RedirectToAction("AdminPublisherIndex");
-            }
-            return RedirectToAction("AdminPublisherIndex");
         }
 
         public ActionResult Index()

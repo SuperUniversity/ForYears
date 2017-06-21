@@ -166,5 +166,11 @@ namespace FourYears.Areas.BookStoreAreas.Controllers
             byte[] img = book.BytesImage3;
             return File(img, "image/jpeg");
         }
+
+
+        public ActionResult GetBookCategory()    //PartialView:嵌入分類列表
+        {
+            return PartialView(db_SubCategory.GetAll());
+        }
     }
 }

@@ -65,15 +65,33 @@
 
                             else if (Request.Cookies["Account"] != null && Request.Cookies["PublisherUserName"] == null)
                             {
-                                @Html.ActionLink(Request.Cookies["Account"].Value + " / " + HttpUtility.UrlDecode(Request.Cookies["FullName"].Value) + "(" + HttpUtility.UrlDecode(Request.Cookies["NickName"].Value) + ")" + " 登出", "Logout", "Account", null, new { @class = "glyphicon glyphicon-user" });
+                                @Html.ActionLink(Request.Cookies["Account"].Value + " / " + HttpUtility.UrlDecode(Request.Cookies["FullName"].Value) + " 個人管理 /", "CustomerProfile", "Customer", null, new { @class = "glyphicon glyphicon-cog" });
                             }
                             else if (Request.Cookies["Account"] == null && Request.Cookies["PublisherUserName"] != null)
                             {
-                                @Html.ActionLink(Request.Cookies["PublisherUserName"].Value + " / " + HttpUtility.UrlDecode(Request.Cookies["PublisherName"].Value) + " 登出", "Logout", "Account", null, new { @class = "glyphicon glyphicon-user" });
+                                @Html.ActionLink(Request.Cookies["PublisherUserName"].Value + " / " + HttpUtility.UrlDecode(Request.Cookies["PublisherName"].Value) + " 廠商管理 /", "PublisherProfile", "BookStore", null, new { @class = "glyphicon glyphicon-user" });
                             }
                             else
                             {
                                 @Html.ActionLink("登入/註冊", "CustomerLogin", "Account", null, new { @class = "glyphicon glyphicon-user" });
+                            }
+                        }
+                    </li>
+                    <li>
+                        @{
+                            if (Request.Cookies["Account"] == null && Request.Cookies["PublisherUserName"] == null)
+                            {
+                            }
+                            else if (Request.Cookies["Account"] != null && Request.Cookies["PublisherUserName"] == null)
+                            {
+                                @Html.ActionLink(" 登出", "Logout", "Account", null, new { @class = "glyphicon glyphicon-log-out" });
+                            }
+                            else if (Request.Cookies["Account"] == null && Request.Cookies["PublisherUserName"] != null)
+                            {
+                                @Html.ActionLink(" 登出", "Logout", "Account", null, new { @class = "glyphicon glyphicon-log-out" });
+                            }
+                            else
+                            {
                             }
                         }
                     </li>
@@ -104,9 +122,10 @@
         </div>
     </footer>
 
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
     @*<script src="https://cdnjs.cloudflare.com/ajax/libs/startbootstrap-freelancer/3.3.7/js/freelancer.min.js"></script>*@
-    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>    
     @RenderSection("scripts", false)
 </body>
 </html>

@@ -19,7 +19,7 @@
                         {
                             <div class="col-lg-8 padFix bigimg imageback" style="margin:10px">
                                 <span class="photo_b">
-                                    <img src="@Url.Action("GetBookImage1","Customer")" style="width:350px;height:350px" />
+                                    <img src="@Url.Action("GetBookImage1","Customer",new {id= ViewBag.bid })" style="width:350px;height:350px" />
                                 </span>
                             </div>
 
@@ -27,7 +27,7 @@
                             {
                                 <div class="col-lg-2 padFix bigimg imageback" style="margin:10px">
                                     <span class="photo_b">
-                                        <img src="@Url.Action("GetBookImage2","Customer")" style="width:165px;height:165px" />
+                                        <img src="@Url.Action("GetBookImage2","Customer",new {id= ViewBag.bid })" style="width:165px;height:165px" />
                                     </span>
                                 </div>
                             }
@@ -35,7 +35,7 @@
                             {
                                 <div class="col-lg-2 padFix bigimg imageback" style="margin:10px">
                                     <span class="photo_b">
-                                        <img src="@Url.Action("GetBookImage3","Customer")" style="width:165px;height:165px" />
+                                        <img src="@Url.Action("GetBookImage3","Customer",new {id= ViewBag.bid })" style="width:165px;height:165px" />
                                     </span>
                                 </div>
                             }
