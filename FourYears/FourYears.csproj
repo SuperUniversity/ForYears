@@ -221,6 +221,7 @@
     <Compile Include="Areas\BookStoreAreas\Controllers\AccountController.cs" />
     <Compile Include="Areas\BookStoreAreas\Controllers\AdminController.cs" />
     <Compile Include="Areas\BookStoreAreas\Controllers\BookStoreController.cs" />
+    <Compile Include="Areas\BookStoreAreas\Controllers\CartController.cs" />
     <Compile Include="Areas\BookStoreAreas\Controllers\CustomerController.cs" />
     <Compile Include="Areas\BookStoreAreas\Models\Author.cs">
       <DependentUpon>BookStoreSystemModel.tt</DependentUpon>
@@ -246,6 +247,8 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>BookStoreSystemModel.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Areas\BookStoreAreas\Models\Cart.cs" />
+    <Compile Include="Areas\BookStoreAreas\Models\CartItem.cs" />
     <Compile Include="Areas\BookStoreAreas\Models\Customer.cs">
       <DependentUpon>BookStoreSystemModel.tt</DependentUpon>
     </Compile>
@@ -253,6 +256,7 @@
     <Compile Include="Areas\BookStoreAreas\Models\MainCategory.cs">
       <DependentUpon>BookStoreSystemModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Areas\BookStoreAreas\Models\Operation.cs" />
     <Compile Include="Areas\BookStoreAreas\Models\Order.cs">
       <DependentUpon>BookStoreSystemModel.tt</DependentUpon>
     </Compile>
@@ -386,9 +390,12 @@
   <ItemGroup>
     <Content Include="Areas\Area\images\儲值.jpg" />
     <Content Include="Areas\Area\images\捐血.jpg" />
+    <Content Include="Areas\BookStoreAreas\BookImages\19260753_1780353835325058_9057364200605072584_n.jpg" />
+    <Content Include="Areas\BookStoreAreas\BookImages\26144_league_of_legends_nidalee_lulu_and_tristana.jpg" />
     <Content Include="Areas\BookStoreAreas\BookImages\射鵰英雄傳1.jpg" />
     <Content Include="Areas\BookStoreAreas\BookImages\射鵰英雄傳2.jpg" />
     <Content Include="Areas\BookStoreAreas\BookImages\射鵰英雄傳3.jpg" />
+    <Content Include="Areas\BookStoreAreas\BookWebPageImages\網路書城.jpg" />
     <Content Include="Areas\BookStoreAreas\Models\BookStoreSystemModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>BookStoreSystemModel.edmx</DependentUpon>
@@ -678,6 +685,7 @@
     <Content Include="Areas\BookStoreAreas\Views\Admin\AdminPage.cshtml" />
     <Content Include="Areas\BookStoreAreas\Views\Customer\RandomBook_PartialView.cshtml" />
     <Content Include="Areas\BookStoreAreas\Views\Customer\GetBookCategory.cshtml" />
+    <Content Include="Areas\BookStoreAreas\Views\Shared\Cart_PartialView.cshtml" />
     <None Include="Properties\PublishProfiles\FourYears20170621052116 - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\FourYears20170621072402 - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\FourYears20170621072705 - Web Deploy.pubxml" />
@@ -738,6 +746,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Areas\BookStoreAreas\Views\Cart\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

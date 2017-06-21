@@ -1,4 +1,17 @@
 ﻿@model FourYears.Areas.BookStoreAreas.Models.Book
 <body>
-
+    <div>
+        <div>
+            <p style="font-size:larger;font-family:'Microsoft JhengHei';font-weight:bold">推薦書籍</p>
+        </div>
+            <div >
+                <img style="width:150px;height:150px" src="@Url.Action("GetBookImage1","Customer",new { id= ViewBag.randomBookID })" />
+            </div>
+            <div >
+                <p>@Html.DisplayNameFor(book => book.BookName) : @Html.DisplayFor(book => book.BookName)</p>
+                <p>@Html.DisplayNameFor(book => book.ListPrice) : @Html.DisplayFor(book => book.ListPrice)</p>
+                <p>@Html.DisplayNameFor(book => book.SalePrice) : @Html.DisplayFor(book => book.SalePrice)</p>
+                <a href="@Url.Action("BookDetail", "BookStore",new {id=ViewBag.randomBookID})" class="btn btn-primary"><span class="glyphicon glyphicon-search"></span> 商品資訊</a>
+            </div>
+        </div>
 </body>

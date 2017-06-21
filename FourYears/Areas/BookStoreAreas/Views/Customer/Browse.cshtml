@@ -19,12 +19,14 @@
     }
 
 <div class="panel panel-warning" style="background-color:#FFF3EE">
+
     <div class="row">
         <div class="col-lg-2">
             <div class="col-lg-12">
                 <div class="col-lg-2">
                 </div>
                 <div class="col-lg-10">
+                    @Html.Action("RandomBook_PartialView")
                     @Html.Action("GetBookCategory")
                 </div>
                 <div class="col-lg-2">
@@ -33,7 +35,15 @@
         </div>
         <div class="col-lg-8">
             @*<h2>@ViewBag.Message</h2>*@
+            <div class="col-lg-12 row">
+                <br />
+                <br />
+                <img style="width:1200px;margin:20px" src="~/Areas/BookStoreAreas/BookWebPageImages/網路書城.jpg">
+                <p style="color:green;font-size:40px;font-family:'Microsoft JhengHei';font-weight:bold">書香，是最好的香水</p>
+                <hr />
+            </div>
             <div class="row">
+                <hr />
                 @foreach (var book in Model)
                 {
                     <div class="col-lg-3">
@@ -48,13 +58,25 @@
                                 <p style="font-size:larger;font-family:'Microsoft JhengHei';font-weight:bold">@Html.DisplayNameFor(b => b.ListPrice) : @Html.DisplayFor(b => book.ListPrice)</p>
                                 <p style="color:#FF5151;font-size:larger;font-family:'Microsoft JhengHei';font-weight:bold">@Html.DisplayNameFor(b => b.SalePrice) : @Html.DisplayFor(b => book.SalePrice)</p>
                                 <a href="@Url.Action("BookDetail", "BookStore",new {id=book.BookID})" class="btn btn-primary"><span class="glyphicon glyphicon-search"></span> 商品資訊</a>
-                                <a href="@Url.Action("AddToCart", "Products",new {id=book.BookID})" class="btn btn-success"><span class="glyphicon glyphicon-shopping-cart"></span> 放入購物車</a>
+                                @*<a onclick="AddToCart('@book.BookID')" href="javascript:void(0);"class="btn btn-success" role="button">加入購物車</a>*@
+                                <a onclick="AddToCart('@book.BookID')" href="javascript:void(0);"
+                                   class="btn btn-primary" role="button">
+                                    加入購物車
+                                </a> 
+                                @*<a href="@Url.Action("AddToCart", "Cart",new {id=book.BookID})" class="btn btn-primary"><span class="glyphicon glyphicon-search"></span> 商品資訊</a>*@
                             </div>
                         </div>
                     </div>
                 }
             </div>
+            <hr />
+            <br />
+            <br />
+            <br />
             <div>
+                <div>
+                    <label style="font-size: 28px;font-family:'Microsoft JhengHei';font-weight: bold"><span class="glyphicon glyphicon-chevron-right" style="color:darkgreen"></span><span style="color:orangered">暢銷</span>書籍</label>
+                </div>
                 <div class="owl-carousel owl-theme" style="z-index:0">
                     <div class="item"><img src="~/Areas/BookStoreAreas/BookImages/射鵰英雄傳1.jpg" class="owls" />@Html.ActionLink("極鮮饌", "Details", "Shop", new { id = 1 }, new { @class = "owlwords" })</div>
                     <div class="item"><img src="~/Areas/BookStoreAreas/BookImages/射鵰英雄傳2.jpg" class="owls" />@Html.ActionLink("炎官日式燒肉", "Details", "Shop", new { id = 3 }, new { @class = "owlwords" })</div>
@@ -72,11 +94,31 @@
     </div>
 </div>
 @section scripts{
+@*<script type="text/javascript">
+        //網頁載入完成時執行之function
+        $(document).ready(function () {
+            console.log("ready!");
+        });
+
+        //加入編號為productId的商品進購物車
+        function AddToCart(productId) {
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Action("AddToCart", "Cart")',
+                data: { id: productId }
+            })
+            .done(function (msg) {
+                //將回傳的購物車頁面 填入 li#Cart
+                $('li#Cart').html(msg);
+            });
+        }
+
+</script>*@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.0.0-beta.2.4/owl.carousel.min.js"></script>
     <script>
         $(function () {
-            var len = 10; // 超過10個字以"..."取代
+            var len = 12; // 超過12個字以"..."取代
             $(".strong").each(function (i) {
                 if ($(this).text().length > len) {
                     $(this).attr("title", $(this).text());
