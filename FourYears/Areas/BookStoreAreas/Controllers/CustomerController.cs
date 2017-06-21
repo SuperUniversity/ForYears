@@ -24,7 +24,7 @@ namespace FourYears.Areas.BookStoreAreas.Controllers
         //test
         public ActionResult Browse(int id = 0)
         {
-            ViewBag.Message = string.Format("全部商品");
+            //ViewBag.Message = string.Format("全部商品");
             //bookinfo.Author = db_Author.GetAll();
             //bookinfo.Book = db_Book.GetAll().Where(b => b.SubCategoryID == id).ToList();
 

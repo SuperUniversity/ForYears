@@ -382,6 +382,9 @@
   <ItemGroup>
     <Content Include="Areas\Area\images\儲值.jpg" />
     <Content Include="Areas\Area\images\捐血.jpg" />
+    <Content Include="Areas\BookStoreAreas\BookImages\射鵰英雄傳1.jpg" />
+    <Content Include="Areas\BookStoreAreas\BookImages\射鵰英雄傳2.jpg" />
+    <Content Include="Areas\BookStoreAreas\BookImages\射鵰英雄傳3.jpg" />
     <Content Include="Areas\BookStoreAreas\Models\BookStoreSystemModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>BookStoreSystemModel.edmx</DependentUpon>
