@@ -1,0 +1,155 @@
+﻿@using PagedList;
+@using PagedList.Mvc;
+@using FourYears.Areas.JobArea.Models;
+@model IPagedList<FourYears.Areas.JobArea.Models.Job>
+@{
+    ViewBag.Title = "工作檢視";
+}
+@section styles{
+    <style>
+        body {
+            /*background-color: antiquewhite;*/
+            padding-top: 15px;
+            font-size: 12px;
+        }
+
+        .main {
+            max-width: 320px;
+            margin: 0 auto;
+        }
+
+        .login-or {
+            position: relative;
+            font-size: 18px;
+            color: #aaa;
+            margin-top: 10px;
+            margin-bottom: 10px;
+            padding-top: 10px;
+            padding-bottom: 10px;
+        }
+
+        .span-or {
+            display: block;
+            position: absolute;
+            left: 50%;
+            top: -2px;
+            margin-left: -25px;
+            background-color: #fff;
+            width: 50px;
+            text-align: center;
+        }
+
+        .hr-or {
+            background-color: #cdcdcd;
+            height: 1px;
+            margin-top: 0px !important;
+            margin-bottom: 0px !important;
+        }
+
+        h3 {
+            text-align: center;
+            line-height: 300%;
+        }
+    </style>
+}
+<div class="row">
+    <div class="col-lg-3">
+        <label for="Jobnamesreach">工作名稱搜尋:</label>
+        <input id="Jobnamesreach" name="Jobnamesreach" type="text" />
+    </div>
+    <div class="col-lg-3">
+        <label for="Workplacesreach">工作地點搜尋:</label>
+        <input id="Workplacesreach" name="Workplacesreach" type="text" />
+    </div>
+    <div class="col-lg-3">
+        <label for="Allsreach">關鍵字搜尋:</label>
+        <input id="Allsreach" name="Allsreach" type="text" />
+    </div>
+    <div class="col-lg-3">
+        <a id="sreach" class="btn btn-warning">找工作</a>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-12">
+        <table id="jobTable" class="table table-bordered table-hover table-striped">
+            <thead>
+                <tr>
+                    <th>@Html.ActionLink(@Html.DisplayNameFor(p => p.First().JobID).ToHtmlString(), "Index", "Home", new { sortBy = ViewBag.SortbyID, Allsreach = ViewBag.SreachbyAll, Workplacesreach = ViewBag.SreachbyPlace, Jobnamesreach = ViewBag.SreachbyName }, new { @class = "text-info" })</th>
+                    <th>@Html.ActionLink(@Html.DisplayNameFor(p => p.First().JobName).ToHtmlString(), "Index", "Home", new { sortBy = ViewBag.SortbyID, Allsreach = ViewBag.SreachbyAll, Workplacesreach = ViewBag.SreachbyPlace, Jobnamesreach = ViewBag.SreachbyName }, new { @class = "text-info" })</th>
+                    <th>@Html.ActionLink(@Html.DisplayNameFor(p => p.First().Workplace).ToHtmlString(), "Index", "Home", new { sortBy = ViewBag.SortbyID, Allsreach = ViewBag.SreachbyAll, Workplacesreach = ViewBag.SreachbyPlace, Jobnamesreach = ViewBag.SreachbyName }, new { @class = "text-info" })</th>
+                    <th>所屬公司</th>
+                    @*<th>詳細資料</th>*@
+                    <th>我要應徵</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var p in Model)
+                {
+                    <tr>
+                        <td>@Html.DisplayFor(m => p.JobID)</td>
+                        <td><a href="@Url.Action("Detail","Home",new { Area="JobArea",id=p.JobID})" class="text text-info">@Html.DisplayFor(m => p.JobName)</a></td>
+                        <td>@Html.DisplayFor(m => p.Workplace)</td>
+                        <td>
+                            @{
+                                superuniversityEntities3 db = new superuniversityEntities3();
+                                var result = (from s in db.EmployerCompany
+                                              where (s.CompanyID == p.CompanyID)
+                                              select s.CompanyName).First();
+                            }
+                            <a href="@Url.Action("CompanyDetail","Home",new {Area="JobArea",id=p.JobID } )" class="text text-info">
+                                @Html.DisplayName(result.ToString())
+                            </a>
+                        </td>
+                        @*<td><a href="@Url.Action("Detail","Home",new { Area="JobArea",id=p.JobID})" class="btn btn-info">詳細資料</a></td>*@
+                        @{
+                            if (Request.Cookies["name"] != null)
+                            {
+                                <td><a href="@Url.Action("Hire","Home",new { Area="JobArea",id=p.JobID})" class="btn btn-default">應徵</a></td>
+
+                            }
+                            else
+                            {
+                                <td><a href="@Url.Action("Login","Employer",new { Area="JobArea"})" class="btn btn-default">應徵</a></td>
+
+                            }
+
+                        }
+                    </tr>
+                            }
+            </tbody>
+        </table>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-6">
+        @Html.PagedListPager(Model, p => Url.Action("Index", new { page = p, sortBy = Request.QueryString["sortBy"], Allsreach = ViewBag.SreachbyAll, Workplacesreach = ViewBag.SreachbyPlace, Jobnamesreach = ViewBag.SreachbyName }), PagedListRenderOptions.ClassicPlusFirstAndLast)
+    </div>
+</div>
+<div class="container">
+    <ul class="breadcrumb barfont">
+    </ul>
+</div>
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+@section scripts{
+    <script>
+        $("#sreach").click(function () {
+            var strlink = "@Url.Action("Index", "Home",new { Area="JobArea"})";
+            strlink += "?Jobnamesreach=" + $("#Jobnamesreach").val();
+            strlink += "&Workplacesreach=" + $("#Workplacesreach").val();
+            strlink += "&Allsreach=" + $("#Allsreach").val();
+            $(this).attr("href", strlink);
+
+        })
+
+    </script>
+    @if (TempData["message"] != null)
+    {
+        <script type="text/javascript">
+        var message = @Html.Raw(Json.Encode(TempData["message"]));
+        alert(message);
+        </script>
+    }
+
+}
+

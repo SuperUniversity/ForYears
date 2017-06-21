@@ -24,14 +24,14 @@ namespace FourYears.Models
 public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public ApplicationDbContext()
-            : base("DefaultConnection", throwIfV1Schema: false)
+            : base("newsuperuniversityEntities", throwIfV1Schema: false)
         {
         }
 
-        public async static Task<string> GetNickName(string id)
+        public  static string GetNickName(string id)
         {
             ApplicationDbContext db = new ApplicationDbContext();
-            ApplicationUser currentUser = await db.Users.FirstOrDefaultAsync(x => x.Id == id);
+            ApplicationUser currentUser =  db.Users.Find(id);
             return currentUser.NickName;
         }
 

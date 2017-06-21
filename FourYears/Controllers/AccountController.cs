@@ -9,6 +9,8 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using FourYears.Models;
+using Microsoft.AspNet.Identity.EntityFramework;
+using static FourYears.EmailService;
 
 namespace FourYears.Controllers
 {
@@ -158,14 +160,24 @@ namespace FourYears.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, NickName=model.NickName, Email = model.Email };
-                var result = await UserManager.CreateAsync(user, model.Password);
+                
+                var user = new ApplicationUser { UserName = model.Email, NickName=model.NickName, Email = model.Email };                
+                IdentityResult result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
-                    //await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
 
-                    //For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771
-                    //傳送包含此連結的電子郵件
+                    await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+
+                    var roleName = "Admin";
+
+                    if (HttpContext.GetOwinContext().Get<ApplicationRoleManager>().RoleExists(roleName) == false)
+                    {
+                        var role = new IdentityRole(roleName);
+                        await HttpContext.GetOwinContext().Get<ApplicationRoleManager>().CreateAsync(role); ;
+                    }
+
+                    await UserManager.AddToRoleAsync(user.Id, roleName);                    
+                    
                     string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
                     var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                     await UserManager.SendEmailAsync(user.Id, "確認您的帳戶", "請按一下此連結確認您的帳戶: " + callbackUrl);

@@ -1,0 +1,125 @@
+﻿@model FourYears.Areas.JobArea.Models.EmployerCompany
+@{
+    ViewBag.Title = "雇主註冊";
+}
+
+@section scripts{
+    <script src="~/Scripts/jquery.validate.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+    <style>
+        body {
+            /*background-color: antiquewhite;*/
+            padding-top: 15px;
+            font-size: 12px;
+        }
+
+        .main {
+            max-width: 320px;
+            margin: 0 auto;
+        }
+
+        .login-or {
+            position: relative;
+            font-size: 18px;
+            color: #aaa;
+            margin-top: 10px;
+            margin-bottom: 10px;
+            padding-top: 10px;
+            padding-bottom: 10px;
+        }
+
+        .span-or {
+            display: block;
+            position: absolute;
+            left: 50%;
+            top: -2px;
+            margin-left: -25px;
+            background-color: #fff;
+            width: 50px;
+            text-align: center;
+        }
+
+        .hr-or {
+            background-color: #cdcdcd;
+            height: 1px;
+            margin-top: 0px !important;
+            margin-bottom: 0px !important;
+        }
+
+        h3 {
+            text-align: center;
+            line-height: 300%;
+        }
+    </style>
+}
+@using (Html.BeginForm("Insert", "Employer", FormMethod.Post, new { enctype = "multipart/form-data", novalidate = "novalidate" }))
+{
+    @Html.AntiForgeryToken()
+    <div class="form-horizontal">
+        <div class="row">
+            <div class="col-lg-3"></div>
+            <div class="col-lg-7">
+                @if (ViewBag.Result != null)
+                {
+                    @Html.ValidationSummary(true, (string)ViewBag.Result, new { @class = "text-danger" })
+                }
+                <div class="form-group">
+                    @Html.LabelFor(e => e.CompanyName, new { @class = "col-sm-2 control-label" })
+                    <div class="col-sm-10">
+                        @Html.EditorFor(e => e.CompanyName, new { htmlAttributes = new { placeholder = "公司名稱", @class = "form-control" } })
+                        @Html.ValidationMessageFor(e => e.CompanyName, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(e => e.CompanyAdress, new { @class = "col-sm-2 control-label" })
+                    <div class="col-sm-10">
+                        @Html.EditorFor(e => e.CompanyAdress, new { htmlAttributes = new { placeholder = "公司地址", @class = "form-control" } })
+                        @Html.ValidationMessageFor(e => e.CompanyAdress, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(e => e.EmployerName, new { @class = "col-sm-2 control-label" })
+                    <div class="col-sm-10">
+                        @Html.EditorFor(e => e.EmployerName, new { htmlAttributes = new { placeholder = "聯絡人", @class = "form-control" } })
+                        @Html.ValidationMessageFor(e => e.EmployerName, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(e => e.EmployerPhone, new { @class = "col-sm-2 control-label" })
+                    <div class="col-sm-10">
+                        @Html.EditorFor(e => e.EmployerPhone, new { htmlAttributes = new { placeholder = "連絡電話", @class = "form-control" } })
+                        @Html.ValidationMessageFor(e => e.EmployerPhone, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(e => e.EmployerMail, new { @class = "col-sm-2 control-label" })
+                    <div class="col-sm-10">
+                        @Html.EditorFor(e => e.EmployerMail, new { htmlAttributes = new { placeholder = "Email", @class = "form-control", novalidate = "novalidate" } })
+                        @Html.ValidationMessageFor(e => e.EmployerMail, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(e => e.Password, new { @class = "col-sm-2 control-label" })
+                    <div class="col-sm-10">
+                        @Html.EditorFor(e => e.Password, new { htmlAttributes = new { placeholder = "密碼", @class = "form-control", novalidate = "novalidate" } })
+                        @Html.ValidationMessageFor(e => e.Password, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(e => e.ConfirmPassword, new { @class = "col-sm-2 control-label" })
+                    <div class="col-sm-10">
+                        @Html.EditorFor(e => e.ConfirmPassword, new { htmlAttributes = new { placeholder = "重複密碼", @class = "form-control" } })
+                        @Html.ValidationMessageFor(e => e.ConfirmPassword, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                        <button type="submit" class="btn btn-success">註冊</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-2"></div>
+        </div>
+    </div>
+}
+
