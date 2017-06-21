@@ -213,6 +213,10 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="Areas\Area\AreaAreaRegistration.cs" />
+    <Compile Include="Areas\Area\Controllers\ActivityController.cs" />
+    <Compile Include="Areas\Area\Models\Activity.cs" />
+    <Compile Include="Areas\Area\Models\ActivityDataContext.cs" />
     <Compile Include="Areas\Courses\Controllers\CoursesController.cs" />
     <Compile Include="Areas\Courses\Controllers\CoursesControllerUtl.cs" />
     <Compile Include="Areas\Courses\CoursesAreaRegistration.cs" />
@@ -324,6 +328,8 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Areas\Area\images\儲值.jpg" />
+    <Content Include="Areas\Area\images\捐血.jpg" />
     <Content Include="Areas\FoodMapArea\Models\FoodMapModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>FoodMapModel.edmx</DependentUpon>
@@ -565,6 +571,13 @@
     </Content>
     <Content Include="Areas\JobArea\css\bootstrap-theme.css.map" />
     <Content Include="Areas\JobArea\css\bootstrap.css.map" />
+    <Content Include="Areas\Area\Views\web.config" />
+    <Content Include="Areas\Area\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Area\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\Area\Views\Activity\Index.cshtml" />
+    <Content Include="Areas\Area\Views\Activity\Insert.cshtml" />
+    <Content Include="Areas\Area\Views\Activity\Edit.cshtml" />
+    <Content Include="Areas\Area\Views\Activity\Delete.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
