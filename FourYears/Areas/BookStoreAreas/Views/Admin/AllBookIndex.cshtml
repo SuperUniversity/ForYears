@@ -7,7 +7,7 @@
 
 <div class="container">
     <h2>商品上架管理</h2>
-    <a href="~/Category/Insert" class="btn btn-primary">新增商品</a>
+    <a href="@Url.Action("AdminPage", "Admin")" class="btn btn-primary"><span class="glyphicon glyphicon-search"></span> 返回管理介面</a>
     <table class="table table-hover table-striped" id="BookTable">
         <thead>
             <tr>
@@ -42,7 +42,9 @@
                     <td>@Book.Language</td>
                     <td>@string.Format("{0:c0}", Book.ListPrice)</td>
                     <td>@string.Format("{0:c0}", Book.SalePrice)</td>
-                    @*<td>@Html.ActionLink(new { @class = "btn btn-primary" })</td>*@
+                    <td>@Html.ActionLink("編輯", "AdminPublisherEdit", "Admin", new { @class = "btn btn-primary" })</td>
+                    <td>@Html.ActionLink("編輯", "AdminPublisherEdit", "Admin", new { @class = "btn btn-primary" })</td>
+                    <td>@Html.ActionLink("編輯", "AdminPublisherEdit", "Admin", new { @class = "btn btn-primary" })</td>
                 </tr>
             }
         </tbody>

@@ -4,16 +4,16 @@
 }
 
 <div class="container">
-    <h2 style="font-family:'Microsoft JhengHei';font-weight:bold;font-size:24px;"><span style="color:orangered">@HttpUtility.UrlDecode(Request.Cookies["FullName"].Value)</span>/會員管理</h2>
+    <h2 style="font-family:'Microsoft JhengHei';font-weight:bold;font-size:24px;"><span style="color:orangered"></span>管理員系統</h2>
     <hr />
     <dl class="dl-horizontal">
-        <dt>管理廠商:</dt>
+        <dt>管理所有廠商:</dt>
         <dd>
             [ @Html.ActionLink("廠商名單", "AdminPublisherIndex", "Admin", new { id = Request.Cookies["AdminID"].Value }, "") ]
         </dd>
-        <dt>觀看商品:</dt>
+        <dt>觀看所有商品:</dt>
         <dd>
-            [ @Html.ActionLink("廠商名單", "AdminPublisherIndex", "Admin", new { id = Request.Cookies["AdminID"].Value }, "") ]
+            [ @Html.ActionLink("商品清單", "AllBookIndex", "Admin", new { id = Request.Cookies["AdminID"].Value }, "") ]
         </dd>
     </dl>
 </div>

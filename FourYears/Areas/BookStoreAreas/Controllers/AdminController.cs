@@ -24,9 +24,9 @@ namespace FourYears.Areas.BookStoreAreas.Controllers
 
         public ActionResult AdminPage()
         {
-            if (Request.Cookies["CustomerID"] == null)
+            if (Request.Cookies["AdminID"] == null)
             {
-                return RedirectToAction("CustomerLogin", "Account", new { Area = "BookStoreAreas" });
+                return RedirectToAction("AdminLogin", "Account", new { Area = "BookStoreAreas" });
             }
 
             int id = int.Parse(Request.Cookies["AdminID"].Value);
@@ -57,11 +57,11 @@ namespace FourYears.Areas.BookStoreAreas.Controllers
 
         public ActionResult AdminPublisherDelete(int id = 0)
         {
-                db_Publisher.Delete(db_Publisher.GetByID(id));
-                return RedirectToAction("AdminPublisherIndex");
+            db_Publisher.Delete(db_Publisher.GetByID(id));
+            return RedirectToAction("AdminPublisherIndex");
         }
 
-        public ActionResult Index()
+        public ActionResult AllBookIndex()
         {
             //List<Book> Book = db_Book.GetAll().ToList();
             var result = from book in db_Book.GetAll()                         //Linq語法 join多張Table
@@ -86,45 +86,6 @@ namespace FourYears.Areas.BookStoreAreas.Controllers
             return View(result.ToList());
         }
 
-        public ActionResult Insert()
-        {
-            return View();
-        }
 
-        public ActionResult MainCategories_Partial()    //建立Partial View
-        {
-            var mainCategories = db_MainCategory.GetAll();
-            SelectList SelectList_MainCategory = new SelectList(mainCategories, "MainCategoryID", "MainCategoryName");     //建立Select集合
-            ViewBag.MainCategoryDatas = SelectList_MainCategory;    //將集合傳入ViewBag，Return回Partial View
-
-            return PartialView();
-        }
-
-
-        [HttpPost]
-        public JsonResult SubCategories_JsonResult(int MainCategoryID)  //第二層DropdownList 回傳JsonResult
-        {
-            List<KeyValuePair<string, string>> items = new List<KeyValuePair<string, string>>();
-            if (MainCategoryID > 0)
-            {
-                var subCategories = this.GetSubCategory(MainCategoryID);
-                if (subCategories.Count() > 0)
-                {
-                    foreach (var subCategory in subCategories)
-                    {
-                        items.Add(new KeyValuePair<string, string>(
-                            subCategory.SubCategoryID.ToString(),
-                            subCategory.SubCategoryName.ToString()));
-                    }
-                }
-            }
-            return this.Json(items);
-        }
-
-        private IEnumerable<SubCategory> GetSubCategory(int MainCategoryID)  //根據傳入的MainCategoryID 找到包含的SubCategory
-        {
-            var result_SubCategory = db_SubCategory.GetAll().Where(sub => sub.MainCategoryID == MainCategoryID);
-            return result_SubCategory.ToList();
-        }
     }
 }

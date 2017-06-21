@@ -11,10 +11,12 @@ namespace FourYears.Areas.BookStoreAreas.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel;
+
     public partial class Customer
     {
         public int CustomerID { get; set; }
+        [DisplayName("姓名")]
         public string FullName { get; set; }
         public string NickName { get; set; }
         public string Account { get; set; }

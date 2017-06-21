@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
-namespace FourYears.Areas.BookStoreAreas.Models.PartialClass
+namespace FourYears.Areas.BookStoreAreas.Models
 {
     [MetadataType(typeof(PublisherMetaData))]
     public partial class Publisher

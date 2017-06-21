@@ -45,6 +45,15 @@
             </div>
         </div>
         <div class="form-group">
+            <div class="col-lg-2">
+
+            </div>
+            <div class="col-lg-10">
+                @Html.EditorFor(customer => customer.RememberMe)
+                @Html.DisplayNameFor(customer => customer.RememberMe)
+            </div>
+        </div>
+        <div class="form-group">
             <div class="col-sm-offset-2 col-sm-10">
                 <button type="submit" class="btn btn-primary">登入</button>
                 <span>　　沒有會員帳號?　</span><a href="@Url.Action("CustomerRegister", "Account")" class="btn btn-info">立即註冊</a>

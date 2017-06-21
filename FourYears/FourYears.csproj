@@ -656,9 +656,7 @@
     <Content Include="Areas\BookStoreAreas\Views\Account\PublisherLogin.cshtml" />
     <Content Include="Areas\BookStoreAreas\Views\Admin\AdminPublisherIndex.cshtml" />
     <Content Include="Areas\BookStoreAreas\Views\Admin\AdminPublisherEdit.cshtml" />
-    <Content Include="Areas\BookStoreAreas\Views\Admin\Index.cshtml" />
-    <Content Include="Areas\BookStoreAreas\Views\Admin\Insert.cshtml" />
-    <Content Include="Areas\BookStoreAreas\Views\Admin\MainCategories_Partial.cshtml" />
+    <Content Include="Areas\BookStoreAreas\Views\Admin\AllBookIndex.cshtml" />
     <Content Include="Areas\BookStoreAreas\Views\BookStore\BookIndex.cshtml" />
     <Content Include="Areas\BookStoreAreas\Views\BookStore\BookInsert.cshtml" />
     <Content Include="Areas\BookStoreAreas\Views\BookStore\Book_MainCategories_PartialView.cshtml" />
@@ -678,9 +676,12 @@
     <Content Include="Areas\Area\Views\_ViewStart.cshtml" />
     <Content Include="Areas\BookStoreAreas\Views\Account\AdminLogin.cshtml" />
     <Content Include="Areas\BookStoreAreas\Views\Admin\AdminPage.cshtml" />
+    <Content Include="Areas\BookStoreAreas\Views\Customer\RandomBook_PartialView.cshtml" />
+    <Content Include="Areas\BookStoreAreas\Views\Customer\GetBookCategory.cshtml" />
     <None Include="Properties\PublishProfiles\FourYears20170621052116 - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\FourYears20170621072402 - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\FourYears20170621072705 - Web Deploy.pubxml" />
+    <None Include="Properties\PublishProfiles\FourYears20170621102832 - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />

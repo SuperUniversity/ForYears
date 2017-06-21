@@ -19,15 +19,6 @@ namespace FourYears.Areas.BookStoreAreas.Controllers
         [HttpGet]
         public ActionResult AdminLogin()
         {
-            Response.Cookies["PublisherUserName"].Expires = DateTime.Now.AddSeconds(-1);
-            Response.Cookies["PublisherName"].Expires = DateTime.Now.AddSeconds(-1);
-            Response.Cookies["PublisherID"].Expires = DateTime.Now.AddSeconds(-1);
-
-            Response.Cookies["Account"].Expires = DateTime.Now.AddSeconds(-1);
-            Response.Cookies["FullName"].Expires = DateTime.Now.AddSeconds(-1);
-            Response.Cookies["CustomerID"].Expires = DateTime.Now.AddSeconds(-1);
-            Response.Cookies["NickName"].Expires = DateTime.Now.AddSeconds(-1);
-            Session.Abandon();
             return View();
         }
 
@@ -76,6 +67,8 @@ namespace FourYears.Areas.BookStoreAreas.Controllers
             Response.Cookies["PublisherUserName"].Expires = DateTime.Now.AddSeconds(-1);
             Response.Cookies["PublisherName"].Expires = DateTime.Now.AddSeconds(-1);
             Response.Cookies["PublisherID"].Expires = DateTime.Now.AddSeconds(-1);
+            Response.Cookies["AdminName"].Expires = DateTime.Now.AddSeconds(-1);
+            Response.Cookies["AdminID"].Expires = DateTime.Now.AddSeconds(-1);
             Session.Abandon();
             return View();
         }
