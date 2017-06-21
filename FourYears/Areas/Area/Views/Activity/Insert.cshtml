@@ -1,0 +1,47 @@
+﻿@{
+    ViewBag.Title = "Insert";
+}
+<h2>活動分類新增</h2>
+<form method="post" action="~/Area/Activity/Insert" class="form-horizontal">
+    <div class="form-group">
+        <label for="ActivityName"
+               class="col-sm-2 control-label">ActivityName</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control"
+                   name="ActivityName" />
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="Description"
+               class="col-sm-2 control-label">Description</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control"
+                   name="Description" />
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="Location"
+               class="col-sm-2 control-label">Location</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control"
+                   name="Location" />
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="Host"
+               class="col-sm-2 control-label">Host</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control"
+                   name="Host" />
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+            <button type="submit" class="btn btn-default">
+                新增
+            </button>
+        </div>
+    </div>
+</form>
+
+

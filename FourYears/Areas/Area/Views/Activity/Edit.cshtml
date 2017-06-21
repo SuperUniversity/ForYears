@@ -1,0 +1,56 @@
+﻿@model FourYears.Areas.Area.Models.Activity
+@{
+    ViewBag.Title = "活動分類修改";
+}
+
+<h2>活動分類修改</h2>
+<form method="post" action="~/Area/Activity/Edit" class="form-horizontal">
+    <div class="form-group">
+        <label for="ActivityName" class="col-md-2 control-label">
+            ActivityName
+        </label>
+        <div class="col-md-10">
+            <input type="hidden" name="ActivityID"
+                   value="@Model.ActivityID" />
+            <input type="text" class="form-control" name="ActivityName"
+                   value="@Model.ActivityName" />
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="ActivityName" class="col-md-2 control-label">
+            Description
+        </label>
+        <div class="col-md-10">
+            <input type="text" class="form-control" name="Description"
+                   value="@Model.Description" />
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="Location" class="col-md-2 control-label">
+            Location
+        </label>
+        <div class="col-md-10">
+            <input type="text" class="form-control" name="Location"
+                   value="@Model.Location" />
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="Host" class="col-md-2 control-label">
+            Host
+        </label>
+        <div class="col-md-10">
+            <input type="text" class="form-control" name="Host"
+                   value="@Model.Host" />
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <button type="submit" class="btn btn-default">修改</button>
+        </div>
+    </div>
+</form>
+
+
+
+
+
