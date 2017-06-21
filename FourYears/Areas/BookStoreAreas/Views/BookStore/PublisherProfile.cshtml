@@ -1,0 +1,38 @@
+﻿
+@{
+    ViewBag.Title = "PublisherProfile";
+}
+
+
+<div class="container">
+    <h2 style="font-family:'Microsoft JhengHei';font-weight:bold;font-size:24px;"><span style="color:orangered">@HttpUtility.UrlDecode(Request.Cookies["PublisherName"].Value)</span>/會員管理</h2>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>個人資料:</dt>
+        <dd>
+            [ @Html.ActionLink("修改資料", "CustomerEditProfile", "Customer", new { id = Request.Cookies["PublisherID"].Value }, "") ]
+        </dd>
+        <dt>密碼管理:</dt>
+        <dd>
+            [
+            @if (Request.Cookies["PublisherID"].Value != null)
+            {
+                if (int.Parse(Request.Cookies["PublisherID"].Value) > 0)
+                {
+                    @Html.ActionLink("變更密碼", "CustomerChangePassword", "Customer", new { id = Request.Cookies["PublisherID"].Value }, new { })
+                }
+                @*else if (int.Parse(Request.Cookies["CustomerID"].Value) < 0)   //用正負數判定廠商or一般顧客
+                    {
+                        @Html.ActionLink("變更密碼", "CustomerChangePassword", "Manager", new { id = Request.Cookies["CustomerID"].Value }, new { })
+                    }*@
+            }
+            ]
+        </dd>
+        <dt>管理功能:</dt>
+        <dd>
+            [ @Html.ActionLink("商品管理", "BookIndex", "BookStore", new { id = Request.Cookies["PublisherID"].Value }, "") ]
+        </dd>
+    </dl>
+</div>
+
+

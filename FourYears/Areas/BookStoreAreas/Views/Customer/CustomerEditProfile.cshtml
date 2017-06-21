@@ -1,0 +1,75 @@
+﻿@model FourYears.Areas.BookStoreAreas.Models.Customer
+
+@{
+    ViewBag.Title = "CustomerEditProfile";
+}
+
+<div class="container">
+    @using (Html.BeginForm("CustomerEditProfile", "Customer", FormMethod.Post, new { @class = "form-horizontal", enctype = "multipart/form-data" }))
+    {
+        @Html.HiddenFor(customer => customer.CustomerID)
+        @Html.HiddenFor(customer => customer.Password)
+        @Html.HiddenFor(customer => customer.IdentityCard)
+
+        <div class="form-group">
+            @Html.LabelFor(customer => customer.FullName, new { @class = "col-sm-2 control-label" })
+            <div class="col-sm-10">
+                @Html.EditorFor(customer => customer.FullName, new { htmlAttributes = new { @class = "form-control", placeholder = "會員姓名", @readonly = "readonly" } })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(customer => customer.NickName, new { @class = "col-sm-2 control-label" })
+            <div class="col-sm-10">
+                @Html.EditorFor(customer => customer.NickName, new { htmlAttributes = new { @class = "form-control", placeholder = "暱稱" } })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(customer => customer.Account, new { @class = "col-sm-2 control-label" })
+            <div class="col-sm-10">
+                @Html.EditorFor(customer => customer.Account, new { htmlAttributes = new { @class = "form-control", placeholder = "帳號", @readonly = "readonly" } })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(customer => customer.Gender, new { @class = "col-sm-2 control-label" })
+            <div class="col-sm-10">
+                @Html.EditorFor(customer => customer.Gender, new { htmlAttributes = new { @class = "form-control", placeholder = "性別", @readonly = "readonly" } })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(customer => customer.BirthDay, new { @class = "col-sm-2 control-label" })
+            <div class="col-sm-10">
+                @Html.EditorFor(customer => customer.BirthDay, new { htmlAttributes = new { @class = "form-control", placeholder = "性別", @readonly = "readonly" } })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(customer => customer.EmailAddress, new { @class = "col-sm-2 control-label" })
+            <div class="col-sm-10">
+                @Html.EditorFor(customer => customer.EmailAddress, new { htmlAttributes = new { @class = "form-control", placeholder = "電子郵件" } })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(customer => customer.Phone, new { @class = "col-sm-2 control-label" })
+            <div class="col-sm-10">
+                @Html.EditorFor(customer => customer.Phone, new { htmlAttributes = new { @class = "form-control", placeholder = "連絡電話" } })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(customer => customer.Address, new { @class = "col-sm-2 control-label" })
+            <div class="col-sm-10">
+                @Html.EditorFor(customer => customer.Address, new { htmlAttributes = new { @class = "form-control", placeholder = "地址" } })
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-lg-offset-2 col-lg-10">
+                <button type="submit" class="btn btn-success">修改</button>
+            </div>
+        </div>
+        <div class="container">
+            <div id="map" style="width: 820px; height:600px">
+            </div>
+        </div>
+    }
+</div>
+
+
+

@@ -1,0 +1,87 @@
+﻿@model FourYears.Areas.BookStoreAreas.ViewModels.ViewModel_BookInformation
+
+@{
+    ViewBag.Title = "BookDetail";
+}
+
+<div class="row">
+    <div class="col-lg-2">
+
+    </div>
+    <div class="col-lg-8">
+        <p style="font-family:'Microsoft JhengHei';font-weight:bold;font-size:24px"><span style="color:orangered">商品</span>簡介</p>
+        <hr />
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="col-lg-7">
+                    <div class="col-lg-12">
+                        @if (Model.BytesImage1 != null)
+                        {
+                            <div class="col-lg-8 padFix bigimg imageback" style="margin:10px">
+                                <span class="photo_b">
+                                    <img src="@Url.Action("GetBookImage1","Customer")" style="width:350px;height:350px" />
+                                </span>
+                            </div>
+
+                            if (Model.BytesImage2 != null)
+                            {
+                                <div class="col-lg-2 padFix bigimg imageback" style="margin:10px">
+                                    <span class="photo_b">
+                                        <img src="@Url.Action("GetBookImage2","Customer")" style="width:165px;height:165px" />
+                                    </span>
+                                </div>
+                            }
+                            if (Model.BytesImage3 != null)
+                            {
+                                <div class="col-lg-2 padFix bigimg imageback" style="margin:10px">
+                                    <span class="photo_b">
+                                        <img src="@Url.Action("GetBookImage3","Customer")" style="width:165px;height:165px" />
+                                    </span>
+                                </div>
+                            }
+
+                        }
+                    </div>
+
+
+                </div>
+                <div class="col-lg-5">
+                    <p style="color:	#842B00;font-size:larger;font-family:'Microsoft JhengHei';font-weight:bold;font-size:24px;">@Html.LabelFor(book => book.BookName) : @Html.DisplayFor(book => book.BookName)</p>
+                    <p style="font-size:larger;font-family:'Microsoft JhengHei';font-weight:bold;font-size:20px;">@Html.LabelFor(book => book.AuthorName) : @Html.DisplayFor(book => book.AuthorName)</p>
+                    <p style="font-size:larger;font-family:'Microsoft JhengHei';font-weight:bold;font-size:20px;">@Html.LabelFor(book => book.MainCategoryName) : @Html.DisplayFor(book => book.MainCategoryName)</p>
+                    <p style="font-size:larger;font-family:'Microsoft JhengHei';font-weight:bold;font-size:20px;">@Html.LabelFor(book => book.SubCategoryName) : @Html.DisplayFor(book => book.SubCategoryName)</p>
+                    <p style="font-size:larger;font-family:'Microsoft JhengHei';font-weight:bold;font-size:20px;">@Html.LabelFor(book => book.PublisherName) : @Html.DisplayFor(book => book.PublisherName)</p>
+                    <p style="font-size:larger;font-family:'Microsoft JhengHei';font-weight:bold;font-size:20px;">@Html.LabelFor(book => book.PublishDate) : @Html.DisplayFor(book => book.PublishDate)</p>
+                    <p style="font-size:larger;font-family:'Microsoft JhengHei';font-weight:bold;font-size:20px;">@Html.LabelFor(book => book.OnShelfDate) : @Html.DisplayFor(book => book.OnShelfDate)</p>
+                    <p style="font-size:larger;font-family:'Microsoft JhengHei';font-weight:bold;font-size:20px;">@Html.LabelFor(book => book.Language) : @Html.DisplayFor(book => book.Language)</p>
+                    <p style="font-size:larger;font-family:'Microsoft JhengHei';font-weight:bold;font-size:20px;">@Html.LabelFor(book => book.ListPrice) : @Html.DisplayFor(book => book.ListPrice)</p>
+                    <p style="color:#FF5151;font-size:larger;font-family:'Microsoft JhengHei';font-weight:bold;font-size:20px;">@Html.LabelFor(book => book.SalePrice) : @Html.DisplayFor(book => book.SalePrice)</p>
+                    <a href="@Url.Action("AddToCart", "Products",new {id=ViewBag.bid})" class="btn btn-success"><span class="glyphicon glyphicon-shopping-cart"></span> 放入購物車</a>
+                </div>
+
+            </div>
+
+
+
+        </div>
+        <div>
+        </div>
+        <hr />
+        <br />
+        <p style="font-size:larger;font-family:'Microsoft JhengHei';font-weight:bold;font-size:26px;">@Html.LabelFor(book => book.BookDescription)</p>
+        <hr />
+        <p style="font-size:larger;font-family:'Microsoft JhengHei';font-weight:bold;font-size:18px;">@Html.DisplayFor(book => book.BookDescription)</p>
+        <hr />
+        <p style="font-size:larger;font-family:'Microsoft JhengHei';font-weight:bold;font-size:26px;">@Html.LabelFor(book => book.AuthorDescription)</p>
+        <hr />
+        <p style="font-size:larger;font-family:'Microsoft JhengHei';font-weight:bold;font-size:18px;">@Html.DisplayFor(book => book.AuthorDescription)</p>
+        <hr />
+        <p style="font-size:larger;font-family:'Microsoft JhengHei';font-weight:bold;font-size:26px;">@Html.LabelFor(book => book.OtherImformation)</p>
+        <hr />
+        <p style="font-size:larger;font-family:'Microsoft JhengHei';font-weight:bold;font-size:18px;">@Html.DisplayFor(book => book.OtherImformation)</p>
+    </div>
+    <div class="col-lg-2">
+
+    </div>
+</div>
+

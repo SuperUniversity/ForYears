@@ -1,0 +1,51 @@
+﻿@model IEnumerable<FourYears.Areas.BookStoreAreas.ViewModels.ViewModel_BookInformation>
+@using FourYears.Areas.BookStoreAreas.Models
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="container">
+    <h2>商品上架管理</h2>
+    <a href="~/Category/Insert" class="btn btn-primary">新增商品</a>
+    <table class="table table-hover table-striped" id="BookTable">
+        <thead>
+            <tr>
+                <th>@Html.DisplayNameFor(b => b.BookID)</th>
+                <th>@Html.DisplayNameFor(b => b.BookName)</th>
+                <th>@Html.DisplayNameFor(b => b.AuthorName)</th>
+                <th>@Html.DisplayNameFor(b => b.PublisherName)</th>
+                <th>@Html.DisplayNameFor(b => b.MainCategoryName)</th>
+                <th>@Html.DisplayNameFor(b => b.SubCategoryName)</th>
+                <th>@Html.DisplayNameFor(b => b.OnShelfDate)</th>
+                <th>@Html.DisplayNameFor(b => b.Language)</th>
+                <th>@Html.DisplayNameFor(b => b.ListPrice)</th>
+                <th>@Html.DisplayNameFor(b => b.SalePrice)</th>
+                <th>詳細資訊</th>
+                <th>編輯</th>
+                <th>刪除</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach (var Book in Model)  ////
+            {
+                <tr data-BookID="@Book.BookID">
+                    @*幫每列tr自訂屬性BookID*@
+                    <td>@Book.BookID</td>
+                    <td>@Book.BookName</td>
+                    <td>@Book.AuthorName</td>
+                    <td>@Book.PublisherName</td>
+                    <td>@Book.MainCategoryName</td>
+                    <td>@Book.SubCategoryName</td>
+                    <td>@string.Format("{0:yyyy-MM-dd}", Book.OnShelfDate)</td>
+                    <td>@Book.Language</td>
+                    <td>@string.Format("{0:c0}", Book.ListPrice)</td>
+                    <td>@string.Format("{0:c0}", Book.SalePrice)</td>
+                    @*<td>@Html.ActionLink(new { @class = "btn btn-primary" })</td>*@
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+

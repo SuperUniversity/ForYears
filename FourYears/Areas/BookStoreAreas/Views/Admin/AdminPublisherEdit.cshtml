@@ -1,0 +1,92 @@
+﻿@model FourYears.Areas.BookStoreAreas.Models.Publisher
+
+@{
+    ViewBag.Title = "AdminPublisherEdit";
+}
+
+<div class="container">
+    <h2>PublisherEdit</h2>
+    <hr />
+    @using (Html.BeginForm("AdminPublisherEdit", "Admin", FormMethod.Post, new { @class = "form-horizontal", enctype = "multipart/form-data" }))
+    {
+        @Html.HiddenFor(p => p.PublisherID)
+        @Html.HiddenFor(p => p.PublisherPassword, new { @Autocomplete = "off" })
+
+        <div class="form-group">
+            @Html.LabelFor(p => p.PublisherName, new { @class = "col-sm-2 control-label" })
+            <div class="col-sm-10">
+                @Html.EditorFor(p => p.PublisherName, new { htmlAttributes = new { @class = "form-control", placeholder = "出版社名稱" } })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(p => p.PublisherUserName, new { @class = "col-sm-2 control-label" })
+            <div class="col-sm-10">
+                @Html.EditorFor(p => p.PublisherUserName, new { htmlAttributes = new { @class = "form-control", placeholder = "帳號", @readonly = "readonly" } })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(p => p.PublisherAdress, new { @class = "col-sm-2 control-label" })
+            <div class="col-sm-10">
+                @Html.EditorFor(p => p.PublisherAdress, new { htmlAttributes = new { @class = "form-control", placeholder = "出版社地址" } })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(p => p.PublisherPhone, new { @class = "col-sm-2 control-label" })
+            <div class="col-sm-10">
+                @Html.EditorFor(p => p.PublisherPhone, new { htmlAttributes = new { @class = "form-control", placeholder = "連絡電話" } })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(p => p.PublisherEmail, new { @class = "col-sm-2 control-label" })
+            <div class="col-sm-10">
+                @Html.EditorFor(p => p.PublisherEmail, new { htmlAttributes = new { @class = "form-control", placeholder = "Email" } })
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-lg-offset-2 col-lg-10">
+                <button type="submit" class="btn btn-success">修改</button>
+            </div>
+        </div>
+        <div class="container">
+            <div id="map" style="width: 820px; height:600px">
+            </div>
+        </div>
+    }
+</div>
+
+@section scripts{
+    <script src="http://maps.google.com/maps?file=api&v=2&key=AIzaSyAMIumYCietwMmmYvFQeJ5hZNUhS7ge4yo" type="text/javascript"></script>
+
+    <script type="text/javascript">
+        var geocoder;
+        var map;
+        $(document).ready(function(){
+            var address = $('#PublisherAdress').val();
+
+            map = new GMap2(document.getElementById("map"));         // 建立地圖物件
+            map.addControl(new GLargeMapControl());                  // 加入地圖縮放工具
+            map.addControl(new GMapTypeControl());                   // 加入地圖切換的工具
+            geocoder = new GClientGeocoder();                        // 建立新的地理編碼物件
+            geocoder.getLocations(address, addToMap);                //  檢索位置資訊，將它傳遞給 addToMap()
+
+            //console.log(address)
+
+        })
+            // 此函數會將點加入到地圖
+            function addToMap(response) {
+                place = response.Placemark[0];                         // 檢索物件
+                point = new GLatLng(place.Point.coordinates[1], place.Point.coordinates[0]);       // 檢索緯度和經度
+                map.setCenter(point, 14);                              // 以這一點為地圖中心
+                marker = new GMarker(point);                           // 建立標記
+                map.addOverlay(marker);                                // 將標記加入到地圖
+                marker.openInfoWindowHtml(place.address);              // 將位址資訊加入到標記
+            }
+
+
+
+    </script>
+
+}
+
+
+
