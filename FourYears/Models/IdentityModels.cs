@@ -33,17 +33,22 @@ public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
 
         public static string GetNickName(string id)
         {
-            ApplicationDbContext db = new ApplicationDbContext();
-            ApplicationUser currentUser = db.Users.Find(id);
-            if (currentUser != null)
+            if(id != null)
             {
-                if (currentUser.NickName == null)
+                ApplicationDbContext db = new ApplicationDbContext();
+                ApplicationUser currentUser = db.Users.Find(id);
+                if (currentUser != null)
                 {
-                    return currentUser.Email;
+                    if (currentUser.NickName == null)
+                    {
+                        return currentUser.Email;
+                    }
+                    
+                    return currentUser.NickName;
                 }
 
-                return currentUser.NickName;
             }
+            
             return null;
         }
 
@@ -56,18 +61,22 @@ public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
 
         public static bool GetAllowEmailContact(string id)
         {
-            ApplicationDbContext db = new ApplicationDbContext();
-            ApplicationUser currentUser = db.Users.Find(id);
-
-            if (currentUser != null)
+            if (id != null)
             {
-                if (currentUser.NickName == null)
+                ApplicationDbContext db = new ApplicationDbContext();
+                ApplicationUser currentUser = db.Users.Find(id);
+
+                if (currentUser != null)
                 {
+                    if (currentUser.NickName == null)
+                    {
+                        return currentUser.AllowEmailContact;
+                    }
+
                     return currentUser.AllowEmailContact;
                 }
-
-                return currentUser.AllowEmailContact;
             }
+           
             return true;
         }
 

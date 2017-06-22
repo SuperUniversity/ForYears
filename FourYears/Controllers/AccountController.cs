@@ -88,6 +88,14 @@ namespace FourYears.Controllers
                         ModelState.AddModelError("", "請先認證您的電子郵件!");
                         return View("Login", model);
                     }
+
+                    //SuperUniversityEntities db = new SuperUniversityEntities();
+                    //AspNetUserLoginLog loginLog = new AspNetUserLoginLog();
+                    //loginLog.userID = User.Identity.GetUserId();
+                    //loginLog.loginTime = DateTime.UtcNow.AddHours(8);
+                    //db.AspNetUserLoginLogs.Add(loginLog);
+                    //db.SaveChanges();
+
                     return RedirectToLocal(returnUrl);
                 case SignInStatus.LockedOut:
                     return View("Lockout");

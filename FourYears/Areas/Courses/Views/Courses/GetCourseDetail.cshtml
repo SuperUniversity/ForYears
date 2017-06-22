@@ -284,19 +284,13 @@
                 //contentType: "application/json",
                 //dataType: "jsonp",
                 //jsonp: 'jsonp_callback',
-                //success: function (data) {
-                //    alert('新增成功');
-                //    location.reload();
-                //},
+                success: function (data) {
+                    alert(successNote);
+                    location.reload();
+                },
 
                 error: function (httpReq, status, exception) {
-                    if (httpReq.status == 500) {
-                        alert(successNote);
-                        location.reload();
-                    }
-                    else {
-                        alert(errorNote);
-                    }
+                    alert(errorNote);
                 }
 
             });
@@ -322,12 +316,13 @@
 
             var strid = ObjId;
             var url = "https://taiwanuniversitiescourses.azurewebsites.net/api/AllCollege?strid=" + strid + "&iscomment=true"
+            //var url = "http://localhost:57268//api/AllCollege?strid=" + strid + "&iscomment=true"
             var userID = "@User.Identity.GetUserId()";
             var name = "@ApplicationDbContext.GetNickName(User.Identity.GetUserId())";
             var email = "@User.Identity.GetUserName()"
             var commentstring = $("#postComment").find("#commentstring").val();
             var anonym = $("#postComment").find("#anonym").prop("checked");
-            var allowEmailContact = true;
+            var allowEmailContact = @ApplicationDbContext.GetAllowEmailContact(User.Identity.GetUserId()).ToString().ToLower();
             commentData = { "userID": userID, "name": name, "email": email, "commentstring": commentstring, "anonym": anonym, "allowEmailContact": allowEmailContact }
 
 
