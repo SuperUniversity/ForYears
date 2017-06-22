@@ -24,8 +24,9 @@ namespace FourYears.Areas.BookStoreAreas.Controllers
         public ActionResult RandomBook_PartialView()
         {
             Random r = new Random();
-            ViewBag.randomBookID = r.Next(11, 25);
-            var result =  db_Book.GetByID(ViewBag.randomBookID);
+            ViewBag.randomBookID = r.Next(33, 40);
+            int bookid = ViewBag.randomBookID;
+            var result =  db_Book.GetByID(bookid);
             return View(result);
         }
 

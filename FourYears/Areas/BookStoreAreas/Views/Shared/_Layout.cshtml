@@ -93,7 +93,7 @@
 
                             else if (Request.Cookies["Account"] != null && Request.Cookies["PublisherUserName"] == null)
                             {
-                                @Html.ActionLink(Request.Cookies["Account"].Value + " / " + HttpUtility.UrlDecode(Request.Cookies["FullName"].Value) + " 個人管理 /", "CustomerProfile", "Customer", null, new { @class = "glyphicon glyphicon-cog" });
+                                @Html.ActionLink(Request.Cookies["Account"].Value + " / " + HttpUtility.UrlDecode(Request.Cookies["FullName"].Value) +"("+ HttpUtility.UrlDecode(Request.Cookies["NickName"].Value)+")"+ " 個人管理 /", "CustomerProfile", "Customer", null, new { @class = "glyphicon glyphicon-cog" });
                             }
                             else if (Request.Cookies["Account"] == null && Request.Cookies["PublisherUserName"] != null)
                             {

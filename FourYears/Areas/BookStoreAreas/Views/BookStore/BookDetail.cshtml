@@ -56,7 +56,7 @@
                     <p style="font-size:larger;font-family:'Microsoft JhengHei';font-weight:bold;font-size:20px;">@Html.LabelFor(book => book.Language) : @Html.DisplayFor(book => book.Language)</p>
                     <p style="font-size:larger;font-family:'Microsoft JhengHei';font-weight:bold;font-size:20px;">@Html.LabelFor(book => book.ListPrice) : @Html.DisplayFor(book => book.ListPrice)</p>
                     <p style="color:#FF5151;font-size:larger;font-family:'Microsoft JhengHei';font-weight:bold;font-size:20px;">@Html.LabelFor(book => book.SalePrice) : @Html.DisplayFor(book => book.SalePrice)</p>
-                    <a style="font-size:larger;font-family:'Microsoft JhengHei'" href="@Url.Action("AddToCart", "Products",new {id=ViewBag.bid})" class="btn btn-success"><span class="glyphicon glyphicon-shopping-cart"></span> 放入購物車</a>
+                    <a style="font-size:larger;font-family:'Microsoft JhengHei'" href="@Url.Action("AddToCart", "Products",new {id=ViewBag.bid})" class="btn btn-danger"><span class="glyphicon glyphicon-shopping-cart"></span> 放入購物車</a>
                     <a style="font-size:larger;font-family:'Microsoft JhengHei'" href="@Url.Action("Browse", "Customer")" class="btn btn-success"><span class="glyphicon glyphicon-repeat"></span> 繼續去購物</a>
 
                 
