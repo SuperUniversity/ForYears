@@ -16,10 +16,12 @@
 <div class="container">
     <ul class="breadcrumb barfont">
         <li>@Html.ActionLink("商城首頁", "Browse", "Customer", new { area = "BookStoreAreas" }, null)</li>
+        <li style="float:right">@Html.ActionLink("系統管理員", "AdminLogin", "Account", new { area = "BookStoreAreas" }, null)</li>
         <li style="float:right">@Html.ActionLink("廠商註冊", "PublisherRegister", "Account", new { area = "BookStoreAreas" }, null)</li>
         <li style="float:right">@Html.ActionLink("廠商登入", "PublisherLogin", "Account", new { area = "BookStoreAreas" }, null)</li>
         <li style="float:right">@Html.ActionLink("會員註冊", "CustomerRegister", "Account", new { area = "BookStoreAreas" }, null)</li>
         <li style="float:right">@Html.ActionLink("會員登入", "CustomerLogin", "Account", new { area = "BookStoreAreas" }, null)</li>
+
     </ul>
 </div>
 
@@ -40,6 +42,15 @@
             <div class="col-sm-10">
                 @Html.EditorFor(customer => customer.Password, new { htmlAttributes = new { @class = "form-control", placeholder = "密碼" } })
                 @Html.ValidationMessageFor(customer => customer.Password, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-lg-2">
+
+            </div>
+            <div class="col-lg-10">
+                @Html.EditorFor(customer => customer.RememberMe)
+                @Html.DisplayNameFor(customer => customer.RememberMe)
             </div>
         </div>
         <div class="form-group">

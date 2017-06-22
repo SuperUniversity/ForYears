@@ -17,10 +17,12 @@
 <div class="container">
     <ul class="breadcrumb barfont">
         <li>@Html.ActionLink("商城首頁", "Browse", "Customer", new { area = "BookStoreAreas" }, null)</li>
+        <li style="float:right">@Html.ActionLink("系統管理員", "AdminLogin", "Account", new { area = "BookStoreAreas" }, null)</li>
         <li style="float:right">@Html.ActionLink("廠商註冊", "PublisherRegister", "Account", new { area = "BookStoreAreas" }, null)</li>
         <li style="float:right">@Html.ActionLink("廠商登入", "PublisherLogin", "Account", new { area = "BookStoreAreas" }, null)</li>
         <li style="float:right">@Html.ActionLink("會員註冊", "CustomerRegister", "Account", new { area = "BookStoreAreas" }, null)</li>
         <li style="float:right">@Html.ActionLink("會員登入", "CustomerLogin", "Account", new { area = "BookStoreAreas" }, null)</li>
+
     </ul>
 </div>
 

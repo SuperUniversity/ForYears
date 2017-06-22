@@ -19,7 +19,7 @@
                         {
                             <div class="col-lg-8 padFix bigimg imageback" style="margin:10px">
                                 <span class="photo_b">
-                                    <img src="@Url.Action("GetBookImage1","Customer")" style="width:350px;height:350px" />
+                                    <img src="@Url.Action("GetBookImage1","Customer",new {id= ViewBag.bid })" style="width:350px;height:350px" />
                                 </span>
                             </div>
 
@@ -27,7 +27,7 @@
                             {
                                 <div class="col-lg-2 padFix bigimg imageback" style="margin:10px">
                                     <span class="photo_b">
-                                        <img src="@Url.Action("GetBookImage2","Customer")" style="width:165px;height:165px" />
+                                        <img src="@Url.Action("GetBookImage2","Customer",new {id= ViewBag.bid })" style="width:165px;height:165px" />
                                     </span>
                                 </div>
                             }
@@ -35,7 +35,7 @@
                             {
                                 <div class="col-lg-2 padFix bigimg imageback" style="margin:10px">
                                     <span class="photo_b">
-                                        <img src="@Url.Action("GetBookImage3","Customer")" style="width:165px;height:165px" />
+                                        <img src="@Url.Action("GetBookImage3","Customer",new {id= ViewBag.bid })" style="width:165px;height:165px" />
                                     </span>
                                 </div>
                             }
@@ -56,7 +56,10 @@
                     <p style="font-size:larger;font-family:'Microsoft JhengHei';font-weight:bold;font-size:20px;">@Html.LabelFor(book => book.Language) : @Html.DisplayFor(book => book.Language)</p>
                     <p style="font-size:larger;font-family:'Microsoft JhengHei';font-weight:bold;font-size:20px;">@Html.LabelFor(book => book.ListPrice) : @Html.DisplayFor(book => book.ListPrice)</p>
                     <p style="color:#FF5151;font-size:larger;font-family:'Microsoft JhengHei';font-weight:bold;font-size:20px;">@Html.LabelFor(book => book.SalePrice) : @Html.DisplayFor(book => book.SalePrice)</p>
-                    <a href="@Url.Action("AddToCart", "Products",new {id=ViewBag.bid})" class="btn btn-success"><span class="glyphicon glyphicon-shopping-cart"></span> 放入購物車</a>
+                    <a style="font-size:larger;font-family:'Microsoft JhengHei'" href="@Url.Action("AddToCart", "Products",new {id=ViewBag.bid})" class="btn btn-danger"><span class="glyphicon glyphicon-shopping-cart"></span> 放入購物車</a>
+                    <a style="font-size:larger;font-family:'Microsoft JhengHei'" href="@Url.Action("Browse", "Customer")" class="btn btn-success"><span class="glyphicon glyphicon-repeat"></span> 繼續去購物</a>
+
+                
                 </div>
 
             </div>

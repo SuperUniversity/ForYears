@@ -1,0 +1,23 @@
+﻿@{ 
+    var currentCart = FourYears.Areas.BookStoreAreas.Models.Operation.GetCurrentCart();
+}
+<a id="CartDropDown" class="dropdown-toggle" data-toggle="dropdown">
+    @string.Format( "共{0}元 ({1})",currentCart.TotalAmount,currentCart.Count)
+    <span class="caret"></span>
+</a>
+<ul class="dropdown-menu" role="menu" aria-labelledby="CartDropDown">
+    @if (currentCart.Count > 0)
+    {
+        foreach (var cartitem in currentCart)
+        {
+        <li><a>@cartitem.CartItemName<span>@cartitem.CartItemPrice 元 X  @cartitem.Quantity</span></a></li>
+        }
+        <li class="divider"></li>
+        <li><a class="btn btn-primary text-center" href="#">結帳去</a></li>
+    }
+    else
+    {
+        <li><a class="btn btn-danger text-center" href="#">購物車內沒有商品</a></li>
+    }
+
+</ul>

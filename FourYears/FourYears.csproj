@@ -221,11 +221,15 @@
     <Compile Include="Areas\BookStoreAreas\Controllers\AccountController.cs" />
     <Compile Include="Areas\BookStoreAreas\Controllers\AdminController.cs" />
     <Compile Include="Areas\BookStoreAreas\Controllers\BookStoreController.cs" />
+    <Compile Include="Areas\BookStoreAreas\Controllers\CartController.cs" />
     <Compile Include="Areas\BookStoreAreas\Controllers\CustomerController.cs" />
     <Compile Include="Areas\BookStoreAreas\Models\Author.cs">
       <DependentUpon>BookStoreSystemModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Areas\BookStoreAreas\Models\Book.cs">
+      <DependentUpon>BookStoreSystemModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\BookStoreAreas\Models\BookStoreAdmin.cs">
       <DependentUpon>BookStoreSystemModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Areas\BookStoreAreas\Models\BookStoreSystemModel.Context.cs">
@@ -243,6 +247,8 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>BookStoreSystemModel.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Areas\BookStoreAreas\Models\Cart.cs" />
+    <Compile Include="Areas\BookStoreAreas\Models\CartItem.cs" />
     <Compile Include="Areas\BookStoreAreas\Models\Customer.cs">
       <DependentUpon>BookStoreSystemModel.tt</DependentUpon>
     </Compile>
@@ -250,6 +256,7 @@
     <Compile Include="Areas\BookStoreAreas\Models\MainCategory.cs">
       <DependentUpon>BookStoreSystemModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Areas\BookStoreAreas\Models\Operation.cs" />
     <Compile Include="Areas\BookStoreAreas\Models\Order.cs">
       <DependentUpon>BookStoreSystemModel.tt</DependentUpon>
     </Compile>
@@ -266,6 +273,7 @@
     <Compile Include="Areas\BookStoreAreas\Models\SubCategory.cs">
       <DependentUpon>BookStoreSystemModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Areas\BookStoreAreas\ViewModels\ViewModel_AdminLogin.cs" />
     <Compile Include="Areas\BookStoreAreas\ViewModels\ViewModel_BookInformation.cs" />
     <Compile Include="Areas\BookStoreAreas\ViewModels\ViewModel_CustomerLogin.cs" />
     <Compile Include="Areas\BookStoreAreas\ViewModels\ViewModel_PublisherLogin.cs" />
@@ -382,6 +390,36 @@
   <ItemGroup>
     <Content Include="Areas\Area\images\儲值.jpg" />
     <Content Include="Areas\Area\images\捐血.jpg" />
+    <Content Include="Areas\BookStoreAreas\BookImages\19260753_1780353835325058_9057364200605072584_n.jpg" />
+    <Content Include="Areas\BookStoreAreas\BookImages\26144_league_of_legends_nidalee_lulu_and_tristana.jpg" />
+    <Content Include="Areas\BookStoreAreas\BookImages\別讓魔鬼住進你心裡.jpg" />
+    <Content Include="Areas\BookStoreAreas\BookImages\哈利波特.jpg" />
+    <Content Include="Areas\BookStoreAreas\BookImages\哈利波特7.jpg" />
+    <Content Include="Areas\BookStoreAreas\BookImages\商圈服務品質解密1.jpg" />
+    <Content Include="Areas\BookStoreAreas\BookImages\商圈經營與管理.jpg" />
+    <Content Include="Areas\BookStoreAreas\BookImages\實在年代：迎向永續.jpg" />
+    <Content Include="Areas\BookStoreAreas\BookImages\射鵰英雄傳1.jpg" />
+    <Content Include="Areas\BookStoreAreas\BookImages\射鵰英雄傳2.jpg" />
+    <Content Include="Areas\BookStoreAreas\BookImages\射鵰英雄傳3.jpg" />
+    <Content Include="Areas\BookStoreAreas\BookImages\心念對了，人生就對了.jpg" />
+    <Content Include="Areas\BookStoreAreas\BookImages\心念對了，人生就對了2.jpg" />
+    <Content Include="Areas\BookStoreAreas\BookImages\怎麼作研究：社會科學研究方法.jpg" />
+    <Content Include="Areas\BookStoreAreas\BookImages\愛與勇氣，生命無懼.jpg" />
+    <Content Include="Areas\BookStoreAreas\BookImages\愛與勇氣，生命無懼2.jpg" />
+    <Content Include="Areas\BookStoreAreas\BookImages\抓住飆股輕鬆賺.jpg" />
+    <Content Include="Areas\BookStoreAreas\BookImages\抓住飆股輕鬆賺2.jpg" />
+    <Content Include="Areas\BookStoreAreas\BookImages\活的自在就是好命.jpg" />
+    <Content Include="Areas\BookStoreAreas\BookImages\研究方法.jpg" />
+    <Content Include="Areas\BookStoreAreas\BookImages\研究方法2.jpg" />
+    <Content Include="Areas\BookStoreAreas\BookImages\社會科學的研究方法：批判實在論取徑.jpg" />
+    <Content Include="Areas\BookStoreAreas\BookImages\神鵰俠侶2.jpg" />
+    <Content Include="Areas\BookStoreAreas\BookImages\神鵰俠侶3.jpg" />
+    <Content Include="Areas\BookStoreAreas\BookImages\管理學%28第三版%29.jpg" />
+    <Content Include="Areas\BookStoreAreas\BookImages\管理學%28第三版%292.jpg" />
+    <Content Include="Areas\BookStoreAreas\BookImages\超級業務員的完勝攻防心法1.jpg" />
+    <Content Include="Areas\BookStoreAreas\BookImages\超級業務員的完勝攻防心法2.jpg" />
+    <Content Include="Areas\BookStoreAreas\BookImages\過得安穩便是贏家.jpg" />
+    <Content Include="Areas\BookStoreAreas\BookWebPageImages\網路書城.jpg" />
     <Content Include="Areas\BookStoreAreas\Models\BookStoreSystemModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>BookStoreSystemModel.edmx</DependentUpon>
@@ -649,9 +687,7 @@
     <Content Include="Areas\BookStoreAreas\Views\Account\PublisherLogin.cshtml" />
     <Content Include="Areas\BookStoreAreas\Views\Admin\AdminPublisherIndex.cshtml" />
     <Content Include="Areas\BookStoreAreas\Views\Admin\AdminPublisherEdit.cshtml" />
-    <Content Include="Areas\BookStoreAreas\Views\Admin\Index.cshtml" />
-    <Content Include="Areas\BookStoreAreas\Views\Admin\Insert.cshtml" />
-    <Content Include="Areas\BookStoreAreas\Views\Admin\MainCategories_Partial.cshtml" />
+    <Content Include="Areas\BookStoreAreas\Views\Admin\AllBookIndex.cshtml" />
     <Content Include="Areas\BookStoreAreas\Views\BookStore\BookIndex.cshtml" />
     <Content Include="Areas\BookStoreAreas\Views\BookStore\BookInsert.cshtml" />
     <Content Include="Areas\BookStoreAreas\Views\BookStore\Book_MainCategories_PartialView.cshtml" />
@@ -669,6 +705,15 @@
     <Content Include="Areas\Area\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\Area\Views\web.config" />
     <Content Include="Areas\Area\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\BookStoreAreas\Views\Account\AdminLogin.cshtml" />
+    <Content Include="Areas\BookStoreAreas\Views\Admin\AdminPage.cshtml" />
+    <Content Include="Areas\BookStoreAreas\Views\Customer\RandomBook_PartialView.cshtml" />
+    <Content Include="Areas\BookStoreAreas\Views\Customer\GetBookCategory.cshtml" />
+    <Content Include="Areas\BookStoreAreas\Views\Shared\Cart_PartialView.cshtml" />
+    <None Include="Properties\PublishProfiles\FourYears20170621052116 - Web Deploy.pubxml" />
+    <None Include="Properties\PublishProfiles\FourYears20170621072402 - Web Deploy.pubxml" />
+    <None Include="Properties\PublishProfiles\FourYears20170621072705 - Web Deploy.pubxml" />
+    <None Include="Properties\PublishProfiles\FourYears20170621102832 - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -725,6 +770,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Areas\BookStoreAreas\Views\Cart\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

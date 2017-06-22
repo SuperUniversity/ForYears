@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="superuniversityModel2.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="superuniversityModel2.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Author">
           <Key>
             <PropertyRef Name="AuthorID" />
@@ -36,6 +36,14 @@
           <Property Name="Image3" Type="nvarchar(max)" />
           <Property Name="BytesImage3" Type="image" />
           <Property Name="MainCategoryID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="BookStoreAdmin">
+          <Key>
+            <PropertyRef Name="AdminID" />
+          </Key>
+          <Property Name="AdminID" Type="int" Nullable="false" />
+          <Property Name="AdminName" Type="nvarchar" MaxLength="50" />
+          <Property Name="AdminPassword" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="Customer">
           <Key>
@@ -106,6 +114,7 @@
         <EntityContainer Name="superuniversityModel2StoreContainer">
           <EntitySet Name="Author" EntityType="Self.Author" Schema="BookStore" store:Type="Tables" />
           <EntitySet Name="Book" EntityType="Self.Book" Schema="BookStore" store:Type="Tables" />
+          <EntitySet Name="BookStoreAdmin" EntityType="Self.BookStoreAdmin" Schema="BookStore" store:Type="Tables" />
           <EntitySet Name="Customer" EntityType="Self.Customer" Schema="BookStore" store:Type="Tables" />
           <EntitySet Name="MainCategory" EntityType="Self.MainCategory" Schema="BookStore" store:Type="Tables" />
           <EntitySet Name="Order" EntityType="Self.Order" Schema="BookStore" store:Type="Tables" />
@@ -113,11 +122,21 @@
           <EntitySet Name="Publisher" EntityType="Self.Publisher" Schema="BookStore" store:Type="Tables" />
           <EntitySet Name="SubCategory" EntityType="Self.SubCategory" Schema="BookStore" store:Type="Tables" />
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="superuniversityModel2" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="superuniversityEntities4" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Author" EntityType="superuniversityModel2.Author" />
+          <EntitySet Name="Book" EntityType="superuniversityModel2.Book" />
+          <EntitySet Name="BookStoreAdmin" EntityType="superuniversityModel2.BookStoreAdmin" />
+          <EntitySet Name="Customer" EntityType="superuniversityModel2.Customer" />
+          <EntitySet Name="MainCategory" EntityType="superuniversityModel2.MainCategory" />
+          <EntitySet Name="Order" EntityType="superuniversityModel2.Order" />
+          <EntitySet Name="OrderDetail" EntityType="superuniversityModel2.OrderDetail" />
+          <EntitySet Name="Publisher" EntityType="superuniversityModel2.Publisher" />
+          <EntitySet Name="SubCategory" EntityType="superuniversityModel2.SubCategory" />
+        </EntityContainer>
         <EntityType Name="Author">
           <Key>
             <PropertyRef Name="AuthorID" />
@@ -130,14 +149,14 @@
             <PropertyRef Name="BookID" />
           </Key>
           <Property Name="BookID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="BookName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="BookName" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="SubCategoryID" Type="Int32" Nullable="false" />
           <Property Name="AuthorID" Type="Int32" Nullable="false" />
           <Property Name="PublisherID" Type="Int32" Nullable="false" />
           <Property Name="PublishDate" Type="DateTime" Precision="0" />
           <Property Name="Language" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="ListPrice" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
-          <Property Name="SalePrice" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="ListPrice" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="SalePrice" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
           <Property Name="BookDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="AuthorDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="OtherImformation" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
@@ -150,15 +169,23 @@
           <Property Name="BytesImage3" Type="Binary" MaxLength="Max" FixedLength="false" />
           <Property Name="MainCategoryID" Type="Int32" Nullable="false" />
         </EntityType>
+        <EntityType Name="BookStoreAdmin">
+          <Key>
+            <PropertyRef Name="AdminID" />
+          </Key>
+          <Property Name="AdminID" Type="Int32" Nullable="false" />
+          <Property Name="AdminName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="AdminPassword" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
         <EntityType Name="Customer">
           <Key>
             <PropertyRef Name="CustomerID" />
           </Key>
           <Property Name="CustomerID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="FullName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="FullName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="NickName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Account" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Account" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="EmailAddress" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Gender" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
@@ -171,7 +198,7 @@
             <PropertyRef Name="MainCategoryID" />
           </Key>
           <Property Name="MainCategoryID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="MainCategoryName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="MainCategoryName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="Order">
           <Key>
@@ -194,14 +221,14 @@
           <Property Name="OrderID" Type="Int32" Nullable="false" />
           <Property Name="BookID" Type="Int32" Nullable="false" />
           <Property Name="Quantity" Type="Int32" Nullable="false" />
-          <Property Name="UnitPrice" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="UnitPrice" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
         </EntityType>
         <EntityType Name="Publisher">
           <Key>
             <PropertyRef Name="PublisherID" />
           </Key>
           <Property Name="PublisherID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="PublisherName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PublisherName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="PublisherUserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="PublisherPassword" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="PublisherAdress" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
@@ -213,19 +240,9 @@
             <PropertyRef Name="SubCategoryID" />
           </Key>
           <Property Name="SubCategoryID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="SubCategoryName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="SubCategoryName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="MainCategoryID" Type="Int32" Nullable="false" />
         </EntityType>
-        <EntityContainer Name="superuniversityEntities4" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Author" EntityType="Self.Author" />
-          <EntitySet Name="Book" EntityType="Self.Book" />
-          <EntitySet Name="Customer" EntityType="Self.Customer" />
-          <EntitySet Name="MainCategory" EntityType="Self.MainCategory" />
-          <EntitySet Name="Order" EntityType="Self.Order" />
-          <EntitySet Name="OrderDetail" EntityType="Self.OrderDetail" />
-          <EntitySet Name="Publisher" EntityType="Self.Publisher" />
-          <EntitySet Name="SubCategory" EntityType="Self.SubCategory" />
-        </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -235,106 +252,115 @@
           <EntitySetMapping Name="Author">
             <EntityTypeMapping TypeName="superuniversityModel2.Author">
               <MappingFragment StoreEntitySet="Author">
-                <ScalarProperty Name="AuthorID" ColumnName="AuthorID" />
                 <ScalarProperty Name="AuthorName" ColumnName="AuthorName" />
+                <ScalarProperty Name="AuthorID" ColumnName="AuthorID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Book">
             <EntityTypeMapping TypeName="superuniversityModel2.Book">
               <MappingFragment StoreEntitySet="Book">
-                <ScalarProperty Name="BookID" ColumnName="BookID" />
-                <ScalarProperty Name="BookName" ColumnName="BookName" />
-                <ScalarProperty Name="SubCategoryID" ColumnName="SubCategoryID" />
-                <ScalarProperty Name="AuthorID" ColumnName="AuthorID" />
-                <ScalarProperty Name="PublisherID" ColumnName="PublisherID" />
-                <ScalarProperty Name="PublishDate" ColumnName="PublishDate" />
-                <ScalarProperty Name="Language" ColumnName="Language" />
-                <ScalarProperty Name="ListPrice" ColumnName="ListPrice" />
-                <ScalarProperty Name="SalePrice" ColumnName="SalePrice" />
-                <ScalarProperty Name="BookDescription" ColumnName="BookDescription" />
-                <ScalarProperty Name="AuthorDescription" ColumnName="AuthorDescription" />
-                <ScalarProperty Name="OtherImformation" ColumnName="OtherImformation" />
-                <ScalarProperty Name="OnShelfDate" ColumnName="OnShelfDate" />
-                <ScalarProperty Name="Image1" ColumnName="Image1" />
-                <ScalarProperty Name="BytesImage1" ColumnName="BytesImage1" />
-                <ScalarProperty Name="Image2" ColumnName="Image2" />
-                <ScalarProperty Name="BytesImage2" ColumnName="BytesImage2" />
-                <ScalarProperty Name="Image3" ColumnName="Image3" />
-                <ScalarProperty Name="BytesImage3" ColumnName="BytesImage3" />
                 <ScalarProperty Name="MainCategoryID" ColumnName="MainCategoryID" />
+                <ScalarProperty Name="BytesImage3" ColumnName="BytesImage3" />
+                <ScalarProperty Name="Image3" ColumnName="Image3" />
+                <ScalarProperty Name="BytesImage2" ColumnName="BytesImage2" />
+                <ScalarProperty Name="Image2" ColumnName="Image2" />
+                <ScalarProperty Name="BytesImage1" ColumnName="BytesImage1" />
+                <ScalarProperty Name="Image1" ColumnName="Image1" />
+                <ScalarProperty Name="OnShelfDate" ColumnName="OnShelfDate" />
+                <ScalarProperty Name="OtherImformation" ColumnName="OtherImformation" />
+                <ScalarProperty Name="AuthorDescription" ColumnName="AuthorDescription" />
+                <ScalarProperty Name="BookDescription" ColumnName="BookDescription" />
+                <ScalarProperty Name="SalePrice" ColumnName="SalePrice" />
+                <ScalarProperty Name="ListPrice" ColumnName="ListPrice" />
+                <ScalarProperty Name="Language" ColumnName="Language" />
+                <ScalarProperty Name="PublishDate" ColumnName="PublishDate" />
+                <ScalarProperty Name="PublisherID" ColumnName="PublisherID" />
+                <ScalarProperty Name="AuthorID" ColumnName="AuthorID" />
+                <ScalarProperty Name="SubCategoryID" ColumnName="SubCategoryID" />
+                <ScalarProperty Name="BookName" ColumnName="BookName" />
+                <ScalarProperty Name="BookID" ColumnName="BookID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BookStoreAdmin">
+            <EntityTypeMapping TypeName="superuniversityModel2.BookStoreAdmin">
+              <MappingFragment StoreEntitySet="BookStoreAdmin">
+                <ScalarProperty Name="AdminPassword" ColumnName="AdminPassword" />
+                <ScalarProperty Name="AdminName" ColumnName="AdminName" />
+                <ScalarProperty Name="AdminID" ColumnName="AdminID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Customer">
             <EntityTypeMapping TypeName="superuniversityModel2.Customer">
               <MappingFragment StoreEntitySet="Customer">
-                <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
-                <ScalarProperty Name="FullName" ColumnName="FullName" />
-                <ScalarProperty Name="NickName" ColumnName="NickName" />
-                <ScalarProperty Name="Account" ColumnName="Account" />
-                <ScalarProperty Name="Password" ColumnName="Password" />
-                <ScalarProperty Name="EmailAddress" ColumnName="EmailAddress" />
-                <ScalarProperty Name="Phone" ColumnName="Phone" />
-                <ScalarProperty Name="Gender" ColumnName="Gender" />
-                <ScalarProperty Name="IdentityCard" ColumnName="IdentityCard" />
-                <ScalarProperty Name="BirthDay" ColumnName="BirthDay" />
                 <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="BirthDay" ColumnName="BirthDay" />
+                <ScalarProperty Name="IdentityCard" ColumnName="IdentityCard" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="EmailAddress" ColumnName="EmailAddress" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Account" ColumnName="Account" />
+                <ScalarProperty Name="NickName" ColumnName="NickName" />
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
+                <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="MainCategory">
             <EntityTypeMapping TypeName="superuniversityModel2.MainCategory">
               <MappingFragment StoreEntitySet="MainCategory">
-                <ScalarProperty Name="MainCategoryID" ColumnName="MainCategoryID" />
                 <ScalarProperty Name="MainCategoryName" ColumnName="MainCategoryName" />
+                <ScalarProperty Name="MainCategoryID" ColumnName="MainCategoryID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Order">
             <EntityTypeMapping TypeName="superuniversityModel2.Order">
               <MappingFragment StoreEntitySet="Order">
-                <ScalarProperty Name="OrderID" ColumnName="OrderID" />
-                <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
-                <ScalarProperty Name="OrderState" ColumnName="OrderState" />
-                <ScalarProperty Name="RecipientName" ColumnName="RecipientName" />
-                <ScalarProperty Name="OrderDate" ColumnName="OrderDate" />
-                <ScalarProperty Name="ShippingDate" ColumnName="ShippingDate" />
-                <ScalarProperty Name="DeliveryDate" ColumnName="DeliveryDate" />
                 <ScalarProperty Name="DeliveryAddress" ColumnName="DeliveryAddress" />
+                <ScalarProperty Name="DeliveryDate" ColumnName="DeliveryDate" />
+                <ScalarProperty Name="ShippingDate" ColumnName="ShippingDate" />
+                <ScalarProperty Name="OrderDate" ColumnName="OrderDate" />
+                <ScalarProperty Name="RecipientName" ColumnName="RecipientName" />
+                <ScalarProperty Name="OrderState" ColumnName="OrderState" />
+                <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
+                <ScalarProperty Name="OrderID" ColumnName="OrderID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="OrderDetail">
             <EntityTypeMapping TypeName="superuniversityModel2.OrderDetail">
               <MappingFragment StoreEntitySet="OrderDetail">
-                <ScalarProperty Name="OrderDetailID" ColumnName="OrderDetailID" />
-                <ScalarProperty Name="OrderID" ColumnName="OrderID" />
-                <ScalarProperty Name="BookID" ColumnName="BookID" />
-                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
                 <ScalarProperty Name="UnitPrice" ColumnName="UnitPrice" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="BookID" ColumnName="BookID" />
+                <ScalarProperty Name="OrderID" ColumnName="OrderID" />
+                <ScalarProperty Name="OrderDetailID" ColumnName="OrderDetailID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Publisher">
             <EntityTypeMapping TypeName="superuniversityModel2.Publisher">
               <MappingFragment StoreEntitySet="Publisher">
-                <ScalarProperty Name="PublisherID" ColumnName="PublisherID" />
-                <ScalarProperty Name="PublisherName" ColumnName="PublisherName" />
-                <ScalarProperty Name="PublisherUserName" ColumnName="PublisherUserName" />
-                <ScalarProperty Name="PublisherPassword" ColumnName="PublisherPassword" />
-                <ScalarProperty Name="PublisherAdress" ColumnName="PublisherAdress" />
-                <ScalarProperty Name="PublisherPhone" ColumnName="PublisherPhone" />
                 <ScalarProperty Name="PublisherEmail" ColumnName="PublisherEmail" />
+                <ScalarProperty Name="PublisherPhone" ColumnName="PublisherPhone" />
+                <ScalarProperty Name="PublisherAdress" ColumnName="PublisherAdress" />
+                <ScalarProperty Name="PublisherPassword" ColumnName="PublisherPassword" />
+                <ScalarProperty Name="PublisherUserName" ColumnName="PublisherUserName" />
+                <ScalarProperty Name="PublisherName" ColumnName="PublisherName" />
+                <ScalarProperty Name="PublisherID" ColumnName="PublisherID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="SubCategory">
             <EntityTypeMapping TypeName="superuniversityModel2.SubCategory">
               <MappingFragment StoreEntitySet="SubCategory">
-                <ScalarProperty Name="SubCategoryID" ColumnName="SubCategoryID" />
-                <ScalarProperty Name="SubCategoryName" ColumnName="SubCategoryName" />
                 <ScalarProperty Name="MainCategoryID" ColumnName="MainCategoryID" />
+                <ScalarProperty Name="SubCategoryName" ColumnName="SubCategoryName" />
+                <ScalarProperty Name="SubCategoryID" ColumnName="SubCategoryID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

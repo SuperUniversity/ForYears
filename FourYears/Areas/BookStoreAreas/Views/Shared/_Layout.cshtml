@@ -34,7 +34,28 @@
     @*<link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">*@
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+    
     <script src="~/Scripts/modernizr-2.6.2.js"></script>
+    @*<script type="text/javascript">
+        //網頁載入完成時執行之function
+        $(document).ready(function () {
+            console.log("ready!");
+        });
+
+        //加入編號為productId的商品進購物車
+        function AddToCart(productId) {
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Action("AddToCart", "Cart")',
+                data: { id: productId }
+            })
+            .done(function (msg) {
+                //將回傳的購物車頁面 填入 li#Cart
+                $('li#Cart').html(msg);
+            });
+        }
+
+    </script>*@
 
     @RenderSection("styles", false)
 </head>
@@ -52,9 +73,16 @@
 
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                
                 <ul class="nav navbar-nav navbar-right">
                     <li>
+                        <a href="@Url.Action("Browse","Customer")"><span class="glyphicon glyphicon-home"></span> 商城首頁</a>
+                    </li>
+                    <li>
                         <a href="@Url.Action("Cart","Account")"><span class="glyphicon glyphicon-shopping-cart"></span> 購物車</a>
+                    </li>
+                    <li id="Cart">
+                        @Html.Partial("Cart_PartialView")
                     </li>
                     <li>
                         @{
@@ -65,15 +93,33 @@
 
                             else if (Request.Cookies["Account"] != null && Request.Cookies["PublisherUserName"] == null)
                             {
-                                @Html.ActionLink(Request.Cookies["Account"].Value + " / " + HttpUtility.UrlDecode(Request.Cookies["FullName"].Value) + "(" + HttpUtility.UrlDecode(Request.Cookies["NickName"].Value) + ")" + " 登出", "Logout", "Account", null, new { @class = "glyphicon glyphicon-user" });
+                                @Html.ActionLink(Request.Cookies["Account"].Value + " / " + HttpUtility.UrlDecode(Request.Cookies["FullName"].Value) +"("+ HttpUtility.UrlDecode(Request.Cookies["NickName"].Value)+")"+ " 個人管理 /", "CustomerProfile", "Customer", null, new { @class = "glyphicon glyphicon-cog" });
                             }
                             else if (Request.Cookies["Account"] == null && Request.Cookies["PublisherUserName"] != null)
                             {
-                                @Html.ActionLink(Request.Cookies["PublisherUserName"].Value + " / " + HttpUtility.UrlDecode(Request.Cookies["PublisherName"].Value) + " 登出", "Logout", "Account", null, new { @class = "glyphicon glyphicon-user" });
+                                @Html.ActionLink(Request.Cookies["PublisherUserName"].Value + " / " + HttpUtility.UrlDecode(Request.Cookies["PublisherName"].Value) + " 廠商管理 /", "PublisherProfile", "BookStore", null, new { @class = "glyphicon glyphicon-user" });
                             }
                             else
                             {
                                 @Html.ActionLink("登入/註冊", "CustomerLogin", "Account", null, new { @class = "glyphicon glyphicon-user" });
+                            }
+                        }
+                    </li>
+                    <li>
+                        @{
+                            if (Request.Cookies["Account"] == null && Request.Cookies["PublisherUserName"] == null)
+                            {
+                            }
+                            else if (Request.Cookies["Account"] != null && Request.Cookies["PublisherUserName"] == null)
+                            {
+                                @Html.ActionLink(" 登出", "Logout", "Account", null, new { @class = "glyphicon glyphicon-log-out" });
+                            }
+                            else if (Request.Cookies["Account"] == null && Request.Cookies["PublisherUserName"] != null)
+                            {
+                                @Html.ActionLink(" 登出", "Logout", "Account", null, new { @class = "glyphicon glyphicon-log-out" });
+                            }
+                            else
+                            {
                             }
                         }
                     </li>
@@ -104,9 +150,10 @@
         </div>
     </footer>
 
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
     @*<script src="https://cdnjs.cloudflare.com/ajax/libs/startbootstrap-freelancer/3.3.7/js/freelancer.min.js"></script>*@
-    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>    
     @RenderSection("scripts", false)
 </body>
 </html>

@@ -21,10 +21,19 @@ namespace FourYears.Areas.BookStoreAreas.Controllers
 
         private superuniversityEntities4 _entity = new superuniversityEntities4();
 
-        //test
+        public ActionResult RandomBook_PartialView()
+        {
+            Random r = new Random();
+            ViewBag.randomBookID = r.Next(33, 40);
+            int bookid = ViewBag.randomBookID;
+            var result =  db_Book.GetByID(bookid);
+            return View(result);
+        }
+
+
         public ActionResult Browse(int id = 0)
         {
-            ViewBag.Message = string.Format("全部商品");
+            //ViewBag.Message = string.Format("全部商品");
             //bookinfo.Author = db_Author.GetAll();
             //bookinfo.Book = db_Book.GetAll().Where(b => b.SubCategoryID == id).ToList();
 
@@ -67,33 +76,6 @@ namespace FourYears.Areas.BookStoreAreas.Controllers
 
             return View(result.ToList());
         }
-
-        //[HttpPost]
-        //public ActionResult Browse(int id=0)
-        //{
-        //    ViewModel_BookInfo bookinfo = new ViewModel_BookInfo();
-
-        //    ViewBag.Message = string.Format("全部商品");
-        //    //bookinfo.Author = db_Author.GetAll();
-        //    //bookinfo.Book = db_Book.GetAll().Where(b => b.SubCategoryID == id).ToList();
-        //    var result = from book in db_Book.GetAll().Where(b => b.SubCategoryID == id)
-        //                 join author in db_Author.GetAll() on book.AuthorID equals author.AuthorID
-        //                 join subCategory in db_SubCategory.GetAll() on book.SubCategoryID equals subCategory.SubCategoryID
-        //                 join publisher in db_Publisher.GetAll() on book.PublisherID equals publisher.PublisherID
-        //                 select new ViewModel_BookInformation
-        //                 {
-        //                     BookName = book.BookName,
-        //                     AuthorName = author.AuthorName,
-        //                     SubCategoryName = subCategory.SubCategoryName,
-        //                     PublisherName = publisher.PublisherName,
-        //                     ListPrice = book.ListPrice,
-        //                     SalePrice = book.SalePrice,
-        //                     Discount = book.Discount,
-        //                     DiscountPrice = book.DiscountPrice,
-        //                 };
-
-        //    return View(result.ToList());
-        //}
 
         public ActionResult CustomerProfile()    //顧客會員:管理介面(登入成功後跳轉)
         {
@@ -165,6 +147,12 @@ namespace FourYears.Areas.BookStoreAreas.Controllers
             Book book = db_Book.GetByID(id);
             byte[] img = book.BytesImage3;
             return File(img, "image/jpeg");
+        }
+
+
+        public ActionResult GetBookCategory()    //PartialView:嵌入分類列表
+        {
+            return PartialView(db_SubCategory.GetAll());
         }
     }
 }

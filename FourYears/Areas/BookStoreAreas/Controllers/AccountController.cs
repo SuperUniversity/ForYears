@@ -13,6 +13,30 @@ namespace FourYears.Areas.BookStoreAreas.Controllers
         // GET: BookStoreAreas/Account
         private IRepository_BookStoreSystemModel<Customer> db_Customer = new Repository_BookStoreSystemModel<Customer>();
         private IRepository_BookStoreSystemModel<Publisher> db_Publisher = new Repository_BookStoreSystemModel<Publisher>();
+        private IRepository_BookStoreSystemModel<BookStoreAdmin> db_BookStoreAdmin = new Repository_BookStoreSystemModel<BookStoreAdmin>();
+
+
+        [HttpGet]
+        public ActionResult AdminLogin()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult AdminLogin(ViewModel_AdminLogin vm_AdminLogin)
+        {
+            if (ModelState.IsValid)
+            {
+                var LoginAdmin = db_BookStoreAdmin.GetAll().FirstOrDefault(bookStoreAdmin => bookStoreAdmin.AdminName == vm_AdminLogin.AdminName && bookStoreAdmin.AdminPassword == bookStoreAdmin.AdminPassword);
+                if  (LoginAdmin != null)
+                {
+                    Response.Cookies["AdminName"].Value = LoginAdmin.AdminName;
+                    Response.Cookies["AdminID"].Value = LoginAdmin.AdminID.ToString();
+                    return RedirectToAction("AdminPage", "Admin", new { Area = "BookStoreAreas" });
+                }
+            }
+            return View();
+        }
 
         //一般顧客
         [HttpGet]
@@ -43,6 +67,8 @@ namespace FourYears.Areas.BookStoreAreas.Controllers
             Response.Cookies["PublisherUserName"].Expires = DateTime.Now.AddSeconds(-1);
             Response.Cookies["PublisherName"].Expires = DateTime.Now.AddSeconds(-1);
             Response.Cookies["PublisherID"].Expires = DateTime.Now.AddSeconds(-1);
+            Response.Cookies["AdminName"].Expires = DateTime.Now.AddSeconds(-1);
+            Response.Cookies["AdminID"].Expires = DateTime.Now.AddSeconds(-1);
             Session.Abandon();
             return View();
         }
@@ -85,6 +111,8 @@ namespace FourYears.Areas.BookStoreAreas.Controllers
             Response.Cookies["PublisherName"].Expires = DateTime.Now.AddSeconds(-1);
             Response.Cookies["PublisherID"].Expires = DateTime.Now.AddSeconds(-1);
 
+            Response.Cookies["AdminName"].Expires = DateTime.Now.AddSeconds(-1);
+            Response.Cookies["AdminID"].Expires = DateTime.Now.AddSeconds(-1);
             Session.Abandon();
             return RedirectToAction("Browse", "Customer", new { Area = "BookStoreAreas" });
         }

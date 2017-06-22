@@ -1,0 +1,56 @@
+﻿@model FourYears.Areas.BookStoreAreas.ViewModels.ViewModel_AdminLogin
+
+@{
+    ViewBag.Title = "AdminLogin";
+}
+
+@section styles{
+    <style>
+        .barfont {
+            font-size: 18px;
+            font-family: 'Microsoft JhengHei';
+            font-weight: bold;
+        }
+    </style>
+}
+
+<div class="container">
+    <ul class="breadcrumb barfont">
+        <li>@Html.ActionLink("商城首頁", "Browse", "Customer", new { area = "BookStoreAreas" }, null)</li>
+        <li style="float:right">@Html.ActionLink("系統管理員", "AdminLogin", "Account", new { area = "BookStoreAreas" }, null)</li>
+        <li style="float:right">@Html.ActionLink("廠商註冊", "PublisherRegister", "Account", new { area = "BookStoreAreas" }, null)</li>
+        <li style="float:right">@Html.ActionLink("廠商登入", "PublisherLogin", "Account", new { area = "BookStoreAreas" }, null)</li>
+        <li style="float:right">@Html.ActionLink("會員註冊", "CustomerRegister", "Account", new { area = "BookStoreAreas" }, null)</li>
+        <li style="float:right">@Html.ActionLink("會員登入", "CustomerLogin", "Account", new { area = "BookStoreAreas" }, null)</li>
+    </ul>
+</div>
+
+<div class="container">
+    <h2 style="font-family:'Microsoft JhengHei';font-weight:bold;font-size:24px;"><span style="color:orangered">管理員</span>登入</h2>
+    <hr />
+    @using (Html.BeginForm("AdminLogin", "Account", FormMethod.Post, new { @class = "form-horizontal", novalidate = "novalidate" }))
+    {
+        <div class="form-group">
+            @Html.LabelFor(admin => admin.AdminName, new { @class = "col-sm-2 control-label" })
+            <div class="col-sm-10">
+                @Html.EditorFor(admin => admin.AdminName, new { htmlAttributes = new { @class = "form-control", placeholder = "管理員帳號" } })
+                @Html.ValidationMessageFor(admin => admin.AdminName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(admin => admin.AdminPassword, new { @class = "col-sm-2 control-label" })
+            <div class="col-sm-10">
+                @Html.EditorFor(admin => admin.AdminPassword, new { htmlAttributes = new { @class = "form-control", placeholder = "管理員密碼" } })
+                @Html.ValidationMessageFor(admin => admin.AdminPassword, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <button type="submit" class="btn btn-primary">登入</button>
+            </div>
+        </div>
+    }
+</div>
+
+
+
