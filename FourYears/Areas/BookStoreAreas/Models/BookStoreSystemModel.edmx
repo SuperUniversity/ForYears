@@ -37,6 +37,17 @@
           <Property Name="BytesImage3" Type="image" />
           <Property Name="MainCategoryID" Type="int" Nullable="false" />
         </EntityType>
+        <EntityType Name="BookItemCommet">
+          <Key>
+            <PropertyRef Name="BookCommetID" />
+          </Key>
+          <Property Name="BookCommetID" Type="int" Nullable="false" />
+          <Property Name="CustomerName" Type="nvarchar" MaxLength="50" />
+          <Property Name="BookCommet1" Type="nvarchar(max)" />
+          <Property Name="CreateDate" Type="datetime" />
+          <Property Name="BookID" Type="int" />
+          <Property Name="CustomerNickName" Type="nvarchar" MaxLength="50" />
+        </EntityType>
         <EntityType Name="BookStoreAdmin">
           <Key>
             <PropertyRef Name="AdminID" />
@@ -114,6 +125,7 @@
         <EntityContainer Name="superuniversityModel2StoreContainer">
           <EntitySet Name="Author" EntityType="Self.Author" Schema="BookStore" store:Type="Tables" />
           <EntitySet Name="Book" EntityType="Self.Book" Schema="BookStore" store:Type="Tables" />
+          <EntitySet Name="BookItemCommet" EntityType="Self.BookItemCommet" Schema="BookStore" store:Type="Tables" />
           <EntitySet Name="BookStoreAdmin" EntityType="Self.BookStoreAdmin" Schema="BookStore" store:Type="Tables" />
           <EntitySet Name="Customer" EntityType="Self.Customer" Schema="BookStore" store:Type="Tables" />
           <EntitySet Name="MainCategory" EntityType="Self.MainCategory" Schema="BookStore" store:Type="Tables" />
@@ -129,6 +141,7 @@
         <EntityContainer Name="superuniversityEntities4" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Author" EntityType="superuniversityModel2.Author" />
           <EntitySet Name="Book" EntityType="superuniversityModel2.Book" />
+          <EntitySet Name="BookItemCommet" EntityType="superuniversityModel2.BookItemCommet" />
           <EntitySet Name="BookStoreAdmin" EntityType="superuniversityModel2.BookStoreAdmin" />
           <EntitySet Name="Customer" EntityType="superuniversityModel2.Customer" />
           <EntitySet Name="MainCategory" EntityType="superuniversityModel2.MainCategory" />
@@ -168,6 +181,17 @@
           <Property Name="Image3" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="BytesImage3" Type="Binary" MaxLength="Max" FixedLength="false" />
           <Property Name="MainCategoryID" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="BookItemCommet">
+          <Key>
+            <PropertyRef Name="BookCommetID" />
+          </Key>
+          <Property Name="BookCommetID" Type="Int32" Nullable="false" />
+          <Property Name="CustomerName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="BookCommet1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CreateDate" Type="DateTime" Precision="3" />
+          <Property Name="BookID" Type="Int32" />
+          <Property Name="CustomerNickName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="BookStoreAdmin">
           <Key>
@@ -243,7 +267,7 @@
           <Property Name="SubCategoryName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="MainCategoryID" Type="Int32" Nullable="false" />
         </EntityType>
-      </Schema>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
@@ -280,6 +304,18 @@
                 <ScalarProperty Name="SubCategoryID" ColumnName="SubCategoryID" />
                 <ScalarProperty Name="BookName" ColumnName="BookName" />
                 <ScalarProperty Name="BookID" ColumnName="BookID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BookItemCommet">
+            <EntityTypeMapping TypeName="superuniversityModel2.BookItemCommet">
+              <MappingFragment StoreEntitySet="BookItemCommet">
+                <ScalarProperty Name="CustomerNickName" ColumnName="CustomerNickName" />
+                <ScalarProperty Name="BookID" ColumnName="BookID" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="BookCommet1" ColumnName="BookCommet1" />
+                <ScalarProperty Name="CustomerName" ColumnName="CustomerName" />
+                <ScalarProperty Name="BookCommetID" ColumnName="BookCommetID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

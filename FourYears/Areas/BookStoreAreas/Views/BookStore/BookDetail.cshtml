@@ -1,8 +1,18 @@
 ﻿@model FourYears.Areas.BookStoreAreas.ViewModels.ViewModel_BookInformation
 
 @{
-    ViewBag.Title = "BookDetail";
-}
+                ViewBag.Title = "BookDetail";
+
+                var commentList = new List<FourYears.Areas.BookStoreAreas.Models.BookItemCommet>();
+                using (FourYears.Areas.BookStoreAreas.Models.superuniversityEntities4 db = new FourYears.Areas.BookStoreAreas.Models.superuniversityEntities4() )
+                {
+                    commentList = (from s in db.BookItemCommet
+                                   where s.BookID == this.Model.BookID
+                                   select s).ToList();
+                }
+            }
+
+
 
 <div class="row">
     <div class="col-lg-2">
@@ -16,7 +26,7 @@
                 <div class="col-lg-7">
                     <div class="col-lg-12">
                         @if (Model.BytesImage1 != null)
-                        {
+            {
                             <div class="col-lg-8 padFix bigimg imageback" style="margin:10px">
                                 <span class="photo_b">
                                     <img src="@Url.Action("GetBookImage1","Customer",new {id= ViewBag.bid })" style="width:350px;height:350px" />
@@ -82,6 +92,41 @@
         <p style="font-size:larger;font-family:'Microsoft JhengHei';font-weight:bold;font-size:26px;">@Html.LabelFor(book => book.OtherImformation)</p>
         <hr />
         <p style="font-size:larger;font-family:'Microsoft JhengHei';font-weight:bold;font-size:18px;">@Html.DisplayFor(book => book.OtherImformation)</p>
+    </div>
+
+    <hr />
+    <div>
+        <div>
+            @Html.Label("相關留言", new { })
+            <hr />
+        </div>
+
+        <div>
+            @using (Html.BeginForm("AddBookComment", "Customer", new { id = Model.BookID }, FormMethod.Post, new { }))
+            {
+                if (Request.Cookies["FullName"] != null)
+                {
+                    @Html.TextArea("Content", "", new { rows = "5", style = "width:1000px" })
+                    <input type="submit" value="留言" class="btn btn-danger" style="margin-top:60px" />
+                }
+                else
+                {
+                    @Html.TextArea("Content", "", new { rows = "5", style = "width:1000px" })
+                    @*<input type="url"  value="留言" class="btn btn-default" style="margin-top:60px" />*@
+                    <a href="@Url.Action("CustomerLogin","Account",new { Area="BookStoreAreas"})" class="btn btn-danger" style="margin-top:60px">留言</a>
+                }
+
+            }
+        </div>
+        <div>
+            @foreach (var comment in commentList)
+            {
+                <h4>@comment.CustomerName (@comment.CustomerNickName)：</h4>
+                <span>@comment.BookCommet1</span>
+                <p>(@comment.CreateDate)</p>
+                <hr />
+            }
+        </div>
     </div>
     <div class="col-lg-2">
 

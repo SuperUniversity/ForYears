@@ -229,6 +229,9 @@
     <Compile Include="Areas\BookStoreAreas\Models\Book.cs">
       <DependentUpon>BookStoreSystemModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Areas\BookStoreAreas\Models\BookItemCommet.cs">
+      <DependentUpon>BookStoreSystemModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Areas\BookStoreAreas\Models\BookStoreAdmin.cs">
       <DependentUpon>BookStoreSystemModel.tt</DependentUpon>
     </Compile>

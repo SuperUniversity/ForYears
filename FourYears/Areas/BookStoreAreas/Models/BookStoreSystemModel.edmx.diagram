@@ -7,13 +7,14 @@
       <Diagram DiagramId="6336c01c0e66419c908401b5ff9b8cf2" Name="Diagram1">
         <EntityTypeShape EntityType="superuniversityModel2.Author" Width="1.5" PointX="0.75" PointY="0.75" />
         <EntityTypeShape EntityType="superuniversityModel2.Book" Width="1.5" PointX="2.75" PointY="0.75" />
-        <EntityTypeShape EntityType="superuniversityModel2.BookStoreAdmin" Width="1.5" PointX="4.75" PointY="0.75" />
-        <EntityTypeShape EntityType="superuniversityModel2.Customer" Width="1.5" PointX="4.75" PointY="3.75" />
-        <EntityTypeShape EntityType="superuniversityModel2.MainCategory" Width="1.5" PointX="6.75" PointY="0.75" />
-        <EntityTypeShape EntityType="superuniversityModel2.Order" Width="1.5" PointX="0.75" PointY="6.75" />
-        <EntityTypeShape EntityType="superuniversityModel2.OrderDetail" Width="1.5" PointX="6.75" PointY="3.75" />
-        <EntityTypeShape EntityType="superuniversityModel2.Publisher" Width="1.5" PointX="6.75" PointY="6.75" />
-        <EntityTypeShape EntityType="superuniversityModel2.SubCategory" Width="1.5" PointX="2.75" PointY="7.75" />
+        <EntityTypeShape EntityType="superuniversityModel2.BookItemCommet" Width="1.5" PointX="4.75" PointY="0.75" />
+        <EntityTypeShape EntityType="superuniversityModel2.BookStoreAdmin" Width="1.5" PointX="4.75" PointY="3.75" />
+        <EntityTypeShape EntityType="superuniversityModel2.Customer" Width="1.5" PointX="6.75" PointY="0.75" />
+        <EntityTypeShape EntityType="superuniversityModel2.MainCategory" Width="1.5" PointX="0.75" PointY="6.75" />
+        <EntityTypeShape EntityType="superuniversityModel2.Order" Width="1.5" PointX="2.75" PointY="6.75" />
+        <EntityTypeShape EntityType="superuniversityModel2.OrderDetail" Width="1.5" PointX="6.75" PointY="4.75" />
+        <EntityTypeShape EntityType="superuniversityModel2.Publisher" Width="1.5" PointX="4.75" PointY="7.75" />
+        <EntityTypeShape EntityType="superuniversityModel2.SubCategory" Width="1.5" PointX="6.75" PointY="7.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -12,18 +12,13 @@ namespace FourYears.Areas.BookStoreAreas.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Customer
+    public partial class BookItemCommet
     {
-        public int CustomerID { get; set; }
-        public string FullName { get; set; }
-        public string NickName { get; set; }
-        public string Account { get; set; }
-        public string Password { get; set; }
-        public string EmailAddress { get; set; }
-        public string Phone { get; set; }
-        public string Gender { get; set; }
-        public string IdentityCard { get; set; }
-        public Nullable<System.DateTime> BirthDay { get; set; }
-        public string Address { get; set; }
+        public int BookCommetID { get; set; }
+        public string CustomerName { get; set; }
+        public string BookCommet1 { get; set; }
+        public Nullable<System.DateTime> CreateDate { get; set; }
+        public Nullable<int> BookID { get; set; }
+        public string CustomerNickName { get; set; }
     }
 }

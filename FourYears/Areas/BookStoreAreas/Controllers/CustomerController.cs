@@ -10,6 +10,9 @@ namespace FourYears.Areas.BookStoreAreas.Controllers
 {
     public class CustomerController : Controller
     {
+        superuniversityEntities4 db = new superuniversityEntities4();
+        IRepository_BookStoreSystemModel<Book> Book = new Repository_BookStoreSystemModel<Book>();
+
         // GET: BookStoreAreas/Customer
         // GET: BookStoreAreas/Customer
         //private IRepository_BookStoreSystemModel<ViewModel_BookInformation> db_Book = new Repository_BookStoreSystemModel<ViewModel_BookInformation>();
@@ -18,6 +21,7 @@ namespace FourYears.Areas.BookStoreAreas.Controllers
         private IRepository_BookStoreSystemModel<SubCategory> db_SubCategory = new Repository_BookStoreSystemModel<SubCategory>();
         private IRepository_BookStoreSystemModel<Publisher> db_Publisher = new Repository_BookStoreSystemModel<Publisher>();
         private IRepository_BookStoreSystemModel<Customer> db_Customer = new Repository_BookStoreSystemModel<Customer>();
+        private IRepository_BookStoreSystemModel<BookItemCommet> db_BookItemCommet = new Repository_BookStoreSystemModel<BookItemCommet>();
 
         private superuniversityEntities4 _entity = new superuniversityEntities4();
 
@@ -26,7 +30,7 @@ namespace FourYears.Areas.BookStoreAreas.Controllers
             Random r = new Random();
             ViewBag.randomBookID = r.Next(33, 40);
             int bookid = ViewBag.randomBookID;
-            var result =  db_Book.GetByID(bookid);
+            var result = db_Book.GetByID(bookid);
             return View(result);
         }
 
@@ -153,6 +157,30 @@ namespace FourYears.Areas.BookStoreAreas.Controllers
         public ActionResult GetBookCategory()    //PartialView:嵌入分類列表
         {
             return PartialView(db_SubCategory.GetAll());
+        }
+
+
+        [HttpPost]
+        public ActionResult AddBookComment(int id, string Content)
+        {
+            var UserName = HttpUtility.UrlDecode(Request.Cookies["FullName"].Value);
+            var UserNickName = HttpUtility.UrlDecode(Request.Cookies["NickName"].Value);
+            var TimeNow = DateTime.Now;
+            var Comment = new BookItemCommet()
+            {
+                BookID = id,
+                BookCommet1 = Content,
+                CustomerName = UserName,
+                CustomerNickName = UserNickName,
+                CreateDate = TimeNow
+            };
+            using (superuniversityEntities4 _Entity = new superuniversityEntities4())
+            {
+                _Entity.BookItemCommet.Add(Comment);
+                _Entity.SaveChanges();
+            }
+
+            return RedirectToAction("BookDetail", "BookStore",new { id = id });
         }
     }
 }

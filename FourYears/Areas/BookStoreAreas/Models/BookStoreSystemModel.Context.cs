@@ -27,6 +27,7 @@ namespace FourYears.Areas.BookStoreAreas.Models
     
         public virtual DbSet<Author> Author { get; set; }
         public virtual DbSet<Book> Book { get; set; }
+        public virtual DbSet<BookItemCommet> BookItemCommet { get; set; }
         public virtual DbSet<BookStoreAdmin> BookStoreAdmin { get; set; }
         public virtual DbSet<Customer> Customer { get; set; }
         public virtual DbSet<MainCategory> MainCategory { get; set; }

@@ -227,7 +227,7 @@ namespace FourYears.Areas.BookStoreAreas.Controllers
             return View(result);
         }
 
-        public ActionResult BookDetail(int id = 0)    //單筆書本資訊
+        public ActionResult BookDetail(int id = 1)    //單筆書本資訊
         {
             if (id != 0)
             {
