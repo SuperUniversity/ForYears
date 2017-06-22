@@ -40,6 +40,9 @@
         table td{
             font-size:15px
         }
+        tr td:first-child{
+            width:100px;
+        }
     </style>
     }
 
@@ -51,7 +54,7 @@
     <hr />
 
     <div class="row slefBlock">
-        <div class="col-md-4 slefBlock">
+        <div class="col-md-5 slefBlock">
             <table>
                 <tbody>
                     <tr hidden="hidden">
@@ -70,7 +73,6 @@
                             @Html.DisplayFor(model => model.Semester)
                         </td>
                     </tr>
-
 
 
 
@@ -151,10 +153,10 @@
                             @Html.DisplayNameFor(model => model.Note)：
                         </td>
                         <td>
-                            @Html.DisplayNameFor(model => model.Note)：
+                            @Html.DisplayFor(model => model.Note)
                         </td>
                     </tr>
-                    <tr>
+                    <tr hidden="hidden">
                         <td>
                             @Html.DisplayNameFor(model => model.lastModified)：
                         </td>

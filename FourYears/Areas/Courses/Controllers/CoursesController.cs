@@ -96,6 +96,7 @@ namespace MvcClient.Areas.Courses.Controllers
                 }
                 else
                 {
+                    ViewBag.rankingLen = 0;
                     ViewBag.avgDeepness = "尚無評價資料";
                     ViewBag.avgRelaxing = "尚無評價資料";
                     ViewBag.avgSweetness = "尚無評價資料";
@@ -105,9 +106,21 @@ namespace MvcClient.Areas.Courses.Controllers
 
                 if (SingleCourse.commentdata == null)
                 {
-                    SingleCourse.commentdata = CoursesControllerUtl.generateFirstManagerComment(); ;
+                    SingleCourse.commentdata = CoursesControllerUtl.generateFirstManagerComment();
+                }
+                else
+                {
+                    List<Comment> commentData = SingleCourse.commentdata;
+                    foreach (Comment comment in commentData)
+                    {
+                        if (comment.anonym)
+                        {
+                            comment.name = "匿名評論";
+                        }
+                    }
                 }
 
+                ViewBag.commentLen = SingleCourse.commentdata.Count();
                 SingleCourse.commentdata = (from c in SingleCourse.commentdata orderby c.lastModified descending select c).ToList();
             }
             else
@@ -160,6 +173,23 @@ namespace MvcClient.Areas.Courses.Controllers
 
         public ActionResult GetComments(List<Comment> commentData)
         {
+            //if (commentData != null)
+            //{
+            //    ViewBag.commentLen = commentData.Count();
+            //    foreach(Comment comment in commentData)
+            //    {
+            //        if (comment.anonym)
+            //        {
+            //            comment.name = "匿名評論";
+            //        }
+            //    }
+            //}
+            //else
+            //{
+            //    ViewBag.commentLen = 0;
+            //}
+
+
             return PartialView(commentData);
         }
 

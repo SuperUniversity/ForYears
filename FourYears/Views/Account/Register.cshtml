@@ -60,7 +60,7 @@
 @section Scripts {
 <script>
         $("#submit").click(function () {
-            alert("請至信箱確認，以完成註冊程序！")
+            alert("請至信箱確認(請留意垃圾信件夾)，以完成註冊程序！")
     })
     $("#demo").click(function () {
         //$("#Name").val("叉叉差")
@@ -70,7 +70,9 @@
         $("#ConfirmPassword").val("msit11403")
 
     })
-    $("#AllowEmailContact").attr("checked","checked")
+    $("#AllowEmailContact").attr("checked", "checked")
+
+    $("#NickName").parent("div").siblings("label").append(" (可更改)")
 </script>
     @Scripts.Render("~/bundles/jqueryval")
 }

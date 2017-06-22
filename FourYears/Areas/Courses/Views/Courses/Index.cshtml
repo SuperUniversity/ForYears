@@ -1,4 +1,4 @@
-﻿
+﻿@using Microsoft.AspNet.Identity
 @{
     ViewBag.Title = "Index";
 }
@@ -27,6 +27,7 @@
             background-color:antiquewhite;
             cursor:pointer;
         }
+
     </style>
 }
 
@@ -60,23 +61,23 @@
 
                 <form class="navbar-form navbar-left" id="generalSearch"  >
                     <div class="form-group">
-                        <input type="text" class="form-control" id="SearchAll" placeholder="Ex.計量 經濟 陳 -所" title="計量 and 經濟 and 陳 not 所, 暫不支援英文">
+                        <input type="text" class="form-control" id="SearchAll" placeholder="Ex.計量 經濟 陳 -所" title="計量 and 經濟 and 陳 not 所">
                     </div>
                     <button type="submit" class="btn btn-default">搜尋</button>
                 </form>
 
                 <form class="navbar-form navbar-left" id="advacedSearch"  hidden="hidden">
                     <div class="form-group">
-                        <input type="text" class="form-control" id="courseName" placeholder="課程名稱 Ex.計量, 暫不支援英文">
+                        <input type="text" class="form-control" id="courseName" placeholder="課程名稱 Ex.計量">
                     </div>
                     <div class="form-group">
-                        <input type="text" class="form-control" id="teacherName" placeholder="授課教師 Ex.陳, 暫不支援英文">
+                        <input type="text" class="form-control" id="teacherName" placeholder="授課教師 Ex.陳">
                     </div>
                     <div class="form-group">
-                        <input type="text" class="form-control" id="department" placeholder="開課系所 Ex.經濟, 暫不支援英文">
+                        <input type="text" class="form-control" id="department" placeholder="開課系所 Ex.經濟">
                     </div>
                     <div class="form-group">
-                        <input type="text" class="form-control" id="weekDay" placeholder="星期 Ex.五, 暫不支援英文">
+                        <input type="text" class="form-control" id="weekDay" placeholder="星期 Ex.五">
                     </div>
                     <button type="submit" class="btn btn-default">搜尋</button>
                 </form>
@@ -84,6 +85,10 @@
         </div><!-- /.container-fluid -->
     </nav>
 
+    <ul>
+        <li>請先送出檢索資訊後，再點開以下表單</li>
+        <li>本系統暫不支援英文檢索</li>
+    </ul>
         <div class="row" id="coursTables">
             <div class="btn btn-info btn-stretch" id="NtpuTitle">
                 臺　北　大　學
@@ -160,9 +165,49 @@
             return url
         }
 
+
+
+        function PostSearchToDb(url) {
+            $.ajax({
+                url: url,
+                type: 'POST',
+                //data: data,
+                crossDomain: true,
+                //crossOrigin: true,
+                //contentType: "application/json",
+                //dataType: "jsonp",
+                //jsonp: 'jsonp_callback',
+                //success: function (data) {
+                //    alert('新增成功');
+                //    location.reload();
+                //},
+
+                //error: function (httpReq, status, exception) {
+                //    if (httpReq.status == 500) {
+                //        location.reload();
+                //    }
+                //    else {
+                //        alert(errorNote);
+                //    }
+                //}
+
+            });
+        }
+
+
         //General Search
         $("#generalSearch button").click(function (event) {
             event.preventDefault();
+
+            //將使用者輸入存入資料庫
+            var Query = $("#generalSearch input").val()
+            if (@User.Identity.IsAuthenticated.ToString().ToLower()){
+                var url = "https://taiwanuniversitiescourses.azurewebsites.net/api/UserGeneralSearch?strid=" + "@User.Identity.GetUserId()" + "&Query=" + Query;
+            } else {
+                var url = "https://taiwanuniversitiescourses.azurewebsites.net/api/UserGeneralSearch?Query=" + Query;
+            }
+            PostSearchToDb(url)
+
 
             $('#NtuTitle').html("臺　灣　大　學　(檢　索　中　...)" + '<span class="glyphicon glyphicon-eye-open"></span>')
                 .attr("disabled", "disabled")
@@ -234,7 +279,7 @@
             }
             $("#advacedSearch button").prop("disabled", "disabled")
 
-            
+
             if (queryStringLi.length == 0) {
                 url = '@Url.Action("GetBySearchAll", "Courses", new { area = "Courses"})'
                 url += "?isGeneralSearch=false" ;
@@ -252,6 +297,20 @@
 
         $("#advacedSearch button").click(function (event) {
             event.preventDefault();
+
+            //將檢索文字放進資料庫
+            CourseNameQuery = $("#courseName").val().replace(new RegExp(" ", "g"), "")
+            TeacherQuery = $("#teacherName").val().replace(new RegExp(" ", "g"), "")
+            DpartmentQuery = $("#department").val().replace(new RegExp(" ", "g"), "")
+            WeekdayQuery = $("#weekDay").val().replace(new RegExp(" ", "g"), "")
+
+            if (@User.Identity.IsAuthenticated.ToString().ToLower()){
+                var url = "https://taiwanuniversitiescourses.azurewebsites.net/api/UserAdvancedSearch?strid=" + "@User.Identity.GetUserId()" + "&CourseNameQuery=" + CourseNameQuery + "&TeacherQuery=" + TeacherQuery + "&DpartmentQuery=" + DpartmentQuery + "&WeekdayQuery=" + WeekdayQuery;
+            } else {
+                var url = "https://taiwanuniversitiescourses.azurewebsites.net/api/UserAdvancedSearch?CourseNameQuery=" + CourseNameQuery + "&TeacherQuery=" + TeacherQuery + " &DpartmentQuery=" + DpartmentQuery + " &WeekdayQuery=" + WeekdayQuery;
+            }
+            PostSearchToDb(url)
+
 
             $('#NtuTitle').html("臺　灣　大　學　(檢　索　中　...)" + '<span class="glyphicon glyphicon-eye-open"></span>')
                 .attr("disabled", "disabled")
@@ -302,21 +361,6 @@
             })
 
         })
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
         $('.coursesTable').mousemove(function () {

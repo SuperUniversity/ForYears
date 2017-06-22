@@ -37,7 +37,7 @@ namespace FourYears
         {
             #region formatter
             //string text = string.Format("Please click on this link to {0}: {1}", message.Subject, message.Body);
-            string html = "請點擊此連結: " + "<a href=\"" + message.Body + "\">link</a><br/>";
+            string html = "感謝您使用[肆·年]服務，請點擊此連結: " + "<a href=\"" + message.Body + "\">link</a><br/>";
 
             html += HttpUtility.HtmlEncode(@"或複製這個連結，並貼上至瀏覽器" + message.Body);
             #endregion

@@ -83,9 +83,10 @@ namespace FourYears.Controllers
                     if (!await UserManager.IsEmailConfirmedAsync((await UserManager.FindByEmailAsync(model.Email)).Id))
                     {
                         Session.Abandon();
-                        AuthenticationManager.SignOut();
+                        //AuthenticationManager.SignOut();
+                        AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
                         ModelState.AddModelError("", "請先認證您的電子郵件!");
-                        return View(model);
+                        return View("Login", model);
                     }
                     return RedirectToLocal(returnUrl);
                 case SignInStatus.LockedOut:
@@ -95,6 +96,7 @@ namespace FourYears.Controllers
                 case SignInStatus.Failure:
                 default:
                     ModelState.AddModelError("", "登入嘗試失試。");
+                    ViewBag.ReturnUrl = returnUrl;
                     return View(model);
             }
         }
@@ -178,7 +180,7 @@ namespace FourYears.Controllers
                     //傳送包含此連結的電子郵件
                     string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
                     var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
-                    await UserManager.SendEmailAsync(user.Id, "確認您的帳戶", callbackUrl);
+                    await UserManager.SendEmailAsync(user.Id, "[肆·年]確認您的帳戶", callbackUrl);
 
                     return RedirectToAction("Login", "Account",new { returnUrl  = returnUrl });
                 }
@@ -230,7 +232,7 @@ namespace FourYears.Controllers
                 // 傳送包含此連結的電子郵件
                 string code = await UserManager.GeneratePasswordResetTokenAsync(user.Id);
                 var callbackUrl = Url.Action("ResetPassword", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
-                await UserManager.SendEmailAsync(user.Id, "重設密碼", callbackUrl);
+                await UserManager.SendEmailAsync(user.Id, "[肆·年]重設密碼", callbackUrl);
                 return RedirectToAction("ForgotPasswordConfirmation", "Account");
             }
 
