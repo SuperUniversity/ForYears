@@ -41,7 +41,7 @@
           <Key>
             <PropertyRef Name="BookCommetID" />
           </Key>
-          <Property Name="BookCommetID" Type="int" Nullable="false" />
+          <Property Name="BookCommetID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="CustomerName" Type="nvarchar" MaxLength="50" />
           <Property Name="BookCommet1" Type="nvarchar(max)" />
           <Property Name="CreateDate" Type="datetime" />
@@ -186,7 +186,7 @@
           <Key>
             <PropertyRef Name="BookCommetID" />
           </Key>
-          <Property Name="BookCommetID" Type="Int32" Nullable="false" />
+          <Property Name="BookCommetID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="CustomerName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="BookCommet1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="CreateDate" Type="DateTime" Precision="3" />
