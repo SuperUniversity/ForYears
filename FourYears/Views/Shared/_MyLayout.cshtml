@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <title>@ViewBag.Title - 肆 ‧ 年</title>
     <style>
         #footer1 {
             position: fixed;
@@ -37,6 +37,7 @@
     <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     @*<link href="https://cdnjs.cloudflare.com/ajax/libs/startbootstrap-freelancer/3.3.7/css/freelancer.min.css" rel="stylesheet">*@
+    @RenderSection("scriptsTop", false)
     @*<link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">*@
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
@@ -71,6 +72,10 @@
                         <a href="#contact" style="color:white">聯絡我們</a>
                     </li>
                 </ul>*@
+
+                <ul class="nav navbar-nav navbar-right" id="ManagerUl" hidden="hidden">
+                    <li hidden="hidden">@Html.ActionLink("帳號管理員", "Index", "AccountManager", new { area = "" }, null)</li>
+                </ul>
                 @Html.Partial("_LoginPartial")
 
 
@@ -101,6 +106,15 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/startbootstrap-freelancer/3.3.7/js/freelancer.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script>
+        //$(document).ready(function () {
+        //    $("#selfUl").find("li:nth-child(1)").attr("hidden", "hidden")
+        //})
+        if (@User.IsInRole("Admin").ToString().ToLower())
+        {
+            $("#ManagerUl").removeAttr("hidden")
+        }
+    </script>
     @RenderSection("scripts", false)
 </body>
 </html>

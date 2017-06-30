@@ -3,6 +3,7 @@
     ViewBag.Title = "註冊";
 }
 
+
 <div class="container">
     <h2>@ViewBag.Title.</h2>
 
@@ -40,6 +41,15 @@
                 @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" })
             </div>
         </div>
+
+        <div class="form-group">
+            @Html.LabelFor(m => m.UniversityId, new { @class = "col-md-2 control-label" })
+            <div class="col-md-10">
+                @*TODO 1. ADD autocomplete 2.Add create selection, https://jqueryui.com/dialog/#modal-form*@
+                @Html.DropDownListFor(x => x.UniversityId, Model.UniversitySelectList, new { @class = "form-control" })
+            </div>
+        </div>
+
         <div class="form-group">
             @Html.LabelFor(m => m.AllowEmailContact, new { @class = "col-md-2 control-label" })
             <div class="col-md-10">
@@ -62,17 +72,12 @@
         $("#submit").click(function () {
             alert("請至信箱確認(請留意垃圾信件夾)，以完成註冊程序！")
     })
-    $("#demo").click(function () {
-        //$("#Name").val("叉叉差")
-        $("#NickName").val("叉叉")
-        $("#Email").val("jeremy4555@yahoo.com.tw")
-        $("#Password").val("msit11403")
-        $("#ConfirmPassword").val("msit11403")
 
-    })
     $("#AllowEmailContact").attr("checked", "checked")
 
     $("#NickName").parent("div").siblings("label").append(" (可更改)")
+
+
 </script>
     @Scripts.Render("~/bundles/jqueryval")
 }

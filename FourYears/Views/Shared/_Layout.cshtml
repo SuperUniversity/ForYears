@@ -38,6 +38,9 @@
                     <li>@Html.ActionLink("關於", "About", "Home")</li>
                     <li>@Html.ActionLink("連絡方式", "Contact", "Home")</li>
                 </ul>*@
+                <ul class="nav navbar-nav navbar-right" id="ManagerUl" hidden="hidden">
+                    <li hidden="hidden">@Html.ActionLink("帳號管理員", "Index", "AccountManager", new { area = "" }, null)</li>
+                </ul>
                 @Html.Partial("_LoginPartial")
             </div>
         </div>
@@ -53,5 +56,14 @@
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
+    <script>
+        //$(document).ready(function () {
+        //    $("#selfUl").find("li:nth-child(1)").attr("hidden", "hidden")
+        //})
+        if (@User.IsInRole("Admin").ToString().ToLower())
+        {
+            $("#ManagerUl").removeAttr("hidden")
+        }
+    </script>
 </body>
 </html>

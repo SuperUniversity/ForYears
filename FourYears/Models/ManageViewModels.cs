@@ -2,6 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNet.Identity;
 using Microsoft.Owin.Security;
+using System;
 
 namespace FourYears.Models
 {
@@ -82,5 +83,26 @@ namespace FourYears.Models
     {
         public string SelectedProvider { get; set; }
         public ICollection<System.Web.Mvc.SelectListItem> Providers { get; set; }
+    }
+
+    public class ModifyMemberViewModel
+    {
+        [Display(Name = "電子郵件")]
+        public string Email { get; set; }
+
+        [Required(ErrorMessage ="請輸入您的暱稱")]
+        [Display(Name = "暱稱")]
+        public string NickName { get; set; }
+
+        [Display(Name = "學校")]
+        public int UniversityId { get; set; }
+
+        [Display(Name = "允許系統以電子郵件聯絡(通知您關注的課程資訊)")]
+        public bool AllowEmailContact { get; set; }
+
+        [Display(Name = "創建時間")]
+        public DateTime CreateTime { get; set; }
+
+        public IEnumerable<System.Web.Mvc.SelectListItem> UniversitySelectList { get; set; }
     }
 }

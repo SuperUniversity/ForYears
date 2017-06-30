@@ -9,6 +9,7 @@ using FourYears.Models;
 using Microsoft.Owin.Security.Facebook;
 using FourYears.facebook;
 using System.Configuration;
+using static FourYears.ApplicationSignInManager;
 
 namespace FourYears
 {

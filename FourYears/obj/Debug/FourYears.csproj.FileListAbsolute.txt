@@ -518,4 +518,15 @@ D:\Google 雲端硬碟\MIST114\SpecialProject\ForYears\FourYears\bin\MongoDB.Dri
 D:\Google 雲端硬碟\MIST114\SpecialProject\ForYears\FourYears\bin\MongoDB.Driver.Core.xml
 D:\Google 雲端硬碟\MIST114\SpecialProject\ForYears\FourYears\obj\Debug\FourYears.Migrations.ChangeDb.resources
 D:\Google 雲端硬碟\MIST114\SpecialProject\ForYears\FourYears\obj\Debug\FourYears.csproj.GenerateResource.Cache
+D:\Google 雲端硬碟\MIST114\SpecialProject\ForYears\FourYears\obj\Debug\FourYears.Migrations.College.resources
+D:\Google 雲端硬碟\MIST114\SpecialProject\ForYears\FourYears\obj\Debug\FourYears.Migrations.CreateTime.resources
+D:\Google 雲端硬碟\MIST114\SpecialProject\ForYears\FourYears\obj\Debug\FourYears.Migrations.UniverityID.resources
+D:\Google 雲端硬碟\MIST114\SpecialProject\ForYears\FourYears\obj\Debug\FourYears.Migrations.IntUniverityID.resources
+D:\Google 雲端硬碟\MIST114\SpecialProject\ForYears\FourYears\obj\Debug\FourYears.Migrations.AddTables.resources
+D:\Google 雲端硬碟\MIST114\SpecialProject\ForYears\FourYears\obj\Debug\FourYears.Migrations.AddRoles.resources
+D:\Google 雲端硬碟\MIST114\SpecialProject\ForYears\FourYears\obj\Debug\FourYears.Migrations.RemoveApplicationUsers.resources
+D:\Google 雲端硬碟\MIST114\SpecialProject\ForYears\FourYears\obj\Debug\FourYears.Migrations.DeleteCreateTime.resources
+D:\Google 雲端硬碟\MIST114\SpecialProject\ForYears\FourYears\obj\Debug\FourYears.Migrations.RecoverCreateTime.resources
+D:\Google 雲端硬碟\MIST114\SpecialProject\ForYears\FourYears\obj\Debug\FourYears.Migrations.DeleteTrashRole.resources
+D:\Google 雲端硬碟\MIST114\SpecialProject\ForYears\FourYears\obj\Debug\FourYears.Migrations.UniversityId.resources
 D:\Google 雲端硬碟\MIST114\SpecialProject\ForYears\FourYears\obj\Debug\FourYears.csprojResolveAssemblyReference.cache

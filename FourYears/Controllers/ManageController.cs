@@ -7,6 +7,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using FourYears.Models;
+using System.Collections.Generic;
 
 namespace FourYears.Controllers
 {
@@ -341,6 +342,18 @@ namespace FourYears.Controllers
             mv.NickName = ApplicationDbContext.GetNickName(id);
             mv.AllowEmailContact = ApplicationDbContext.GetAllowEmailContact(id);
             mv.Email = User.Identity.GetUserName();
+            mv.UniversityId = ApplicationDbContext.GetUniversityId(id);
+            mv.CreateTime = ApplicationDbContext.GetCreateTime(id);
+
+            List<University> universities = ApplicationDbContext.GetAllUniversities();
+            mv.UniversitySelectList = (from u in universities
+                                       select new SelectListItem
+                                       {
+                                           Text = u.ChineseName,
+                                           Value = u.UniversityId.ToString(),
+                                           Selected = false
+                                       });
+
             return PartialView(mv);
         }
 
@@ -352,7 +365,7 @@ namespace FourYears.Controllers
             ApplicationUser currentUser = db.Users.Find(id);
             currentUser.AllowEmailContact = mv.AllowEmailContact;
             currentUser.NickName = mv.NickName;
-
+            currentUser.UniversityId = mv.UniversityId;
             db.SaveChanges();
             return RedirectToAction("Index", "Manage");
         }

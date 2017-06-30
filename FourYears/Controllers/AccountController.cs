@@ -157,7 +157,19 @@ namespace FourYears.Controllers
         [AllowAnonymous]
         public ActionResult Register()
         {
-            return View();
+            List<University> universities = ApplicationDbContext.GetAllUniversities();
+            RegisterViewModel Rvm = new RegisterViewModel
+            {
+                UniversitySelectList = (from u in universities
+                                        select new SelectListItem
+                                        {
+                                            Text = u.ChineseName,
+                                            Value = u.UniversityId.ToString(),
+                                            Selected = false
+                                        }),
+            };
+
+            return View(Rvm);
         }
 
         //
@@ -169,20 +181,23 @@ namespace FourYears.Controllers
         {
             if (ModelState.IsValid)
             {
-                var emails = from u in ApplicationDbContext.GetAll()
+                var emails = from u in ApplicationDbContext.GetAllUsers()
                              select u.UserName;
+
                 if (emails.Contains(model.Email))
                 {
                     ViewBag.ErrorMessage = "請勿重新註冊";
                     return View("Error");
                 }
 
-
-                var user = new ApplicationUser { UserName = model.Email, NickName = model.NickName, Email = model.Email, AllowEmailContact = model.AllowEmailContact };
+                var user = new ApplicationUser { UserName = model.Email, NickName = model.NickName, Email = model.Email, AllowEmailContact = model.AllowEmailContact, UniversityId = model.UniversityId, CreateTime=DateTime.UtcNow.AddHours(8)};
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
                     //await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
+
+                    //Assign to new user to default role
+                    UserManager.AddToRole(user.Id, "Customer");
 
                     //For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771
                     //傳送包含此連結的電子郵件
@@ -398,6 +413,9 @@ namespace FourYears.Controllers
                 var result = await UserManager.CreateAsync(user);
                 if (result.Succeeded)
                 {
+                    //Assign to new user to default role
+                    UserManager.AddToRole(user.Id, "Customer");
+
                     result = await UserManager.AddLoginAsync(user.Id, info.Login);
                     if (result.Succeeded)
                     {

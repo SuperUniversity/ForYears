@@ -25,6 +25,24 @@
         </div>
 
         <div class="form-group">
+            @Html.LabelFor(model => model.UniversityId, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <div class="checkbox">
+                    @Html.DropDownListFor(x => x.UniversityId, Model.UniversitySelectList, new { @class = "form-control" })
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.CreateTime, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <div class="checkbox">
+                    @Html.EditorFor(model => model.CreateTime, new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
             @Html.LabelFor(model => model.AllowEmailContact, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 <div class="checkbox">
@@ -33,6 +51,8 @@
                 </div>
             </div>
         </div>
+
+
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">

@@ -1,0 +1,209 @@
+﻿@model IEnumerable<FourYears.ViewModel.AccountManagerViewModel>
+
+@section styles{
+    <style>
+        td{
+            text-align:center;
+            vertical-align:central;
+        }
+        th{
+            text-align: center;
+            vertical-align: central;
+        }
+        
+    </style>
+    }
+
+@{
+    ViewBag.Title = "帳戶管理員";
+}
+
+
+<h2>帳戶總覽</h2>
+
+<table class="table">
+    <tr>
+        <th hidden="hidden">
+            @Html.DisplayNameFor(model => model.Id)
+        </th>
+        @*<th>
+            @Html.DisplayNameFor(model => model.ActualName)
+        </th>*@
+        <th>
+            @Html.DisplayNameFor(model => model.NickName)
+        </th>
+        <th hidden="hidden">
+            @Html.DisplayNameFor(model => model.RoleId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RoleSelectList)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UserName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EmailConfirmed)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AllowEmailContact)
+        </th>
+        @*<th>
+            @Html.DisplayNameFor(model => model.AccessFailedCount)
+        </th>*@
+        <th hidden="hidden">
+            @Html.DisplayNameFor(model => model.UniversityId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UniversitySelectList)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CreateTime)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+        <tr>
+            <td hidden="hidden">
+                @*<input id="Id" value="@item.Id" />*@
+                @Html.EditorFor(modelItem => item.Id)
+            </td>
+
+            @*<td>
+                @Html.EditorFor(modelItem => item.ActualName)
+            </td>*@
+            <td>
+                @*<input id="NickName" value="@item.NickName" width="30" />*@
+                @Html.EditorFor(modelItem => item.NickName)
+            </td>
+            <td hidden="hidden">
+                @*<input id="RoleId" value="@item.RoleId" />*@
+                @Html.EditorFor(modelItem => item.RoleId)
+            </td>
+            <td>
+                @Html.DropDownListFor(x => item.RoleId, item.RoleSelectList)  @*item.UniversityId is fake*@
+            </td>
+            <td>
+                @*<input id="UserName" value="@item.UserName" />*@
+                @Html.EditorFor(modelItem => item.UserName)
+            </td>
+            <td>
+                @*@if (item.EmailConfirmed)
+                {
+                    <input type="checkbox" id="EmailConfirmed" class="EmailConfirmed" checked="checked" />
+                }
+                else
+                {
+                    <input type="checkbox" id="EmailConfirmed" class="EmailConfirmed" />
+                }*@
+                @Html.EditorFor(modelItem => item.EmailConfirmed)
+            </td>
+            <td>
+                @*@if (item.AllowEmailContact)
+                {
+                    <input type="checkbox" id="AllowEmailContact" class="AllowEmailContact" checked="checked" />
+                }
+                else
+                {
+                    <input type="checkbox" id="AllowEmailContact" class="AllowEmailContact" />
+                }*@
+                @Html.EditorFor(modelItem => item.AllowEmailContact)
+            </td>
+            @*<td>
+                @Html.EditorFor(modelItem => item.AccessFailedCount)
+            </td>*@
+            <td hidden="hidden">
+                @*<input id="UniversityId" value="@item.UniversityId" />*@
+                @Html.EditorFor(modelItem => item.UniversityId)
+            </td>
+            <td>
+                @Html.DropDownListFor(x => item.UniversityId, item.UniversitySelectList)  @*item.UniversityId is fake*@
+            </td>
+            <td>
+                @*<input id="CreateTime" type="datetime" value="@item.CreateTime" />*@
+                @Html.EditorFor(modelItem => item.CreateTime)
+            </td>
+            <td>
+                <button type="submit" class="btn-link">修改</button>
+                @*@Html.ActionLink("修改", "Edit", new { id=item.Id }) |*@
+                @*@Html.ActionLink("Details", "Details", new { id=item.Id }) |*@
+                @*@Html.ActionLink("Delete", "Delete", new { id=item.Id })*@
+            </td>
+        </tr>
+}
+</table>
+
+
+
+@section scripts{
+    <script>
+        var selections = $("tr>td:nth-child(9)")
+        $.each(selections, function (ind, val) {
+            //$(this).find("select").val(parseInt($(this).parents("tr").find("td:nth-child(8)").val().replace(new RegExp(" ", "g"), "")))
+            $(this).find("select").val(parseInt($(this).prev("td").find("input").val()))
+            $(this).find("select").change(function () {
+                $(this).parent("td").prev("td").find("input").val(parseInt($(this).val()))
+                console.log($(this).parent("td").prev("td").find("input").val())
+            })
+        })
+
+        var selections = $("tr>td:nth-child(4)")
+        $.each(selections, function (ind, val) {
+            //$(this).find("select").val($(this).parents("tr").find("td:nth-child(3)").text().replace(new RegExp(" ", "g"), ""))
+            $(this).find("select").change(function () {
+                $(this).parent("td").prev("td").find("input").val($(this).val())
+                console.log($(this).parent("td").prev("td").find("input").val())
+            })
+        })
+
+        var checkboxs = $("input[type='checkbox']")
+        checkboxs.change(function () {
+            //Beacuse the default mechinism will first change its check attr, once go into if operation, the attr will be the changed one
+            if ( ! $(this).prop("checked")) {
+                $(this).removeProp("checked")
+                //console.log($(this).prop("checked"))
+            } else {
+                $(this).prop("checked","checked")
+                //console.log($(this).prop("checked"))
+            }
+        })
+
+
+        var EditBtns = $("tr button")
+        $.each(EditBtns, function (ind, val) {
+            $(this).click(function (event) {
+                event.preventDefault();
+                var data = {
+                    Id: $(this).parent("td").parent("tr").find("#item_Id").val(),
+                    NickName: $(this).parent("td").parent("tr").find("#item_NickName").val(),
+                    RoleId: $(this).parent("td").parent("tr").find("#item_RoleId").val(),
+                    UserName: $(this).parent("td").parent("tr").find("#item_UserName").val(),
+                    EmailConfirmed: $(this).parent("td").parent("tr").find("#item_EmailConfirmed").prop("checked"),
+                    AllowEmailContact: $(this).parent("td").parent("tr").find("#item_AllowEmailContact").prop("checked"),
+                    CreateTime: $(this).parent("td").parent("tr").find("#item_CreateTime").val(),
+                    UniversityId: $(this).parent("td").parent("tr").find("#item_UniversityId").val()
+                }
+                //console.log(data)
+
+                if (confirm('確定要變更資料嗎?')) {
+                    var url = "@Url.Action("Edit","AccountManager")"
+                    $.ajax({
+                        url: url,
+                        type: 'Post',
+                        data: data,
+                        success: function () {
+                            alert("成功更新資料");
+                            location.reload();
+                        }
+                    });
+
+                } else {
+                    // Do nothing!
+                    event.preventDefault();
+                }
+            })
+        })
+
+    </script>
+    
+    }

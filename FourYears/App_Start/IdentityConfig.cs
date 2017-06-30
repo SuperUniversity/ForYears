@@ -16,6 +16,7 @@ using System.Web.Services.Description;
 using System.Net.Mail;
 using System.Configuration;
 using System.Net.Mime;
+using static FourYears.Models.ApplicationDbContext;
 
 namespace FourYears
 {
@@ -147,5 +148,16 @@ namespace FourYears
         {
             return new ApplicationSignInManager(context.GetUserManager<ApplicationUserManager>(), context.Authentication);
         }
+
+        //https://www.youtube.com/watch?v=IngL0-alQYk
+        //public class ApplicationRoleManager: RoleManager<ApplicationRole>
+        //{
+        //    public ApplicationRoleManager(IRoleStore<ApplicationRole, string> roleSrore) : base(roleSrore) { }
+        //    public static ApplicationRoleManager Create(IdentityFactoryOptions<ApplicationRoleManager> options, IOwinContext context)
+        //    {
+        //        ApplicationRoleManager applicationRoleManager = new ApplicationRoleManager(new RoleStore<ApplicationRole>(context.Get<ApplicationDbContext>()));
+        //        return applicationRoleManager;
+        //    }
+        //}
     }
 }

@@ -13,10 +13,10 @@
         </li>
         <li><a href="javascript:document.getElementById('logoutForm').submit()">登出</a></li>
     </ul>
-                    }
-                }
-                else
-                {
+    }
+}
+else
+{
     <ul class="nav navbar-nav navbar-right">
         <li>@Html.ActionLink("課程檢索", "Index", "Courses", new { area = "Courses"}, null)</li>
         <li>@Html.ActionLink("註冊", "Register", "Account", new { area = "", returnUrl = Request.RawUrl }, htmlAttributes: new { id = "registerLink" })</li>

@@ -279,6 +279,7 @@
       <DependentUpon>FoodMapModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AccountManagerController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="ErrorHandler\AiHandleErrorAttribute.cs" />
@@ -290,13 +291,57 @@
     <Compile Include="Migrations\201706192259313_ChangeDb.Designer.cs">
       <DependentUpon>201706192259313_ChangeDb.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201706262339279_College.cs" />
+    <Compile Include="Migrations\201706262339279_College.Designer.cs">
+      <DependentUpon>201706262339279_College.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201706262346528_CreateTime.cs" />
+    <Compile Include="Migrations\201706262346528_CreateTime.Designer.cs">
+      <DependentUpon>201706262346528_CreateTime.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201706262358026_UniverityID.cs" />
+    <Compile Include="Migrations\201706262358026_UniverityID.Designer.cs">
+      <DependentUpon>201706262358026_UniverityID.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201706270000549_IntUniverityID.cs" />
+    <Compile Include="Migrations\201706270000549_IntUniverityID.Designer.cs">
+      <DependentUpon>201706270000549_IntUniverityID.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201706270227220_AddTables.cs" />
+    <Compile Include="Migrations\201706270227220_AddTables.Designer.cs">
+      <DependentUpon>201706270227220_AddTables.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201706270714382_AddRoles.cs" />
+    <Compile Include="Migrations\201706270714382_AddRoles.Designer.cs">
+      <DependentUpon>201706270714382_AddRoles.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201706270831110_RemoveApplicationUsers.cs" />
+    <Compile Include="Migrations\201706270831110_RemoveApplicationUsers.Designer.cs">
+      <DependentUpon>201706270831110_RemoveApplicationUsers.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201706271109490_DeleteCreateTime.cs" />
+    <Compile Include="Migrations\201706271109490_DeleteCreateTime.Designer.cs">
+      <DependentUpon>201706271109490_DeleteCreateTime.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201706271132434_RecoverCreateTime.cs" />
+    <Compile Include="Migrations\201706271132434_RecoverCreateTime.Designer.cs">
+      <DependentUpon>201706271132434_RecoverCreateTime.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201706271224209_DeleteTrashRole.cs" />
+    <Compile Include="Migrations\201706271224209_DeleteTrashRole.Designer.cs">
+      <DependentUpon>201706271224209_DeleteTrashRole.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201706271406312_UniversityId.cs" />
+    <Compile Include="Migrations\201706271406312_UniversityId.Designer.cs">
+      <DependentUpon>201706271406312_UniversityId.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
-    <Compile Include="Models\Partial\AspNetUserLoginLog.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="ViewModel\AccountManagerViewModel.cs" />
     <Compile Include="ViewModel\UserLoginLogViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -488,6 +533,7 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Shared\_MyLayout.cshtml" />
     <Content Include="Views\Manage\ModifyMember.cshtml" />
+    <Content Include="Views\AccountManager\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -513,6 +559,39 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201706192259313_ChangeDb.resx">
       <DependentUpon>201706192259313_ChangeDb.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201706262339279_College.resx">
+      <DependentUpon>201706262339279_College.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201706262346528_CreateTime.resx">
+      <DependentUpon>201706262346528_CreateTime.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201706262358026_UniverityID.resx">
+      <DependentUpon>201706262358026_UniverityID.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201706270000549_IntUniverityID.resx">
+      <DependentUpon>201706270000549_IntUniverityID.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201706270227220_AddTables.resx">
+      <DependentUpon>201706270227220_AddTables.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201706270714382_AddRoles.resx">
+      <DependentUpon>201706270714382_AddRoles.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201706270831110_RemoveApplicationUsers.resx">
+      <DependentUpon>201706270831110_RemoveApplicationUsers.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201706271109490_DeleteCreateTime.resx">
+      <DependentUpon>201706271109490_DeleteCreateTime.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201706271132434_RecoverCreateTime.resx">
+      <DependentUpon>201706271132434_RecoverCreateTime.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201706271224209_DeleteTrashRole.resx">
+      <DependentUpon>201706271224209_DeleteTrashRole.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201706271406312_UniversityId.resx">
+      <DependentUpon>201706271406312_UniversityId.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

@@ -1,6 +1,6 @@
 ﻿@using Microsoft.AspNet.Identity
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "課程檢索";
 }
 @section styles{
     <style>
@@ -95,6 +95,14 @@
                 <span class="glyphicon glyphicon-eye-open"></span>
             </div>
             <div id="NtpuTable" class="coursesTable" hidden="hidden">
+
+            </div>
+
+            <div class="btn btn-info btn-stretch" id="SooChowTitle">
+                東　吳　大　學
+                <span class="glyphicon glyphicon-eye-open"></span>
+            </div>
+            <div id="SooChowTable" class="coursesTable" hidden="hidden">
 
             </div>
 
@@ -209,9 +217,11 @@
             PostSearchToDb(url)
 
 
-            $('#NtuTitle').html("臺　灣　大　學　(檢　索　中　...)" + '<span class="glyphicon glyphicon-eye-open"></span>')
-                .attr("disabled", "disabled")
             $('#NtpuTitle').html("臺　北　大　學　(檢　索　中　...)" + '<span class="glyphicon glyphicon-eye-open"></span>')
+                .attr("disabled", "disabled")
+            $('#SooChowTitle').html("東　吳　大　學　(檢　索　中　...)" + '<span class="glyphicon glyphicon-eye-open"></span>')
+                .attr("disabled", "disabled")   
+            $('#NtuTitle').html("臺　灣　大　學　(檢　索　中　...)" + '<span class="glyphicon glyphicon-eye-open"></span>')
                 .attr("disabled", "disabled")
             $('#NctuTitle').html("交　通　大　學　(檢　索　中　...)" + '<span class="glyphicon glyphicon-eye-open"></span>')
                 .attr("disabled", "disabled")
@@ -220,26 +230,35 @@
             //alert($("#generalSearch button").attr("disabled", "disabled"))
             $("#generalSearch button").prop("disabled","disabled")
 
-            //ntuUrl = urlGenerator("GetNtuBySearchAll")
-            ntuUrl = urlGeneratorForAll("NTU")
+
             //ntpuUrl = urlGenerator("GetNtpuBySearchAll")
             ntpuUrl = urlGeneratorForAll("NTPU")
+            //ntpuUrl = urlGenerator("GetNtpuBySearchAll")
+            soochowUrl = urlGeneratorForAll("東吳大學")
+            //ntuUrl = urlGenerator("GetNtuBySearchAll")
+            ntuUrl = urlGeneratorForAll("NTU")
             //nctuUrl = urlGenerator("GetNctuBySearchAll")
             nctuUrl = urlGeneratorForAll("NCTU")
             //nckuUrl = urlGenerator("GetNckuBySearchAll")
             nckuUrl = urlGeneratorForAll("NCKU")
 
 
+            $("#NtpuTable").load(ntpuUrl, function () {
+                var dataLen = $("#NtpuTable tr").length - 1;
+                var recentText = $('#NtpuTitle').text()
+                $('#NtpuTitle').html(recentText.replace("　(檢　索　中　...)", "　(檢　索　完　成　，　共　" + dataLen + "　筆　資　料)") + '<span class="glyphicon glyphicon-eye-open"></span>')
+                    .removeAttr("disabled")
+            })
+            $("#SooChowTable").load(soochowUrl, function () {
+                var dataLen = $("#SooChowTable tr").length - 1;
+                var recentText = $('#SooChowTitle').text()
+                $('#SooChowTitle').html(recentText.replace("　(檢　索　中　...)", "　(檢　索　完　成　，　共　" + dataLen + "　筆　資　料)") + '<span class="glyphicon glyphicon-eye-open"></span>')
+                    .removeAttr("disabled")
+            })
             $("#NtuTable").load(ntuUrl, function () {
                         var dataLen = $("#NtuTable tr").length - 1;
                         var recentText = $('#NtuTitle').text()
                 $('#NtuTitle').html(recentText.replace("　(檢　索　中　...)", "　(檢　索　完　成　，　共　" + dataLen+"　筆　資　料)") + '<span class="glyphicon glyphicon-eye-open"></span>')
-                    .removeAttr("disabled")
-            })
-            $("#NtpuTable").load(ntpuUrl, function () {
-                        var dataLen = $("#NtpuTable tr").length - 1;
-                        var recentText = $('#NtpuTitle').text()
-                $('#NtpuTitle').html(recentText.replace("　(檢　索　中　...)", "　(檢　索　完　成　，　共　" + dataLen + "　筆　資　料)") +'<span class="glyphicon glyphicon-eye-open"></span>')
                     .removeAttr("disabled")
             })
             $("#NctuTable").load(nctuUrl, function () {
@@ -312,24 +331,44 @@
             PostSearchToDb(url)
 
 
-            $('#NtuTitle').html("臺　灣　大　學　(檢　索　中　...)" + '<span class="glyphicon glyphicon-eye-open"></span>')
-                .attr("disabled", "disabled")
             $('#NtpuTitle').html("臺　北　大　學　(檢　索　中　...)" + '<span class="glyphicon glyphicon-eye-open"></span>')
+                .attr("disabled", "disabled")
+            $('#SooChowTitle').html("東　吳　大　學　(檢　索　中　...)" + '<span class="glyphicon glyphicon-eye-open"></span>')
+                .attr("disabled", "disabled")
+            $('#NtuTitle').html("臺　灣　大　學　(檢　索　中　...)" + '<span class="glyphicon glyphicon-eye-open"></span>')
                 .attr("disabled", "disabled")
             $('#NctuTitle').html("交　通　大　學　(檢　索　中　...)" + '<span class="glyphicon glyphicon-eye-open"></span>')
                 .attr("disabled", "disabled")
             $('#NckuTitle').html("成　功　大　學　(檢　索　中　...)" + '<span class="glyphicon glyphicon-eye-open"></span>')
                 .attr("disabled", "disabled")
 
-            //ntuUrl = urlGenerator("GetNtuBySearchAll")
-            ntuUrl = urlGeneratorForAllAdv("NTU")
+
             //ntpuUrl = urlGenerator("GetNtpuBySearchAll")
             ntpuUrl = urlGeneratorForAllAdv("NTPU")
+            soochowUrl = urlGeneratorForAllAdv("東吳大學")
+            //ntuUrl = urlGenerator("GetNtuBySearchAll")
+            ntuUrl = urlGeneratorForAllAdv("NTU")
             //nctuUrl = urlGenerator("GetNctuBySearchAll")
             nctuUrl = urlGeneratorForAllAdv("NCTU")
             //nckuUrl = urlGenerator("GetNckuBySearchAll")
             nckuUrl = urlGeneratorForAllAdv("NCKU")
 
+
+
+            $("#NtpuTable").load(ntpuUrl, function () {
+                var dataLen = $("#NtpuTable tr").length - 1;
+                var recentText = $('#NtpuTitle').text()
+                $('#NtpuTitle').html(recentText.replace("　(檢　索　中　...)", "　(檢　索　完　成　，　共　" + dataLen + "　筆　資　料)") + '<span class="glyphicon glyphicon-eye-open"></span>')
+                    .removeAttr("disabled")
+            })
+
+
+            $("#SooChowTable").load(soochowUrl, function () {
+                var dataLen = $("#SooChowTable tr").length - 1;
+                var recentText = $('#SooChowTitle').text()
+                $('#SooChowTitle').html(recentText.replace("　(檢　索　中　...)", "　(檢　索　完　成　，　共　" + dataLen + "　筆　資　料)") + '<span class="glyphicon glyphicon-eye-open"></span>')
+                    .removeAttr("disabled")
+            })
 
             $("#NtuTable").load(ntuUrl, function () {
                 var dataLen = $("#NtuTable tr").length - 1;
@@ -338,12 +377,6 @@
                     .removeAttr("disabled")
             })
 
-            $("#NtpuTable").load(ntpuUrl, function () {
-                var dataLen = $("#NtpuTable tr").length - 1;
-                var recentText = $('#NtpuTitle').text()
-                $('#NtpuTitle').html(recentText.replace("　(檢　索　中　...)", "　(檢　索　完　成　，　共　" + dataLen + "　筆　資　料)") + '<span class="glyphicon glyphicon-eye-open"></span>')
-                    .removeAttr("disabled")
-            })
 
             $("#NctuTable").load(nctuUrl, function () {
                 var dataLen = $("#NctuTable tr").length - 1;
@@ -390,6 +423,10 @@
 
         $("#NtpuTitle").click(function () {
             $("#NtpuTable").slideToggle(1500)
+        })
+
+        $("#SooChowTitle").click(function () {
+            $("#SooChowTable").slideToggle(1500)
         })
 
         $("#NtuTitle").click(function () {

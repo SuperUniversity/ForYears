@@ -8,7 +8,7 @@
 
     <p class="text-success">@ViewBag.StatusMessage</p>
     <div>
-        <div id="ManageMenber">
+        <div id="ManageMember">
             @*@Html.Partial("ModifyMember")*@
             @*@Html.Action("ModifyMember", "Manage")*@
         </div>
@@ -96,7 +96,7 @@
 @section scripts{
     <script>
         var url = "@Url.Action("ModifyMember", "Manage", new { area = "" })"
-            $("#ManageMenber").load(url)
+            $("#ManageMember").load(url)
 
     </script>
     }

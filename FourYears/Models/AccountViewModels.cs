@@ -94,8 +94,13 @@ namespace FourYears.Models
         [Compare("Password", ErrorMessage = "密碼和確認密碼不相符。")]
         public string ConfirmPassword { get; set; }
 
+        [Display(Name = "大學")]
+        public int UniversityId { get; set; }
+
         [Display(Name = "允許系統以電子郵件聯絡(通知您關注的課程資訊)")]
         public bool AllowEmailContact { get; set; }
+
+        public IEnumerable<System.Web.Mvc.SelectListItem> UniversitySelectList { get; set; }
     }
 
     public class ResetPasswordViewModel
@@ -128,16 +133,5 @@ namespace FourYears.Models
     }
 
 
-    public class ModifyMemberViewModel
-    {
 
-        [Display(Name = "電子郵件")]
-        public string Email { get; set; }
-
-        [Display(Name = "暱稱")]
-        public string NickName { get; set; }
-
-        [Display(Name = "允許系統以電子郵件聯絡(通知您關注的課程資訊)")]
-        public bool AllowEmailContact { get; set; }
-    }
 }
