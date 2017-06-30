@@ -1,0 +1,59 @@
+﻿@model IEnumerable<FourYears.ViewModel.UserLoginLogViewModel>
+
+@{
+    ViewBag.Title = "使用者登入紀錄";
+}
+
+<div class="container">
+    <h2>使用者登入紀錄</h2>
+
+    <table class="table">
+        <tr>
+            <th hidden="hidden">
+                @Html.DisplayNameFor(model => model.LogId)
+            </th>
+            @*<th>
+                    @Html.DisplayNameFor(model => model.UserId)
+                </th>*@
+            <th>
+                @Html.DisplayNameFor(model => model.NickName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.loginTime)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td hidden="hidden">
+                    @Html.DisplayFor(modelItem => item.LogId)
+                </td>
+                @*<td>
+                        @Html.DisplayFor(modelItem => item.UserId)
+                    </td>*@
+                <td>
+                    @Html.DisplayFor(modelItem => item.NickName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Email)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.loginTime)
+                </td>
+                <td>
+                    @Html.ActionLink("刪除", "DeleteLoginLog", new { LogId=item.LogId })
+                </td>
+            </tr>
+        }
+
+    </table>
+
+</div>
+
+
+

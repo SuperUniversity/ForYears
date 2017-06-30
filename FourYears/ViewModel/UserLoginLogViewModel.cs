@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
@@ -8,16 +9,17 @@ namespace FourYears.ViewModel
 {
     public class UserLoginLogViewModel
     {
-        [DisplayName("登入編號")]
-        public int id { get; set; }
+        [Key]
+        public int LogId { get; set; }
+        
         [DisplayName("使用者編號")]
-        public string userID { get; set; }
+        public string UserId { get; set; }
         [DisplayName("暱稱")]
         public string NickName { get; set; }
+        [DisplayName("角色")]
+        public string Role { get; set; }
         [DisplayName("信箱")]
         public string Email{ get; set; }
-        [DisplayName("允許信箱聯絡")]
-        public bool AllowEmailContact { get; set; }
         [DisplayName("登入時間")]
         public Nullable<System.DateTime> loginTime { get; set; }
     }

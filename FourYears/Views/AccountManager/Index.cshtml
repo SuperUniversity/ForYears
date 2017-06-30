@@ -47,9 +47,9 @@
         <th>
             @Html.DisplayNameFor(model => model.AllowEmailContact)
         </th>
-        @*<th>
+        <th>
             @Html.DisplayNameFor(model => model.AccessFailedCount)
-        </th>*@
+        </th>
         <th hidden="hidden">
             @Html.DisplayNameFor(model => model.UniversityId)
         </th>
@@ -109,9 +109,9 @@
                 }*@
                 @Html.EditorFor(modelItem => item.AllowEmailContact)
             </td>
-            @*<td>
-                @Html.EditorFor(modelItem => item.AccessFailedCount)
-            </td>*@
+            <td>
+                @Html.DisplayFor(modelItem => item.AccessFailedCount)
+            </td>
             <td hidden="hidden">
                 @*<input id="UniversityId" value="@item.UniversityId" />*@
                 @Html.EditorFor(modelItem => item.UniversityId)
@@ -143,7 +143,7 @@
             $(this).find("select").val(parseInt($(this).prev("td").find("input").val()))
             $(this).find("select").change(function () {
                 $(this).parent("td").prev("td").find("input").val(parseInt($(this).val()))
-                console.log($(this).parent("td").prev("td").find("input").val())
+                //console.log($(this).parent("td").prev("td").find("input").val())
             })
         })
 
@@ -152,7 +152,7 @@
             //$(this).find("select").val($(this).parents("tr").find("td:nth-child(3)").text().replace(new RegExp(" ", "g"), ""))
             $(this).find("select").change(function () {
                 $(this).parent("td").prev("td").find("input").val($(this).val())
-                console.log($(this).parent("td").prev("td").find("input").val())
+                //console.log($(this).parent("td").prev("td").find("input").val())
             })
         })
 

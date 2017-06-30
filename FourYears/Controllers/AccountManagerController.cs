@@ -55,6 +55,7 @@ namespace FourYears.Controllers
 
 
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public void Edit(AccountManagerViewModel user)
         {
             ApplicationDbContext db = new ApplicationDbContext();
@@ -88,71 +89,33 @@ namespace FourYears.Controllers
         }
 
 
-        // GET: AccountManager/Details/5
-        public ActionResult Details(int id)
+        // LoginLog
+        [Authorize(Roles = "Admin")]
+        public ActionResult GetLoginLogs()
         {
-            return View();
+            UserLoginLogViewModel lvm = new UserLoginLogViewModel();
+            var GetLoginLogs = from l in ApplicationDbContext.GetAllLoginLog()
+                               select new UserLoginLogViewModel
+                               {
+                                   LogId = l.LogId,
+                                   UserId = l.UserId,
+                                   NickName = ApplicationDbContext.GetNickName(l.UserId),
+                                   Role = ApplicationDbContext.GetRoleById(ApplicationDbContext.GetUserById(l.UserId).Roles.FirstOrDefault().RoleId).Name,
+                                   Email = ApplicationDbContext.GetUserById(l.UserId).Email,
+                                   loginTime = l.LogInTime
+                               };
+            return View(GetLoginLogs);
         }
 
-        // GET: AccountManager/Create
-        public ActionResult Create()
+        [Authorize(Roles = "Admin")]
+        public ActionResult DeleteLoginLog(string LogId)
         {
-            return View();
+            ApplicationDbContext db = new ApplicationDbContext();
+            LoginLog log = db.LoginLogs.Find(int.Parse(LogId));
+            db.LoginLogs.Remove(log);
+            db.SaveChanges();
+            return RedirectToAction("GetLoginLogs");
         }
 
-        // POST: AccountManager/Create
-        [HttpPost]
-        public ActionResult Create(FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add insert logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-
-        // POST: AccountManager/Edit/5
-        //[HttpPost]
-        //public ActionResult Edit(int id, FormCollection collection)
-        //{
-        //    try
-        //    {
-        //        // TODO: Add update logic here
-
-        //        return RedirectToAction("Index");
-        //    }
-        //    catch
-        //    {
-        //        return View();
-        //    }
-        //}
-
-        // GET: AccountManager/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // POST: AccountManager/Delete/5
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
     }
 }

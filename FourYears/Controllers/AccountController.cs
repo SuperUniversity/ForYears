@@ -77,10 +77,14 @@ namespace FourYears.Controllers
             // 這不會計算為帳戶鎖定的登入失敗
             // 若要啟用密碼失敗來觸發帳戶鎖定，請變更為 shouldLockout: true
             var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
+            ApplicationDbContext db = new ApplicationDbContext();
+            string userId = UserManager.FindByEmail(model.Email).Id;
+            var user = db.Users.Find(userId);
+
             switch (result)
             {
                 case SignInStatus.Success:
-                    if (!await UserManager.IsEmailConfirmedAsync((await UserManager.FindByEmailAsync(model.Email)).Id))
+                    if (!await UserManager.IsEmailConfirmedAsync(userId))
                     {
                         Session.Abandon();
                         //AuthenticationManager.SignOut();
@@ -89,12 +93,9 @@ namespace FourYears.Controllers
                         return View("Login", model);
                     }
 
-                    //SuperUniversityEntities db = new SuperUniversityEntities();
-                    //AspNetUserLoginLog loginLog = new AspNetUserLoginLog();
-                    //loginLog.userID = User.Identity.GetUserId();
-                    //loginLog.loginTime = DateTime.UtcNow.AddHours(8);
-                    //db.AspNetUserLoginLogs.Add(loginLog);
-                    //db.SaveChanges();
+                    LoginLog log = new LoginLog() { UserId = userId, LogInTime = DateTime.UtcNow.AddHours(8) };
+                    db.LoginLogs.Add(log);
+                    db.SaveChanges();
 
                     return RedirectToLocal(returnUrl);
                 case SignInStatus.LockedOut:
@@ -103,6 +104,10 @@ namespace FourYears.Controllers
                     return RedirectToAction("SendCode", new { ReturnUrl = returnUrl, RememberMe = model.RememberMe });
                 case SignInStatus.Failure:
                 default:
+                    user.AccessFailedCount += 1;
+                    db.Entry(user).State = System.Data.Entity.EntityState.Modified;
+                    db.SaveChanges();
+
                     ModelState.AddModelError("", "登入嘗試失試。");
                     ViewBag.ReturnUrl = returnUrl;
                     return View(model);

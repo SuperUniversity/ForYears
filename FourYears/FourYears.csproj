@@ -335,6 +335,14 @@
     <Compile Include="Migrations\201706271406312_UniversityId.Designer.cs">
       <DependentUpon>201706271406312_UniversityId.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201706301519317_RemoveUserClassInLoginLogClass.cs" />
+    <Compile Include="Migrations\201706301519317_RemoveUserClassInLoginLogClass.Designer.cs">
+      <DependentUpon>201706301519317_RemoveUserClassInLoginLogClass.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201706301530344_DeleteViewModelDbset.cs" />
+    <Compile Include="Migrations\201706301530344_DeleteViewModelDbset.Designer.cs">
+      <DependentUpon>201706301530344_DeleteViewModelDbset.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -534,6 +542,7 @@
     <Content Include="Views\Shared\_MyLayout.cshtml" />
     <Content Include="Views\Manage\ModifyMember.cshtml" />
     <Content Include="Views\AccountManager\Index.cshtml" />
+    <Content Include="Views\AccountManager\GetLoginLogs.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -592,6 +601,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201706271406312_UniversityId.resx">
       <DependentUpon>201706271406312_UniversityId.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201706301519317_RemoveUserClassInLoginLogClass.resx">
+      <DependentUpon>201706301519317_RemoveUserClassInLoginLogClass.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201706301530344_DeleteViewModelDbset.resx">
+      <DependentUpon>201706301530344_DeleteViewModelDbset.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

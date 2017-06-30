@@ -39,8 +39,6 @@ namespace FourYears.Models
         [Column(Order = 2)]
         public string UserId { get; set; }
         [Column(Order = 3)]
-        [ForeignKey("UserId")]
-        public virtual ApplicationUser User { get; set; }
         public DateTime LogInTime { get; set; }
     }
 
@@ -211,27 +209,6 @@ namespace FourYears.Models
             db.SaveChanges();
         }
 
-        public static void CreateLoginLog(string UserId)
-        {
-            ApplicationDbContext db = new ApplicationDbContext();
-            ApplicationUser user = db.Users.Find(UserId);
-            LoginLog loginLog = new LoginLog();
-            loginLog.User = user;
-            loginLog.LogInTime = DateTime.UtcNow.AddHours(8);
-
-            if (user.LoginLog.Count() > 0)
-            {
-                user.LoginLog.Add(loginLog);
-            }
-            else
-            {
-                List<LoginLog> newLog = new List<LoginLog>();
-                newLog.Add(loginLog);
-                user.LoginLog = newLog;
-            }
-        }
-
-
         public static University GetUniversityById(int UniversityId)
         {
             ApplicationDbContext db = new ApplicationDbContext();
@@ -246,10 +223,29 @@ namespace FourYears.Models
         }
 
 
+        public static LoginLog GetLoginLogById(int logId)
+        {
+            ApplicationDbContext db = new ApplicationDbContext();
+            LoginLog LoginLog = db.LoginLogs.Find(logId);
+            return LoginLog;
+        }
+
+        public static List<LoginLog> GetAllLoginLog()
+        {
+            ApplicationDbContext db = new ApplicationDbContext();
+            return db.LoginLogs.ToList();
+        }
+
+
+
         public static ApplicationDbContext Create()
         {
             return new ApplicationDbContext();
         }
+
+        //public System.Data.Entity.DbSet<FourYears.ViewModel.UserLoginLogViewModel> UserLoginLogViewModels { get; set; }
+
+
 
         //public System.Data.Entity.DbSet<FourYears.ViewModel.AccountManagerViewModel> AccountManagerViewModels { get; set; }
 

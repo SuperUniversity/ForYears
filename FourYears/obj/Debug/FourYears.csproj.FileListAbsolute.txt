@@ -530,3 +530,5 @@ D:\Google 雲端硬碟\MIST114\SpecialProject\ForYears\FourYears\obj\Debug\FourY
 D:\Google 雲端硬碟\MIST114\SpecialProject\ForYears\FourYears\obj\Debug\FourYears.Migrations.DeleteTrashRole.resources
 D:\Google 雲端硬碟\MIST114\SpecialProject\ForYears\FourYears\obj\Debug\FourYears.Migrations.UniversityId.resources
 D:\Google 雲端硬碟\MIST114\SpecialProject\ForYears\FourYears\obj\Debug\FourYears.csprojResolveAssemblyReference.cache
+D:\Google 雲端硬碟\MIST114\SpecialProject\ForYears\FourYears\obj\Debug\FourYears.Migrations.RemoveUserClassInLoginLogClass.resources
+D:\Google 雲端硬碟\MIST114\SpecialProject\ForYears\FourYears\obj\Debug\FourYears.Migrations.DeleteViewModelDbset.resources
