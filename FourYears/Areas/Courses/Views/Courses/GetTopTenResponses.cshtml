@@ -1,0 +1,61 @@
+﻿@model IEnumerable<MvcClient.Areas.Courses.Models.Response>
+
+
+<table class="table">
+    <tr>
+        @*<th>
+            @Html.DisplayNameFor(model => model.userID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.email)
+        </th>*@
+        <th>
+            @Html.DisplayNameFor(model => model.responsestring)
+        </th>
+        @*<th>
+            @Html.DisplayNameFor(model => model.anonym)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.hidden)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.allowEmailContact)
+        </th>*@
+        <th>
+            @Html.DisplayNameFor(model => model.lastModified)
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        @*<td>
+            @Html.DisplayFor(modelItem => item.userID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.email)
+        </td>*@
+        <td>
+            @Html.DisplayFor(modelItem => item.responsestring)
+        </td>
+        @*<td>
+            @Html.DisplayFor(modelItem => item.anonym)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.hidden)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.allowEmailContact)
+        </td>*@
+        <td>
+            @Html.DisplayFor(modelItem => item.lastModified)
+        </td>
+    </tr>
+}
+
+</table>

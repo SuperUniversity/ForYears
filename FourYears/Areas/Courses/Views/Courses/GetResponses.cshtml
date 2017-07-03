@@ -1,0 +1,33 @@
+﻿@model IEnumerable<MvcClient.Areas.Courses.Models.Response>
+
+
+@foreach (var item in Model)
+{
+
+
+    <div class="row">
+        <div class="card-header">
+            @Html.DisplayFor(modelItem => item.name)
+        </div>
+        <div class="card-block">
+            <blockquote class="card-blockquote">
+                <p>@Html.DisplayFor(modelItem => item.responsestring)</p>
+
+                <footer class="col-md-6">
+                    @Html.DisplayFor(modelItem => item.lastModified)
+                </footer>
+                <div class="col-md-6" hidden="hidden">
+                    @Html.ActionLink("修改", "Edit", new { }, new { @class = "btn btn-info" }) @Html.ActionLink("刪除", "Delete", new { /* id=item.PrimaryKey */ }, new { @class = "btn btn-danger" })
+                </div>
+            </blockquote>
+        </div>
+    </div>
+
+    
+            @Html.HiddenFor(modelItem => item.userID)
+            @Html.HiddenFor(modelItem => item.email)
+            @Html.HiddenFor(modelItem => item.anonym)
+            @Html.HiddenFor(modelItem => item.hidden)
+            @Html.HiddenFor(modelItem => item.allowEmailContact)
+}
+

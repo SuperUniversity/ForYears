@@ -29,6 +29,14 @@ namespace FourYears.Models
         public virtual ICollection<LoginLog> LoginLog { get; set; }
         //public virtual University University { get; set; }
         public int UniversityId { get; set; }
+
+        public virtual ICollection<User_Ranking> userRankings { get; set; }
+        public virtual ICollection<User_Comment> userComments { get; set; }
+        public virtual ICollection<User_Favorite> userFavorites { get; set; }
+        public virtual ICollection<User_Question> userQuestions { get; set; }
+        public virtual ICollection<User_Question_Response> userQuestionResponse { get; set; }
+
+
     }
 
     public class LoginLog
@@ -77,6 +85,52 @@ namespace FourYears.Models
         public DateTime UpdateDate { get; set; }
     }
 
+
+    public class User_Ranking
+    {
+        [Key]
+        public int User_RankingId { get; set; }
+        public string UserId { get; set; }
+        public string CourseId { get; set; }
+        public string RankingId { get; set; }
+    }
+
+    public class User_Comment
+    {
+        [Key]
+        public int User_CommentId { get; set; }
+        public string UserId { get; set; }
+        public string CourseId { get; set; }
+        public string CommentId { get; set; }
+    }
+
+    public class User_Favorite
+    {
+        [Key]
+        public int User_FavoriteId { get; set; }
+        public string UserId { get; set; }
+        public string CourseId { get; set; }
+    }
+
+    public class User_Question
+    {
+        [Key]
+        public int User_QuestionId { get; set; }
+        public string UserId { get; set; }
+        public string CourseId { get; set; }
+        public string questionId { get; set; }
+    }
+
+    public class User_Question_Response
+    {
+        [Key]
+        public int User_Question_ResponseId { get; set; }
+        public string userId { get; set; }
+        public string courseId { get; set; }
+        public string questionId { get; set; }
+        public string reesponseId { get; set; }
+    }
+
     //public System.Data.Entity.DbSet<University> University { get; set; }
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
@@ -89,6 +143,11 @@ namespace FourYears.Models
 
         public DbSet<University> University { get; set; }
         public DbSet<LoginLog> LoginLogs { get; set; }
+        public DbSet<User_Ranking> userRankings { get; set; }
+        public DbSet<User_Comment> userComments { get; set; }
+        public DbSet<User_Favorite> userFavorites { get; set; }
+        public DbSet<User_Question> userQuestions { get; set; }
+        public DbSet<User_Question_Response> userQuestionResponses { get; set; }
 
         public static string GetNickName(string id)
         {
@@ -242,6 +301,24 @@ namespace FourYears.Models
         {
             return new ApplicationDbContext();
         }
+
+        //public System.Data.Entity.DbSet<MvcClient.Areas.Courses.Models.Response> Responses { get; set; }
+
+        //public System.Data.Entity.DbSet<FourYears.Areas.Courses.ViewModel.UserQuestionResponseViewModel> UserQuestionResponseViewModels { get; set; }
+
+        //public System.Data.Entity.DbSet<FourYears.Areas.Courses.ViewModel.UserCommentViewModel> UserCommentViewModels { get; set; }
+
+        //public System.Data.Entity.DbSet<FourYears.Areas.Courses.ViewModel.UserRankingViewModel> UserRankingViewModels { get; set; }
+
+        //public System.Data.Entity.DbSet<FourYears.Areas.Courses.ViewModel.UserQuestionViewModel> UserQuestionViewModels { get; set; }
+
+        //public System.Data.Entity.DbSet<MvcClient.Areas.Courses.Models.Response> Responses { get; set; }
+
+        //public System.Data.Entity.DbSet<MvcClient.Areas.Courses.Models.Response> Responses { get; set; }
+
+        //public System.Data.Entity.DbSet<FourYears.Areas.Courses.ViewModel.UserRankingViewModel> UserRankingViewModels { get; set; }
+
+        //public System.Data.Entity.DbSet<FourYears.Areas.Courses.ViewModel.UserCommentViewModel> UserCommentViewModels { get; set; }
 
         //public System.Data.Entity.DbSet<FourYears.ViewModel.UserLoginLogViewModel> UserLoginLogViewModels { get; set; }
 

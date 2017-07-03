@@ -47,9 +47,9 @@
         <th>
             @Html.DisplayNameFor(model => model.AllowEmailContact)
         </th>
-        <th>
+        @*<th>
             @Html.DisplayNameFor(model => model.AccessFailedCount)
-        </th>
+        </th>*@
         <th hidden="hidden">
             @Html.DisplayNameFor(model => model.UniversityId)
         </th>
@@ -109,9 +109,9 @@
                 }*@
                 @Html.EditorFor(modelItem => item.AllowEmailContact)
             </td>
-            <td>
+            @*<td>
                 @Html.DisplayFor(modelItem => item.AccessFailedCount)
-            </td>
+            </td>*@
             <td hidden="hidden">
                 @*<input id="UniversityId" value="@item.UniversityId" />*@
                 @Html.EditorFor(modelItem => item.UniversityId)

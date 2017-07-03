@@ -38,11 +38,28 @@
                     <li>@Html.ActionLink("關於", "About", "Home")</li>
                     <li>@Html.ActionLink("連絡方式", "Contact", "Home")</li>
                 </ul>*@
+
                 <ul class="nav navbar-nav navbar-right" id="ManagerUl" hidden="hidden">
+                    <li role="presentation" class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+                                管理員工具 <span class="caret"></span>
+                            </a>
+                        <ul class="dropdown-menu">
+                            <li>@Html.ActionLink("帳號管理員", "Index", "AccountManager", new { area = "" }, null)</li>
+                            <li>@Html.ActionLink("使用者登陸紀錄", "GetLoginLogs", "AccountManager", new { area = "" }, null)</li>
+                            <li>@Html.ActionLink("評論一覽", "GetUserComments", "UserCourse", new { area = "" }, null)</li>
+                            <li>@Html.ActionLink("評價一覽", "GetUserRankings", "UserCourse", new { area = "" }, null)</li>
+                        </ul>
+                    </li>
+                </ul>
+                @Html.Partial("_LoginPartial")
+
+
+                @*<ul class="nav navbar-nav navbar-right" id="ManagerUl" hidden="hidden">
                     <li hidden="hidden">@Html.ActionLink("帳號管理員", "Index", "AccountManager", new { area = "" }, null)</li>
                     <li hidden="hidden">@Html.ActionLink("使用者登陸紀錄", "GetLoginLogs", "AccountManager", new { area = "" }, null)</li>
                 </ul>
-                @Html.Partial("_LoginPartial")
+                @Html.Partial("_LoginPartial")*@
             </div>
         </div>
     </div>

@@ -27,7 +27,45 @@
             background-color:antiquewhite;
             cursor:pointer;
         }
+        .degree1 {
+            background-color: rgb(255, 255, 255)
+        }
 
+        .degree2 {
+            background-color: rgb(216, 224, 233)
+        }
+
+        .degree3 {
+            background-color: rgb(179, 196, 213)
+        }
+
+        .degree4 {
+            background-color: rgb(143, 168, 193)
+        }
+
+        .degree5 {
+            background-color: rgb(107, 140, 174)
+        }
+
+        .degree6 {
+            background-color: rgb(80, 112, 145)
+        }
+
+        .degree7 {
+            background-color: rgb(60, 84, 109)
+        }
+
+        .degree8 {
+            background-color: rgb(40, 56, 72)
+        }
+
+        .degree9 {
+            background-color: rgb(20, 28, 36)
+        }
+
+        .degree10 {
+            background-color: rgb(0, 0, 0)
+        }
     </style>
 }
 
@@ -242,30 +280,76 @@
             //nckuUrl = urlGenerator("GetNckuBySearchAll")
             nckuUrl = urlGeneratorForAll("NCKU")
 
+            function DrawRanking() {
+                switch (parseInt($(this).text())) {
+                    case 1:
+                        $(this).addClass("degree1")
+                        break;
+                    case 2:
+                        $(this).addClass("degree2")
+                        break;
+                    case 3:
+                        $(this).addClass("degree3")
+                        break;
+                    case 4:
+                        $(this).addClass("degree4")
+                        break;
+                    case 5:
+                        $(this).addClass("degree5")
+                        break;
+                    case 6:
+                        $(this).addClass("degree6")
+                        break;
+                    case 7:
+                        $(this).addClass("degree7")
+                        break;
+                    case 8:
+                        $(this).addClass("degree8")
+                        break;
+                    case 9:
+                        $(this).addClass("degree9")
+                        break;
+                    case 10:
+                        $(this).addClass("degree10")
+                        break;
+                }
+            }
 
             $("#NtpuTable").load(ntpuUrl, function () {
                 var dataLen = $("#NtpuTable tr").length - 1;
                 var recentText = $('#NtpuTitle').text()
                 $('#NtpuTitle').html(recentText.replace("　(檢　索　中　...)", "　(檢　索　完　成　，　共　" + dataLen + "　筆　資　料)") + '<span class="glyphicon glyphicon-eye-open"></span>')
                     .removeAttr("disabled")
+                $.each($(this).find("td").parent("tr").find("td:nth-child(6)"), DrawRanking)
+                $.each($(this).find("td").parent("tr").find("td:nth-child(7)"), DrawRanking)
+                $.each($(this).find("td").parent("tr").find("td:nth-child(8)"), DrawRanking)
             })
             $("#SooChowTable").load(soochowUrl, function () {
                 var dataLen = $("#SooChowTable tr").length - 1;
                 var recentText = $('#SooChowTitle').text()
                 $('#SooChowTitle').html(recentText.replace("　(檢　索　中　...)", "　(檢　索　完　成　，　共　" + dataLen + "　筆　資　料)") + '<span class="glyphicon glyphicon-eye-open"></span>')
                     .removeAttr("disabled")
+                $.each($(this).find("td").parent("tr").find("td:nth-child(6)"), DrawRanking)
+                $.each($(this).find("td").parent("tr").find("td:nth-child(7)"), DrawRanking)
+                $.each($(this).find("td").parent("tr").find("td:nth-child(8)"), DrawRanking)
             })
             $("#NtuTable").load(ntuUrl, function () {
                         var dataLen = $("#NtuTable tr").length - 1;
                         var recentText = $('#NtuTitle').text()
                 $('#NtuTitle').html(recentText.replace("　(檢　索　中　...)", "　(檢　索　完　成　，　共　" + dataLen+"　筆　資　料)") + '<span class="glyphicon glyphicon-eye-open"></span>')
-                    .removeAttr("disabled")
+                            .removeAttr("disabled")
+                $.each($(this).find("td").parent("tr").find("td:nth-child(6)"), DrawRanking)
+                $.each($(this).find("td").parent("tr").find("td:nth-child(7)"), DrawRanking)
+                $.each($(this).find("td").parent("tr").find("td:nth-child(8)"), DrawRanking)
             })
             $("#NctuTable").load(nctuUrl, function () {
                         var dataLen = $("#NctuTable tr").length - 1;
                         var recentText = $('#NctuTitle').text()
                 $('#NctuTitle').html(recentText.replace("　(檢　索　中　...)", "　(檢　索　完　成　，　共　" + dataLen + "　筆　資　料)") + '<span class="glyphicon glyphicon-eye-open"></span>')
-                    .removeAttr("disabled")
+                            .removeAttr("disabled")
+                $.each($(this).find("td").parent("tr").find("td:nth-child(6)"), DrawRanking)
+                $.each($(this).find("td").parent("tr").find("td:nth-child(7)"), DrawRanking)
+                $.each($(this).find("td").parent("tr").find("td:nth-child(8)"), DrawRanking)
             })
             $("#NckuTable").load(nckuUrl, function () {
                         var dataLen = $("#NckuTable tr").length - 1;
@@ -273,6 +357,9 @@
                 $('#NckuTitle').html(recentText.replace("　(檢　索　中　...)", "　(檢　索　完　成　，　共　" + dataLen + "　筆　資　料)") +'<span class="glyphicon glyphicon-eye-open"></span>')
                             .removeAttr("disabled")
                 $("#generalSearch button").removeAttr("disabled")
+                $.each($(this).find("td").parent("tr").find("td:nth-child(6)"), DrawRanking)
+                $.each($(this).find("td").parent("tr").find("td:nth-child(7)"), DrawRanking)
+                $.each($(this).find("td").parent("tr").find("td:nth-child(8)"), DrawRanking)
             })
 
         })

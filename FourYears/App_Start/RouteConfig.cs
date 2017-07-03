@@ -16,14 +16,15 @@ namespace FourYears
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
+                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional },
+                namespaces: new[] { "FourYears.Controllers" }
             );
 
-            routes.MapRoute(
-                name: "signin-facebook", 
-                url: "signin-facebook", 
-                defaults: new { controller = "Account", action = "ExternalLoginCallback" }
-                );
+            //routes.MapRoute(
+            //    name: "signin-facebook", 
+            //    url: "signin-facebook", 
+            //    defaults: new { controller = "Account", action = "ExternalLoginCallback" }
+            //    );
         }
     }
 }

@@ -529,6 +529,11 @@ D:\Google 雲端硬碟\MIST114\SpecialProject\ForYears\FourYears\obj\Debug\FourY
 D:\Google 雲端硬碟\MIST114\SpecialProject\ForYears\FourYears\obj\Debug\FourYears.Migrations.RecoverCreateTime.resources
 D:\Google 雲端硬碟\MIST114\SpecialProject\ForYears\FourYears\obj\Debug\FourYears.Migrations.DeleteTrashRole.resources
 D:\Google 雲端硬碟\MIST114\SpecialProject\ForYears\FourYears\obj\Debug\FourYears.Migrations.UniversityId.resources
-D:\Google 雲端硬碟\MIST114\SpecialProject\ForYears\FourYears\obj\Debug\FourYears.csprojResolveAssemblyReference.cache
 D:\Google 雲端硬碟\MIST114\SpecialProject\ForYears\FourYears\obj\Debug\FourYears.Migrations.RemoveUserClassInLoginLogClass.resources
 D:\Google 雲端硬碟\MIST114\SpecialProject\ForYears\FourYears\obj\Debug\FourYears.Migrations.DeleteViewModelDbset.resources
+D:\Google 雲端硬碟\MIST114\SpecialProject\ForYears\FourYears\obj\Debug\FourYears.Migrations.userCourseRelation.resources
+D:\Google 雲端硬碟\MIST114\SpecialProject\ForYears\FourYears\obj\Debug\FourYears.Migrations.removeLastmodifiedProp.resources
+D:\Google 雲端硬碟\MIST114\SpecialProject\ForYears\FourYears\obj\Debug\FourYears.csproj.CoreCompileInputs.cache
+D:\Google 雲端硬碟\MIST114\SpecialProject\ForYears\FourYears\obj\Debug\FourYears.Migrations.user_response.resources
+D:\Google 雲端硬碟\MIST114\SpecialProject\ForYears\FourYears\obj\Debug\FourYears.Migrations.user_Question_response.resources
+D:\Google 雲端硬碟\MIST114\SpecialProject\ForYears\FourYears\obj\Debug\FourYears.csprojResolveAssemblyReference.cache

@@ -1,9 +1,8 @@
 ﻿@model IEnumerable<MvcClient.Areas.Courses.Models.Comment>
 
 
-<h4>歷史評論(共有 @ViewBag.commentLen 則評論)</h4>
+<h4>評論(共有 @ViewBag.commentLen 則評論)</h4>
 <hr />
-<div class="container">
     @foreach (var item in Model)
     {
         <div class="card col-md-6">
@@ -45,9 +44,6 @@
         @*@Html.DisplayNameFor(model => model.allowEmailContact)*@
         @Html.HiddenFor(modelItem => item.allowEmailContact)
 
-        @*@Html.DisplayNameFor(model => model.lastModified)*@
-        @Html.HiddenFor(modelItem => item.lastModified)
     }
-</div>
 
 

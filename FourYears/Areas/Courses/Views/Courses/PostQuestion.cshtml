@@ -1,0 +1,65 @@
+﻿@model MvcClient.Areas.Courses.Models.Question
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        @*<h4>評論</h4>
+            <hr />*@
+
+        <div hidden="hidden">
+            <input class="rankingRange" id="userID" name="userID" type="text" value="888" />
+            @Html.EditorFor(model => model.name, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.EditorFor(model => model.email, new { htmlAttributes = new { @class = "form-control" } })
+        </div>
+
+        <label for="questionstring">提問內容</label>
+
+        <div class="form-group col-md-12">
+            <div class="col-md-12">
+            </div>
+            @*@Html.LabelFor(model => model.commentstring, htmlAttributes: new { @class = "control-label col-md-12" })*@
+            <div class="col-md-12">
+                @Html.EditorFor(model => model.questionstring, new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <div hidden="hidden">
+                <label>
+                    <input naem="allowEmailContact" id="allowEmailContact" type="checkbox"> 允許電子郵件聯繫
+                </label>
+            </div>
+
+            <div>
+                <div class="col-md-4 checkbox" align="right">
+                    <label>
+                        <input name="anonym" class="anonym" id="anonym" type="checkbox"> 匿名提問
+                    </label>
+                </div>
+            </div>
+
+
+            <div>
+                <div class="col-md-4" id="questionSubmitDiv" align="right">
+                    <input id="submit" type="submit" value="送出提問" class="btn btn-default" />
+                </div>
+            </div>
+
+
+        </div>
+
+        @*<div class="form-group">
+                @Html.LabelFor(model => model.CommentTime, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.CommentTime, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.CommentTime, "", new { @class = "text-danger" })
+                </div>
+            </div>*@
+
+
+    </div>
+}
+
+

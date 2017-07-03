@@ -24,7 +24,17 @@
             margin-bottom: 20px;
         }
 
+        #commentSubmitDiv {
+            margin-left: 10px;
+        }
         #commentstring {
+            height: 167px;
+        }
+
+        #questionSubmitDiv {
+            margin-left: 10px;
+        }
+        #questionstring {
             height: 167px;
         }
 
@@ -34,22 +44,74 @@
         #postRanking .form-group {
             margin-bottom:26px;
         }
-        #commentSubmitDiv {
-            margin-left: 10px;
-        }
+
         table td{
-            font-size:15px
+            font-size:16px
         }
         tr td:first-child{
             width:100px;
         }
+        #stretchAllResponseDiv{
+            margin-bottom:10px;
+        }
+
+        /*TeacherCoursesComparason*/
+        .MouseIn {
+            /*color:cadetblue;*/
+            background-color: antiquewhite;
+            cursor: pointer;
+        }
+        .degree1 {
+            background-color: rgb(255, 255, 255)
+        }
+
+        .degree2 {
+            background-color: rgb(216, 224, 233)
+        }
+
+        .degree3 {
+            background-color: rgb(179, 196, 213)
+        }
+
+        .degree4 {
+            background-color: rgb(143, 168, 193)
+        }
+
+        .degree5 {
+            background-color: rgb(107, 140, 174)
+        }
+
+        .degree6 {
+            background-color: rgb(80, 112, 145)
+        }
+
+        .degree7 {
+            background-color: rgb(60, 84, 109)
+        }
+
+        .degree8 {
+            background-color: rgb(40, 56, 72)
+        }
+
+        .degree9 {
+            background-color: rgb(20, 28, 36)
+        }
+
+        .degree10 {
+            background-color: rgb(0, 0, 0)
+        }
+
+        #AddToFavorite{
+            margin-left:30px;
+        }
+
     </style>
     }
 
 
 <div class="container">
-    <h2>@Html.DisplayFor(model => model.CourseName)</h2>
-
+    <h2>@Html.DisplayFor(model => model.CourseName)<img id="AddToFavorite" title="加入最愛" src="~/images/LikeWhite.png" width="60" /></h2>
+    
     <h4>詳細資料</h4>
     <hr />
 
@@ -228,15 +290,31 @@
         </div>
     </div>
 
+    <h4> 課程比較(@Model.College @Model.Teacher 教授)</h4>
+    <div id="TeacherCoursesComparasonDiv" class="row">
+        <img src="~/images/loading.gif" />
+        @*@Html.Action("GetTeacherCoursesComparason", new { college = Model.College, teacherName = Model.Teacher })*@
+    </div>
+
+
+
+
     <h4>評點</h4>
     <hr />
     <div class="row">
-        <div id="postRanking" class="slefBlock col-md-5">
+        <div id="postRanking" class="slefBlock col-md-4">
             @Html.Partial("PostRanking", new Ranking())
         </div>
-        <div id="postComment" class="slefBlock col-md-5">
+        <div id="postComment" class="slefBlock col-md-4">
             @Html.Partial("PostComment", new Comment())
         </div>
+        <div id="postQuestion" class="slefBlock col-md-4">
+            @Html.Partial("PostQuestion", new Question())
+        </div>
+    </div>
+
+    <div id="questions" class="slefBlock">
+        @Html.Partial("GetQuestions", Model.questiondata)
     </div>
 
     <div id="comments" class="slefBlock">
@@ -265,16 +343,81 @@
             $(this).parent("div").parent("div").find("div>label>span").text($(this).val())
         })
 
-            if ("@ViewBag.avgDeepness" != "尚無評價資料") {
-                var avgDeepness = parseFloat(@ViewBag.avgDeepness)*10
-                var avgRelaxing = parseFloat(@ViewBag.avgRelaxing)*10
-                var avgSweetness = parseFloat(@ViewBag.avgSweetness) * 10
+        if ("@ViewBag.avgDeepness" != "尚無評價資料") {
+            var avgDeepness = parseFloat(@ViewBag.avgDeepness)*10
+            var avgRelaxing = parseFloat(@ViewBag.avgRelaxing)*10
+            var avgSweetness = parseFloat(@ViewBag.avgSweetness) * 10
             $(".progress-bar-success").width(avgDeepness.toString() + "%")
             $(".progress-bar-info").width(avgRelaxing.toString() + "%")
             $(".progress-bar-warning").width(avgSweetness.toString() + "%")
         }
 
-        function putToDb(url, data, successNote, errorNote) {
+
+
+
+        //TeacherCoursesComparason
+        function DrawRanking() {
+            switch (parseInt($(this).text())) {
+                case 1:
+                    $(this).addClass("degree1")
+                    break;
+                case 2:
+                    $(this).addClass("degree2")
+                    break;
+                case 3:
+                    $(this).addClass("degree3")
+                    break;
+                case 4:
+                    $(this).addClass("degree4")
+                    break;
+                case 5:
+                    $(this).addClass("degree5")
+                    break;
+                case 6:
+                    $(this).addClass("degree6")
+                    break;
+                case 7:
+                    $(this).addClass("degree7")
+                    break;
+                case 8:
+                    $(this).addClass("degree8")
+                    break;
+                case 9:
+                    $(this).addClass("degree9")
+                    break;
+                case 10:
+                    $(this).addClass("degree10")
+                    break;
+            }
+        }
+        $(document).ready(function () {
+            var comparasonUrl = "@Url.Action("GetTeacherCoursesComparason")"
+            comparasonUrl += "?college="+ "@Model.College"
+            comparasonUrl += "&teacherName=" + "@Model.Teacher"
+            $("#TeacherCoursesComparasonDiv").load(comparasonUrl, function () {
+                $.each($(this).find("td").parent("tr").find("td:nth-child(6)"), DrawRanking)
+                $.each($(this).find("td").parent("tr").find("td:nth-child(7)"), DrawRanking)
+                $.each($(this).find("td").parent("tr").find("td:nth-child(8)"), DrawRanking)
+
+                var id = null;
+                $("table>tbody>tr>td").mouseenter(function () {
+                    $(this).parent("tr").addClass("MouseIn")
+                    id = $(this).parent("tr").find("td:eq(0)").text()
+                })
+
+                $("table>tbody>tr>td").mouseleave(function () {
+                    $(this).parent("tr").removeClass("MouseIn")
+                })
+
+                $("table>tbody>tr>td").parent('tr').click(function () {
+                    var url = '@Url.Action("GetCourseDetail", "Courses", new { area = "Courses" })';
+                    id = id.replace(new RegExp(" ", "g"), "")
+                    window.open(url + "?strid=" + id)
+                })
+            })
+        })
+
+        function putToDb(url, data, SuccessNote, FailNote) {
             $.ajax({
                 url: url,
                 type: 'PUT',
@@ -285,20 +428,32 @@
                 //dataType: "jsonp",
                 //jsonp: 'jsonp_callback',
                 success: function (data) {
-                    alert(successNote);
-                    location.reload();
+                    alert(SuccessNote)
+                    location.reload()
                 },
 
                 error: function (httpReq, status, exception) {
-                    alert(errorNote);
+                    alert(FailNote)
                 }
 
+            });
+            }
+
+        function postUserCourse(url, data) {
+            $.ajax({
+                url: url,
+                type: 'POST',
+                data: data,
+                //success: function (data) {
+                //},
+                //error: function (httpReq, status, exception) {
+                //}
             });
         }
 
 
         //取出課程ID
-        var ObjId = $('#ObjId').text().replace(new RegExp(" ", 'g'), '')
+        var ObjId = $('#ObjId').text().replace(new RegExp(" ", 'g'), '').replace(new RegExp("\n", 'g'), '')
 
         //幫助取出是否匿名欄位的值
         $("#anonym").click(function () {
@@ -314,17 +469,22 @@
         $("#postComment").find("#submit").click(function (event) {
             event.preventDefault();
 
+            //CourseIndex
             var strid = ObjId;
             var url = "https://taiwanuniversitiescourses.azurewebsites.net/api/AllCollege?strid=" + strid + "&iscomment=true"
-            //var url = "http://localhost:57268//api/AllCollege?strid=" + strid + "&iscomment=true"
             var userID = "@User.Identity.GetUserId()";
             var name = "@ApplicationDbContext.GetNickName(User.Identity.GetUserId())";
             var email = "@User.Identity.GetUserName()"
             var commentstring = $("#postComment").find("#commentstring").val();
             var anonym = $("#postComment").find("#anonym").prop("checked");
             var allowEmailContact = @ApplicationDbContext.GetAllowEmailContact(User.Identity.GetUserId()).ToString().ToLower();
-            commentData = { "userID": userID, "name": name, "email": email, "commentstring": commentstring, "anonym": anonym, "allowEmailContact": allowEmailContact }
+            var commentId = "@Guid.NewGuid().ToString()"
+            commentData = { "commentID": commentId, "userID": userID, "name": name, "email": email, "commentstring": commentstring, "anonym": anonym, "allowEmailContact": allowEmailContact}
 
+
+            //UserIndex
+            var postCommentUrl = "@Url.Action("PostComment", "Courses",new { area="Courses"})"
+            userCommentData = { "UserID": userID, "CourseId": strid, "CommentId": commentId }
 
             //確認經登錄
             if (!@User.Identity.IsAuthenticated.ToString().ToLower()){
@@ -335,9 +495,50 @@
             else {
                 //確認留言不是空值
                 if (commentstring != "") {
-                    putToDb(url, commentData, '評論成功', "評論失敗，請重新評論")
+                    putToDb(url, commentData, "評論成功", "評論失敗，請重新評論")
+                    postUserCourse(postCommentUrl, userCommentData)
                 } else {
                     alert("請輸入評論內容")
+                }
+            }
+
+        })
+
+
+        //送出提問
+        $("#postQuestion").find("#submit").click(function (event) {
+            event.preventDefault();
+
+            //CourseIndex
+            var strid = ObjId;
+            var url = "https://taiwanuniversitiescourses.azurewebsites.net/api/AllCollege?strid=" + strid + "&isquestion=true"
+            var userID = "@User.Identity.GetUserId()";
+            var name = "@ApplicationDbContext.GetNickName(User.Identity.GetUserId())";
+            var email = "@User.Identity.GetUserName()"
+            var questionstring = $("#postQuestion").find("#questionstring").val();
+            var anonym = $("#postQuestion").find("#anonym").prop("checked");
+            var allowEmailContact = @ApplicationDbContext.GetAllowEmailContact(User.Identity.GetUserId()).ToString().ToLower();
+            var solved = false;
+            var questionId = "@Guid.NewGuid().ToString()"
+            questionData = { "questionID": questionId, "userID": userID, "name": name, "email": email, "questionstring": questionstring, "anonym": anonym, "allowEmailContact": allowEmailContact, "solved": solved}
+
+            //UserIndex
+            var postQuestionUrl = "@Url.Action("PostQuestion", "Courses",new { area="Courses"})"
+            userQuestionData = { "UserID": userID, "CourseId": strid, "questionId": questionId }
+
+            //確認經登錄
+            if (!@User.Identity.IsAuthenticated.ToString().ToLower()){
+
+                alert("請先登入後提問");
+                window.location = "@Url.Action("Login", "Account", new { area = "", returnUrl = Request.RawUrl })"
+            }
+            else {
+                //確認留言不是空值
+                if (questionstring != "") {
+                    putToDb(url, questionData, "提問成功", "提問失敗，請重新評論")
+                    postUserCourse(postQuestionUrl, userQuestionData)
+                } else {
+                    alert("請輸入提問內容")
                 }
             }
 
@@ -351,13 +552,21 @@
         $("#postRanking").find("#submit").click(function (event) {
                 event.preventDefault();
 
+                //CourseIndex
                 var strid = ObjId;
                 var userID = "@User.Identity.GetUserId()"
                 var deepness = parseInt($("#deepness").val())
                 var relaxing = parseInt($("#relaxing").val())
                 var sweetness = parseInt($("#sweetness").val())
                 var url = "https://taiwanuniversitiescourses.azurewebsites.net/api/AllCollege?strid=" + strid + "&isranking=true"
-                var rankingData = { "userID": userID, "deepness": deepness, "relaxing": relaxing, "sweetness": sweetness }
+                var rankingId = "@Guid.NewGuid().ToString()"
+                var rankingData = { "rankingID": rankingId, "userID": userID, "deepness": deepness, "relaxing": relaxing, "sweetness": sweetness }
+
+
+                //UserIndex
+                var postRankingUrl = "@Url.Action("PostRanking", "Courses",new { area="Courses"})"
+                userRankingData = { "UserID": userID, "CourseId": strid, "rankingID": rankingId }
+
 
 
                 //確認經登錄
@@ -369,17 +578,136 @@
                     //確認不重複評價
                     if (@ViewBag.HaveNotRanked){
 
-                        @*@Url.Action("PostComments", "Courses", new { area = "Courses" }) + "?strid=" + strid *@
                         //送出Ajax
-                        putToDb(url, rankingData, '評價成功', "評價失敗，請重新評價")
+                        putToDb(url, rankingData, "評價成功", "評價失敗，請重新評價")
+                        postUserCourse(postRankingUrl, userRankingData)
                     } else {
                         alert("請勿重複評價評價");
                     }
                 }
+        })
+
+        //展開回應對話框
+        $(".responseBtn").click(function () {
+            $(this).parent("footer").parent("blockquote").parent("div").next("div").slideToggle()
+        })
+
+        //展開特定問題的回應
+        $(".stretchResponseBtn").click(function () {
+            $(this).parent("footer").parent("blockquote").parent("div").next("div").next("div").slideToggle()
+        })
+
+        //展開全部回應
+        $("#stretchAllResponseBtn").click(function () {
+            $(".ResponsesDiv").slideToggle();
+        })
+        stretchAllResponseBtn
+
+        //送出回應
+        $(".responseSubmit").click(function () {
+
+            var courseId = ObjId;
+            var questionId = $(this).parent("div").parent("div").next("#item_questionID").val();
+            var responseString = $(this).siblings("textarea").val();
+            var userID = "@User.Identity.GetUserId()";
+            var name = "@ApplicationDbContext.GetNickName(User.Identity.GetUserId())";
+            var email = "@User.Identity.GetUserName()"
+            var anonym = $(this).siblings("#anonym").prop("checked");
+            var allowEmailContact = @ApplicationDbContext.GetAllowEmailContact(User.Identity.GetUserId()).ToString().ToLower();
+            var url = "https://taiwanuniversitiescourses.azurewebsites.net/api/AllCollege?strid=" + courseId + "&questionid=" + questionId+ "&isreponse=true"
+
+            var responseID = "@Guid.NewGuid().ToString()"
+            var responseData = { "responseID": responseID, "userID": userID, "name": name, "email": email, "responsestring": responseString, "anonym": anonym, "allowEmailContact": allowEmailContact }
+
+
+            //UserIndex
+            var postResponseUrl = "@Url.Action("PostResponse", "Courses",new { area="Courses"})"
+            userResponseData = { "userId": userID, "courseId": courseId, "questionId": questionId, "reesponseId": responseID}
+
+            //確認經登錄
+            if (!@User.Identity.IsAuthenticated.ToString().ToLower()){
+
+                alert("請先登入後提問");
+                window.location = "@Url.Action("Login", "Account", new { area = "", returnUrl = Request.RawUrl })"
+            }
+            else {
+                //確認留言不是空值
+                if (responseString != "") {
+                    putToDb(url, responseData, "回覆成功", "回覆失敗，請重新回覆")
+                    postUserCourse(postResponseUrl, userResponseData)
+                } else {
+                    alert("請輸入提問內容")
+                }
+            }
+
+        })
+
+
+
+
+        if (@ViewBag.userFavorite.ToString().ToLower()){
+            //移除最愛
+            $("#AddToFavorite").attr("src", "/images/LikeRed.png").attr("title", "移除最愛")
+            $("#AddToFavorite").click(function () { 
+
+                var courseId = ObjId;
+                var userID = "@User.Identity.GetUserId()";
+                var deleteFavoriteUrl = "@Url.Action("DeleteFavorite", "Courses",new { area="Courses"})"
+                userFavoriteData = { "UserId": userID, "CourseId": courseId}
+
+                $.ajax({
+                    url: deleteFavoriteUrl,
+                    type: 'POST',
+                    data: userFavoriteData,
+                    success: function () {
+                        alert("移除最愛成功");
+                        location.reload();
+                    },
+                    error: function (httpReq, status, exception) {
+                        alert("移除最愛失敗，請重新嘗試")
+                    }
+                });
+            })
+        }
+        else {
+            //加入最愛
+            $("#AddToFavorite").mouseenter(function () {
+                $(this).attr("src", "/images/LikeRed.png")
             })
 
+            $("#AddToFavorite").mouseleave(function () {
+                $(this).attr("src", "/images/LikeWhite.png")
+            })
 
+            $("#AddToFavorite").click(function () {
 
+                var courseId = ObjId;
+                var userID = "@User.Identity.GetUserId()";
+                var postFavoriteUrl = "@Url.Action("PostFavorite", "Courses",new { area="Courses"})"
+                userFavoriteData = { "UserId": userID, "CourseId": courseId}
+
+                //確認經登錄
+                if (!@User.Identity.IsAuthenticated.ToString().ToLower()){
+                    alert("請先登入後加入最愛");
+                    window.location = "@Url.Action("Login", "Account", new { area = "", returnUrl = Request.RawUrl })"
+                }
+                else {
+                    $.ajax({
+                        url: postFavoriteUrl,
+                        type: 'POST',
+                        data: userFavoriteData,
+                        success: function () {
+                            alert("加入最愛成功");
+                            location.reload();
+                        },
+                        error: function (httpReq, status, exception) {
+                            alert("加入最愛失敗，請重新嘗試")
+                        }
+                    });
+                }
+
+            })
+        }
 
 
 

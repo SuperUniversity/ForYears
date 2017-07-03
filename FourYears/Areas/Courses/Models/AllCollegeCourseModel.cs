@@ -39,6 +39,7 @@ namespace MvcClient.Areas.Courses.Models
 
         public List<Comment> commentdata { get; set; }
         public List<Ranking> rankingdata { get; set; }
+        public List<Question> questiondata { get; set; }
         public DateTime lastModified { get; set; }
     }
 
@@ -100,24 +101,36 @@ namespace MvcClient.Areas.Courses.Models
         public DateTime lastModified { get; set; }
     }
 
-    public class User_Ranking
+    public class Question
     {
-        public string UserID { get; set; }
-        public string CourseID { get; set; }
-        public string RankingID { get; set; }
+        public string questionID { get; set; }
+        public string userID { get; set; }
+        public string name { get; set; }
+        public string email { get; set; }
+        [DataType(DataType.MultilineText)]
+        public string questionstring { get; set; }
+        public bool anonym { get; set; }
+        public bool hidden { get; set; }
+        public bool allowEmailContact { get; set; }
+        public bool solved { get; set; }
+        public List<Response> responsedata { get;set;}
         public DateTime lastModified { get; set; }
     }
-    public class User_Comment
+
+    public class Response
     {
-        public string UserID { get; set; }
-        public string CourseID { get; set; }
-        public string CommentID { get; set; }
+        public string responseID { get; set; }
+        public string userID { get; set; }
+        public string name { get; set; }
+        public string email { get; set; }
+        [DataType(DataType.MultilineText)]
+        [DisplayName("回覆內容")]
+        public string responsestring { get; set; }
+        public bool anonym { get; set; }
+        public bool hidden { get; set; }
+        public bool allowEmailContact { get; set; }
+        [DisplayName("回覆時間")]
         public DateTime lastModified { get; set; }
     }
-    public class User_Favorite
-    {
-        public string UserID { get; set; }
-        public string CourseID { get; set; }
-        public DateTime lastModified { get; set; }
-    }
+
 }

@@ -116,7 +116,6 @@ namespace MvcClient.Areas.Courses.Controllers
 
 
 
-
         //For All Start
         public static string QueryStringGeneratorForAll(string ApiUniversity, string query, string college, int topn = -1)
         {
@@ -289,12 +288,44 @@ namespace MvcClient.Areas.Courses.Controllers
         public static List<Comment> generateFirstManagerComment()
         {
             Comment comment = new Comment() { name = "管理員", commentstring = "快點成為第一個留言的人吧" };
-            comment.name = "管理員";
             comment.lastModified = DateTime.Now;
             List<Comment> comments = new List<Comment>();
             comments.Add(comment);
 
             return comments;
+        }
+
+        public static List<Question> generateFirstManagerQuestion()
+        {
+            Question question = new Question() { name = "管理員", questionstring = "快點成為第一個提問的人吧" };
+            question.lastModified = DateTime.Now;
+            List<Question> questions = new List<Question>();
+            questions.Add(question);
+
+            return questions;
+        }
+
+
+        public static async Task<string> DeleteFromApiForAll(string domain, string queryString)
+        {
+            using (var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri(domain);
+                client.DefaultRequestHeaders.Accept.Clear();
+                client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
+
+                //Delete Method  
+                HttpResponseMessage response = await client.DeleteAsync(queryString);
+                if (response.IsSuccessStatusCode)
+                {
+                    return "Success";
+                }
+                else
+                {
+                    return "Fail";
+                }
+
+            }
         }
 
     }

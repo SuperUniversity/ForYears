@@ -27,6 +27,7 @@
     </NuGetPackageImportStamp>
     <ApplicationInsightsResourceId>/subscriptions/cd7f8efa-8d32-44cb-accd-23d6027785e2/resourcegroups/Default-ApplicationInsights-EastUS/providers/microsoft.insights/components/FourYears</ApplicationInsightsResourceId>
     <ApplicationInsightsAnnotationResourceId>/subscriptions/cd7f8efa-8d32-44cb-accd-23d6027785e2/resourcegroups/Default-ApplicationInsights-EastUS/providers/microsoft.insights/components/FourYears</ApplicationInsightsAnnotationResourceId>
+    <Use64BitIISExpress />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -235,6 +236,15 @@
     <Compile Include="Areas\Courses\Models\NctuCourseModel.cs" />
     <Compile Include="Areas\Courses\Models\NtpuCourseModel.cs" />
     <Compile Include="Areas\Courses\Models\NtuCourseModel.cs" />
+    <Compile Include="Migrations\201707020931411_user_response.cs" />
+    <Compile Include="Migrations\201707020931411_user_response.Designer.cs">
+      <DependentUpon>201707020931411_user_response.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201707020932599_user_Question_response.cs" />
+    <Compile Include="Migrations\201707020932599_user_Question_response.Designer.cs">
+      <DependentUpon>201707020932599_user_Question_response.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModel\UserCourseViewModels.cs" />
     <Compile Include="Areas\FoodMapArea\Controllers\AdminController.cs" />
     <Compile Include="Areas\FoodMapArea\Controllers\CustomerController.cs" />
     <Compile Include="Areas\FoodMapArea\Controllers\ShopController.cs" />
@@ -282,6 +292,7 @@
     <Compile Include="Controllers\AccountManagerController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\UserCourseController.cs" />
     <Compile Include="ErrorHandler\AiHandleErrorAttribute.cs" />
     <Compile Include="facebook\FacebookBackChannelHandler.cs" />
     <Compile Include="Global.asax.cs">
@@ -342,6 +353,14 @@
     <Compile Include="Migrations\201706301530344_DeleteViewModelDbset.cs" />
     <Compile Include="Migrations\201706301530344_DeleteViewModelDbset.Designer.cs">
       <DependentUpon>201706301530344_DeleteViewModelDbset.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201706302354247_userCourseRelation.cs" />
+    <Compile Include="Migrations\201706302354247_userCourseRelation.Designer.cs">
+      <DependentUpon>201706302354247_userCourseRelation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201707010041401_removeLastmodifiedProp.cs" />
+    <Compile Include="Migrations\201707010041401_removeLastmodifiedProp.Designer.cs">
+      <DependentUpon>201707010041401_removeLastmodifiedProp.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -421,6 +440,9 @@
     <Content Include="images\fulls\06.jpg" />
     <Content Include="images\fulls\07.jpg" />
     <Content Include="images\homeBackground.jpg" />
+    <Content Include="images\LikeRed.png" />
+    <Content Include="images\LikeWhite.png" />
+    <Content Include="images\loading.gif" />
     <Content Include="images\Logo2.png" />
     <Content Include="images\Logo3.png" />
     <Content Include="images\Logo5.png" />
@@ -489,6 +511,16 @@
     <Content Include="Areas\FoodMapArea\Views\User\Detail.cshtml" />
     <Content Include="Areas\FoodMapArea\Views\User\Update.cshtml" />
     <Content Include="Connected Services\Application Insights\ConnectedService.json" />
+    <Content Include="Views\UserCourse\GetUserComments.cshtml" />
+    <Content Include="Views\UserCourse\Index.cshtml" />
+    <Content Include="Areas\Courses\Views\Courses\PostQuestion.cshtml" />
+    <Content Include="Areas\Courses\Views\Courses\GetQuestions.cshtml" />
+    <Content Include="Areas\Courses\Views\Courses\GetResponses.cshtml" />
+    <Content Include="Areas\Courses\Views\Courses\News.cshtml" />
+    <Content Include="Areas\Courses\Views\Courses\GetTopTenQuestions.cshtml" />
+    <Content Include="Areas\Courses\Views\Courses\GetTopTenResponses.cshtml" />
+    <Content Include="Areas\Courses\Views\Courses\GetTopTenComments.cshtml" />
+    <Content Include="Areas\Courses\Views\Courses\GetTopTenRankings.cshtml" />
     <None Include="Properties\PublishProfiles\FourYears - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\FourYears20170619065352 - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
@@ -543,6 +575,7 @@
     <Content Include="Views\Manage\ModifyMember.cshtml" />
     <Content Include="Views\AccountManager\Index.cshtml" />
     <Content Include="Views\AccountManager\GetLoginLogs.cshtml" />
+    <Content Include="Views\UserCourse\GetUserRankings.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -607,6 +640,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201706301530344_DeleteViewModelDbset.resx">
       <DependentUpon>201706301530344_DeleteViewModelDbset.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201706302354247_userCourseRelation.resx">
+      <DependentUpon>201706302354247_userCourseRelation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201707010041401_removeLastmodifiedProp.resx">
+      <DependentUpon>201707010041401_removeLastmodifiedProp.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201707020931411_user_response.resx">
+      <DependentUpon>201707020931411_user_response.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201707020932599_user_Question_response.resx">
+      <DependentUpon>201707020932599_user_Question_response.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

@@ -31,6 +31,15 @@
             @Html.DisplayNameFor(model => model.Major)
         </th>
         <th>
+            深
+        </th>
+        <th>
+            涼
+        </th>
+        <th>
+            甜
+        </th>
+        @*<th>
             @Html.DisplayNameFor(model => model.Required)
         </th>
         <th>
@@ -38,7 +47,7 @@
         </th>
         <th style="width:4%">
             @Html.DisplayNameFor(model => model.Credit)
-        </th>
+        </th>*@
         @*<th style="width:25%">
             @Html.DisplayNameFor(model => model.Limitation)
         </th>*@
@@ -77,7 +86,28 @@
         <td>
             @Html.DisplayFor(modelItem => item.Major)
         </td>
+        @{
+            string avgDeepness = "N";
+            string avgRelaxing = "N";
+            string avgSweetness = "N";
+            if (item.rankingdata != null)
+            {
+                avgDeepness = (from r in item.rankingdata select r.deepness).Average().ToString();
+                avgRelaxing = (from r in item.rankingdata select r.relaxing).Average().ToString();
+                avgSweetness = (from r in item.rankingdata select r.sweetness).Average().ToString();
+            }
         <td>
+            @avgDeepness
+        </td>
+        <td>
+            @avgRelaxing
+        </td>
+        <td>
+            @avgSweetness
+        </td>
+        }
+
+        @*<td>
             @Html.DisplayFor(modelItem => item.Required)
         </td>
         <td>
@@ -85,7 +115,7 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Credit)
-        </td>
+        </td>*@
         @*<td>
             @Html.DisplayFor(modelItem => item.Limitation)
         </td>*@
