@@ -521,6 +521,8 @@
     <Content Include="Areas\Courses\Views\Courses\GetTopTenResponses.cshtml" />
     <Content Include="Areas\Courses\Views\Courses\GetTopTenComments.cshtml" />
     <Content Include="Areas\Courses\Views\Courses\GetTopTenRankings.cshtml" />
+    <Content Include="Areas\Courses\Views\Courses\GetPersonalFootPrint.cshtml" />
+    <Content Include="Areas\Courses\Views\Courses\GetTopTenResponses_Personal.cshtml" />
     <None Include="Properties\PublishProfiles\FourYears - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\FourYears20170619065352 - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />

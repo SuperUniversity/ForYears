@@ -1,0 +1,177 @@
+﻿
+@{
+    ViewBag.Title = "課程足跡";
+}
+
+@section styles{
+    <style>
+
+        .MouseIn {
+            /*color:cadetblue;*/
+            background-color: antiquewhite;
+            cursor: pointer;
+        }
+
+        .degree1 {
+            background-color: rgb(255, 255, 255)
+        }
+
+        .degree2 {
+            background-color: rgb(216, 224, 233)
+        }
+
+        .degree3 {
+            background-color: rgb(179, 196, 213)
+        }
+
+        .degree4 {
+            background-color: rgb(143, 168, 193)
+        }
+
+        .degree5 {
+            background-color: rgb(107, 140, 174)
+        }
+
+        .degree6 {
+            background-color: rgb(80, 112, 145)
+        }
+
+        .degree7 {
+            background-color: rgb(60, 84, 109)
+        }
+
+        .degree8 {
+            background-color: rgb(40, 56, 72)
+        }
+
+        .degree9 {
+            background-color: rgb(20, 28, 36)
+        }
+
+        .degree10 {
+            background-color: rgb(0, 0, 0)
+        }
+    </style>
+    
+    }
+
+<div class="container">
+    <h2>課程足跡</h2>
+    <div>
+        <h4>最愛課程(已加入 @ViewBag.FavoriteCount 門)</h4>
+        <div class="row" id="PersonalFavoriteDiv">
+            <img src="~/images/loading.gif" />
+        </div>
+    </div>
+
+    <div>
+        <h4>個人提問(已建立 @ViewBag.QuestionCount 則提問)</h4>
+        <div class="row" id="PersonalQuestionsDiv">
+            <img src="~/images/loading.gif" />
+        </div>
+    </div>
+
+    <div>
+        <h4>個人回覆(已回覆 @ViewBag.ResponseCount 則提問)</h4>
+        <div class="row" id="PersonalResponsesDiv">
+            <img src="~/images/loading.gif" />
+        </div>
+    </div>
+
+    <div>
+        <h4>最新評論(@ViewBag.CommentCount 門)</h4>
+        <div class="row" id="PersonalCommentsDiv">
+            <img src="~/images/loading.gif" />
+        </div>
+    </div>
+
+    <div>
+        <h4>最新評價(@ViewBag.RankingCount 門)</h4>
+        <div class="row" id="PersonalRankingsDiv">
+            <img src="~/images/loading.gif" />
+        </div>
+    </div>
+
+</div>
+
+
+@section scripts{
+    <script>
+
+        $(document).ready(function () {
+            $("#PersonalFavoriteDiv").load("@Url.Action("GetPersonalFavorite")", TableOperation)
+            $("#PersonalQuestionsDiv").load("@Url.Action("GetPersonalQuestion")", function () {
+                $(".checkResponses").click(function () {
+                    $(this).parent("td").parent("tr").next("tr").slideToggle();
+                    TableOperation
+                })
+            })
+            $("#PersonalResponsesDiv").load("@Url.Action("GetPersonalResponse")", TableOperation)
+            $("#PersonalCommentsDiv").load("@Url.Action("GetPersonalComment")", TableOperation)
+            $("#PersonalRankingsDiv").load("@Url.Action("GetPersonalRanking")", TableOperation)
+        })
+
+
+
+
+        function TableOperation() {
+        var id = null;
+        $("table>tbody>tr>td").mouseenter(function () {
+            $(this).parent("tr").addClass("MouseIn")
+            id = $(this).parent("tr").find("td:eq(0)").text()
+        })
+
+        $("table>tbody>tr>td").mouseleave(function () {
+            $(this).parent("tr").removeClass("MouseIn")
+        })
+
+        $("table>tbody>tr>td").parent('tr').click(function () {
+            var url = '@Url.Action("GetCourseDetail", "Courses", new { area = "Courses" })';
+            id = id.replace(new RegExp(" ", "g"), "")
+            window.open(url + "?strid=" + id)
+        })
+
+
+        function DrawRanking() {
+            switch (parseInt($(this).text())) {
+                case 1:
+                    $(this).addClass("degree1")
+                    break;
+                case 2:
+                    $(this).addClass("degree2")
+                    break;
+                case 3:
+                    $(this).addClass("degree3")
+                    break;
+                case 4:
+                    $(this).addClass("degree4")
+                    break;
+                case 5:
+                    $(this).addClass("degree5")
+                    break;
+                case 6:
+                    $(this).addClass("degree6")
+                    break;
+                case 7:
+                    $(this).addClass("degree7")
+                    break;
+                case 8:
+                    $(this).addClass("degree8")
+                    break;
+                case 9:
+                    $(this).addClass("degree9")
+                    break;
+                case 10:
+                    $(this).addClass("degree10")
+                    break;
+            }
+        }
+        $.each($("#PersonalRankingsDiv td").parent("tr").find("td:nth-child(3)"), DrawRanking)
+        $.each($("#PersonalRankingsDiv td").parent("tr").find("td:nth-child(4)"), DrawRanking)
+        $.each($("#PersonalRankingsDiv td").parent("tr").find("td:nth-child(5)"), DrawRanking)
+        }
+
+
+    </script>
+
+}

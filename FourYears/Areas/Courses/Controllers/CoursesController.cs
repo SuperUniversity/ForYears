@@ -132,6 +132,7 @@ namespace MvcClient.Areas.Courses.Controllers
                 //Daeal withh question
                 if (SingleCourse.questiondata == null || SingleCourse.commentdata.Count() == 0)
                 {
+                    ViewBag.originalQuestionLen = 0;
                     SingleCourse.questiondata = CoursesControllerUtl.generateFirstManagerQuestion();
                 }
                 else
@@ -143,14 +144,17 @@ namespace MvcClient.Areas.Courses.Controllers
                         {
                             question.name = "匿名提問";
                         }
-                        foreach(Response response in question.responsedata)
+                        if (question.responsedata != null)
                         {
-                            if (response.anonym)
+                            foreach (Response response in question.responsedata)
                             {
-                                response.name = "匿名回覆";
+                                if (response.anonym)
+                                {
+                                    response.name = "匿名回覆";
+                                }
                             }
+                            question.responsedata = (from r in question.responsedata orderby r.lastModified descending select r).ToList();
                         }
-                        question.responsedata = (from r in question.responsedata orderby r.lastModified descending select r).ToList();
                     }
                 }
 
@@ -350,6 +354,151 @@ namespace MvcClient.Areas.Courses.Controllers
                                LastModified = r.Value.rankingdata.Where(rr => rr.rankingID == r.Key).FirstOrDefault().lastModified
                            }).OrderByDescending(nc => nc.LastModified).Take(10).ToList();
             return PartialView(NewRankings);
+        }
+
+
+
+        [Authorize]
+        public ActionResult GetPersonalFootPrint()
+        {
+            string currentUserId = User.Identity.GetUserId();
+
+            ViewBag.FavoriteCount= db.userFavorites.Where(q => q.UserId == currentUserId).ToList().Count;
+            ViewBag.QuestionCount = db.userQuestions.Where(q => q.UserId == currentUserId).ToList().Count;
+            ViewBag.ResponseCount = db.userQuestionResponses.Where(q => q.userId == currentUserId).ToList().Count;
+            ViewBag.CommentCount = db.userComments.Where(q => q.UserId == currentUserId).ToList().Count;
+            ViewBag.RankingCount = db.userRankings.Where(q => q.UserId == currentUserId).ToList().Count;
+
+            return View();
+        }
+
+        [Authorize]
+        public async Task<ActionResult> GetPersonalFavorite()
+        {
+            ApplicationDbContext db = new ApplicationDbContext();
+            string currentUserId = User.Identity.GetUserId();
+            List<User_Favorite> UserFavorites = db.userFavorites.Where(c => c.UserId == currentUserId).ToList();
+
+            List<AllCollegeCourseModel> courses = new List<AllCollegeCourseModel>();
+            foreach (var userfavorite in UserFavorites)
+            {
+                AllCollegeCourseModel SingleCourse = await CoursesControllerUtl.ByIdWholeWorkForAll<AllCollegeCourseModel>(domain, "AllCollege", userfavorite.CourseId);
+                courses.Add(SingleCourse);
+            }
+
+            return PartialView("GetBySearchAll", courses);
+        }
+
+        [Authorize]
+        public async Task<ActionResult> GetPersonalQuestion()
+        {
+            ApplicationDbContext db = new ApplicationDbContext();
+            string currentUserId = User.Identity.GetUserId();
+            List<User_Question> UserQuestions = db.userQuestions.Where(c => c.UserId == currentUserId).ToList();
+
+            Dictionary<string, AllCollegeCourseModel> coursesDict = new Dictionary<string, AllCollegeCourseModel>();
+            foreach (var userquestion in UserQuestions)
+            {
+                AllCollegeCourseModel SingleCourse = await CoursesControllerUtl.ByIdWholeWorkForAll<AllCollegeCourseModel>(domain, "AllCollege", userquestion.CourseId);
+                coursesDict.Add(userquestion.questionId, SingleCourse);
+            }
+
+            var Questions = (from q in coursesDict
+                                         select new UserQuestionViewModel
+                                         {
+                                             CourseId = q.Value._id,
+                                             CourseName = q.Value.CourseName,
+                                             questionString = q.Value.questiondata.Where(qq => qq.questionID == q.Key).FirstOrDefault().questionstring,
+                                             responseData = q.Value.questiondata.Where(qq => qq.questionID == q.Key).FirstOrDefault().responsedata.OrderByDescending(nq => nq.lastModified).Take(10).ToList(),
+                                             LastModified = q.Value.questiondata.Where(qq => qq.questionID == q.Key).FirstOrDefault().lastModified
+                                         }).OrderByDescending(vm => vm.LastModified).ToList();
+
+            return PartialView("GetTopTenQuestions", Questions);
+        }
+
+
+        [Authorize]
+        public async Task<ActionResult> GetPersonalResponse()
+        {
+            ApplicationDbContext db = new ApplicationDbContext();
+            string currentUserId = User.Identity.GetUserId();
+            List<User_Question_Response> UserResponses = db.userQuestionResponses.Where(c => c.userId == currentUserId).ToList();
+
+
+            Dictionary<string, AllCollegeCourseModel> coursesResponseIdDict = new Dictionary<string, AllCollegeCourseModel>();
+            foreach (var userresponse in UserResponses)
+            {
+                AllCollegeCourseModel SingleCourse = await CoursesControllerUtl.ByIdWholeWorkForAll<AllCollegeCourseModel>(domain, "AllCollege", userresponse.courseId);
+                coursesResponseIdDict.Add(userresponse.questionId + "/" + userresponse.reesponseId, SingleCourse);
+            }
+            
+            var Responses = (from r in coursesResponseIdDict
+                             select new UserQuestionResponseViewModel
+                             {
+                                 courseId = r.Value._id,
+                                 CourseName = r.Value.CourseName,
+                                 questionString = r.Value.questiondata.Where(rr => rr.questionID == r.Key.Split('/')[0]).FirstOrDefault().questionstring,
+                                 responseString = r.Value.questiondata.Where(rr => rr.questionID == r.Key.Split('/')[0]).FirstOrDefault()
+                                                    .responsedata.Where(rr => rr.responseID == r.Key.Split('/')[1]).FirstOrDefault().responsestring,
+                                 LastModified = r.Value.questiondata.Where(rr => rr.questionID == r.Key.Split('/')[0]).FirstOrDefault()
+                                                    .responsedata.Where(rr => rr.responseID == r.Key.Split('/')[1]).FirstOrDefault().lastModified
+                             }).OrderByDescending(vm => vm.LastModified).ToList();
+
+            return PartialView("GetTopTenResponses_Personal", Responses);
+        }
+
+
+        [Authorize]
+        public async Task<ActionResult> GetPersonalComment()
+        {
+            ApplicationDbContext db = new ApplicationDbContext();
+            string currentUserId = User.Identity.GetUserId();
+            List<User_Comment> UserComments = db.userComments.Where(c => c.UserId == currentUserId).ToList();
+
+            Dictionary<string, AllCollegeCourseModel> coursesDict = new Dictionary<string, AllCollegeCourseModel>();
+            foreach (var usercomment in UserComments)
+            {
+                AllCollegeCourseModel SingleCourse = await CoursesControllerUtl.ByIdWholeWorkForAll<AllCollegeCourseModel>(domain, "AllCollege", usercomment.CourseId);
+                coursesDict.Add(usercomment.CommentId, SingleCourse);
+            }
+            var Comments = (from c in coursesDict
+                               select new UserCommentViewModel
+                               {
+                                   CourseId = c.Value._id,
+                                   CourseName = c.Value.CourseName,
+                                   CommentString = c.Value.commentdata.Where(cc => cc.commentID == c.Key).FirstOrDefault().commentstring,
+                                   LastModified = c.Value.commentdata.Where(cc => cc.commentID == c.Key).FirstOrDefault().lastModified
+                               }).OrderByDescending(vm => vm.LastModified).ToList();
+
+            return PartialView("GetTopTenComments", Comments);
+        }
+
+        [Authorize]
+        public async Task<ActionResult> GetPersonalRanking()
+        {
+            ApplicationDbContext db = new ApplicationDbContext();
+            string currentUserId = User.Identity.GetUserId();
+            List<User_Ranking> UserRanking = db.userRankings.Where(c => c.UserId == currentUserId).ToList();
+
+            Dictionary<string, AllCollegeCourseModel> coursesDict = new Dictionary<string, AllCollegeCourseModel>();
+            foreach (var userranking in UserRanking)
+            {
+                AllCollegeCourseModel SingleCourse = await CoursesControllerUtl.ByIdWholeWorkForAll<AllCollegeCourseModel>(domain, "AllCollege", userranking.CourseId);
+                coursesDict.Add(userranking.RankingId, SingleCourse);
+            }
+
+            var Rankings = (from r in coursesDict
+                               select new UserRankingViewModel
+                               {
+                                   CourseId = r.Value._id,
+                                   CourseName = r.Value.CourseName,
+                                   deepness = r.Value.rankingdata.Where(rr => rr.rankingID == r.Key).FirstOrDefault().deepness,
+                                   relaxing = r.Value.rankingdata.Where(rr => rr.rankingID == r.Key).FirstOrDefault().relaxing,
+                                   sweetness = r.Value.rankingdata.Where(rr => rr.rankingID == r.Key).FirstOrDefault().sweetness,
+                                   LastModified = r.Value.rankingdata.Where(rr => rr.rankingID == r.Key).FirstOrDefault().lastModified
+                               }).OrderByDescending(vm => vm.LastModified).Take(10).ToList();
+
+            return PartialView("GetTopTenRankings", Rankings);
         }
 
         //[HttpPost]

@@ -400,16 +400,16 @@
                 $.each($(this).find("td").parent("tr").find("td:nth-child(8)"), DrawRanking)
 
                 var id = null;
-                $("table>tbody>tr>td").mouseenter(function () {
+                $("#TeacherCoursesComparasonDiv").find("table>tbody>tr>td").mouseenter(function () {
                     $(this).parent("tr").addClass("MouseIn")
                     id = $(this).parent("tr").find("td:eq(0)").text()
                 })
 
-                $("table>tbody>tr>td").mouseleave(function () {
+                $("#TeacherCoursesComparasonDiv").find("table>tbody>tr>td").mouseleave(function () {
                     $(this).parent("tr").removeClass("MouseIn")
                 })
 
-                $("table>tbody>tr>td").parent('tr').click(function () {
+                $("#TeacherCoursesComparasonDiv").find("table>tbody>tr>td").parent('tr').click(function () {
                     var url = '@Url.Action("GetCourseDetail", "Courses", new { area = "Courses" })';
                     id = id.replace(new RegExp(" ", "g"), "")
                     window.open(url + "?strid=" + id)

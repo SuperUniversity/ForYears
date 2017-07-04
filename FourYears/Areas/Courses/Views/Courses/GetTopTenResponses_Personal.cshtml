@@ -1,0 +1,78 @@
+﻿@model IEnumerable<FourYears.Areas.Courses.ViewModel.UserQuestionResponseViewModel>
+
+<table class="table">
+    <tr>
+        @*<th>
+            @Html.DisplayNameFor(model => model.userId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NickName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Email)
+        </th>*@
+        <th hidden="hidden">
+            @Html.DisplayNameFor(model => model.courseId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CourseName)
+        </th>
+        @*<th>
+            @Html.DisplayNameFor(model => model.questionId)
+        </th>*@
+        <th>
+            @Html.DisplayNameFor(model => model.questionString)
+        </th>
+        @*<th>
+            @Html.DisplayNameFor(model => model.reesponseId)
+        </th>*@
+        <th>
+            @Html.DisplayNameFor(model => model.responseString)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LastModified)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        @*<td>
+            @Html.DisplayFor(modelItem => item.userId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NickName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Email)
+        </td>*@
+        <td hidden="hidden">
+            @Html.DisplayFor(modelItem => item.courseId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CourseName)
+        </td>
+        @*<td>
+            @Html.DisplayFor(modelItem => item.questionId)
+        </td>*@
+        <td>
+            @Html.DisplayFor(modelItem => item.questionString)
+        </td>
+        @*<td>
+            @Html.DisplayFor(modelItem => item.reesponseId)
+        </td>*@
+        <td>
+            @Html.DisplayFor(modelItem => item.responseString)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LastModified)
+        </td>
+        @*<td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.User_Question_ResponseId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.User_Question_ResponseId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.User_Question_ResponseId })
+        </td>*@
+    </tr>
+}
+
+</table>

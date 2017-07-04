@@ -302,6 +302,8 @@ namespace FourYears.Models
             return new ApplicationDbContext();
         }
 
+        //public System.Data.Entity.DbSet<FourYears.Areas.Courses.ViewModel.UserQuestionResponseViewModel> UserQuestionResponseViewModels { get; set; }
+
         //public System.Data.Entity.DbSet<MvcClient.Areas.Courses.Models.Response> Responses { get; set; }
 
         //public System.Data.Entity.DbSet<FourYears.Areas.Courses.ViewModel.UserQuestionResponseViewModel> UserQuestionResponseViewModels { get; set; }

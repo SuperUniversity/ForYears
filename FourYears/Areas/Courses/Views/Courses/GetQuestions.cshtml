@@ -17,13 +17,19 @@
                 <blockquote class="card-blockquote">
                     <p>@Html.DisplayFor(modelItem => item.questionstring)</p>
 
+
                     <footer class="col-md-6">
                         @Html.DisplayFor(modelItem => item.lastModified)
-                        <button type="button" class="btn-link responseBtn">回應提問</button>
-                        @{
+
+                        @if (ViewBag.originalQuestionLen != 0)
+                        {
+                            <button type="button" class="btn-link responseBtn">回應提問</button>
+                            
                             int responsesCount = (item.responsedata == null) ? 0 : item.responsedata.Count();
                             <button type="button" class="btn-link stretchResponseBtn"> @responsesCount 則回覆</button>
-                            }
+
+                        }
+
                     </footer>
 
                     <div class="col-md-6">

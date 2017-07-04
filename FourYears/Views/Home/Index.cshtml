@@ -21,6 +21,13 @@
         /*footer p{
             color:black;
         }*/
+
+        #MainDiv {
+            text-align: center;
+        }
+        #MainDiv p {
+            margin:5px;
+        }
     </style>
     }
 
@@ -47,6 +54,26 @@
         </header>
 
         <!-- Main -->
+        <div id="MainDiv"  class="col-md-offset-2 col-md-8 col-md-offset-2">
+            @*<p>
+                歡迎來到<strong>肆 · 年</strong>課程檢索系統
+            </p>*@
+            <p>
+                本系統並<strong>不營利</strong> 
+            </p>
+            <p>
+                <strong>透明</strong>課程資訊
+            </p>
+            <p>
+                <strong>監督</strong>課程效能
+            </p>
+            <p>
+                <strong>便利</strong>跨系（校）選課
+            </p>
+            <p>
+                留下你對每一門課程的評價及看法！
+            </p>
+        </div>
         <section id="main">
 
             <!-- Thumbnails -->
@@ -82,12 +109,15 @@
                         <h3>網路書城</h3>
                     </a>
                 </div>*@
-                <div>
+                @*<div>
                     <input type="hidden" value="@Url.Action("index", "Courses", new { area = "Courses" })" />
                     <a href="~/images/thumbs/課程.jpg">
                         <img src="~/images/thumbs/課程.jpg" alt="" />
                         <h3>課程檢索</h3>
                     </a>
+                </div>*@
+                <div style="height:100px">
+
                 </div>
             </section>
 
