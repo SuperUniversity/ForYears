@@ -29,32 +29,32 @@ namespace MvcClient.Areas.Courses.Controllers
         public static String queryString = null;
 
 
-        public async Task<ActionResult> GetNtuBySearchAll(string query = null)
-        {
-            IEnumerable<NtuCourseModel> ntuCourses = await CoursesControllerUtl.BySearchAllWholeWork<NtuCourseModel>(domain, "ntu", query);
-            return PartialView(ntuCourses);
-        }
+        //public async Task<ActionResult> GetNtuBySearchAll(string query = null)
+        //{
+        //    IEnumerable<NtuCourseModel> ntuCourses = await CoursesControllerUtl.BySearchAllWholeWork<NtuCourseModel>(domain, "ntu", query);
+        //    return PartialView(ntuCourses);
+        //}
 
 
-        public async Task<ActionResult> GetNtpuBySearchAll(string query = null)
-        {
-            IEnumerable<NtpuCourseModel> ntpuCourses = await CoursesControllerUtl.BySearchAllWholeWork<NtpuCourseModel>(domain, "ntpu", query);
-            return PartialView(ntpuCourses);
-        }
+        //public async Task<ActionResult> GetNtpuBySearchAll(string query = null)
+        //{
+        //    IEnumerable<NtpuCourseModel> ntpuCourses = await CoursesControllerUtl.BySearchAllWholeWork<NtpuCourseModel>(domain, "ntpu", query);
+        //    return PartialView(ntpuCourses);
+        //}
 
 
-        public async Task<ActionResult> GetNctuBySearchAll(string query = null)
-        {
-            IEnumerable<NctuCourseModel> nctuCourses = await CoursesControllerUtl.BySearchAllWholeWork<NctuCourseModel>(domain, "nctu", query);
-            return PartialView(nctuCourses);
-        }
+        //public async Task<ActionResult> GetNctuBySearchAll(string query = null)
+        //{
+        //    IEnumerable<NctuCourseModel> nctuCourses = await CoursesControllerUtl.BySearchAllWholeWork<NctuCourseModel>(domain, "nctu", query);
+        //    return PartialView(nctuCourses);
+        //}
 
 
-        public async Task<ActionResult> GetNckuBySearchAll(string query = null)
-        {
-            IEnumerable<NckuCourseModel> nckuCourses = await CoursesControllerUtl.BySearchAllWholeWork<NckuCourseModel>(domain, "ncku", query);
-            return PartialView(nckuCourses);
-        }
+        //public async Task<ActionResult> GetNckuBySearchAll(string query = null)
+        //{
+        //    IEnumerable<NckuCourseModel> nckuCourses = await CoursesControllerUtl.BySearchAllWholeWork<NckuCourseModel>(domain, "ncku", query);
+        //    return PartialView(nckuCourses);
+        //}
 
         //[ChildActionOnly]
         public async Task<ActionResult> GetBySearchAll(bool isGeneralSearch=true, string college = "NTU", string query = null)
@@ -297,7 +297,7 @@ namespace MvcClient.Areas.Courses.Controllers
                                              CourseId = q.Value._id,
                                              CourseName = q.Value.CourseName,
                                              questionString = q.Value.questiondata.Where(qq => qq.questionID == q.Key).FirstOrDefault().questionstring,
-                                             responseData = q.Value.questiondata.Where(qq => qq.questionID == q.Key).FirstOrDefault().responsedata.OrderByDescending(nq => nq.lastModified).Take(10).ToList(),
+                                             responseData = (q.Value.questiondata.Where(qq => qq.questionID == q.Key).FirstOrDefault().responsedata != null)? q.Value.questiondata.Where(qq => qq.questionID == q.Key).FirstOrDefault().responsedata.OrderByDescending(nq => nq.lastModified).Take(10).ToList() : null,
                                              LastModified = q.Value.questiondata.Where(qq => qq.questionID == q.Key).FirstOrDefault().lastModified
                                          }).OrderByDescending(nq => nq.LastModified).Take(10).ToList();
 

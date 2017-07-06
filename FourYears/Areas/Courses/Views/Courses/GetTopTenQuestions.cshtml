@@ -54,17 +54,31 @@
         <td>
             @Html.DisplayFor(modelItem => item.LastModified)
         </td>
-        <td>
-            <button class="btn-link checkResponses">查看留言</button>
-        </td>
+        @if (item.responseData != null)
+        {
+            <td>
+                <button class="btn-link checkResponses">查看留言</button>
+            </td>
+        }
+        else
+        {
+            <td>
+                <p>目前尚無留言</p>
+            </td>
+        }
+
     </tr>
-    <tr  hidden="hidden">
-        <td colspan="4">
-            <div>
-                @Html.Partial("GetTopTenResponses", item.responseData)
-            </div>
-        </td>
-    </tr>
+        if (item.responseData != null)
+        {
+            <tr hidden="hidden">
+                <td colspan="4">
+                    <div>
+                        @Html.Partial("GetTopTenResponses", item.responseData)
+                    </div>
+                </td>
+            </tr>
+        }
+
 }
 
 </table>

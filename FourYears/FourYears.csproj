@@ -467,10 +467,6 @@
     <Content Include="Areas\Courses\Views\Courses\GetBySearchAll.cshtml" />
     <Content Include="Areas\Courses\Views\Courses\GetComments.cshtml" />
     <Content Include="Areas\Courses\Views\Courses\GetCourseDetail.cshtml" />
-    <Content Include="Areas\Courses\Views\Courses\GetNckuBySearchAll.cshtml" />
-    <Content Include="Areas\Courses\Views\Courses\GetNctuBySearchAll.cshtml" />
-    <Content Include="Areas\Courses\Views\Courses\GetNtpuBySearchAll.cshtml" />
-    <Content Include="Areas\Courses\Views\Courses\GetNtuBySearchAll.cshtml" />
     <Content Include="Areas\Courses\Views\Courses\Index.cshtml" />
     <Content Include="Areas\Courses\Views\Courses\PostComment.cshtml" />
     <Content Include="Areas\Courses\Views\Courses\PostRanking.cshtml" />
