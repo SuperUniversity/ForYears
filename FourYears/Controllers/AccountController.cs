@@ -104,9 +104,9 @@ namespace FourYears.Controllers
                     return RedirectToAction("SendCode", new { ReturnUrl = returnUrl, RememberMe = model.RememberMe });
                 case SignInStatus.Failure:
                 default:
-                    user.AccessFailedCount += 1;
-                    db.Entry(user).State = System.Data.Entity.EntityState.Modified;
-                    db.SaveChanges();
+                    //user.AccessFailedCount += 1;
+                    //db.Entry(user).State = System.Data.Entity.EntityState.Modified;
+                    //db.SaveChanges();
 
                     ModelState.AddModelError("", "登入嘗試失試。");
                     ViewBag.ReturnUrl = returnUrl;
