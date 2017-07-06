@@ -210,11 +210,12 @@ namespace MvcClient.Areas.Courses.Controllers
             return PartialView("GetBySearchAll", ComparasonCourses);
         }
 
+        ApplicationDbContext db = new ApplicationDbContext();
 
         [HttpPost]
         public ActionResult PostComment(User_Comment userComment)
         {
-            ApplicationDbContext db = new ApplicationDbContext();
+            //ApplicationDbContext db = new ApplicationDbContext();
             db.userComments.Add(userComment);
             db.SaveChanges();
             return RedirectToAction("GetCourseDetail",new { strid = userComment.CourseId});
@@ -224,7 +225,7 @@ namespace MvcClient.Areas.Courses.Controllers
         [HttpPost]
         public ActionResult PostRanking(User_Ranking userRanking)
         {
-            ApplicationDbContext db = new ApplicationDbContext();
+            //ApplicationDbContext db = new ApplicationDbContext();
             db.userRankings.Add(userRanking);
             db.SaveChanges();
             return RedirectToAction("GetCourseDetail", new {strid = userRanking.CourseId });
@@ -242,7 +243,7 @@ namespace MvcClient.Areas.Courses.Controllers
         [HttpPost]
         public ActionResult PostResponse(User_Question_Response userQuestionResponse)
         {
-            ApplicationDbContext db = new ApplicationDbContext();
+            //ApplicationDbContext db = new ApplicationDbContext();
             db.userQuestionResponses.Add(userQuestionResponse);
             db.SaveChanges();
             return RedirectToAction("GetCourseDetail", new { strid = userQuestionResponse.courseId });
@@ -251,7 +252,7 @@ namespace MvcClient.Areas.Courses.Controllers
         [HttpPost]
         public ActionResult PostFavorite(User_Favorite userFavorite)
         {
-            ApplicationDbContext db = new ApplicationDbContext();
+            //ApplicationDbContext db = new ApplicationDbContext();
             db.userFavorites.Add(userFavorite);
             db.SaveChanges();
             return RedirectToAction("GetCourseDetail", new { strid = userFavorite.CourseId });
@@ -260,7 +261,7 @@ namespace MvcClient.Areas.Courses.Controllers
         [HttpPost]
         public ActionResult DeleteFavorite(User_Favorite userFavorite)
         {
-            ApplicationDbContext db = new ApplicationDbContext();
+            //ApplicationDbContext db = new ApplicationDbContext();
             User_Favorite toboDeleteUser_Favorite = db.userFavorites.Where(f => f.UserId == userFavorite.UserId).Where(f => f.CourseId == userFavorite.CourseId).FirstOrDefault();
             db.userFavorites.Remove(toboDeleteUser_Favorite);
             db.SaveChanges();
@@ -270,7 +271,6 @@ namespace MvcClient.Areas.Courses.Controllers
 
 
 
-        ApplicationDbContext db = new ApplicationDbContext();
         public ActionResult News()
         {
             ViewBag.QuestionCount = db.userQuestions.Where(q => q.CourseId != "5941d2207bd812e6918ce7f9").ToList().Count;
@@ -375,7 +375,7 @@ namespace MvcClient.Areas.Courses.Controllers
         [Authorize]
         public async Task<ActionResult> GetPersonalFavorite()
         {
-            ApplicationDbContext db = new ApplicationDbContext();
+            //ApplicationDbContext db = new ApplicationDbContext();
             string currentUserId = User.Identity.GetUserId();
             List<User_Favorite> UserFavorites = db.userFavorites.Where(c => c.UserId == currentUserId).ToList();
 
@@ -392,7 +392,7 @@ namespace MvcClient.Areas.Courses.Controllers
         [Authorize]
         public async Task<ActionResult> GetPersonalQuestion()
         {
-            ApplicationDbContext db = new ApplicationDbContext();
+            //ApplicationDbContext db = new ApplicationDbContext();
             string currentUserId = User.Identity.GetUserId();
             List<User_Question> UserQuestions = db.userQuestions.Where(c => c.UserId == currentUserId).ToList();
 
@@ -420,7 +420,7 @@ namespace MvcClient.Areas.Courses.Controllers
         [Authorize]
         public async Task<ActionResult> GetPersonalResponse()
         {
-            ApplicationDbContext db = new ApplicationDbContext();
+            //ApplicationDbContext db = new ApplicationDbContext();
             string currentUserId = User.Identity.GetUserId();
             List<User_Question_Response> UserResponses = db.userQuestionResponses.Where(c => c.userId == currentUserId).ToList();
 
@@ -451,7 +451,7 @@ namespace MvcClient.Areas.Courses.Controllers
         [Authorize]
         public async Task<ActionResult> GetPersonalComment()
         {
-            ApplicationDbContext db = new ApplicationDbContext();
+            //ApplicationDbContext db = new ApplicationDbContext();
             string currentUserId = User.Identity.GetUserId();
             List<User_Comment> UserComments = db.userComments.Where(c => c.UserId == currentUserId).ToList();
 
@@ -476,7 +476,7 @@ namespace MvcClient.Areas.Courses.Controllers
         [Authorize]
         public async Task<ActionResult> GetPersonalRanking()
         {
-            ApplicationDbContext db = new ApplicationDbContext();
+            //ApplicationDbContext db = new ApplicationDbContext();
             string currentUserId = User.Identity.GetUserId();
             List<User_Ranking> UserRanking = db.userRankings.Where(c => c.UserId == currentUserId).ToList();
 
